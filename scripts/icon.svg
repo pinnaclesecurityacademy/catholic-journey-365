@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8A6747"/>
+      <stop offset="1" stop-color="#6B4E34"/>
+    </linearGradient>
+    <linearGradient id="page" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FAF7F4"/>
+      <stop offset="1" stop-color="#F0E7DA"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded leather tile -->
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- Closed Bible -->
+  <g>
+    <!-- Book body / cover -->
+    <rect x="118" y="120" width="276" height="272" rx="26" fill="#4A3728"/>
+    <!-- Page block -->
+    <rect x="142" y="142" width="228" height="228" rx="16" fill="url(#page)"/>
+    <!-- Spine center line -->
+    <rect x="252" y="142" width="8" height="228" fill="#E2D5C3"/>
+
+    <!-- Gold cross -->
+    <g fill="#D4A96A">
+      <rect x="241" y="188" width="30" height="136" rx="6"/>
+      <rect x="211" y="226" width="90" height="30" rx="6"/>
+    </g>
+  </g>
+
+  <!-- Gold base ribbon / edge accent -->
+  <rect x="118" y="372" width="276" height="20" rx="10" fill="#D4A96A"/>
+</svg>

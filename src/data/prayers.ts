@@ -34,6 +34,8 @@ export interface Prayer {
    * nine days, presented one day at a time (About → Begin → Day 1 … Day 9).
    */
   isNovena?: boolean;
+  /** When true, this prayer is shown as a guided Divine Mercy Chaplet flow. */
+  isChaplet?: boolean;
 }
 
 export interface PrayerCategory {
@@ -287,6 +289,7 @@ export const prayerCategories: PrayerCategory[] = [
         ],
         explanation:
           "The Divine Mercy Chaplet is a prayer of trust in God’s mercy, given through St. Faustina. Prayed on ordinary rosary beads, it offers to the Father the sacrifice of Jesus for the forgiveness of the whole world. It keeps our eyes on the mercy that flows from Christ’s Passion and his pierced Heart (John 19:34). Praying it forms us to trust Jesus and to ask his mercy for ourselves and for everyone.",
+        isChaplet: true,
       },
       {
         id: 'mary-undoer-of-knots',

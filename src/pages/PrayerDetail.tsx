@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { getPrayer, getCategory, PrayerSection } from '../data/prayers';
 import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
 import NovenaFlow from '../components/NovenaFlow';
+import ChapletFlow from '../components/ChapletFlow';
 
 /**
  * A formation section (Stations reflections, the "Simple Way to Pray" guide,
@@ -95,6 +96,11 @@ export default function PrayerDetail() {
   // Novenas get their own one-day-at-a-time experience.
   if (prayer.isNovena) {
     return <NovenaFlow prayer={prayer} />;
+  }
+
+  // The Divine Mercy Chaplet gets its own guided, step-by-step flow.
+  if (prayer.isChaplet) {
+    return <ChapletFlow prayer={prayer} />;
   }
 
   // The prayer-book display text: prefer the line-broken `verse`, else `content`.

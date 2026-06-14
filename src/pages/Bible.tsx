@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { BibleReader } from '../components/BibleReader';
 import { getBooks, getBook, loadChapter, BibleChapter } from '../data/bible';
 
-// In-app Bible reader page (route: /bible). V3.3 framework only.
+// In-app Bible reader page (route: /bible).
 // Lets the reader pick a book and chapter, then displays the verses via the
-// shared BibleReader component. Uses placeholder sample data for now.
+// shared BibleReader component. Chapters are lazily loaded from static files.
 
 export default function Bible() {
   const navigate = useNavigate();

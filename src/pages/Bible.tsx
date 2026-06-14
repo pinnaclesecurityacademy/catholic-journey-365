@@ -63,6 +63,30 @@ export default function Bible() {
         </h1>
       </header>
 
+      {/* Begin Scripture Reading (Bible Journey prototype: Day 1 & Day 2) */}
+      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-6">
+        <h2 className="font-display text-lg font-semibold text-leather-600 mb-1">
+          Begin Scripture Reading
+        </h2>
+        <p className="text-sm text-leather-900 mb-4">
+          Read a day's Scripture from the Bible Journey, one chapter at a time.
+        </p>
+        <div className="flex gap-2">
+          <button
+            onClick={() => navigate('/bible/reading/1')}
+            className="flex-1 rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+          >
+            Day 1
+          </button>
+          <button
+            onClick={() => navigate('/bible/reading/2')}
+            className="flex-1 rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+          >
+            Day 2
+          </button>
+        </div>
+      </section>
+
       {/* Book selector */}
       <div className="mb-4">
         <label className="block text-xs uppercase tracking-widest text-stone-400 mb-2">

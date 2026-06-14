@@ -14,6 +14,7 @@ import Prayer from './pages/Prayer';
 import PrayerDetail from './pages/PrayerDetail';
 import Rosary from './pages/Rosary';
 import Bible from './pages/Bible';
+import ScriptureReading from './pages/ScriptureReading';
 
 function Splash() {
   return (
@@ -48,6 +49,7 @@ function AppShell() {
           <Route path="/rosary" element={<Rosary />} />
           <Route path="/rosary/:mystery" element={<Rosary />} />
           <Route path="/bible" element={<Bible />} />
+          <Route path="/bible/reading/:day" element={<ScriptureReading />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
         <BottomNav />

@@ -1,8 +1,22 @@
 import { useNavigate } from 'react-router-dom';
-import { prayerCategories } from '../data/prayers';
+import { prayerCategories, PrayerCategory } from '../data/prayers';
+
+// Top-level prayer-library categories. Each maps to one or more underlying data
+// categories (whose ids and routing are unchanged), so prayers are grouped for
+// display without moving or deleting any content.
+const PRAYER_GROUPS: { title: string; categoryIds: string[] }[] = [
+  { title: 'Essential Prayers', categoryIds: ['essential'] },
+  { title: 'Daily Prayers', categoryIds: ['daily'] },
+  { title: 'Rosary', categoryIds: ['rosary'] },
+  { title: 'Devotions & Novenas', categoryIds: ['stations', 'devotions'] },
+  { title: 'Intentions', categoryIds: ['protection', 'family'] },
+];
 
 export default function Prayer() {
   const navigate = useNavigate();
+
+  const findCategory = (id: string): PrayerCategory | undefined =>
+    prayerCategories.find((c) => c.id === id);
 
   return (
     <div className="max-w-md mx-auto px-5 pt-8">
@@ -14,38 +28,47 @@ export default function Prayer() {
       </header>
 
       <div className="space-y-6">
-        {prayerCategories.map((cat) => (
-          <section key={cat.id}>
-            <h2 className="font-display text-xl font-semibold text-leather-900 mb-2">
-              {cat.title}
-            </h2>
-            <div className="space-y-2">
-              {cat.id === 'stations' ? (
-                // Stations shows a single entry that launches the guide.
-                <button
-                  onClick={() => navigate('/prayer/stations/about')}
-                  className="w-full text-left rounded-xl bg-white border border-parchment-200 px-4 py-3 font-medium text-leather-900 active:scale-[0.99] transition"
-                >
-                  Stations of the Cross
-                </button>
-              ) : (
-                cat.prayers.map((p) => (
-                  <button
-                    key={p.id}
-                    onClick={() =>
-                      cat.isRosary
-                        ? navigate(`/rosary/${p.id}`)
-                        : navigate(`/prayer/${cat.id}/${p.id}`)
-                    }
-                    className="w-full text-left rounded-xl bg-white border border-parchment-200 px-4 py-3 font-medium text-leather-900 active:scale-[0.99] transition"
-                  >
-                    {p.title}
-                  </button>
-                ))
-              )}
-            </div>
-          </section>
-        ))}
+        {PRAYER_GROUPS.map((group) => {
+          const cats = group.categoryIds
+            .map(findCategory)
+            .filter((c): c is PrayerCategory => Boolean(c));
+          if (cats.length === 0) return null;
+          return (
+            <section key={group.title}>
+              <h2 className="font-display text-xl font-semibold text-leather-900 mb-2">
+                {group.title}
+              </h2>
+              <div className="space-y-2">
+                {cats.map((cat) =>
+                  cat.id === 'stations' ? (
+                    // Stations shows a single entry that launches the guide.
+                    <button
+                      key={cat.id}
+                      onClick={() => navigate('/prayer/stations/about')}
+                      className="w-full text-left rounded-xl bg-white border border-parchment-200 px-4 py-3 font-medium text-leather-900 active:scale-[0.99] transition"
+                    >
+                      Stations of the Cross
+                    </button>
+                  ) : (
+                    cat.prayers.map((p) => (
+                      <button
+                        key={p.id}
+                        onClick={() =>
+                          cat.isRosary
+                            ? navigate(`/rosary/${p.id}`)
+                            : navigate(`/prayer/${cat.id}/${p.id}`)
+                        }
+                        className="w-full text-left rounded-xl bg-white border border-parchment-200 px-4 py-3 font-medium text-leather-900 active:scale-[0.99] transition"
+                      >
+                        {p.title}
+                      </button>
+                    ))
+                  )
+                )}
+              </div>
+            </section>
+          );
+        })}
       </div>
     </div>
   );

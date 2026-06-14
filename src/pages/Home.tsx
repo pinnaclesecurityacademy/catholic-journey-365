@@ -120,14 +120,14 @@ export default function Home() {
 
       {/* Daily Prayer (merged: prayer text + today's Rosary) */}
       <div className="rounded-2xl bg-white border border-parchment-200 p-5 mb-4">
-        <h3 className="font-display text-lg font-semibold text-leather-900 text-center">
+        <h3 className="font-display text-lg font-semibold text-leather-900">
           Daily Prayer
         </h3>
         <p className="mt-3 text-center italic text-leather-900 leading-loose whitespace-pre-line">
           {day.daily_prayer}
         </p>
 
-        <div className="mt-5 border-t border-parchment-200 pt-4 text-center">
+        <div className="mt-5 border-t border-parchment-200 pt-4">
           <p className="text-sm text-stone-500">Today’s Rosary</p>
           <p className="mt-1 text-leather-900 font-medium">
             {todayRosary.label}

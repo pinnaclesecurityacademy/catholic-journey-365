@@ -120,21 +120,12 @@ export default function Rosary() {
         </section>
 
         <section className={prayerCard}>
-          <p className="text-center text-sm text-leather-600 mb-7">
-            Three Hail Marys, for an increase of faith, hope, and charity.
+          <SacredPrayerLabel>Three Hail Marys</SacredPrayerLabel>
+          <SacredPrayer text={decadePrayerVerse.hailMary} />
+          <p className="mt-7 text-center text-sm text-leather-600">
+            Pray this prayer three times, asking for an increase of faith,
+            hope, and charity.
           </p>
-          <div className="mb-7">
-            <SacredPrayerLabel>Hail Mary &middot; for faith</SacredPrayerLabel>
-            <SacredPrayer text={decadePrayerVerse.hailMary} />
-          </div>
-          <div className="mb-7 pt-6 border-t border-parchment-200">
-            <SacredPrayerLabel>Hail Mary &middot; for hope</SacredPrayerLabel>
-            <SacredPrayer text={decadePrayerVerse.hailMary} />
-          </div>
-          <div className="pt-6 border-t border-parchment-200">
-            <SacredPrayerLabel>Hail Mary &middot; for charity</SacredPrayerLabel>
-            <SacredPrayer text={decadePrayerVerse.hailMary} />
-          </div>
         </section>
 
         <section className={prayerCard + ' mb-6'}>

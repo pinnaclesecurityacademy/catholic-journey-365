@@ -11,7 +11,6 @@ export default function Profile() {
     members,
     updateDisplayName,
     updateJourneyName,
-    regenerateInviteCode,
     removeMember,
     signOut,
   } = useAccount();
@@ -26,7 +25,6 @@ export default function Profile() {
   const [jName, setJName] = useState(journeyName ?? '');
   const [savingJourney, setSavingJourney] = useState(false);
   const [savedJourney, setSavedJourney] = useState(false);
-  const [regenerating, setRegenerating] = useState(false);
 
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
@@ -52,53 +50,31 @@ export default function Profile() {
     }
   };
 
-  const regenerate = async () => {
-    if (regenerating) return;
-    const ok = window.confirm(
-      'Generate a new invite code? The current code will stop working.'
-    );
-    if (!ok) return;
-    setRegenerating(true);
-    try {
-      await regenerateInviteCode();
-    } finally {
-      setRegenerating(false);
-    }
-  };
-
   const handleRemove = async (memberId: string, displayName: string) => {
     const ok = window.confirm(`Remove ${displayName} from this journey?`);
     if (!ok) return;
     await removeMember(memberId);
   };
 
-  const copyCode = async () => {
+  const shareInvite = async () => {
     if (!inviteCode) return;
-    try {
-      await navigator.clipboard.writeText(inviteCode);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    } catch {
-      /* clipboard unavailable */
-    }
-  };
-
-  const shareCode = async () => {
-    if (!inviteCode) return;
-    const text = `Join our Catholic Journey 365, use invite code ${inviteCode}`;
-    if (navigator.share) {
+    const text = `Join our Catholic Journey 365! Use invite code ${inviteCode} at https://www.catholicjourney365.com`;
+    if (typeof navigator !== 'undefined' && navigator.share) {
       try {
         await navigator.share({ title: 'Catholic Journey 365', text });
       } catch {
         /* user cancelled */
       }
     } else {
-      copyCode();
+      try {
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1800);
+      } catch {
+        /* clipboard unavailable */
+      }
     }
   };
-
-  const canShare =
-    typeof navigator !== 'undefined' && typeof navigator.share === 'function';
 
   return (
     <div className="max-w-md mx-auto px-5 pt-8">
@@ -211,37 +187,15 @@ export default function Profile() {
           <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
             Invite
           </h2>
-          <p className="text-sm text-stone-500 mb-2">
-            Share this code so family can join your journey.
+          <p className="text-sm text-stone-500 mb-3">
+            Invite family to walk this journey with you.
           </p>
-          <div className="rounded-xl bg-parchment-100 px-4 py-3 text-center font-display text-2xl font-bold tracking-wider text-leather-600">
-            {inviteCode}
-          </div>
-          <div className="mt-3 flex gap-3">
-            <button
-              onClick={copyCode}
-              className="flex-1 rounded-xl border border-leather-600 py-2.5 font-semibold text-leather-600 active:scale-[0.99] transition"
-            >
-              {copied ? 'Copied ✓' : 'Copy code'}
-            </button>
-            {canShare && (
-              <button
-                onClick={shareCode}
-                className="flex-1 rounded-xl bg-leather-600 py-2.5 font-semibold text-white active:scale-[0.99] transition"
-              >
-                Share
-              </button>
-            )}
-          </div>
-          {isOwner && (
-            <button
-              onClick={regenerate}
-              disabled={regenerating}
-              className="mt-3 w-full rounded-xl border border-parchment-200 py-2.5 text-sm font-semibold text-stone-500 disabled:opacity-50 active:scale-[0.99] transition"
-            >
-              {regenerating ? 'Generating…' : 'Regenerate code'}
-            </button>
-          )}
+          <button
+            onClick={shareInvite}
+            className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+          >
+            {copied ? 'Invite copied ✓' : 'Share Journey Invite'}
+          </button>
         </section>
       )}
 

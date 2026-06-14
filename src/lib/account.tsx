@@ -11,6 +11,7 @@ import { supabase } from './supabase';
 
 /** A journey member as shown in the UI. completion_id is their progress namespace. */
 export interface Member {
+  id: string;
   display_name: string;
   completion_id: string;
 }
@@ -42,6 +43,9 @@ interface AccountValue {
   updateDisplayName: (name: string) => Promise<void>;
   createJourney: (name: string) => Promise<{ error?: string }>;
   joinJourney: (code: string) => Promise<boolean>;
+  updateJourneyName: (name: string) => Promise<void>;
+  regenerateInviteCode: () => Promise<void>;
+  removeMember: (memberId: string) => Promise<void>;
 }
 
 const AccountContext = createContext<AccountValue>({} as AccountValue);
@@ -97,12 +101,13 @@ export function AccountProvider({ children }: { children: ReactNode }) {
 
     const { data: mem } = await supabase
       .from('journey_members')
-      .select('profiles(display_name, completion_id)')
+      .select('profiles(id, display_name, completion_id)')
       .eq('journey_id', jid);
     const list: Member[] = (mem ?? [])
       .map((r: any) => r.profiles)
       .filter((p: any) => p && p.completion_id)
       .map((p: any) => ({
+        id: p.id,
         display_name: p.display_name,
         completion_id: p.completion_id,
       }));
@@ -248,6 +253,54 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     return true;
   };
 
+  // Rename the current journey (owner only). Uses the existing `name` column.
+  const updateJourneyName = async (name: string) => {
+    if (!user || !journeyId) return;
+    const trimmed = name.trim();
+    if (!trimmed) return;
+    await supabase
+      .from('journeys')
+      .update({ name: trimmed })
+      .eq('id', journeyId);
+    setJourneyName(trimmed);
+  };
+
+  // Generate a new unique invite code for the current journey (owner only).
+  // Updates the existing `invite_code` column; the old code stops working.
+  const regenerateInviteCode = async () => {
+    if (!user || !journeyId) return;
+    let code = randomCode();
+    let res = await supabase
+      .from('journeys')
+      .update({ invite_code: code })
+      .eq('id', journeyId)
+      .select('invite_code')
+      .single();
+    if (res.error) {
+      code = randomCode();
+      res = await supabase
+        .from('journeys')
+        .update({ invite_code: code })
+        .eq('id', journeyId)
+        .select('invite_code')
+        .single();
+      if (res.error) return;
+    }
+    setInviteCode(res.data.invite_code as string);
+  };
+
+  // Remove a member from the current journey (owner only). Deletes their
+  // journey_members row; cannot remove yourself. Their progress is untouched.
+  const removeMember = async (memberId: string) => {
+    if (!user || !journeyId || memberId === user.id) return;
+    await supabase
+      .from('journey_members')
+      .delete()
+      .eq('journey_id', journeyId)
+      .eq('user_id', memberId);
+    await loadJourney(user.id);
+  };
+
   return (
     <AccountContext.Provider
       value={{
@@ -267,6 +320,9 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         updateDisplayName,
         createJourney,
         joinJourney,
+        updateJourneyName,
+        regenerateInviteCode,
+        removeMember,
       }}
     >
       {children}

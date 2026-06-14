@@ -5,17 +5,28 @@ export default function Profile() {
   const {
     user,
     profile,
+    role,
     journeyName,
     inviteCode,
     members,
     updateDisplayName,
+    updateJourneyName,
+    regenerateInviteCode,
+    removeMember,
     signOut,
   } = useAccount();
+
+  const isOwner = role === 'owner';
 
   const [name, setName] = useState(profile?.display_name ?? '');
   const [savingName, setSavingName] = useState(false);
   const [savedName, setSavedName] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const [jName, setJName] = useState(journeyName ?? '');
+  const [savingJourney, setSavingJourney] = useState(false);
+  const [savedJourney, setSavedJourney] = useState(false);
+  const [regenerating, setRegenerating] = useState(false);
 
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
@@ -27,6 +38,38 @@ export default function Profile() {
     } finally {
       setSavingName(false);
     }
+  };
+
+  const saveJourneyName = async () => {
+    if (!jName.trim() || jName.trim() === journeyName) return;
+    setSavingJourney(true);
+    setSavedJourney(false);
+    try {
+      await updateJourneyName(jName);
+      setSavedJourney(true);
+    } finally {
+      setSavingJourney(false);
+    }
+  };
+
+  const regenerate = async () => {
+    if (regenerating) return;
+    const ok = window.confirm(
+      'Generate a new invite code? The current code will stop working.'
+    );
+    if (!ok) return;
+    setRegenerating(true);
+    try {
+      await regenerateInviteCode();
+    } finally {
+      setRegenerating(false);
+    }
+  };
+
+  const handleRemove = async (memberId: string, displayName: string) => {
+    const ok = window.confirm(`Remove ${displayName} from this journey?`);
+    if (!ok) return;
+    await removeMember(memberId);
   };
 
   const copyCode = async () => {
@@ -100,16 +143,64 @@ export default function Profile() {
         <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
           Journey
         </h2>
-        <p className="font-display text-xl font-semibold text-leather-900">
-          {journeyName ?? 'My Journey'}
-        </p>
+
+        {isOwner ? (
+          <>
+            <input
+              type="text"
+              value={jName}
+              onChange={(e) => {
+                setJName(e.target.value);
+                setSavedJourney(false);
+              }}
+              placeholder="Name your journey"
+              className="w-full rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-leather-900 outline-none focus:border-leather-400"
+            />
+            <button
+              onClick={saveJourneyName}
+              disabled={
+                savingJourney || !jName.trim() || jName.trim() === journeyName
+              }
+              className="mt-3 w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
+            >
+              {savingJourney
+                ? 'Saving…'
+                : savedJourney
+                ? 'Saved ✓'
+                : 'Save journey name'}
+            </button>
+          </>
+        ) : (
+          <p className="font-display text-xl font-semibold text-leather-900">
+            {journeyName ?? 'My Journey'}
+          </p>
+        )}
+
         {members.length > 0 && (
-          <div className="mt-3 space-y-1">
-            {members.map((m) => (
-              <p key={m.completion_id} className="text-sm text-leather-900">
-                {m.display_name}
-              </p>
-            ))}
+          <div className="mt-4 border-t border-parchment-200 pt-4">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+              Members
+            </h3>
+            <div className="space-y-2">
+              {members.map((m) => (
+                <div
+                  key={m.completion_id}
+                  className="flex items-center justify-between"
+                >
+                  <span className="text-sm text-leather-900">
+                    {m.display_name}
+                  </span>
+                  {isOwner && m.id !== user?.id && (
+                    <button
+                      onClick={() => handleRemove(m.id, m.display_name)}
+                      className="text-xs font-semibold text-stone-400 active:scale-[0.99] transition"
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </section>
@@ -142,6 +233,15 @@ export default function Profile() {
               </button>
             )}
           </div>
+          {isOwner && (
+            <button
+              onClick={regenerate}
+              disabled={regenerating}
+              className="mt-3 w-full rounded-xl border border-parchment-200 py-2.5 text-sm font-semibold text-stone-500 disabled:opacity-50 active:scale-[0.99] transition"
+            >
+              {regenerating ? 'Generating…' : 'Regenerate code'}
+            </button>
+          )}
         </section>
       )}
 

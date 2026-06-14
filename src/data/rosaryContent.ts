@@ -310,6 +310,16 @@ export const decadePrayerVerse = {
     'O my Jesus,\nforgive us our sins,\nsave us from the fires of hell,\nand lead all souls to heaven,\nespecially those in most need of your mercy.',
 };
 
+// Opening prayers of the Rosary, with prayer-book line breaks for display only
+// (traditional texts; the words are not altered). The Our Father, Hail Mary, and
+// Glory Be reuse the verses in `decadePrayerVerse`.
+export const rosaryOpeningVerse = {
+  signOfCross:
+    'In the name of the Father,\nand of the Son,\nand of the Holy Spirit.\n\nAmen.',
+  apostlesCreed:
+    'I believe in God,\nthe Father almighty,\nCreator of heaven and earth,\n\nand in Jesus Christ,\nhis only Son, our Lord,\nwho was conceived by the Holy Spirit,\nborn of the Virgin Mary,\nsuffered under Pontius Pilate,\nwas crucified, died, and was buried;\nhe descended into hell;\non the third day he rose again from the dead;\nhe ascended into heaven,\nand is seated at the right hand of God the Father almighty;\nfrom there he will come to judge the living and the dead.\n\nI believe in the Holy Spirit,\nthe holy catholic Church,\nthe communion of saints,\nthe forgiveness of sins,\nthe resurrection of the body,\nand life everlasting.\n\nAmen.',
+};
+
 // Short key Scripture excerpts (public-domain Douay-Rheims), keyed by mystery
 // title. References + short excerpts only, no full passages.
 const MYSTERY_EXCERPTS: Record<string, string> = {

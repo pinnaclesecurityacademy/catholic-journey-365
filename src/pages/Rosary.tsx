@@ -4,7 +4,7 @@ import {
   rosaryEducation,
   mysteryGroups,
   getMysteryGroup,
-  rosaryOpening,
+  rosaryOpeningVerse,
   decadePrayer,
   decadePrayerVerse,
   rosaryClosingVerse,
@@ -12,8 +12,8 @@ import {
 } from '../data/rosaryContent';
 import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
 
-// Guided Rosary, Christ-centred meditation. Education + per-mystery content.
-type Step = 'start' | 'mysteries' | 'decades' | 'finish';
+// Guided Rosary, Christ-centred meditation. Education + opening prayers + per-mystery content.
+type Step = 'start' | 'opening' | 'mysteries' | 'decades' | 'finish';
 
 export default function Rosary() {
   const { mystery } = useParams();
@@ -77,24 +77,82 @@ export default function Rosary() {
           <p className="text-leather-900 leading-relaxed">
             {rosaryEducation.howToPray}
           </p>
-          <p className="text-sm text-stone-500 mt-4 mb-2">
-            Begin with the opening prayers:
-          </p>
-          <ol className="list-decimal list-inside space-y-1 text-leather-900">
-            {rosaryOpening.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ol>
           <p className="mt-3 text-sm text-leather-600">
-            Then pray each of the five decades.
+            We begin with the opening prayers, then pray each of the five decades.
           </p>
         </section>
-        <button
-          className={primaryBtn}
-          onClick={() => setStep(selectedMystery ? 'decades' : 'mysteries')}
-        >
+        <button className={primaryBtn} onClick={() => setStep('opening')}>
           Begin
         </button>
+      </Shell>
+    );
+  }
+
+  // ---- Begin the Rosary: opening prayers ----
+  if (step === 'opening') {
+    const prayerCard =
+      'rounded-2xl bg-parchment-50 border border-parchment-200 px-5 py-7 mb-4 shadow-sm';
+    return (
+      <Shell>
+        <header className="mb-6">
+          <h1 className="font-display text-4xl font-bold text-leather-900">
+            Begin the Rosary
+          </h1>
+          <p className="text-stone-500 mt-1">
+            We begin by turning to God, professing our faith, and asking for
+            grace, so that our prayer rests on Christ.
+          </p>
+        </header>
+
+        <section className={prayerCard}>
+          <SacredPrayerLabel>Sign of the Cross</SacredPrayerLabel>
+          <SacredPrayer text={rosaryOpeningVerse.signOfCross} />
+        </section>
+
+        <section className={prayerCard}>
+          <SacredPrayerLabel>Apostles&rsquo; Creed</SacredPrayerLabel>
+          <SacredPrayer text={rosaryOpeningVerse.apostlesCreed} />
+        </section>
+
+        <section className={prayerCard}>
+          <SacredPrayerLabel>Our Father</SacredPrayerLabel>
+          <SacredPrayer text={decadePrayerVerse.ourFather} />
+        </section>
+
+        <section className={prayerCard}>
+          <p className="text-center text-sm text-leather-600 mb-7">
+            Three Hail Marys, for an increase of faith, hope, and charity.
+          </p>
+          <div className="mb-7">
+            <SacredPrayerLabel>Hail Mary &middot; for faith</SacredPrayerLabel>
+            <SacredPrayer text={decadePrayerVerse.hailMary} />
+          </div>
+          <div className="mb-7 pt-6 border-t border-parchment-200">
+            <SacredPrayerLabel>Hail Mary &middot; for hope</SacredPrayerLabel>
+            <SacredPrayer text={decadePrayerVerse.hailMary} />
+          </div>
+          <div className="pt-6 border-t border-parchment-200">
+            <SacredPrayerLabel>Hail Mary &middot; for charity</SacredPrayerLabel>
+            <SacredPrayer text={decadePrayerVerse.hailMary} />
+          </div>
+        </section>
+
+        <section className={prayerCard + ' mb-6'}>
+          <SacredPrayerLabel>Glory Be</SacredPrayerLabel>
+          <SacredPrayer text={decadePrayerVerse.gloryBe} />
+        </section>
+
+        <div className="flex gap-3 mb-6">
+          <button className={secondaryBtn} onClick={() => setStep('start')}>
+            ← Back
+          </button>
+          <button
+            className={primaryBtn}
+            onClick={() => setStep(selectedMystery ? 'decades' : 'mysteries')}
+          >
+            {selectedMystery ? 'Today’s Mysteries →' : 'Choose Mysteries →'}
+          </button>
+        </div>
       </Shell>
     );
   }

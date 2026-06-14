@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BibleReader } from '../components/BibleReader';
-import { getBooks, getBook, getChapter } from '../data/bible';
+import { getBooks, getBook, loadChapter, BibleChapter } from '../data/bible';
 
 // In-app Bible reader page (route: /bible). V3.3 framework only.
 // Lets the reader pick a book and chapter, then displays the verses via the
@@ -13,13 +13,32 @@ export default function Bible() {
 
   const [bookId, setBookId] = useState(books[0]?.id ?? '');
   const [chapterNumber, setChapterNumber] = useState(1);
+  const [chapter, setChapter] = useState<BibleChapter | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   const book = getBook(bookId);
-  const chapter = book ? getChapter(book.id, chapterNumber) : null;
+
+  // Lazily load only the requested chapter whenever the selection changes.
+  useEffect(() => {
+    let active = true;
+    if (!book) {
+      setChapter(null);
+      return;
+    }
+    setLoading(true);
+    loadChapter(book.id, chapterNumber).then((result) => {
+      if (!active) return;
+      setChapter(result);
+      setLoading(false);
+    });
+    return () => {
+      active = false;
+    };
+  }, [book, chapterNumber]);
 
   function selectBook(id: string) {
     setBookId(id);
@@ -92,7 +111,11 @@ export default function Bible() {
         </div>
       )}
 
-      {book ? (
+      {book && loading ? (
+        <section className="rounded-2xl bg-white border border-parchment-200 p-5">
+          <p className="text-leather-900 leading-relaxed italic">Loading…</p>
+        </section>
+      ) : book ? (
         <BibleReader book={book} chapter={chapter} />
       ) : (
         <section className="rounded-2xl bg-white border border-parchment-200 p-5">

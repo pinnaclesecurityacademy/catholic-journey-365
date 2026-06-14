@@ -34,8 +34,6 @@ export interface Prayer {
    * nine days, presented one day at a time (About → Begin → Day 1 … Day 9).
    */
   isNovena?: boolean;
-  /** Optional "Pray Along" YouTube search query (no embedded video). */
-  prayAlongQuery?: string;
 }
 
 export interface PrayerCategory {
@@ -224,7 +222,7 @@ export const prayerCategories: PrayerCategory[] = [
   },
   {
     id: 'rosary',
-    title: 'Rosary',
+    title: 'Rosary & Marian Prayers',
     isRosary: true,
     prayers: [
       {
@@ -289,17 +287,6 @@ export const prayerCategories: PrayerCategory[] = [
         ],
         explanation:
           "The Divine Mercy Chaplet is a prayer of trust in God’s mercy, given through St. Faustina. Prayed on ordinary rosary beads, it offers to the Father the sacrifice of Jesus for the forgiveness of the whole world. It keeps our eyes on the mercy that flows from Christ’s Passion and his pierced Heart (John 19:34). Praying it forms us to trust Jesus and to ask his mercy for ourselves and for everyone.",
-        prayAlongQuery: 'Divine Mercy Chaplet prayer',
-      },
-      {
-        id: 'st-michael',
-        title: 'St Michael Prayer',
-        content:
-          'Saint Michael the Archangel, defend us in battle. Be our protection against the wickedness and snares of the devil. May God rebuke him, we humbly pray; and do thou, O Prince of the heavenly host, by the power of God, cast into hell Satan and all the evil spirits who prowl about the world seeking the ruin of souls. Amen.',
-        verse:
-          'Saint Michael the Archangel,\ndefend us in battle.\n\nBe our protection\nagainst the wickedness and snares of the devil.\n\nMay God rebuke him, we humbly pray,\nand do thou, O Prince of the heavenly host,\nby the power of God,\ncast into hell Satan and all the evil spirits\nwho prowl about the world\nseeking the ruin of souls.\n\nAmen.',
-        explanation:
-          'St Michael the Archangel appears in Scripture as a great defender of God’s people (Daniel 12:1; Revelation 12:7). Catholics ask his intercession for protection against evil and for strength in spiritual struggle, because the Christian life includes a real battle against temptation and darkness, and we are not meant to fight it alone.\n\nCatholics worship God alone. We do not worship saints or angels. St Michael protects and intercedes only through the power of God, and calling on him reminds us that God’s power is far greater than any evil. This prayer draws us to trust in Christ, who has already won the victory.',
       },
       {
         id: 'mary-undoer-of-knots',
@@ -350,6 +337,28 @@ export const prayerCategories: PrayerCategory[] = [
           },
         ],
       },
+    ],
+  },
+  {
+    id: 'protection',
+    title: 'Protection Prayers',
+    prayers: [
+      {
+        id: 'st-michael',
+        title: 'St Michael Prayer',
+        content:
+          'Saint Michael the Archangel, defend us in battle. Be our protection against the wickedness and snares of the devil. May God rebuke him, we humbly pray; and do thou, O Prince of the heavenly host, by the power of God, cast into hell Satan and all the evil spirits who prowl about the world seeking the ruin of souls. Amen.',
+        verse:
+          'Saint Michael the Archangel,\ndefend us in battle.\n\nBe our protection\nagainst the wickedness and snares of the devil.\n\nMay God rebuke him, we humbly pray,\nand do thou, O Prince of the heavenly host,\nby the power of God,\ncast into hell Satan and all the evil spirits\nwho prowl about the world\nseeking the ruin of souls.\n\nAmen.',
+        explanation:
+          'St Michael the Archangel appears in Scripture as a great defender of God’s people (Daniel 12:1; Revelation 12:7). Catholics ask his intercession for protection against evil and for strength in spiritual struggle, because the Christian life includes a real battle against temptation and darkness, and we are not meant to fight it alone.\n\nCatholics worship God alone. We do not worship saints or angels. St Michael protects and intercedes only through the power of God, and calling on him reminds us that God’s power is far greater than any evil. This prayer draws us to trust in Christ, who has already won the victory.',
+      },
+    ],
+  },
+  {
+    id: 'family',
+    title: 'Family & Special Intentions',
+    prayers: [
       {
         id: 'prayer-for-family',
         title: 'Prayer for Family',

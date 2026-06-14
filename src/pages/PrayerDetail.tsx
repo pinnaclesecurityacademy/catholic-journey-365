@@ -100,7 +100,6 @@ export default function PrayerDetail() {
   // The prayer-book display text: prefer the line-broken `verse`, else `content`.
   const prayerText = prayer.verse || prayer.content;
   const hasPrayerText = Boolean(prayerText);
-  const showPrayAlong = hasPrayerText || Boolean(prayer.prayAlongQuery);
 
   return (
     <div className="max-w-md mx-auto px-5 pt-6 pb-12">
@@ -132,35 +131,6 @@ export default function PrayerDetail() {
             <p className="text-leather-900 leading-loose whitespace-pre-line text-center">
               {prayer.content}
             </p>
-          )}
-        </section>
-      )}
-
-      {/* Pray Along, layout space reserved for future audio */}
-      {showPrayAlong && (
-        <section className="mb-7 text-center">
-          <h2 className="text-xs font-semibold uppercase tracking-[0.2em] text-leather-400 mb-3">
-            Pray Along
-          </h2>
-          {prayer.prayAlongQuery ? (
-            <a
-              href={`https://www.youtube.com/results?search_query=${encodeURIComponent(
-                prayer.prayAlongQuery
-              )}`}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-block rounded-full bg-leather-600 text-white font-semibold px-7 py-3 active:scale-[0.99] transition"
-            >
-              Pray on YouTube
-            </a>
-          ) : (
-            <button
-              type="button"
-              disabled
-              className="inline-block rounded-full border border-parchment-200 bg-white/60 text-leather-400 font-medium px-7 py-3 cursor-not-allowed"
-            >
-              Audio coming soon
-            </button>
           )}
         </section>
       )}

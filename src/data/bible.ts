@@ -36,8 +36,9 @@ export interface BibleBook {
 }
 
 // Full Catholic canon (73 books). Chapter counts follow the WEBC numbering
-// (e.g. Baruch 6 includes the Letter of Jeremiah; Daniel 14 and Esther 16
-// include the deuterocanonical additions). Reference metadata only.
+// (e.g. Baruch 6 includes the Letter of Jeremiah; Daniel 14 includes the
+// deuterocanonical additions; Esther is the Greek Esther, 10 chapters).
+// Reference metadata only.
 export const BIBLE_BOOKS: BibleBook[] = [
   // Old Testament (46)
   { id: 'genesis', name: 'Genesis', testament: 'old', chapterCount: 50 },
@@ -58,7 +59,7 @@ export const BIBLE_BOOKS: BibleBook[] = [
   { id: 'nehemiah', name: 'Nehemiah', testament: 'old', chapterCount: 13 },
   { id: 'tobit', name: 'Tobit', testament: 'old', chapterCount: 14 },
   { id: 'judith', name: 'Judith', testament: 'old', chapterCount: 16 },
-  { id: 'esther', name: 'Esther', testament: 'old', chapterCount: 16 },
+  { id: 'esther', name: 'Esther', testament: 'old', chapterCount: 10 },
   { id: '1-maccabees', name: '1 Maccabees', testament: 'old', chapterCount: 16 },
   { id: '2-maccabees', name: '2 Maccabees', testament: 'old', chapterCount: 15 },
   { id: 'job', name: 'Job', testament: 'old', chapterCount: 42 },

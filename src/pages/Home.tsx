@@ -29,7 +29,7 @@ const ROSARY_BY_DAY = [
 
 export default function Home() {
   const navigate = useNavigate();
-  const { profile, completionId, journeyName, members } = useAccount();
+  const { profile, completionId, members } = useAccount();
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
 
   useEffect(() => {
@@ -64,9 +64,6 @@ export default function Home() {
         <p className="mt-1 text-leather-600 font-medium tracking-wide">
           Peace be with you, {profile?.display_name}
         </p>
-        {journeyName && (
-          <p className="mt-0.5 text-sm text-stone-500">{journeyName}</p>
-        )}
       </header>
 
       {/* Continue Journey card (condensed dashboard tile) */}
@@ -74,6 +71,9 @@ export default function Home() {
         <span className="pointer-events-none absolute right-4 top-3 font-display text-base text-parchment-200 select-none max-w-[50%] text-right leading-tight">
           {day.period}
         </span>
+        <h3 className="font-display text-lg font-semibold text-leather-900 mb-2">
+          Bible Journey
+        </h3>
         <div className="flex items-baseline gap-2">
           <span className="text-xs uppercase tracking-widest text-stone-400">
             Day
@@ -118,31 +118,27 @@ export default function Home() {
         </button>
       </div>
 
-      {/* Card 2, Daily Prayer */}
+      {/* Daily Prayer (merged: prayer text + today's Rosary) */}
       <div className="rounded-2xl bg-white border border-parchment-200 p-5 mb-4">
-        <h3 className="font-display text-lg font-semibold text-leather-900">
+        <h3 className="font-display text-lg font-semibold text-leather-900 text-center">
           Daily Prayer
         </h3>
-        <p className="mt-2 text-sm italic text-leather-900 leading-relaxed">
+        <p className="mt-3 text-center italic text-leather-900 leading-loose whitespace-pre-line">
           {day.daily_prayer}
         </p>
-      </div>
 
-      {/* Card 3, Prayer Today */}
-      <div className="rounded-2xl bg-white border border-parchment-200 p-5 mb-4">
-        <h3 className="font-display text-lg font-semibold text-leather-900">
-          Prayer Today
-        </h3>
-        <p className="mt-1 text-sm text-stone-500">Today’s Rosary</p>
-        <p className="mt-1 text-leather-900 font-medium">
-          {todayRosary.label}
-        </p>
-        <button
-          onClick={() => navigate(`/rosary/${todayRosary.id}`)}
-          className="mt-4 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
-        >
-          Pray Rosary
-        </button>
+        <div className="mt-5 border-t border-parchment-200 pt-4 text-center">
+          <p className="text-sm text-stone-500">Today’s Rosary</p>
+          <p className="mt-1 text-leather-900 font-medium">
+            {todayRosary.label}
+          </p>
+          <button
+            onClick={() => navigate(`/rosary/${todayRosary.id}`)}
+            className="mt-4 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+          >
+            Pray Rosary
+          </button>
+        </div>
       </div>
 
       {/* Card 4, Saint of the Day */}

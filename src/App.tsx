@@ -1,7 +1,7 @@
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import AuthScreen from './components/AuthScreen';
-import ClaimScreen from './components/ClaimScreen';
 import JourneySetup from './components/JourneySetup';
 import { AccountProvider, useAccount } from './lib/account';
 import Home from './pages/Home';
@@ -28,12 +28,21 @@ function Splash() {
 }
 
 function AppShell() {
-  const { loading, user, profile, completionId, journeyId } = useAccount();
+  const { loading, user, profile, completionId, journeyId, claim } =
+    useAccount();
+
+  // A first-time user starts fresh on their own progress namespace, then
+  // chooses or joins a journey. No legacy import step is shown publicly.
+  useEffect(() => {
+    if (user && profile && !completionId) {
+      claim(user.id);
+    }
+  }, [user, profile, completionId, claim]);
 
   if (loading) return <Splash />;
   if (!user) return <AuthScreen />;
   if (!profile) return <Splash />;
-  if (!completionId) return <ClaimScreen />;
+  if (!completionId) return <Splash />;
   if (!journeyId) return <JourneySetup />;
 
   return (

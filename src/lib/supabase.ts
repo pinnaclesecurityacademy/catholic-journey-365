@@ -20,9 +20,8 @@ export interface ReadingDay {
 }
 
 /**
- * Identifier for the reader a completion belongs to. Derived from the user's
- * locally-saved name (lowercased), so existing 'chris' / 'saua' records are
- * preserved when those names are entered.
+ * Identifier for the reader a completion belongs to. Each account's progress is
+ * stored under its own namespace, so existing records are preserved.
  */
 export type UserId = string;
 

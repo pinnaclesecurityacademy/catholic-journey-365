@@ -1,4 +1,4 @@
-// Configurable start date for Chris & Saua's journey.
+// Configurable start date for the journey.
 // JOURNEY_START_DATE is Day 1 of the 365-day plan.
 export const JOURNEY_START_DATE = '2026-01-19';
 

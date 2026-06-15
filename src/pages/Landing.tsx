@@ -211,11 +211,11 @@ export default function Landing() {
         <img
           src="/images/landing/jesus-welcome.png"
           alt="Jesus welcoming people in a field of warm light"
-          className="absolute inset-0 h-full w-full object-cover brightness-[0.82]"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-leather-900/95 via-leather-900/74 to-leather-900/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f5ead1] via-leather-900/25 to-leather-900/40" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(245,190,83,0.18),transparent_32%)]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-leather-900/90 via-leather-900/45 via-40% to-transparent to-70%" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#f5ead1] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(245,190,83,0.24),transparent_34%)]" />
 
         <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-5 pb-24 pt-28 sm:px-8 lg:grid-cols-[1.08fr_0.72fr]">
           <div className="max-w-3xl text-center lg:text-left">
@@ -226,7 +226,7 @@ export default function Landing() {
               God is calling you closer.
             </h1>
 
-            <div className="mx-auto mt-8 max-w-2xl space-y-5 text-lg leading-8 text-parchment-100/90 sm:text-xl lg:mx-0">
+            <div className="mx-auto mt-8 max-w-2xl space-y-5 text-lg leading-8 text-parchment-100/90 [text-shadow:0_2px_14px_rgba(20,12,8,0.6)] sm:text-xl lg:mx-0">
               <p className="font-display text-2xl font-semibold leading-9 text-white">
                 Begin your Catholic journey one day, one prayer, and one step at
                 a time.

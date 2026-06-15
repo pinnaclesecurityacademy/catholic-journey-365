@@ -107,11 +107,11 @@ export default function Bible() {
             {book?.name ?? 'Sacred Scripture'}
           </p>
         )}
-        <h1 className="font-display text-4xl font-bold text-leather-600 leading-tight mt-1">
+        <h1 className="font-display text-3xl font-bold text-leather-900 mt-1">
           {heading}
         </h1>
         {view === 'home' && (
-          <p className="text-leather-900 leading-relaxed mt-3">
+          <p className="text-stone-500 leading-relaxed mt-2">
             Read the Word of God through the Old and New Testaments. Choose a
             book to begin.
           </p>
@@ -132,23 +132,20 @@ export default function Bible() {
                     key={c.id}
                     className="rounded-2xl bg-white border border-parchment-200 p-5"
                   >
-                    <div className="flex items-center gap-2 mb-3">
-                      <h3 className="font-display text-lg font-semibold text-leather-900">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h2 className="font-display text-xl font-bold text-leather-900">
                         {c.name}
-                      </h3>
+                      </h2>
                       <InfoButton />
                     </div>
-                    <div className="space-y-1">
+                    <div className="divide-y divide-parchment-200">
                       {getCategoryBooks(c.id).map((b) => (
                         <button
                           key={b.id}
                           onClick={() => openBook(b.id)}
-                          className="w-full flex items-center gap-3 rounded-xl px-2 py-3 text-left active:scale-[0.99] transition"
+                          className="w-full flex items-center justify-between py-3 text-left active:scale-[0.99] transition"
                         >
-                          <span aria-hidden="true" className="text-lg">
-                            📖
-                          </span>
-                          <span className="flex-1 font-medium text-leather-900">
+                          <span className="font-medium text-leather-900">
                             {b.name}
                           </span>
                           <span aria-hidden="true" className="text-leather-600">

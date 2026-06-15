@@ -1,7 +1,16 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = process.env.REACT_APP_SUPABASE_URL as string;
-const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY as string;
+// Credentials are injected at build time. When they are absent (a local
+// checkout without an .env file, or a preview of the public site) fall back to
+// harmless placeholders so the client does not throw at import and crash the
+// whole app, including the public landing page. Real credentials are always
+// present in production, so auth behaviour there is unchanged.
+const supabaseUrl =
+  (process.env.REACT_APP_SUPABASE_URL as string) ||
+  'https://placeholder.supabase.co';
+const supabaseAnonKey =
+  (process.env.REACT_APP_SUPABASE_ANON_KEY as string) ||
+  'public-anon-placeholder';
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 

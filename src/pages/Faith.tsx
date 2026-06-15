@@ -13,22 +13,26 @@ type FaithCard = {
 const FAITH_CARDS: FaithCard[] = [
   {
     title: 'Prayer',
-    description: 'Spend time with God through prayer.',
+    description:
+      'Spend time with God through daily prayer, devotion, and reflection.',
     to: '/prayer',
   },
   {
     title: 'Saints',
-    description: 'Learn from the lives of those who followed Christ.',
+    description:
+      'Learn from the men and women who followed Christ and discover their example of faith.',
     to: '/saints',
   },
   {
     title: 'Mass',
-    description: 'Discover the meaning and beauty of the Mass.',
+    description:
+      'Understand the prayers, Scripture, and meaning behind the celebration of the Mass.',
     comingSoon: true,
   },
   {
     title: 'Sacraments',
-    description: "Learn about God's grace through the Sacraments.",
+    description:
+      'Discover how God works through the Sacraments of the Church.',
     comingSoon: true,
   },
 ];
@@ -42,7 +46,10 @@ export default function Faith() {
         <h1 className="font-display text-3xl font-bold text-leather-900">
           Faith
         </h1>
-        <p className="text-stone-500">Grow deeper in your Catholic journey.</p>
+        <p className="text-stone-500">
+          Grow closer to God through prayer, the Church, and the lives of the
+          saints.
+        </p>
       </header>
 
       <div className="space-y-3">

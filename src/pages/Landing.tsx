@@ -14,26 +14,14 @@ function GoldRule({ className = '' }: { className?: string }) {
   );
 }
 
-// Jerusalem cross: a bold central cross with four smaller crosses in the
-// quadrants. A classic Catholic emblem that also reads cleanly as an app /
-// PWA install icon. Uses currentColor so the gold/black styling carries through.
 function CrossMark({ className = '' }: { className?: string }) {
   return (
-    <svg
-      viewBox="0 0 32 32"
-      fill="currentColor"
+    <img
+      src="/images/landing/jerusalem-cross.png"
+      alt=""
       aria-hidden="true"
-      className={`block h-7 w-7 ${className}`}
-    >
-      {/* central Greek cross */}
-      <rect x="14" y="7" width="4" height="18" rx="0.5" />
-      <rect x="7" y="14" width="18" height="4" rx="0.5" />
-      {/* four small crosses in the quadrants */}
-      <path d="M4.6 2.6h1.8v1.4h1.4v1.8H6.4v1.4H4.6V5.8H3.2V4h1.4z" />
-      <path d="M25.6 2.6h1.8v1.4h1.4v1.8h-1.4v1.4h-1.8V5.8h-1.4V4h1.4z" />
-      <path d="M4.6 24.2h1.8v1.4h1.4v1.8H6.4v1.4H4.6v-1.4H3.2v-1.8h1.4z" />
-      <path d="M25.6 24.2h1.8v1.4h1.4v1.8h-1.4v1.4h-1.8v-1.4h-1.4v-1.8h1.4z" />
-    </svg>
+      className={`block h-7 w-7 object-contain ${className}`}
+    />
   );
 }
 
@@ -283,7 +271,7 @@ export default function Landing() {
               <div className="mt-8 space-y-5 text-xl leading-9 text-leather-900/82">
                 <p>Abraham followed God into the unknown.</p>
                 <p>The prophets called people back to Him.</p>
-                <p>The saints kept walking toward Christ.</p>
+                <p>The Saints kept walking toward Christ.</p>
                 <p className="font-display text-3xl font-semibold text-leather-900">
                   Now it is your turn.
                 </p>
@@ -298,10 +286,10 @@ export default function Landing() {
               <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
                 <div className="max-w-md rounded-[2rem] border border-white/28 bg-leather-900/62 p-6 text-parchment-50 shadow-2xl backdrop-blur">
                   <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200">
-                    Scripture
+                    Salvation History
                   </p>
                   <p className="mt-3 font-display text-3xl font-semibold leading-tight">
-                    Begin with the Word of God.
+                    Follow the story that leads to Christ.
                   </p>
                 </div>
               </div>
@@ -312,7 +300,7 @@ export default function Landing() {
         <JourneyImageSection
           id="scripture"
           title="Begin with Scripture."
-          text="Follow the story of salvation through God's Word."
+          text="Follow salvation history through God's Word using the World English Bible Catholic Edition and the Catholic canon of Scripture."
           src="/images/landing/bible-morning.png"
           alt="Morning light over an open Bible and rosary"
         />
@@ -320,7 +308,7 @@ export default function Landing() {
         <JourneyImageSection
           id="prayer"
           title="Build a life of prayer."
-          text="Prayer is your personal conversation with God through the Father, Son and Holy Spirit."
+          text="Build prayer habits and enter your personal conversation with God through the Father, Son and Holy Spirit."
           src="/images/landing/prayer-church.png"
           alt="A couple praying inside a Catholic church"
           reverse
@@ -329,7 +317,7 @@ export default function Landing() {
         <JourneyImageSection
           id="faith"
           title="Discover the Catholic faith."
-          text="Learn through the saints, prayers of the Church, and a life centred on Christ."
+          text="Learn through the Saints, prayers of the Church, Catholic tradition, and a life centred on Christ."
           src="/images/landing/first-communion.png"
           alt="A child receiving First Holy Communion in a Catholic church"
         />
@@ -346,7 +334,9 @@ export default function Landing() {
               </p>
               <p className="mt-5 text-lg leading-8 text-stone-600">
                 Catholic Journey 365 keeps the app quietly beside the deeper
-                invitation: read, pray, learn, and keep walking toward God.
+                invitation: read, pray, learn, and keep walking toward God. It
+                is a companion app, not a replacement for Mass, the Sacraments,
+                priests, or parish community.
               </p>
             </div>
 
@@ -361,8 +351,9 @@ export default function Landing() {
                     A gentle guide for each day.
                   </h3>
                   <p className="mt-5 text-lg leading-8 text-stone-600">
-                    The phone preview remains small because the heart of this
-                    journey is not the screen. It is the next faithful step.
+                    Built with reference to Scripture, the Catechism, the
+                    Saints, and Catholic tradition, it helps organise the next
+                    faithful step.
                   </p>
                 </div>
                 <PhoneMockup />
@@ -408,6 +399,65 @@ export default function Landing() {
                   </p>
                 </div>
                 <GoldRule className="mt-9" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative px-5 py-16 sm:px-8 md:py-24">
+          <div className="mx-auto max-w-6xl rounded-[3rem] border border-white/54 bg-white/58 p-8 shadow-[0_24px_70px_rgba(92,64,39,0.11)] backdrop-blur sm:p-10 md:p-12">
+            <div className="mx-auto max-w-3xl text-center">
+              <GoldRule className="mx-auto" />
+              <h2 className="mt-7 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-6xl">
+                Start free. Keep walking for life.
+              </h2>
+              <p className="mt-6 text-xl leading-9 text-leather-900/82">
+                Begin with a 14 day free trial. Unlock Catholic Journey 365 for
+                life with a one time $19.99 lifetime unlock. No monthly
+                subscription.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="relative px-5 py-16 sm:px-8 md:py-24">
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-3xl">
+              <GoldRule />
+              <h2 className="mt-7 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-6xl">
+                Questions before you begin.
+              </h2>
+            </div>
+
+            <div className="mt-10 grid gap-5 md:grid-cols-3">
+              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-7 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+                <h3 className="font-display text-2xl font-semibold text-leather-900">
+                  Does this replace Church?
+                </h3>
+                <p className="mt-4 text-lg leading-8 text-stone-600">
+                  No. Catholic Journey 365 is a companion app. It does not
+                  replace Mass, the Sacraments, priests, or parish community.
+                </p>
+              </div>
+
+              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-7 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+                <h3 className="font-display text-2xl font-semibold text-leather-900">
+                  What Bible translation?
+                </h3>
+                <p className="mt-4 text-lg leading-8 text-stone-600">
+                  Catholic Journey 365 uses the World English Bible Catholic
+                  Edition and follows the Catholic canon of Scripture.
+                </p>
+              </div>
+
+              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-7 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+                <h3 className="font-display text-2xl font-semibold text-leather-900">
+                  Was AI used?
+                </h3>
+                <p className="mt-4 text-lg leading-8 text-stone-600">
+                  AI tools assisted development and organisation. The foundation
+                  is Scripture, Catholic teaching, and tradition.
+                </p>
               </div>
             </div>
           </div>

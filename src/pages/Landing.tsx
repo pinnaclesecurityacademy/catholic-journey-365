@@ -290,8 +290,8 @@ export default function Landing() {
             </div>
 
             <ImagePanel
-              src="/images/landing/bible-morning.png"
-              alt="Open Bible, rosary, and morning light on a wooden table"
+              src="/images/landing/pilgrimage-path.png"
+              alt="A pilgrim walking toward a Catholic church at sunset"
               className="min-h-[430px] md:min-h-[560px]"
             >
               <div className="absolute inset-x-0 bottom-0 p-7 sm:p-10">
@@ -375,8 +375,8 @@ export default function Landing() {
             <div className="grid gap-5 md:grid-cols-[0.38fr_0.62fr] md:items-stretch">
               <div className="relative min-h-80 overflow-hidden rounded-[2.4rem] border border-amber-200/24">
                 <img
-                  src="/images/landing/prayer-church.png"
-                  alt="Catholics praying in a church before the crucifix"
+                  src="/images/landing/founder-journey.png"
+                  alt="A man praying beside Scripture, a candle, and a rosary"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-leather-900/74 via-leather-900/46 to-amber-900/20" />

@@ -96,6 +96,12 @@ export default function DayDetail() {
           {day.reading_two && <li>{day.reading_two}</li>}
           {day.psalm_proverb && <li>{day.psalm_proverb}</li>}
         </ul>
+        <button
+          onClick={() => navigate(`/bible/reading/${day.day_number}`)}
+          className="mt-4 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+        >
+          Read Scripture
+        </button>
       </section>
 
       {/* What Happens Today */}

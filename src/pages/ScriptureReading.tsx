@@ -1,55 +1,40 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BibleReader } from '../components/BibleReader';
-import { getBook, loadChapter, BibleChapter } from '../data/bible';
+import { getReadingDay } from '../data/readingPlan';
+import { getBook, getReadingSteps, loadChapter, BibleChapter } from '../data/bible';
 
-// "Begin Scripture Reading" flow (route: /bible/reading/:day).
+// Scripture reading flow (route: /bible/reading/:day).
 //
-// UX prototype for the Bible Journey reading experience. It steps through a
-// day's readings one chapter at a time (Reading -> Next -> ... -> Finish),
-// reusing the existing chapter loader and BibleReader display.
-//
-// Only Day 1 and Day 2 are wired here, using the real Catholic Journey 365
-// readings for those days. This is intentionally a prototype before all 365
-// days are connected; it does not define or replace the journey plan.
+// Steps through a Journey day's actual readings one chapter at a time
+// (Reading -> Next Reading -> ... -> Complete), reusing the existing chapter
+// loader and BibleReader display. Readings come straight from the existing
+// 365-day Bible Journey plan; this file does not define or replace that plan.
 
-interface ReadingStep {
-  bookId: string;
-  chapter: number;
+function BibleFooter() {
+  return (
+    <p className="mt-8 text-center text-xs text-stone-400 leading-relaxed">
+      Scripture from the World English Bible, Catholic Edition (WEBC). Public
+      Domain.
+    </p>
+  );
 }
-
-// Real Day 1 / Day 2 readings, expanded to one chapter per step.
-const PROTOTYPE_DAYS: Record<string, { label: string; steps: ReadingStep[] }> = {
-  '1': {
-    label: 'Day 1',
-    steps: [
-      { bookId: 'genesis', chapter: 1 }, // Genesis 1-2
-      { bookId: 'genesis', chapter: 2 },
-      { bookId: 'psalms', chapter: 19 }, // Psalm 19
-    ],
-  },
-  '2': {
-    label: 'Day 2',
-    steps: [
-      { bookId: 'genesis', chapter: 3 }, // Genesis 3-4
-      { bookId: 'genesis', chapter: 4 },
-      { bookId: 'psalms', chapter: 104 }, // Psalm 104
-    ],
-  },
-};
 
 export default function ScriptureReading() {
   const navigate = useNavigate();
   const { day } = useParams();
-  const plan = PROTOTYPE_DAYS[day ?? ''];
+  const dayNum = Number(day);
+  const journeyDay = getReadingDay(dayNum);
+  const steps = journeyDay ? getReadingSteps(journeyDay) : [];
 
   const [stepIndex, setStepIndex] = useState(0);
   const [chapter, setChapter] = useState<BibleChapter | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const step = plan?.steps[stepIndex];
+  const finished = stepIndex >= steps.length;
+  const step = steps[stepIndex];
   const book = step ? getBook(step.bookId) : undefined;
-  const isLast = plan ? stepIndex === plan.steps.length - 1 : true;
+  const isLast = stepIndex === steps.length - 1;
 
   // Lazily load only the current step's chapter.
   useEffect(() => {
@@ -67,7 +52,11 @@ export default function ScriptureReading() {
     };
   }, [step]);
 
-  if (!plan) {
+  useEffect(() => {
+    if (finished) window.scrollTo(0, 0);
+  }, [finished]);
+
+  if (!journeyDay || steps.length === 0) {
     return (
       <div className="max-w-md mx-auto px-5 pt-6 pb-12">
         <button
@@ -78,9 +67,42 @@ export default function ScriptureReading() {
         </button>
         <section className="rounded-2xl bg-white border border-parchment-200 p-5">
           <p className="text-leather-900 leading-relaxed">
-            This reading is not available in the prototype yet.
+            This reading could not be found.
           </p>
         </section>
+      </div>
+    );
+  }
+
+  // Finish screen.
+  if (finished) {
+    return (
+      <div className="max-w-md mx-auto px-5 pt-6 pb-12">
+        <header className="mb-6 text-center pt-6">
+          <p className="text-xs uppercase tracking-widest text-stone-400">
+            Day {journeyDay.day_number}
+          </p>
+          <h1 className="font-display text-4xl font-bold text-leather-600 leading-tight mt-2">
+            Scripture Reading Complete
+          </h1>
+        </header>
+
+        <div className="space-y-3 mt-8">
+          <button
+            onClick={() => navigate(`/day/${journeyDay.day_number}/deeper`)}
+            className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+          >
+            Dive Deeper →
+          </button>
+          <button
+            onClick={() => navigate('/journey')}
+            className="w-full rounded-xl bg-white border border-parchment-200 py-3 font-semibold text-leather-600 active:scale-[0.99] transition"
+          >
+            Return to Journey
+          </button>
+        </div>
+
+        <BibleFooter />
       </div>
     );
   }
@@ -96,7 +118,8 @@ export default function ScriptureReading() {
 
       <header className="mb-6">
         <p className="text-xs uppercase tracking-widest text-stone-400">
-          {plan.label} · Reading {stepIndex + 1} of {plan.steps.length}
+          Day {journeyDay.day_number} · Reading {stepIndex + 1} of{' '}
+          {steps.length}
         </p>
         <h1 className="font-display text-4xl font-bold text-leather-600 leading-tight mt-1">
           Scripture Reading
@@ -112,22 +135,15 @@ export default function ScriptureReading() {
       ) : null}
 
       <div className="mt-6">
-        {isLast ? (
-          <button
-            onClick={() => navigate('/bible')}
-            className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
-          >
-            Finish
-          </button>
-        ) : (
-          <button
-            onClick={() => setStepIndex((i) => i + 1)}
-            className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
-          >
-            Next Reading
-          </button>
-        )}
+        <button
+          onClick={() => setStepIndex((i) => i + 1)}
+          className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+        >
+          {isLast ? 'Finish Reading' : 'Next Reading'}
+        </button>
       </div>
+
+      <BibleFooter />
     </div>
   );
 }

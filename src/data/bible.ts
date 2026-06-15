@@ -117,6 +117,104 @@ export const BIBLE_BOOKS: BibleBook[] = [
   { id: 'revelation', name: 'Revelation', testament: 'new', chapterCount: 22 },
 ];
 
+// --- Reading reference parsing (Bible Journey integration, V3.3) ---
+//
+// Turns a Journey day's reading references (e.g. "Genesis 1-2", "Psalm 19",
+// "Proverbs 1:1-7", "Esther 15, 6-7", "2 John, 3 John") into an ordered list of
+// chapter steps for the one-chapter-at-a-time Scripture flow. This does not
+// define readings; it only interprets the existing Journey plan strings.
+
+export interface ReadingStep {
+  bookId: string;
+  chapter: number;
+}
+
+// Book names sorted longest-first so multi-word names ("Song of Solomon",
+// "1 Kings") match before shorter ones. "Psalm" is an alias for "Psalms".
+const REFERENCE_BOOK_NAMES = [...BIBLE_BOOKS.map((b) => b.name), 'Psalm'].sort(
+  (a, b) => b.length - a.length,
+);
+
+function resolveBookId(name: string): string | undefined {
+  const key = name.toLowerCase();
+  if (key === 'psalm') return 'psalms';
+  return BIBLE_BOOKS.find((b) => b.name.toLowerCase() === key)?.id;
+}
+
+// Expands the chapter portion of a reference (the part after the book name).
+// "19" -> [19]; "1-2" -> [1,2]; "1:1-7" -> [1] (verse range, one chapter);
+// "" -> [1] (single-chapter books with no number).
+function parseChapters(rest: string, maxChapter: number): number[] {
+  const text = rest.trim();
+  if (!text) return [1];
+  if (text.includes(':')) {
+    const ch = parseInt(text, 10);
+    return Number.isNaN(ch) ? [] : [ch];
+  }
+  const range = text.match(/^(\d+)\s*-\s*(\d+)$/);
+  if (range) {
+    const start = parseInt(range[1], 10);
+    const end = parseInt(range[2], 10);
+    const out: number[] = [];
+    for (let i = start; i <= end && i <= maxChapter; i += 1) out.push(i);
+    return out;
+  }
+  const single = parseInt(text, 10);
+  return Number.isNaN(single) ? [] : [single];
+}
+
+/**
+ * Parses one reading field into ordered chapter steps. Comma-separated parts
+ * either name a new book or continue the previous book (e.g. "Esther 15, 6-7").
+ */
+export function parseReadingReference(field: string): ReadingStep[] {
+  const steps: ReadingStep[] = [];
+  if (!field || !field.trim()) return steps;
+
+  let currentBookId: string | undefined;
+  const segments = field
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+
+  for (const segment of segments) {
+    let bookId: string | undefined;
+    let rest = segment;
+    const lower = segment.toLowerCase();
+    for (const name of REFERENCE_BOOK_NAMES) {
+      const n = name.toLowerCase();
+      if (lower === n || lower.startsWith(`${n} `)) {
+        bookId = resolveBookId(name);
+        rest = segment.slice(name.length).trim();
+        break;
+      }
+    }
+    if (bookId) currentBookId = bookId;
+    const id = bookId ?? currentBookId;
+    if (!id) continue;
+    const book = getBook(id);
+    if (!book) continue;
+    for (const chapter of parseChapters(rest, book.chapterCount)) {
+      steps.push({ bookId: id, chapter });
+    }
+  }
+  return steps;
+}
+
+/**
+ * Builds the full ordered chapter sequence for a Journey day from its existing
+ * reading fields (reading_one, reading_two, psalm_proverb).
+ */
+export function getReadingSteps(fields: {
+  reading_one?: string;
+  reading_two?: string;
+  psalm_proverb?: string;
+}): ReadingStep[] {
+  return [fields.reading_one, fields.reading_two, fields.psalm_proverb]
+    .filter((f): f is string => Boolean(f && f.trim()))
+    .flatMap(parseReadingReference);
+}
+
 /** Returns the list of books, optionally filtered by testament. */
 export function getBooks(testament?: 'old' | 'new'): BibleBook[] {
   if (!testament) return BIBLE_BOOKS;

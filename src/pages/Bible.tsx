@@ -27,20 +27,15 @@ const TESTAMENT_LABEL: Record<Testament, string> = {
   new: 'New Testament',
 };
 
-/** A category heading with a visual info button (no content yet, V3.6.1). */
-function CategoryHeading({ name }: { name: string }) {
+/** A visual info button (display only for now, no modal/content yet). */
+function InfoButton() {
   return (
-    <div className="flex items-center gap-2 mt-7 mb-3 first:mt-0">
-      <h3 className="font-display text-base font-semibold text-leather-900">
-        {name}
-      </h3>
-      <span
-        aria-hidden="true"
-        className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-parchment-200 text-[10px] font-semibold text-stone-400"
-      >
-        i
-      </span>
-    </div>
+    <span
+      aria-hidden="true"
+      className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-parchment-200 text-xs font-semibold text-stone-400"
+    >
+      i
+    </span>
   );
 }
 
@@ -93,8 +88,6 @@ export default function Bible() {
   }
 
   // Header label changes with depth, matching the existing reverent style.
-  const eyebrow = view === 'home' ? 'Holy Bible' : book?.name ?? 'Sacred Scripture';
-
   const heading = view === 'home' ? 'Sacred Scripture' : book?.name ?? '';
 
   const testaments: Testament[] = ['old', 'new'];
@@ -109,44 +102,64 @@ export default function Bible() {
       </button>
 
       <header className="mb-6">
-        <p className="text-xs uppercase tracking-widest text-stone-400">
-          {eyebrow}
-        </p>
+        {view !== 'home' && (
+          <p className="text-xs uppercase tracking-widest text-stone-400">
+            {book?.name ?? 'Sacred Scripture'}
+          </p>
+        )}
         <h1 className="font-display text-4xl font-bold text-leather-600 leading-tight mt-1">
           {heading}
         </h1>
         {view === 'home' && (
           <p className="text-leather-900 leading-relaxed mt-3">
-            The Word of God in the Old and New Testaments, given to the Church
-            to lead us to Jesus Christ. Choose a book to begin.
+            Read the Word of God through the Old and New Testaments. Choose a
+            book to begin.
           </p>
         )}
       </header>
 
-      {/* Home: books grouped by testament and category */}
+      {/* Home: parchment category cards, each holding tappable book rows */}
       {view === 'home' && (
         <div className="space-y-8">
           {testaments.map((t) => (
             <section key={t}>
-              <p className="text-xs uppercase tracking-widest text-stone-400 border-b border-parchment-200 pb-2">
+              <p className="text-xs uppercase tracking-widest text-stone-400 mb-3">
                 {TESTAMENT_LABEL[t]}
               </p>
-              {getCategories(t).map((c) => (
-                <div key={c.id}>
-                  <CategoryHeading name={c.name} />
-                  <div className="flex flex-wrap gap-2">
-                    {getCategoryBooks(c.id).map((b) => (
-                      <button
-                        key={b.id}
-                        onClick={() => openBook(b.id)}
-                        className="rounded-full border px-4 py-2 text-sm bg-white text-leather-900 border-parchment-200 active:scale-[0.99] transition"
-                      >
-                        {b.name}
-                      </button>
-                    ))}
+              <div className="space-y-3">
+                {getCategories(t).map((c) => (
+                  <div
+                    key={c.id}
+                    className="rounded-2xl bg-white border border-parchment-200 p-5"
+                  >
+                    <div className="flex items-center gap-2 mb-3">
+                      <h3 className="font-display text-lg font-semibold text-leather-900">
+                        {c.name}
+                      </h3>
+                      <InfoButton />
+                    </div>
+                    <div className="space-y-1">
+                      {getCategoryBooks(c.id).map((b) => (
+                        <button
+                          key={b.id}
+                          onClick={() => openBook(b.id)}
+                          className="w-full flex items-center gap-3 rounded-xl px-2 py-3 text-left active:scale-[0.99] transition"
+                        >
+                          <span aria-hidden="true" className="text-lg">
+                            📖
+                          </span>
+                          <span className="flex-1 font-medium text-leather-900">
+                            {b.name}
+                          </span>
+                          <span aria-hidden="true" className="text-leather-600">
+                            ›
+                          </span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </section>
           ))}
         </div>

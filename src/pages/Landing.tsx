@@ -211,10 +211,10 @@ export default function Landing() {
         <img
           src="/images/landing/jesus-welcome.png"
           alt="Jesus welcoming people in a field of warm light"
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover brightness-[0.82]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-leather-900/88 via-leather-900/58 to-leather-900/18" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f5ead1] via-transparent to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-leather-900/95 via-leather-900/74 to-leather-900/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#f5ead1] via-leather-900/25 to-leather-900/40" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(245,190,83,0.18),transparent_32%)]" />
 
         <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-5 pb-24 pt-28 sm:px-8 lg:grid-cols-[1.08fr_0.72fr]">

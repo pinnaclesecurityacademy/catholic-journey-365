@@ -14,11 +14,26 @@ function GoldRule({ className = '' }: { className?: string }) {
   );
 }
 
+// Jerusalem cross: a bold central cross with four smaller crosses in the
+// quadrants. A classic Catholic emblem that also reads cleanly as an app /
+// PWA install icon. Uses currentColor so the gold/black styling carries through.
 function CrossMark({ className = '' }: { className?: string }) {
   return (
-    <span
-      className={`relative block h-7 w-7 before:absolute before:left-1/2 before:top-0 before:h-full before:w-px before:-translate-x-1/2 before:bg-current after:absolute after:left-0 after:top-[34%] after:h-px after:w-full after:bg-current ${className}`}
-    />
+    <svg
+      viewBox="0 0 32 32"
+      fill="currentColor"
+      aria-hidden="true"
+      className={`block h-7 w-7 ${className}`}
+    >
+      {/* central Greek cross */}
+      <rect x="14" y="7" width="4" height="18" rx="0.5" />
+      <rect x="7" y="14" width="18" height="4" rx="0.5" />
+      {/* four small crosses in the quadrants */}
+      <path d="M4.6 2.6h1.8v1.4h1.4v1.8H6.4v1.4H4.6V5.8H3.2V4h1.4z" />
+      <path d="M25.6 2.6h1.8v1.4h1.4v1.8h-1.4v1.4h-1.8V5.8h-1.4V4h1.4z" />
+      <path d="M4.6 24.2h1.8v1.4h1.4v1.8H6.4v1.4H4.6v-1.4H3.2v-1.8h1.4z" />
+      <path d="M25.6 24.2h1.8v1.4h1.4v1.8h-1.4v1.4h-1.8v-1.4h-1.4v-1.8h1.4z" />
+    </svg>
   );
 }
 
@@ -175,8 +190,8 @@ export default function Landing() {
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-200 bg-leather-900 text-amber-200 shadow-sm">
               <CrossMark className="h-4 w-4" />
             </span>
-            <span className="font-display text-lg font-semibold tracking-wide text-leather-900">
-              Catholic Journey 365
+            <span className="font-display text-2xl font-semibold tracking-wide text-leather-900">
+              Catholic Journey <span className="text-amber-600">365</span>
             </span>
           </a>
 
@@ -220,7 +235,7 @@ export default function Landing() {
         <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-5 pb-24 pt-28 sm:px-8 lg:grid-cols-[1.08fr_0.72fr]">
           <div className="max-w-3xl text-center lg:text-left">
             <p className="text-xs font-bold uppercase tracking-[0.34em] text-amber-200">
-              Catholic Journey 365
+              Daily faith. Daily growth. Every day.
             </p>
             <h1 className="mt-6 font-display text-5xl font-semibold leading-[0.98] text-parchment-50 drop-shadow-xl sm:text-6xl lg:text-7xl">
               God is calling you closer.

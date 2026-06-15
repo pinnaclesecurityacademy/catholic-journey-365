@@ -98,22 +98,6 @@ export default function DayDetail() {
         </ul>
       </section>
 
-      {/* Read Scripture */}
-      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
-        <h2 className="font-display text-xl font-semibold text-leather-900 mb-2">
-          Read Scripture
-        </h2>
-        <p className="text-leather-900 leading-relaxed mb-4">
-          Read today's passages in the Catholic Journey Bible.
-        </p>
-        <button
-          onClick={() => navigate(`/bible/reading/${day.day_number}`)}
-          className="inline-block rounded-xl bg-leather-600 text-white font-semibold px-5 py-3 active:scale-[0.99] transition"
-        >
-          Begin Reading
-        </button>
-      </section>
-
       {/* What Happens Today */}
       <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
         <h2 className="font-display text-xl font-semibold text-leather-900 mb-2">
@@ -130,6 +114,22 @@ export default function DayDetail() {
         <p className="text-leather-900 leading-relaxed italic">
           {day.think_about_question}
         </p>
+      </section>
+
+      {/* Read Scripture */}
+      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
+        <h2 className="font-display text-xl font-semibold text-leather-900 mb-2">
+          Read Scripture
+        </h2>
+        <p className="text-leather-900 leading-relaxed mb-4">
+          Read today's passages in the Catholic Journey Bible.
+        </p>
+        <button
+          onClick={() => navigate(`/bible/reading/${day.day_number}`)}
+          className="inline-block rounded-xl bg-leather-600 text-white font-semibold px-5 py-3 active:scale-[0.99] transition"
+        >
+          Begin Reading
+        </button>
       </section>
 
       {/* Listen, use a verified episode_link if present, otherwise a

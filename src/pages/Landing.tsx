@@ -1,12 +1,6 @@
-import { useEffect } from 'react';
-import { useAccount } from '../lib/account';
-
 // Public marketing landing page (route: "/"). The authenticated app lives at
 // "/app". This page is intentionally outside the app's BrowserRouter so it can
-// be shown to logged-out visitors. Anyone already signed in is forwarded to the
-// app, and Supabase email-confirmation / recovery links (which establish a
-// session in the URL on load) are picked up by AccountProvider here and then
-// carried into the app by the same redirect.
+// be shown to visitors while the authenticated experience stays under /app.
 
 function goToApp() {
   window.location.href = '/app';
@@ -170,14 +164,6 @@ const NAV_LINKS = [
 ];
 
 export default function Landing() {
-  const { loading, user } = useAccount();
-
-  useEffect(() => {
-    if (!loading && user) {
-      window.location.replace('/app');
-    }
-  }, [loading, user]);
-
   return (
     <div className="min-h-screen overflow-hidden bg-[#f5ead1] text-leather-900">
       <div className="fixed inset-0 -z-10 bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.92),transparent_26%),radial-gradient(circle_at_82%_18%,rgba(214,157,72,0.2),transparent_28%),linear-gradient(180deg,#fff7e4_0%,#f1dfbd_52%,#ead4ad_100%)]" />

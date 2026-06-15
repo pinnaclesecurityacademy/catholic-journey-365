@@ -3,6 +3,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { BibleReader } from '../components/BibleReader';
 import { getReadingDay } from '../data/readingPlan';
 import { getBook, getReadingSteps, loadChapter, BibleChapter } from '../data/bible';
+import { markComplete } from '../lib/completions';
+import { useAccount } from '../lib/account';
 
 // Scripture reading flow (route: /bible/reading/:day).
 //
@@ -27,9 +29,12 @@ export default function ScriptureReading() {
   const journeyDay = getReadingDay(dayNum);
   const steps = journeyDay ? getReadingSteps(journeyDay) : [];
 
+  const { completionId } = useAccount();
+
   const [stepIndex, setStepIndex] = useState(0);
   const [chapter, setChapter] = useState<BibleChapter | null>(null);
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   const finished = stepIndex >= steps.length;
   const step = steps[stepIndex];
@@ -55,6 +60,22 @@ export default function ScriptureReading() {
   useEffect(() => {
     if (finished) window.scrollTo(0, 0);
   }, [finished]);
+
+  // Advance to the next reading. On the final reading, mark this Journey day
+  // complete using the same completion logic as the Day page, then show the
+  // completion screen.
+  const handleAdvance = async () => {
+    if (saving) return;
+    if (isLast && completionId && journeyDay) {
+      setSaving(true);
+      try {
+        await markComplete(completionId, journeyDay.day_number);
+      } finally {
+        setSaving(false);
+      }
+    }
+    setStepIndex((i) => i + 1);
+  };
 
   if (!journeyDay || steps.length === 0) {
     return (
@@ -136,10 +157,15 @@ export default function ScriptureReading() {
 
       <div className="mt-6">
         <button
-          onClick={() => setStepIndex((i) => i + 1)}
-          className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+          onClick={handleAdvance}
+          disabled={saving}
+          className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition disabled:opacity-70"
         >
-          {isLast ? 'Finish Reading & Mark Complete' : 'Next Reading'}
+          {isLast
+            ? saving
+              ? 'Saving…'
+              : 'Finish Reading & Mark Complete'
+            : 'Next Reading'}
         </button>
       </div>
 

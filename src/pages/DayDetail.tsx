@@ -122,7 +122,7 @@ export default function DayDetail() {
           Read Scripture
         </h2>
         <p className="text-leather-900 leading-relaxed mb-4">
-          Read today's passages in the Catholic Journey Bible.
+          Read today's passages in the in-app Bible reader.
         </p>
         <button
           onClick={() => navigate(`/bible/reading/${day.day_number}`)}

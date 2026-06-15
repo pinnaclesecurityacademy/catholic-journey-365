@@ -14,6 +14,60 @@ const PRAYER_GROUPS: { title: string; categoryIds: string[] }[] = [
   { title: 'Intentions', categoryIds: ['protection', 'family'] },
 ];
 
+// Display-only sub-sections for the Intentions group. These group existing
+// prayers (added in V3.4) under headings for easier navigation. They reference
+// prayers by their unchanged data category and id, so routing stays identical.
+const INTENTION_SUBSECTIONS: {
+  title: string;
+  prayers: { categoryId: string; prayerId: string }[];
+}[] = [
+  {
+    title: 'Family',
+    prayers: [
+      { categoryId: 'family', prayerId: 'prayer-for-family' },
+      { categoryId: 'family', prayerId: 'prayer-for-marriage' },
+      { categoryId: 'family', prayerId: 'prayer-for-children' },
+      { categoryId: 'family', prayerId: 'prayer-for-parents' },
+      { categoryId: 'family', prayerId: 'prayer-for-family-unity' },
+    ],
+  },
+  {
+    title: 'Work & Calling',
+    prayers: [
+      { categoryId: 'family', prayerId: 'prayer-before-work' },
+      { categoryId: 'family', prayerId: 'prayer-before-study' },
+      { categoryId: 'family', prayerId: 'prayer-for-discernment' },
+      { categoryId: 'family', prayerId: 'prayer-difficult-decision' },
+    ],
+  },
+  {
+    title: 'Healing',
+    prayers: [
+      { categoryId: 'family', prayerId: 'prayer-for-the-sick' },
+      { categoryId: 'family', prayerId: 'prayer-during-suffering' },
+      { categoryId: 'family', prayerId: 'prayer-for-grief' },
+      { categoryId: 'family', prayerId: 'prayer-for-strength' },
+    ],
+  },
+  {
+    title: 'Personal Struggles',
+    prayers: [
+      { categoryId: 'family', prayerId: 'prayer-for-anxiety' },
+      { categoryId: 'family', prayerId: 'prayer-for-forgiveness' },
+      { categoryId: 'family', prayerId: 'prayer-for-patience' },
+      { categoryId: 'family', prayerId: 'prayer-against-temptation' },
+    ],
+  },
+  {
+    title: 'Protection',
+    prayers: [
+      { categoryId: 'protection', prayerId: 'st-michael' },
+      { categoryId: 'protection', prayerId: 'spiritual-protection' },
+      { categoryId: 'protection', prayerId: 'protection-of-family' },
+    ],
+  },
+];
+
 export default function Prayer() {
   const navigate = useNavigate();
   const [openGroup, setOpenGroup] = useState<string | null>(null);
@@ -21,12 +75,67 @@ export default function Prayer() {
   const findCategory = (id: string): PrayerCategory | undefined =>
     prayerCategories.find((c) => c.id === id);
 
+  const findPrayer = (categoryId: string, prayerId: string) =>
+    findCategory(categoryId)?.prayers.find((p) => p.id === prayerId);
+
   // Category list view.
   if (openGroup) {
     const group = PRAYER_GROUPS.find((g) => g.title === openGroup);
     const cats = (group?.categoryIds ?? [])
       .map(findCategory)
       .filter((c): c is PrayerCategory => Boolean(c));
+
+    // Intentions is shown as titled sub-sections rather than a flat list.
+    if (openGroup === 'Intentions') {
+      return (
+        <div className="max-w-md mx-auto px-5 pt-8">
+          <button
+            onClick={() => setOpenGroup(null)}
+            className="text-leather-600 font-medium mb-4"
+          >
+            ← Prayer
+          </button>
+
+          <header className="mb-6">
+            <h1 className="font-display text-3xl font-bold text-leather-900">
+              {openGroup}
+            </h1>
+          </header>
+
+          <div className="space-y-6">
+            {INTENTION_SUBSECTIONS.map((sub) => {
+              const items = sub.prayers
+                .map((ref) => ({
+                  ref,
+                  prayer: findPrayer(ref.categoryId, ref.prayerId),
+                }))
+                .filter((i) => Boolean(i.prayer));
+              if (items.length === 0) return null;
+              return (
+                <section key={sub.title}>
+                  <h2 className="font-display text-xl font-semibold text-leather-900 mb-2">
+                    {sub.title}
+                  </h2>
+                  <div className="space-y-2">
+                    {items.map(({ ref, prayer }) => (
+                      <button
+                        key={ref.prayerId}
+                        onClick={() =>
+                          navigate(`/prayer/${ref.categoryId}/${ref.prayerId}`)
+                        }
+                        className="w-full text-left rounded-xl bg-white border border-parchment-200 px-4 py-3 font-medium text-leather-900 active:scale-[0.99] transition"
+                      >
+                        {prayer!.title}
+                      </button>
+                    ))}
+                  </div>
+                </section>
+              );
+            })}
+          </div>
+        </div>
+      );
+    }
 
     return (
       <div className="max-w-md mx-auto px-5 pt-8">

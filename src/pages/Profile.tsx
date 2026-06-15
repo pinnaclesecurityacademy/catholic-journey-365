@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAccount } from '../lib/account';
 
 export default function Profile() {
+  const navigate = useNavigate();
   const {
     user,
     profile,
@@ -245,6 +247,22 @@ export default function Profile() {
           className="mt-3 w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
         >
           {joining ? 'Joining…' : 'Join Journey'}
+        </button>
+      </section>
+
+      {/* Saints Library */}
+      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+          Saints Library
+        </h2>
+        <p className="text-sm text-stone-500 mb-3">
+          Browse the saints and feasts who help us follow Christ.
+        </p>
+        <button
+          onClick={() => navigate('/saints')}
+          className="w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white active:scale-[0.99] transition"
+        >
+          Open Saints Library
         </button>
       </section>
 

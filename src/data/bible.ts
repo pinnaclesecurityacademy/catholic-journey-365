@@ -117,6 +117,182 @@ export const BIBLE_BOOKS: BibleBook[] = [
   { id: 'revelation', name: 'Revelation', testament: 'new', chapterCount: 22 },
 ];
 
+// --- Bible Library navigation grouping (V3.6) ---
+//
+// Catholic grouping of the canon into the traditional categories, used only for
+// navigation in the Bible Library. Reference metadata only (book ids and short
+// category descriptions); no Scripture text. Deuterocanonical books are placed
+// in their proper Catholic positions (Tobit, Judith, 1 and 2 Maccabees among
+// the Historical Books; Wisdom and Sirach among the Wisdom Books; Baruch among
+// the Prophets; the Greek additions to Esther and Daniel are within those books).
+
+export type Testament = 'old' | 'new';
+
+export interface BibleCategory {
+  /** Stable id used in navigation, e.g. "pentateuch". */
+  id: string;
+  /** Display name, e.g. "Pentateuch". */
+  name: string;
+  /** Testament this category belongs to. */
+  testament: Testament;
+  /** Short Catholic description of the category (no Scripture text). */
+  description: string;
+  /** Ordered book ids that belong to this category. */
+  bookIds: string[];
+}
+
+export const BIBLE_CATEGORIES: BibleCategory[] = [
+  {
+    id: 'pentateuch',
+    name: 'Pentateuch',
+    testament: 'old',
+    description:
+      'The first five books of Moses, telling of creation, the patriarchs, and God forming a people through the covenant and the Law.',
+    bookIds: ['genesis', 'exodus', 'leviticus', 'numbers', 'deuteronomy'],
+  },
+  {
+    id: 'historical',
+    name: 'Historical Books',
+    testament: 'old',
+    description:
+      "The story of God's people in the promised land, from Joshua to the age of the Maccabees.",
+    bookIds: [
+      'joshua',
+      'judges',
+      'ruth',
+      '1-samuel',
+      '2-samuel',
+      '1-kings',
+      '2-kings',
+      '1-chronicles',
+      '2-chronicles',
+      'ezra',
+      'nehemiah',
+      'tobit',
+      'judith',
+      'esther',
+      '1-maccabees',
+      '2-maccabees',
+    ],
+  },
+  {
+    id: 'wisdom',
+    name: 'Wisdom Books',
+    testament: 'old',
+    description:
+      'Prayer, poetry, and reflection on how to live wisely before God, including the Psalms prayed by the Church.',
+    bookIds: [
+      'job',
+      'psalms',
+      'proverbs',
+      'ecclesiastes',
+      'song-of-solomon',
+      'wisdom',
+      'sirach',
+    ],
+  },
+  {
+    id: 'prophets',
+    name: 'Prophets',
+    testament: 'old',
+    description:
+      "God's messengers calling his people back to faithfulness and pointing forward to the coming of Christ.",
+    bookIds: [
+      'isaiah',
+      'jeremiah',
+      'lamentations',
+      'baruch',
+      'ezekiel',
+      'daniel',
+      'hosea',
+      'joel',
+      'amos',
+      'obadiah',
+      'jonah',
+      'micah',
+      'nahum',
+      'habakkuk',
+      'zephaniah',
+      'haggai',
+      'zechariah',
+      'malachi',
+    ],
+  },
+  {
+    id: 'gospels',
+    name: 'Gospels',
+    testament: 'new',
+    description:
+      'The good news of Jesus Christ, his life, death, and resurrection, told by Matthew, Mark, Luke, and John.',
+    bookIds: ['matthew', 'mark', 'luke', 'john'],
+  },
+  {
+    id: 'acts',
+    name: 'Acts',
+    testament: 'new',
+    description:
+      'The Acts of the Apostles, the story of the early Church spreading the Gospel by the power of the Holy Spirit.',
+    bookIds: ['acts'],
+  },
+  {
+    id: 'letters',
+    name: 'Letters',
+    testament: 'new',
+    description:
+      'Letters of Saint Paul and the other apostles guiding the first Christian communities in faith and love.',
+    bookIds: [
+      'romans',
+      '1-corinthians',
+      '2-corinthians',
+      'galatians',
+      'ephesians',
+      'philippians',
+      'colossians',
+      '1-thessalonians',
+      '2-thessalonians',
+      '1-timothy',
+      '2-timothy',
+      'titus',
+      'philemon',
+      'hebrews',
+      'james',
+      '1-peter',
+      '2-peter',
+      '1-john',
+      '2-john',
+      '3-john',
+      'jude',
+    ],
+  },
+  {
+    id: 'revelation',
+    name: 'Revelation',
+    testament: 'new',
+    description:
+      "A vision of hope, Christ's final victory, and the promise of a new heaven and a new earth.",
+    bookIds: ['revelation'],
+  },
+];
+
+/** Categories for a testament, in canonical order. */
+export function getCategories(testament: Testament): BibleCategory[] {
+  return BIBLE_CATEGORIES.filter((c) => c.testament === testament);
+}
+
+/** A single category by id, or undefined if not found. */
+export function getCategory(categoryId: string): BibleCategory | undefined {
+  return BIBLE_CATEGORIES.find((c) => c.id === categoryId);
+}
+
+/** The books belonging to a category, in canonical order. */
+export function getCategoryBooks(categoryId: string): BibleBook[] {
+  const category = getCategory(categoryId);
+  if (!category) return [];
+  return category.bookIds
+    .map((id) => getBook(id))
+    .filter((b): b is BibleBook => Boolean(b));
+}
+
 // --- Reading reference parsing (Bible Journey integration, V3.3) ---
 //
 // Turns a Journey day's reading references (e.g. "Genesis 1-2", "Psalm 19",

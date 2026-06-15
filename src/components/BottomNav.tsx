@@ -37,6 +37,26 @@ function BookIcon({ active }: { active: boolean }) {
   );
 }
 
+function BibleIcon({ active }: { active: boolean }) {
+  return (
+    <svg
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={active ? '#7C5C3E' : '#A8A29E'}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v15H6a1 1 0 0 0-1 1z" />
+      <path d="M5 19a1 1 0 0 0 1 1h12" />
+      <path d="M12 6v6" />
+      <path d="M9.5 8.5h5" />
+    </svg>
+  );
+}
+
 function PrayerIcon({ active }: { active: boolean }) {
   return (
     <svg
@@ -96,6 +116,14 @@ export default function BottomNav() {
             <>
               <BookIcon active={isActive} />
               <span>Journey</span>
+            </>
+          )}
+        </NavLink>
+        <NavLink to="/bible" className={linkClass}>
+          {({ isActive }) => (
+            <>
+              <BibleIcon active={isActive} />
+              <span>Bible</span>
             </>
           )}
         </NavLink>

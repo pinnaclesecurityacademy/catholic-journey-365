@@ -165,19 +165,19 @@ export default function Bible() {
         </div>
       )}
 
-      {/* Book: choose a chapter */}
+      {/* Book: choose a chapter (large, comfortable tap targets) */}
       {view === 'chapters' && book && (
         <div>
-          <label className="block text-xs uppercase tracking-widest text-stone-400 mb-2">
-            Chapter
+          <label className="block text-xs uppercase tracking-widest text-stone-400 mb-3">
+            Chapters
           </label>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-4 sm:grid-cols-5 gap-3">
             {Array.from({ length: book.chapterCount }, (_, i) => i + 1).map(
               (n) => (
                 <button
                   key={n}
                   onClick={() => openChapter(n)}
-                  className="rounded-full border px-4 py-2 text-sm bg-white text-leather-900 border-parchment-200 active:scale-[0.99] transition"
+                  className="flex items-center justify-center h-14 min-w-[3.5rem] rounded-2xl border text-xl font-semibold bg-white text-leather-900 border-parchment-200 active:scale-[0.97] transition"
                 >
                   {n}
                 </button>

@@ -57,7 +57,7 @@ function BibleIcon({ active }: { active: boolean }) {
   );
 }
 
-function PrayerIcon({ active }: { active: boolean }) {
+function FaithIcon({ active }: { active: boolean }) {
   return (
     <svg
       width="24"
@@ -69,9 +69,8 @@ function PrayerIcon({ active }: { active: boolean }) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <path d="M12 3v8" />
-      <path d="M8 7h8" />
-      <path d="M7 21c0-4 2.5-6 5-6s5 2 5 6" />
+      <path d="M12 3v18" />
+      <path d="M7 8h10" />
     </svg>
   );
 }
@@ -127,11 +126,11 @@ export default function BottomNav() {
             </>
           )}
         </NavLink>
-        <NavLink to="/prayer" className={linkClass}>
+        <NavLink to="/faith" className={linkClass}>
           {({ isActive }) => (
             <>
-              <PrayerIcon active={isActive} />
-              <span>Prayer</span>
+              <FaithIcon active={isActive} />
+              <span>Faith</span>
             </>
           )}
         </NavLink>

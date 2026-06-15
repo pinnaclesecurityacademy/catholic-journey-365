@@ -191,7 +191,13 @@ export default function Prayer() {
         <h1 className="font-display text-3xl font-bold text-leather-900">
           Prayer
         </h1>
-        <p className="text-stone-500">A simple companion for daily prayer</p>
+        <p className="text-stone-500 leading-relaxed">
+          Prayer is your personal conversation with God. It is how you build
+          your own unique relationship with the Father, the Son, and the Holy
+          Spirit. Whether through traditional prayers, quiet reflection,
+          gratitude, or simply speaking from the heart, God invites you to spend
+          time with Him.
+        </p>
       </header>
 
       <div className="space-y-3">

@@ -38,6 +38,7 @@ interface AccountValue {
     password: string
   ) => Promise<{ error?: string }>;
   signIn: (email: string, password: string) => Promise<{ error?: string }>;
+  resetPassword: (email: string) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
   claim: (namespace: string) => Promise<void>;
   updateDisplayName: (name: string) => Promise<void>;
@@ -180,6 +181,18 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     return {};
   };
 
+  // Send a Supabase password-reset email. The link returns the user to the app
+  // where Supabase establishes a recovery session.
+  const resetPassword = async (email: string) => {
+    const redirectTo =
+      typeof window !== 'undefined' ? window.location.origin : undefined;
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo,
+    });
+    if (error) return { error: error.message };
+    return {};
+  };
+
   const signOut = async () => {
     await supabase.auth.signOut();
     setProfile(null);
@@ -315,6 +328,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         members,
         signUp,
         signIn,
+        resetPassword,
         signOut,
         claim,
         updateDisplayName,

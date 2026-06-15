@@ -17,6 +17,7 @@ import PrayerDetail from './pages/PrayerDetail';
 import Rosary from './pages/Rosary';
 import Bible from './pages/Bible';
 import ScriptureReading from './pages/ScriptureReading';
+import Landing from './pages/Landing';
 
 function Splash() {
   return (
@@ -47,7 +48,7 @@ function AppShell() {
   if (!journeyId) return <JourneySetup />;
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/app">
       <div className="min-h-screen bg-parchment-100" style={{ paddingBottom: 80 }}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -72,10 +73,20 @@ function AppShell() {
   );
 }
 
+// The authenticated app lives under /app; the public marketing site is served
+// at the root. AccountProvider wraps both so a Supabase session present in the
+// URL (email confirmation / password recovery links) is established wherever
+// the user lands, then Landing forwards signed-in users into the app.
+function isAppPath() {
+  if (typeof window === 'undefined') return false;
+  const path = window.location.pathname;
+  return path === '/app' || path.startsWith('/app/');
+}
+
 export default function App() {
   return (
     <AccountProvider>
-      <AppShell />
+      {isAppPath() ? <AppShell /> : <Landing />}
     </AccountProvider>
   );
 }

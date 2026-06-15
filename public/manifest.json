@@ -2,8 +2,8 @@
   "name": "Catholic Journey 365",
   "short_name": "Catholic 365",
   "display": "standalone",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/app",
+  "scope": "/app",
   "theme_color": "#7C5C3E",
   "background_color": "#F7F3EE",
   "icons": [

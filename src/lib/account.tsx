@@ -185,7 +185,9 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   // where Supabase establishes a recovery session.
   const resetPassword = async (email: string) => {
     const redirectTo =
-      typeof window !== 'undefined' ? window.location.origin : undefined;
+      typeof window !== 'undefined'
+        ? `${window.location.origin}/app`
+        : undefined;
     const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
       redirectTo,
     });

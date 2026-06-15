@@ -139,18 +139,18 @@ function JourneyImageSection({
   reverse?: boolean;
 }) {
   return (
-    <section id={id} className="relative px-5 py-14 sm:px-8 md:py-20">
+    <section id={id} className="relative px-5 py-9 sm:px-8 md:py-20">
       <div
-        className={`mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-2 ${
+        className={`mx-auto grid max-w-7xl items-center gap-6 lg:grid-cols-2 lg:gap-8 ${
           reverse ? 'lg:[&>*:first-child]:order-2' : ''
         }`}
       >
-        <div className="rounded-[2.5rem] border border-white/54 bg-white/52 p-7 shadow-[0_24px_70px_rgba(92,64,39,0.11)] backdrop-blur sm:p-10">
+        <div className="rounded-[2.5rem] border border-white/54 bg-white/52 p-5 shadow-[0_24px_70px_rgba(92,64,39,0.11)] backdrop-blur sm:p-8 md:p-10">
           <GoldRule />
-          <h2 className="mt-7 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-6xl">
+          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-leather-900 md:mt-7 md:text-6xl">
             {title}
           </h2>
-          <p className="mt-6 text-xl leading-9 text-leather-900/82">{text}</p>
+          <p className="mt-4 text-xl leading-9 text-leather-900/82 md:mt-6">{text}</p>
         </div>
 
         <ImagePanel src={src} alt={alt} className="min-h-[380px] md:min-h-[500px]" />
@@ -220,16 +220,16 @@ export default function Landing() {
         <div className="absolute inset-0 bg-gradient-to-t from-[#f5ead1] via-transparent to-transparent" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_72%_28%,rgba(245,190,83,0.24),transparent_34%)]" />
 
-        <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-5 pb-24 pt-28 sm:px-8 lg:grid-cols-[1.08fr_0.72fr]">
+        <div className="relative mx-auto grid min-h-screen max-w-7xl items-center gap-6 px-5 pb-14 pt-24 sm:px-8 md:pb-20 lg:grid-cols-[1.08fr_0.72fr] lg:gap-10 lg:pb-24 lg:pt-28">
           <div className="max-w-3xl text-center lg:text-left">
             <p className="text-xs font-bold uppercase tracking-[0.34em] text-amber-200">
               Daily faith. Daily growth. Every day.
             </p>
-            <h1 className="mt-6 font-display text-5xl font-semibold leading-[0.98] text-parchment-50 drop-shadow-xl sm:text-6xl lg:text-7xl">
+            <h1 className="mt-4 font-display text-5xl font-semibold leading-[0.98] text-parchment-50 drop-shadow-xl sm:text-6xl md:mt-6 lg:text-7xl">
               God is calling you closer.
             </h1>
 
-            <div className="mx-auto mt-8 max-w-2xl space-y-5 text-lg leading-8 text-parchment-100/90 [text-shadow:0_2px_14px_rgba(20,12,8,0.6)] sm:text-xl lg:mx-0">
+            <div className="mx-auto mt-5 max-w-2xl space-y-3 text-lg leading-8 text-parchment-100/90 [text-shadow:0_2px_14px_rgba(20,12,8,0.6)] sm:text-xl md:mt-8 md:space-y-5 lg:mx-0">
               <p className="font-display text-2xl font-semibold leading-9 text-white">
                 Begin your Catholic journey one day, one prayer, and one step at
                 a time.
@@ -240,7 +240,7 @@ export default function Landing() {
               </p>
             </div>
 
-            <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
+            <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row md:mt-9 md:gap-4 lg:justify-start">
               <button
                 onClick={goToApp}
                 className="w-full rounded-full bg-gradient-to-b from-amber-300 to-amber-600 px-9 py-4 text-base font-bold text-leather-900 shadow-[0_20px_45px_rgba(0,0,0,0.28)] transition active:scale-[0.99] sm:w-auto"
@@ -260,15 +260,15 @@ export default function Landing() {
       </header>
 
       <main>
-        <section id="journey" className="relative px-5 py-20 sm:px-8 md:py-28">
+        <section id="journey" className="relative px-5 py-10 sm:px-8 md:py-20 lg:py-28">
           <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[#f5ead1] to-transparent" />
-          <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <div className="mx-auto grid max-w-7xl gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-10">
             <div className="relative">
               <GoldRule />
-              <h2 className="mt-8 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-6xl">
+              <h2 className="mt-5 font-display text-4xl font-semibold leading-tight text-leather-900 md:mt-8 md:text-6xl">
                 Faith has always been a journey.
               </h2>
-              <div className="mt-8 space-y-5 text-xl leading-9 text-leather-900/82">
+              <div className="mt-5 space-y-3 text-xl leading-9 text-leather-900/82 md:mt-8 md:space-y-5">
                 <p>Abraham followed God into the unknown.</p>
                 <p>The prophets called people back to Him.</p>
                 <p>The Saints kept walking toward Christ.</p>
@@ -322,17 +322,17 @@ export default function Landing() {
           alt="A child receiving First Holy Communion in a Catholic church"
         />
 
-        <section className="relative px-5 py-16 sm:px-8 md:py-24">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-            <div className="rounded-[2.5rem] border border-white/54 bg-white/58 p-8 shadow-[0_24px_70px_rgba(92,64,39,0.11)] backdrop-blur sm:p-10">
+        <section className="relative px-5 py-10 sm:px-8 md:py-16 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-8">
+            <div className="rounded-[2.5rem] border border-white/54 bg-white/58 p-6 shadow-[0_24px_70px_rgba(92,64,39,0.11)] backdrop-blur sm:p-8 md:p-10">
               <GoldRule />
-              <h2 className="mt-7 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-6xl">
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-leather-900 md:mt-7 md:text-6xl">
                 Walk with others.
               </h2>
-              <p className="mt-6 text-xl leading-9 text-leather-900/82">
+              <p className="mt-4 text-xl leading-9 text-leather-900/82 md:mt-6">
                 Invite your family to continue the journey together.
               </p>
-              <p className="mt-5 text-lg leading-8 text-stone-600">
+              <p className="mt-3 text-lg leading-8 text-stone-600 md:mt-5">
                 Catholic Journey 365 keeps the app quietly beside the deeper
                 invitation: read, pray, learn, and keep walking toward God. It
                 is a companion app, not a replacement for Mass, the Sacraments,
@@ -340,9 +340,9 @@ export default function Landing() {
               </p>
             </div>
 
-            <div className="relative overflow-hidden rounded-[2.8rem] border border-amber-100/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.78),transparent_34%),linear-gradient(135deg,#fff8e7,#e4c797)] p-8 shadow-[0_34px_90px_rgba(92,64,39,0.16)]">
+            <div className="relative overflow-hidden rounded-[2.8rem] border border-amber-100/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.78),transparent_34%),linear-gradient(135deg,#fff8e7,#e4c797)] p-6 shadow-[0_34px_90px_rgba(92,64,39,0.16)] sm:p-8">
               <div className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(90deg,rgba(83,54,31,0.08)_1px,transparent_1px),linear-gradient(rgba(83,54,31,0.07)_1px,transparent_1px)] [background-size:28px_28px]" />
-              <div className="relative grid gap-8 md:grid-cols-[0.72fr_0.28fr] md:items-center">
+              <div className="relative grid gap-5 md:grid-cols-[0.72fr_0.28fr] md:items-center md:gap-8">
                 <div>
                   <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
                     Companion
@@ -350,7 +350,7 @@ export default function Landing() {
                   <h3 className="mt-4 font-display text-4xl font-semibold leading-tight text-leather-900">
                     A gentle guide for each day.
                   </h3>
-                  <p className="mt-5 text-lg leading-8 text-stone-600">
+                  <p className="mt-3 text-lg leading-8 text-stone-600 md:mt-5">
                     Built with reference to Scripture, the Catechism, the
                     Saints, and Catholic tradition, it helps organise the next
                     faithful step.
@@ -362,7 +362,7 @@ export default function Landing() {
           </div>
         </section>
 
-        <section id="story" className="relative px-5 py-20 sm:px-8 md:py-28">
+        <section id="story" className="relative px-5 py-10 sm:px-8 md:py-20 lg:py-28">
           <div className="mx-auto max-w-6xl overflow-hidden rounded-[3rem] bg-[radial-gradient(circle_at_16%_0%,rgba(232,184,103,0.26),transparent_32%),linear-gradient(135deg,#20140e_0%,#3a2619_46%,#150d09_100%)] p-4 shadow-[0_44px_110px_rgba(36,22,15,0.38)] sm:p-6">
             <div className="grid gap-5 md:grid-cols-[0.38fr_0.62fr] md:items-stretch">
               <div className="relative min-h-80 overflow-hidden rounded-[2.4rem] border border-amber-200/24">
@@ -372,7 +372,7 @@ export default function Landing() {
                   className="absolute inset-0 h-full w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-leather-900/74 via-leather-900/46 to-amber-900/20" />
-                <div className="relative flex h-full min-h-80 flex-col justify-between gap-16 p-8 sm:p-10">
+                <div className="relative flex h-full min-h-80 flex-col justify-between gap-8 p-6 sm:p-8 md:gap-16 md:p-10">
                   <CrossMark className="text-amber-200" />
                   <p className="font-display text-3xl font-semibold leading-tight text-parchment-50 sm:text-4xl">
                     I built the companion I needed.
@@ -380,14 +380,14 @@ export default function Landing() {
                 </div>
               </div>
 
-              <div className="rounded-[2.4rem] border border-amber-100 bg-[#fff8e7] p-8 shadow-[0_28px_70px_rgba(21,13,9,0.22)] sm:p-10 md:p-12">
+              <div className="rounded-[2.4rem] border border-amber-100 bg-[#fff8e7] p-6 shadow-[0_28px_70px_rgba(21,13,9,0.22)] sm:p-8 md:p-12">
                 <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
                   Founder Story
                 </p>
                 <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-5xl">
                   I built Catholic Journey 365 for myself.
                 </h2>
-                <div className="mt-8 space-y-6 text-xl leading-9 text-leather-900/86 md:text-2xl md:leading-10">
+                <div className="mt-5 space-y-4 text-xl leading-9 text-leather-900/86 md:mt-8 md:space-y-6 md:text-2xl md:leading-10">
                   <p>
                     I felt God calling me closer, but I did not know where to
                     begin.
@@ -398,20 +398,20 @@ export default function Landing() {
                     Maybe this is the beginning of your journey too.
                   </p>
                 </div>
-                <GoldRule className="mt-9" />
+                <GoldRule className="mt-6 md:mt-9" />
               </div>
             </div>
           </div>
         </section>
 
-        <section className="relative px-5 py-16 sm:px-8 md:py-24">
-          <div className="mx-auto max-w-6xl rounded-[3rem] border border-white/54 bg-white/58 p-8 shadow-[0_24px_70px_rgba(92,64,39,0.11)] backdrop-blur sm:p-10 md:p-12">
+        <section className="relative px-5 py-10 sm:px-8 md:py-16 lg:py-24">
+          <div className="mx-auto max-w-6xl rounded-[3rem] border border-white/54 bg-white/58 p-6 shadow-[0_24px_70px_rgba(92,64,39,0.11)] backdrop-blur sm:p-8 md:p-12">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
-              <h2 className="mt-7 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-6xl">
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-leather-900 md:mt-7 md:text-6xl">
                 Start free. Keep walking for life.
               </h2>
-              <p className="mt-6 text-xl leading-9 text-leather-900/82">
+              <p className="mt-4 text-xl leading-9 text-leather-900/82 md:mt-6">
                 Begin with a 14 day free trial. Unlock Catholic Journey 365 for
                 life with a one time $19.99 lifetime unlock. No monthly
                 subscription.
@@ -420,41 +420,41 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="relative px-5 py-16 sm:px-8 md:py-24">
+        <section className="relative px-5 py-10 sm:px-8 md:py-16 lg:py-24">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-3xl">
               <GoldRule />
-              <h2 className="mt-7 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-6xl">
+              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-leather-900 md:mt-7 md:text-6xl">
                 Questions before you begin.
               </h2>
             </div>
 
-            <div className="mt-10 grid gap-5 md:grid-cols-3">
-              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-7 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+            <div className="mt-6 grid gap-4 md:mt-10 md:grid-cols-3 md:gap-5">
+              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-5 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-7">
                 <h3 className="font-display text-2xl font-semibold text-leather-900">
                   Does this replace Church?
                 </h3>
-                <p className="mt-4 text-lg leading-8 text-stone-600">
+                <p className="mt-3 text-lg leading-8 text-stone-600 md:mt-4">
                   No. Catholic Journey 365 is a companion app. It does not
                   replace Mass, the Sacraments, priests, or parish community.
                 </p>
               </div>
 
-              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-7 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-5 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-7">
                 <h3 className="font-display text-2xl font-semibold text-leather-900">
                   What Bible translation?
                 </h3>
-                <p className="mt-4 text-lg leading-8 text-stone-600">
+                <p className="mt-3 text-lg leading-8 text-stone-600 md:mt-4">
                   Catholic Journey 365 uses the World English Bible Catholic
                   Edition and follows the Catholic canon of Scripture.
                 </p>
               </div>
 
-              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-7 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+              <div className="rounded-[2rem] border border-white/54 bg-white/58 p-5 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-7">
                 <h3 className="font-display text-2xl font-semibold text-leather-900">
                   Was AI used?
                 </h3>
-                <p className="mt-4 text-lg leading-8 text-stone-600">
+                <p className="mt-3 text-lg leading-8 text-stone-600 md:mt-4">
                   AI tools assisted development and organisation. The foundation
                   is Scripture, Catholic teaching, and tradition.
                 </p>
@@ -463,26 +463,26 @@ export default function Landing() {
           </div>
         </section>
 
-        <section className="px-5 pb-28 pt-8 sm:px-8">
-          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[3rem] border border-white/50 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.95),transparent_35%),linear-gradient(135deg,rgba(255,247,227,0.94),rgba(230,199,145,0.78))] px-6 py-20 text-center shadow-[0_40px_100px_rgba(92,64,39,0.18)] md:py-28">
+        <section className="px-5 pb-16 pt-4 sm:px-8 md:pb-28 md:pt-8">
+          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[3rem] border border-white/50 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.95),transparent_35%),linear-gradient(135deg,rgba(255,247,227,0.94),rgba(230,199,145,0.78))] px-6 py-12 text-center shadow-[0_40px_100px_rgba(92,64,39,0.18)] md:py-28">
             <div className="absolute left-1/2 top-10 h-52 w-52 -translate-x-1/2 rounded-full bg-amber-300/20 blur-3xl" />
             <div className="relative mx-auto max-w-3xl">
               <GoldRule className="mx-auto" />
-              <h2 className="mt-8 font-display text-5xl font-semibold leading-tight text-leather-900 md:text-7xl">
+              <h2 className="mt-5 font-display text-5xl font-semibold leading-tight text-leather-900 md:mt-8 md:text-7xl">
                 Your journey starts today.
               </h2>
-              <div className="mx-auto mt-8 max-w-xl space-y-3 text-xl leading-9 text-leather-900/86">
+              <div className="mx-auto mt-5 max-w-xl space-y-2 text-xl leading-9 text-leather-900/86 md:mt-8 md:space-y-3">
                 <p>Not perfectly.</p>
                 <p>Not all at once.</p>
               </div>
-              <div className="mx-auto mt-8 max-w-xl space-y-3 font-display text-2xl leading-9 text-leather-900">
+              <div className="mx-auto mt-5 max-w-xl space-y-2 font-display text-2xl leading-9 text-leather-900 md:mt-8 md:space-y-3">
                 <p>One day.</p>
                 <p>One prayer.</p>
                 <p>One step closer to God.</p>
               </div>
               <button
                 onClick={goToApp}
-                className="mt-10 w-full rounded-full bg-gradient-to-b from-amber-300 to-amber-600 px-10 py-4 text-base font-bold text-leather-900 shadow-[0_20px_45px_rgba(161,106,28,0.26)] transition active:scale-[0.99] sm:w-auto"
+                className="mt-7 w-full rounded-full bg-gradient-to-b from-amber-300 to-amber-600 px-10 py-4 text-base font-bold text-leather-900 shadow-[0_20px_45px_rgba(161,106,28,0.26)] transition active:scale-[0.99] sm:w-auto md:mt-10"
               >
                 Begin Your Journey
               </button>

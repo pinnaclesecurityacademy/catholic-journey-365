@@ -139,7 +139,7 @@ export default function ScriptureReading() {
           onClick={() => setStepIndex((i) => i + 1)}
           className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
         >
-          {isLast ? 'Finish Reading' : 'Next Reading'}
+          {isLast ? 'Finish Reading & Mark Complete' : 'Next Reading'}
         </button>
       </div>
 

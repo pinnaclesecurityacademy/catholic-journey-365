@@ -155,6 +155,12 @@ export default function Home() {
         >
           Meet Today’s Saint
         </button>
+        <button
+          onClick={() => navigate('/saints')}
+          className="mt-2 w-full rounded-xl border border-leather-600 py-3 font-semibold text-leather-600 active:scale-[0.99] transition"
+        >
+          Browse Saint Library
+        </button>
       </div>
 
       {/* Card 5, Daily Mass Readings (external: Universalis) */}

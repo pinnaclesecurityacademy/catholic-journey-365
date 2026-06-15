@@ -9,6 +9,7 @@ import Journey from './pages/Journey';
 import DayDetail from './pages/DayDetail';
 import DiveDeeper from './pages/DiveDeeper';
 import SaintOfDay from './pages/SaintOfDay';
+import SaintLibrary from './pages/SaintLibrary';
 import Profile from './pages/Profile';
 import Prayer from './pages/Prayer';
 import PrayerDetail from './pages/PrayerDetail';
@@ -44,6 +45,8 @@ function AppShell() {
           <Route path="/day/:dayNumber" element={<DayDetail />} />
           <Route path="/day/:dayNumber/deeper" element={<DiveDeeper />} />
           <Route path="/saint" element={<SaintOfDay />} />
+          <Route path="/saint/:key" element={<SaintOfDay />} />
+          <Route path="/saints" element={<SaintLibrary />} />
           <Route path="/prayer" element={<Prayer />} />
           <Route path="/prayer/:categoryId/:prayerId" element={<PrayerDetail />} />
           <Route path="/rosary" element={<Rosary />} />

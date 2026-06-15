@@ -4041,3 +4041,24 @@ function dayKey(date: Date): string {
 export function getSaintOfDay(date: Date = new Date()): Saint | undefined {
   return saints[dayKey(date)];
 }
+
+/** A calendar entry paired with its "MM-DD" key, for the Saint Library. */
+export interface SaintWithKey {
+  key: string;
+  saint: Saint;
+}
+
+/**
+ * All authored calendar entries, ordered by their "MM-DD" key (January first).
+ * Read-only view over the existing data; the daily logic is unchanged.
+ */
+export function getAllSaints(): SaintWithKey[] {
+  return Object.keys(saints)
+    .sort()
+    .map((key) => ({ key, saint: saints[key] }));
+}
+
+/** A single entry by its "MM-DD" key, or undefined if none. */
+export function getSaintByKey(key: string): Saint | undefined {
+  return saints[key];
+}

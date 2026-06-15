@@ -1,6 +1,11 @@
 import { useEffect, ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getSaintOfDay, SAINT_CLOSING, Saint } from '../data/saints';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  getSaintOfDay,
+  getSaintByKey,
+  SAINT_CLOSING,
+  Saint,
+} from '../data/saints';
 import { SacredPrayer } from '../components/SacredPrayer';
 
 // Saint of the Day experience (route: /saint).
@@ -181,11 +186,15 @@ function ClosingIntercession({ saint }: { saint: Saint }) {
 
 export default function SaintOfDay() {
   const navigate = useNavigate();
-  const saint = getSaintOfDay();
+  // When opened from the Saint Library a "MM-DD" key is provided; otherwise the
+  // page shows today's saint exactly as before.
+  const { key } = useParams<{ key: string }>();
+  const fromLibrary = Boolean(key);
+  const saint = key ? getSaintByKey(key) : getSaintOfDay();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [key]);
 
   return (
     <div className="max-w-md mx-auto px-5 pt-6 pb-12">
@@ -198,7 +207,7 @@ export default function SaintOfDay() {
 
       <header className="mb-6">
         <p className="text-xs uppercase tracking-widest text-stone-400">
-          Saint of the Day
+          {fromLibrary ? 'Saint Library' : 'Saint of the Day'}
         </p>
         {saint ? (
           <>

@@ -11,6 +11,7 @@ export default function Profile() {
     members,
     updateDisplayName,
     updateJourneyName,
+    joinJourney,
     removeMember,
     signOut,
   } = useAccount();
@@ -25,6 +26,10 @@ export default function Profile() {
   const [jName, setJName] = useState(journeyName ?? '');
   const [savingJourney, setSavingJourney] = useState(false);
   const [savedJourney, setSavedJourney] = useState(false);
+
+  const [joinCode, setJoinCode] = useState('');
+  const [joining, setJoining] = useState(false);
+  const [joinError, setJoinError] = useState<string | null>(null);
 
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
@@ -47,6 +52,22 @@ export default function Profile() {
       setSavedJourney(true);
     } finally {
       setSavingJourney(false);
+    }
+  };
+
+  const doJoin = async () => {
+    if (!joinCode.trim()) return;
+    setJoinError(null);
+    setJoining(true);
+    try {
+      const ok = await joinJourney(joinCode);
+      if (!ok) {
+        setJoinError('No journey found with that code.');
+      } else {
+        setJoinCode('');
+      }
+    } finally {
+      setJoining(false);
     }
   };
 
@@ -198,6 +219,34 @@ export default function Profile() {
           </button>
         </section>
       )}
+
+      {/* Join a shared journey */}
+      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+          Join a Journey
+        </h2>
+        <p className="text-sm text-stone-500 mb-3">
+          Have an invite code? Join a family member's journey.
+        </p>
+        <input
+          type="text"
+          value={joinCode}
+          onChange={(e) => {
+            setJoinCode(e.target.value);
+            setJoinError(null);
+          }}
+          placeholder="CJ365-ABCD"
+          className="w-full rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-leather-900 outline-none focus:border-leather-400"
+        />
+        {joinError && <p className="mt-3 text-sm text-red-600">{joinError}</p>}
+        <button
+          onClick={doJoin}
+          disabled={joining || !joinCode.trim()}
+          className="mt-3 w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
+        >
+          {joining ? 'Joining…' : 'Join Journey'}
+        </button>
+      </section>
 
       {/* Sign out */}
       <button

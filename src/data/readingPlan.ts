@@ -11,7 +11,7 @@ import { ReadingDay } from '../lib/supabase';
 export const readingPlan: ReadingDay[] = [
   {
     "day_number": 1,
-    "period": "Early World",
+    "period": "Creation & Covenant",
     "reading_one": "Genesis 1-2",
     "reading_two": "",
     "psalm_proverb": "Psalm 19",
@@ -22,7 +22,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 2,
-    "period": "Early World",
+    "period": "Creation & Covenant",
     "reading_one": "Genesis 3-4",
     "reading_two": "",
     "psalm_proverb": "Psalm 104",
@@ -33,7 +33,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 3,
-    "period": "Early World",
+    "period": "Creation & Covenant",
     "reading_one": "Genesis 5-6",
     "reading_two": "",
     "psalm_proverb": "Psalm 136",
@@ -44,7 +44,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 4,
-    "period": "Early World",
+    "period": "Creation & Covenant",
     "reading_one": "Genesis 7-9",
     "reading_two": "",
     "psalm_proverb": "Psalm 1",
@@ -55,7 +55,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 5,
-    "period": "Early World",
+    "period": "Creation & Covenant",
     "reading_one": "Genesis 10-11",
     "reading_two": "",
     "psalm_proverb": "Psalm 2",
@@ -66,7 +66,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 6,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 12-13",
     "reading_two": "Job 1-2",
     "psalm_proverb": "Proverbs 1:1-7",
@@ -77,7 +77,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 7,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 14-15",
     "reading_two": "Job 3-4",
     "psalm_proverb": "Proverbs 1:8-19",
@@ -88,7 +88,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 8,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 16-17",
     "reading_two": "Job 5-6",
     "psalm_proverb": "Proverbs 1:20-33",
@@ -99,7 +99,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 9,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 18-19",
     "reading_two": "Job 7-8",
     "psalm_proverb": "Proverbs 2:1-5",
@@ -110,7 +110,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 10,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 20-21",
     "reading_two": "Job 9-10",
     "psalm_proverb": "Proverbs 2:6-8",
@@ -121,7 +121,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 11,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 22-23",
     "reading_two": "Job 11-12",
     "psalm_proverb": "Proverbs 2:9-15",
@@ -132,7 +132,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 12,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 24",
     "reading_two": "Job 13-14",
     "psalm_proverb": "Proverbs 2:16-19",
@@ -143,7 +143,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 13,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 25-26",
     "reading_two": "Job 15-16",
     "psalm_proverb": "Proverbs 2:20-22",
@@ -154,7 +154,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 14,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 27-28",
     "reading_two": "Job 17-18",
     "psalm_proverb": "Proverbs 3:1-4",
@@ -165,7 +165,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 15,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 29-30",
     "reading_two": "Job 19-20",
     "psalm_proverb": "Proverbs 3:5-8",
@@ -176,7 +176,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 16,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 31-32",
     "reading_two": "Job 21-22",
     "psalm_proverb": "Proverbs 3:9-12",
@@ -187,7 +187,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 17,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 33-34",
     "reading_two": "Job 23-24",
     "psalm_proverb": "Proverbs 3:13-18",
@@ -198,7 +198,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 18,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 35-36",
     "reading_two": "Job 25-26",
     "psalm_proverb": "Proverbs 3:19-24",
@@ -209,7 +209,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 19,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 37",
     "reading_two": "Job 27-28",
     "psalm_proverb": "Proverbs 3:25-27",
@@ -220,7 +220,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 20,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 38",
     "reading_two": "Job 29-30",
     "psalm_proverb": "Proverbs 3:28-32",
@@ -231,7 +231,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 21,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 39-40",
     "reading_two": "Job 31-32",
     "psalm_proverb": "Proverbs 3:33-35",
@@ -242,7 +242,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 22,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 41-42",
     "reading_two": "Job 33-34",
     "psalm_proverb": "Proverbs 4:1-9",
@@ -253,7 +253,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 23,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 43-44",
     "reading_two": "Job 35-36",
     "psalm_proverb": "Proverbs 4:10-19",
@@ -264,7 +264,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 24,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 45-46",
     "reading_two": "Job 37-38",
     "psalm_proverb": "Proverbs 4:20-27",
@@ -275,7 +275,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 25,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 47-48",
     "reading_two": "Job 39-40",
     "psalm_proverb": "Psalm 16",
@@ -286,7 +286,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 26,
-    "period": "Patriarchs",
+    "period": "Fathers of Faith",
     "reading_one": "Genesis 49-50",
     "reading_two": "Job 41-42",
     "psalm_proverb": "Psalm 17",
@@ -297,7 +297,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 27,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 1-2",
     "reading_two": "Leviticus 1",
     "psalm_proverb": "Psalm 44",
@@ -308,7 +308,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 28,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 3",
     "reading_two": "Leviticus 2-3",
     "psalm_proverb": "Psalm 45",
@@ -319,7 +319,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 29,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 4-5",
     "reading_two": "Leviticus 4",
     "psalm_proverb": "Psalm 46",
@@ -330,7 +330,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 30,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 6-7",
     "reading_two": "Leviticus 5",
     "psalm_proverb": "Psalm 47",
@@ -341,7 +341,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 31,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 8",
     "reading_two": "Leviticus 6",
     "psalm_proverb": "Psalm 48",
@@ -352,7 +352,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 32,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 9",
     "reading_two": "Leviticus 7",
     "psalm_proverb": "Psalm 49",
@@ -363,7 +363,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 33,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 10-11",
     "reading_two": "Leviticus 8",
     "psalm_proverb": "Psalm 50",
@@ -374,7 +374,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 34,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 12",
     "reading_two": "Leviticus 9",
     "psalm_proverb": "Psalm 114",
@@ -385,7 +385,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 35,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 13-14",
     "reading_two": "Leviticus 10",
     "psalm_proverb": "Psalm 53",
@@ -396,7 +396,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 36,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 15-16",
     "reading_two": "Leviticus 11",
     "psalm_proverb": "Psalm 71",
@@ -407,7 +407,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 37,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 17-18",
     "reading_two": "Leviticus 12",
     "psalm_proverb": "Psalm 73",
@@ -418,7 +418,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 38,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 19-20",
     "reading_two": "Leviticus 13",
     "psalm_proverb": "Psalm 74",
@@ -429,7 +429,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 39,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 21",
     "reading_two": "Leviticus 14",
     "psalm_proverb": "Psalm 75",
@@ -440,7 +440,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 40,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 22",
     "reading_two": "Leviticus 15",
     "psalm_proverb": "Psalm 76",
@@ -451,7 +451,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 41,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 23",
     "reading_two": "Leviticus 16",
     "psalm_proverb": "Psalm 77",
@@ -462,7 +462,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 42,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 24",
     "reading_two": "Leviticus 17-18",
     "psalm_proverb": "Psalm 78",
@@ -473,7 +473,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 43,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 25-26",
     "reading_two": "Leviticus 19",
     "psalm_proverb": "Psalm 79",
@@ -484,7 +484,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 44,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 27-28",
     "reading_two": "Leviticus 20",
     "psalm_proverb": "Psalm 119:1-88",
@@ -495,7 +495,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 45,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 29",
     "reading_two": "Leviticus 21",
     "psalm_proverb": "Psalm 119:89-176",
@@ -506,7 +506,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 46,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 30-31",
     "reading_two": "Leviticus 22",
     "psalm_proverb": "Psalm 115",
@@ -517,7 +517,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 47,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 32",
     "reading_two": "Leviticus 23",
     "psalm_proverb": "Psalm 80",
@@ -528,7 +528,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 48,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 33-34",
     "reading_two": "Leviticus 24",
     "psalm_proverb": "Psalm 81",
@@ -539,7 +539,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 49,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 35-36",
     "reading_two": "Leviticus 25",
     "psalm_proverb": "Psalm 82",
@@ -550,7 +550,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 50,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 37-38",
     "reading_two": "Leviticus 26",
     "psalm_proverb": "Psalm 83",
@@ -561,7 +561,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 51,
-    "period": "Egypt and Exodus",
+    "period": "Deliverance & Freedom",
     "reading_one": "Exodus 39-40",
     "reading_two": "Leviticus 27",
     "psalm_proverb": "Psalm 84",
@@ -572,7 +572,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 52,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 1",
     "reading_two": "Deuteronomy 1",
     "psalm_proverb": "Psalm 85",
@@ -583,7 +583,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 53,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 2",
     "reading_two": "Deuteronomy 2",
     "psalm_proverb": "Psalm 87",
@@ -594,7 +594,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 54,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 3",
     "reading_two": "Deuteronomy 3",
     "psalm_proverb": "Psalm 88",
@@ -605,7 +605,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 55,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 4",
     "reading_two": "Deuteronomy 4",
     "psalm_proverb": "Psalm 89",
@@ -616,7 +616,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 56,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 5",
     "reading_two": "Deuteronomy 5",
     "psalm_proverb": "Psalm 90",
@@ -627,7 +627,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 57,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 6",
     "reading_two": "Deuteronomy 6",
     "psalm_proverb": "Psalm 91",
@@ -638,7 +638,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 58,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 7",
     "reading_two": "Deuteronomy 7",
     "psalm_proverb": "Psalm 92",
@@ -649,7 +649,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 59,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 8-9",
     "reading_two": "Deuteronomy 8",
     "psalm_proverb": "Psalm 93",
@@ -660,7 +660,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 60,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 10",
     "reading_two": "Deuteronomy 9",
     "psalm_proverb": "Psalm 10",
@@ -671,7 +671,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 61,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 11",
     "reading_two": "Deuteronomy 10",
     "psalm_proverb": "Psalm 33",
@@ -682,7 +682,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 62,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 12-13",
     "reading_two": "Deuteronomy 11",
     "psalm_proverb": "Psalm 94",
@@ -693,7 +693,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 63,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 14",
     "reading_two": "Deuteronomy 12",
     "psalm_proverb": "Psalm 95",
@@ -704,7 +704,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 64,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 15",
     "reading_two": "Deuteronomy 13-14",
     "psalm_proverb": "Psalm 96",
@@ -715,7 +715,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 65,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 16",
     "reading_two": "Deuteronomy 15-16",
     "psalm_proverb": "Psalm 97",
@@ -726,7 +726,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 66,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 17",
     "reading_two": "Deuteronomy 17-18",
     "psalm_proverb": "Psalm 98",
@@ -737,7 +737,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 67,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 18",
     "reading_two": "Deuteronomy 19-20",
     "psalm_proverb": "Psalm 99",
@@ -748,7 +748,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 68,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 19-20",
     "reading_two": "Deuteronomy 21",
     "psalm_proverb": "Psalm 100",
@@ -759,7 +759,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 69,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 21",
     "reading_two": "Deuteronomy 22",
     "psalm_proverb": "Psalm 102",
@@ -770,7 +770,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 70,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 22",
     "reading_two": "Deuteronomy 23",
     "psalm_proverb": "Psalm 105",
@@ -781,7 +781,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 71,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 23",
     "reading_two": "Deuteronomy 24-25",
     "psalm_proverb": "Psalm 106",
@@ -792,7 +792,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 72,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 24-25",
     "reading_two": "Deuteronomy 26",
     "psalm_proverb": "Psalm 107",
@@ -803,7 +803,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 73,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 26",
     "reading_two": "Deuteronomy 27",
     "psalm_proverb": "Psalm 111",
@@ -814,7 +814,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 74,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 27-28",
     "reading_two": "Deuteronomy 28",
     "psalm_proverb": "Psalm 112",
@@ -825,7 +825,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 75,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 29-30",
     "reading_two": "Deuteronomy 29",
     "psalm_proverb": "Psalm 113",
@@ -836,7 +836,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 76,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 31",
     "reading_two": "Deuteronomy 30",
     "psalm_proverb": "Psalm 116",
@@ -847,7 +847,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 77,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 32",
     "reading_two": "Deuteronomy 31",
     "psalm_proverb": "Psalm 117",
@@ -858,7 +858,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 78,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 33",
     "reading_two": "Deuteronomy 32",
     "psalm_proverb": "Psalm 118",
@@ -869,7 +869,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 79,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 34",
     "reading_two": "Deuteronomy 33",
     "psalm_proverb": "Psalm 120",
@@ -880,7 +880,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 80,
-    "period": "Desert Wanderings",
+    "period": "The Wilderness Journey",
     "reading_one": "Numbers 35-36",
     "reading_two": "Deuteronomy 34",
     "psalm_proverb": "Psalm 121",
@@ -891,7 +891,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 81,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Joshua 1-4",
     "reading_two": "",
     "psalm_proverb": "Psalm 123",
@@ -902,7 +902,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 82,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Joshua 5-7",
     "reading_two": "",
     "psalm_proverb": "Psalm 125",
@@ -913,7 +913,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 83,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Joshua 8-9",
     "reading_two": "",
     "psalm_proverb": "Psalm 126",
@@ -924,7 +924,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 84,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Joshua 10-11",
     "reading_two": "",
     "psalm_proverb": "Psalm 128",
@@ -935,7 +935,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 85,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Joshua 12-14",
     "reading_two": "",
     "psalm_proverb": "Psalm 129",
@@ -946,7 +946,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 86,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Joshua 15-18",
     "reading_two": "",
     "psalm_proverb": "Psalm 130",
@@ -957,7 +957,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 87,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Joshua 19-21",
     "reading_two": "",
     "psalm_proverb": "Psalm 131",
@@ -968,7 +968,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 88,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Joshua 22-24",
     "reading_two": "",
     "psalm_proverb": "Psalm 132",
@@ -979,7 +979,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 89,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Judges 1-3",
     "reading_two": "Ruth 1",
     "psalm_proverb": "Psalm 133",
@@ -990,7 +990,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 90,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Judges 4-5",
     "reading_two": "Ruth 2",
     "psalm_proverb": "Psalm 134",
@@ -1001,7 +1001,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 91,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Judges 6-8",
     "reading_two": "Ruth 3",
     "psalm_proverb": "Psalm 135",
@@ -1012,7 +1012,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 92,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Judges 9-11",
     "reading_two": "Ruth 4",
     "psalm_proverb": "Psalm 137",
@@ -1023,7 +1023,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 93,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Judges 12-15",
     "reading_two": "",
     "psalm_proverb": "Psalm 146",
@@ -1034,7 +1034,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 94,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Judges 16-18",
     "reading_two": "",
     "psalm_proverb": "Psalm 147",
@@ -1045,7 +1045,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 95,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "Judges 19-21",
     "reading_two": "",
     "psalm_proverb": "Psalm 148",
@@ -1056,7 +1056,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 96,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "1 Samuel 1-2",
     "reading_two": "",
     "psalm_proverb": "Psalm 149",
@@ -1067,7 +1067,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 97,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "1 Samuel 3-5",
     "reading_two": "",
     "psalm_proverb": "Psalm 150",
@@ -1078,7 +1078,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 98,
-    "period": "Conquest and Judges",
+    "period": "The Promised Land",
     "reading_one": "1 Samuel 6-8",
     "reading_two": "",
     "psalm_proverb": "Psalm 86",
@@ -1089,7 +1089,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 99,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "John 1-3",
     "reading_two": "",
     "psalm_proverb": "Proverbs 5:1-6",
@@ -1100,7 +1100,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 100,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "John 4-6",
     "reading_two": "",
     "psalm_proverb": "Proverbs 5:7-14",
@@ -1111,7 +1111,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 101,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "John 7-9",
     "reading_two": "",
     "psalm_proverb": "Proverbs 5:15-23",
@@ -1122,7 +1122,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 102,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "John 10-12",
     "reading_two": "",
     "psalm_proverb": "Proverbs 6:1-11",
@@ -1133,7 +1133,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 103,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "John 13-15",
     "reading_two": "",
     "psalm_proverb": "Proverbs 6:12-19",
@@ -1144,7 +1144,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 104,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "John 16-18",
     "reading_two": "",
     "psalm_proverb": "Proverbs 6:20-24",
@@ -1155,7 +1155,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 105,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "John 19-21",
     "reading_two": "",
     "psalm_proverb": "Proverbs 6:25-35",
@@ -1166,7 +1166,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 106,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 9-10",
     "reading_two": "",
     "psalm_proverb": "Psalm 50",
@@ -1177,7 +1177,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 107,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 11-12",
     "reading_two": "",
     "psalm_proverb": "Psalm 55",
@@ -1188,7 +1188,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 108,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 13-14",
     "reading_two": "",
     "psalm_proverb": "Psalm 58",
@@ -1199,7 +1199,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 109,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 15-16",
     "reading_two": "",
     "psalm_proverb": "Psalm 61",
@@ -1210,7 +1210,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 110,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 17",
     "reading_two": "",
     "psalm_proverb": "Psalm 12",
@@ -1221,7 +1221,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 111,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 18-19",
     "reading_two": "",
     "psalm_proverb": "Psalm 59",
@@ -1232,7 +1232,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 112,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 20",
     "reading_two": "",
     "psalm_proverb": "Psalm 142",
@@ -1243,7 +1243,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 113,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 21-22",
     "reading_two": "",
     "psalm_proverb": "Psalm 52",
@@ -1254,7 +1254,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 114,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 23",
     "reading_two": "",
     "psalm_proverb": "Psalm 54",
@@ -1265,7 +1265,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 115,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 24",
     "reading_two": "",
     "psalm_proverb": "Psalm 57",
@@ -1276,7 +1276,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 116,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 25",
     "reading_two": "",
     "psalm_proverb": "Psalm 63",
@@ -1287,7 +1287,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 117,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 26",
     "reading_two": "",
     "psalm_proverb": "Psalm 56",
@@ -1298,7 +1298,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 118,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 27-28",
     "reading_two": "",
     "psalm_proverb": "Psalm 34",
@@ -1309,7 +1309,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 119,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Samuel 29-31",
     "reading_two": "",
     "psalm_proverb": "Psalm 18",
@@ -1320,7 +1320,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 120,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 1",
     "reading_two": "1 Chronicles 1",
     "psalm_proverb": "Psalm 13",
@@ -1331,7 +1331,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 121,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 2",
     "reading_two": "1 Chronicles 2",
     "psalm_proverb": "Psalm 24",
@@ -1342,7 +1342,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 122,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 3",
     "reading_two": "1 Chronicles 3-4",
     "psalm_proverb": "Psalm 25",
@@ -1353,7 +1353,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 123,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 4",
     "reading_two": "1 Chronicles 5-6",
     "psalm_proverb": "Psalm 26",
@@ -1364,7 +1364,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 124,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 5",
     "reading_two": "1 Chronicles 7-8",
     "psalm_proverb": "Psalm 27",
@@ -1375,7 +1375,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 125,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 6-7",
     "reading_two": "1 Chronicles 9",
     "psalm_proverb": "Psalm 89",
@@ -1386,7 +1386,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 126,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 8",
     "reading_two": "1 Chronicles 10-11",
     "psalm_proverb": "Psalm 60",
@@ -1397,7 +1397,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 127,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 9",
     "reading_two": "1 Chronicles 12",
     "psalm_proverb": "Psalm 28",
@@ -1408,7 +1408,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 128,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 10",
     "reading_two": "1 Chronicles 13",
     "psalm_proverb": "Psalm 31",
@@ -1419,7 +1419,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 129,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 11",
     "reading_two": "1 Chronicles 14-15",
     "psalm_proverb": "Psalm 32",
@@ -1430,7 +1430,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 130,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 12",
     "reading_two": "1 Chronicles 16",
     "psalm_proverb": "Psalm 51",
@@ -1441,7 +1441,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 131,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 13",
     "reading_two": "1 Chronicles 17",
     "psalm_proverb": "Psalm 35",
@@ -1452,7 +1452,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 132,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 14",
     "reading_two": "1 Chronicles 18",
     "psalm_proverb": "Psalm 14",
@@ -1463,7 +1463,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 133,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 15",
     "reading_two": "1 Chronicles 19-20",
     "psalm_proverb": "Psalm 3",
@@ -1474,7 +1474,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 134,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 16",
     "reading_two": "1 Chronicles 21",
     "psalm_proverb": "Psalm 15",
@@ -1485,7 +1485,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 135,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 17",
     "reading_two": "1 Chronicles 22",
     "psalm_proverb": "Psalm 36",
@@ -1496,7 +1496,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 136,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 18",
     "reading_two": "1 Chronicles 23",
     "psalm_proverb": "Psalm 37",
@@ -1507,7 +1507,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 137,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 19",
     "reading_two": "1 Chronicles 24",
     "psalm_proverb": "Psalm 38",
@@ -1518,7 +1518,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 138,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 20",
     "reading_two": "1 Chronicles 25",
     "psalm_proverb": "Psalm 39",
@@ -1529,7 +1529,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 139,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 21",
     "reading_two": "1 Chronicles 26",
     "psalm_proverb": "Psalm 40",
@@ -1540,7 +1540,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 140,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 22",
     "reading_two": "1 Chronicles 27",
     "psalm_proverb": "Psalm 41",
@@ -1551,7 +1551,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 141,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 23",
     "reading_two": "1 Chronicles 28",
     "psalm_proverb": "Psalm 42",
@@ -1562,7 +1562,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 142,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "2 Samuel 24",
     "reading_two": "1 Chronicles 29",
     "psalm_proverb": "Psalm 30",
@@ -1573,7 +1573,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 143,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 1",
     "reading_two": "2 Chronicles 1",
     "psalm_proverb": "Psalm 43",
@@ -1584,7 +1584,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 144,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 2",
     "reading_two": "2 Chronicles 2-3",
     "psalm_proverb": "Psalm 62",
@@ -1595,7 +1595,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 145,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 3",
     "reading_two": "2 Chronicles 4-5",
     "psalm_proverb": "Psalm 64",
@@ -1606,7 +1606,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 146,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 4",
     "reading_two": "2 Chronicles 6",
     "psalm_proverb": "Psalm 65",
@@ -1617,7 +1617,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 147,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 5",
     "reading_two": "2 Chronicles 7-8",
     "psalm_proverb": "Psalm 66",
@@ -1628,7 +1628,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 148,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 6",
     "reading_two": "2 Chronicles 9",
     "psalm_proverb": "Psalm 4",
@@ -1639,7 +1639,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 149,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 7",
     "reading_two": "Ecclesiastes 1-3",
     "psalm_proverb": "Psalm 5",
@@ -1650,7 +1650,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 150,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 8",
     "reading_two": "Ecclesiastes 4-6",
     "psalm_proverb": "Psalm 6",
@@ -1661,7 +1661,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 151,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 9",
     "reading_two": "Ecclesiastes 5-6",
     "psalm_proverb": "Psalm 7",
@@ -1672,7 +1672,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 152,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 10",
     "reading_two": "Ecclesiastes 7-9",
     "psalm_proverb": "Psalm 8",
@@ -1683,7 +1683,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 153,
-    "period": "Royal Kingdom",
+    "period": "Kings & the Kingdom",
     "reading_one": "1 Kings 11",
     "reading_two": "Ecclesiastes 10-12",
     "psalm_proverb": "Psalm 9",
@@ -1694,7 +1694,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 154,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Mark 1-2",
     "reading_two": "",
     "psalm_proverb": "Psalm 11",
@@ -1705,7 +1705,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 155,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Mark 3-4",
     "reading_two": "",
     "psalm_proverb": "Psalm 20",
@@ -1716,7 +1716,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 156,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Mark 5-6",
     "reading_two": "",
     "psalm_proverb": "Psalm 21",
@@ -1727,7 +1727,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 157,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Mark 7-8",
     "reading_two": "",
     "psalm_proverb": "Psalm 23",
@@ -1738,7 +1738,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 158,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Mark 9-10",
     "reading_two": "",
     "psalm_proverb": "Psalm 29",
@@ -1749,7 +1749,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 159,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Mark 11-12",
     "reading_two": "",
     "psalm_proverb": "Psalm 67",
@@ -1760,7 +1760,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 160,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Mark 13-14",
     "reading_two": "",
     "psalm_proverb": "Psalm 68",
@@ -1771,7 +1771,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 161,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Mark 15-16",
     "reading_two": "",
     "psalm_proverb": "Psalm 22",
@@ -1782,7 +1782,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 162,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "1 Kings 12",
     "reading_two": "2 Chronicles 10-11",
     "psalm_proverb": "Song of Solomon 1",
@@ -1793,7 +1793,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 163,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "1 Kings 13",
     "reading_two": "2 Chronicles 12-13",
     "psalm_proverb": "Song of Solomon 2",
@@ -1804,7 +1804,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 164,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "1 Kings 14",
     "reading_two": "2 Chronicles 14-15",
     "psalm_proverb": "Song of Solomon 3",
@@ -1815,7 +1815,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 165,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "1 Kings 15-16",
     "reading_two": "2 Chronicles 16-17",
     "psalm_proverb": "Song of Solomon 4",
@@ -1826,7 +1826,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 166,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "1 Kings 17-18",
     "reading_two": "2 Chronicles 18-19",
     "psalm_proverb": "Song of Solomon 5",
@@ -1837,7 +1837,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 167,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "1 Kings 19-20",
     "reading_two": "2 Chronicles 20",
     "psalm_proverb": "Song of Solomon 6",
@@ -1848,7 +1848,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 168,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "1 Kings 21",
     "reading_two": "2 Chronicles 21-22",
     "psalm_proverb": "Song of Solomon 7",
@@ -1859,7 +1859,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 169,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "1 Kings 22",
     "reading_two": "2 Chronicles 23",
     "psalm_proverb": "Song of Solomon 8",
@@ -1870,7 +1870,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 170,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 1",
     "reading_two": "2 Chronicles 24",
     "psalm_proverb": "Psalm 69",
@@ -1881,7 +1881,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 171,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 2",
     "reading_two": "2 Chronicles 25",
     "psalm_proverb": "Psalm 70",
@@ -1892,7 +1892,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 172,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 3",
     "reading_two": "2 Chronicles 26-27",
     "psalm_proverb": "Psalm 72",
@@ -1903,7 +1903,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 173,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 4",
     "reading_two": "2 Chronicles 28",
     "psalm_proverb": "Psalm 127",
@@ -1914,7 +1914,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 174,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 5",
     "reading_two": "Hosea 1-3",
     "psalm_proverb": "Psalm 101",
@@ -1925,7 +1925,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 175,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 6-7",
     "reading_two": "Hosea 4-7",
     "psalm_proverb": "Psalm 103",
@@ -1936,7 +1936,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 176,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 8",
     "reading_two": "Hosea 8-10",
     "psalm_proverb": "Psalm 108",
@@ -1947,7 +1947,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 177,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 9",
     "reading_two": "Hosea 11-14",
     "psalm_proverb": "Psalm 109",
@@ -1958,7 +1958,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 178,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 10",
     "reading_two": "Amos 1-3",
     "psalm_proverb": "Psalm 110",
@@ -1969,7 +1969,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 179,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 11-12",
     "reading_two": "Amos 4-6",
     "psalm_proverb": "Psalm 122",
@@ -1980,7 +1980,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 180,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 13-14",
     "reading_two": "Amos 7-9",
     "psalm_proverb": "Psalm 124",
@@ -1991,7 +1991,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 181,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 15",
     "reading_two": "Jonah 1-4",
     "psalm_proverb": "Psalm 138",
@@ -2002,7 +2002,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 182,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 16",
     "reading_two": "Micah 1-4",
     "psalm_proverb": "Psalm 139",
@@ -2013,7 +2013,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 183,
-    "period": "Divided Kingdom",
+    "period": "Division & the Prophets",
     "reading_one": "2 Kings 17",
     "reading_two": "Micah 5-7",
     "psalm_proverb": "Psalm 140",
@@ -2024,7 +2024,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 184,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "2 Kings 18",
     "reading_two": "2 Chronicles 29",
     "psalm_proverb": "Psalm 141",
@@ -2035,7 +2035,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 185,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "2 Kings 19",
     "reading_two": "2 Chronicles 30",
     "psalm_proverb": "Psalm 143",
@@ -2046,7 +2046,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 186,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "2 Kings 20",
     "reading_two": "2 Chronicles 31",
     "psalm_proverb": "Psalm 144",
@@ -2057,7 +2057,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 187,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "2 Kings 21",
     "reading_two": "2 Chronicles 32",
     "psalm_proverb": "Psalm 145",
@@ -2068,7 +2068,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 188,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "2 Kings 22",
     "reading_two": "2 Chronicles 33",
     "psalm_proverb": "Proverbs 7",
@@ -2079,7 +2079,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 189,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "2 Kings 23",
     "reading_two": "2 Chronicles 34",
     "psalm_proverb": "Proverbs 8:1-21",
@@ -2090,7 +2090,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 190,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "2 Kings 24",
     "reading_two": "2 Chronicles 35",
     "psalm_proverb": "Proverbs 8:22-36",
@@ -2101,7 +2101,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 191,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "2 Kings 25",
     "reading_two": "2 Chronicles 36",
     "psalm_proverb": "Proverbs 9:1-6",
@@ -2112,7 +2112,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 192,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 1-2",
     "reading_two": "Tobit 1-2",
     "psalm_proverb": "Proverbs 9:7-12",
@@ -2123,7 +2123,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 193,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 3-4",
     "reading_two": "Tobit 3-4",
     "psalm_proverb": "Proverbs 9:13-18",
@@ -2134,7 +2134,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 194,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 5-6",
     "reading_two": "Tobit 5-6",
     "psalm_proverb": "Proverbs 10:1-4",
@@ -2145,7 +2145,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 195,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 7-8",
     "reading_two": "Tobit 7-9",
     "psalm_proverb": "Proverbs 10:5-8",
@@ -2156,7 +2156,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 196,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 9-10",
     "reading_two": "Tobit 10-12",
     "psalm_proverb": "Proverbs 10:9-12",
@@ -2167,7 +2167,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 197,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 11-13",
     "reading_two": "Tobit 13-14",
     "psalm_proverb": "Proverbs 10:13-16",
@@ -2178,7 +2178,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 198,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 14-15",
     "reading_two": "Joel 1-2",
     "psalm_proverb": "Proverbs 10:17-20",
@@ -2189,7 +2189,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 199,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 16-17",
     "reading_two": "Joel 3",
     "psalm_proverb": "Proverbs 10:21-24",
@@ -2200,7 +2200,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 200,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 18-20",
     "reading_two": "Nahum 1-2",
     "psalm_proverb": "Proverbs 10:25-28",
@@ -2211,7 +2211,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 201,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 21-22",
     "reading_two": "Nahum 3",
     "psalm_proverb": "Proverbs 10:29-32",
@@ -2222,7 +2222,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 202,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 23-24",
     "reading_two": "Habakkuk 1-2",
     "psalm_proverb": "Proverbs 11:1-4",
@@ -2233,7 +2233,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 203,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 25-27",
     "reading_two": "Habakkuk 3",
     "psalm_proverb": "Proverbs 11:5-8",
@@ -2244,7 +2244,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 204,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 28-29",
     "reading_two": "Zephaniah 1-2",
     "psalm_proverb": "Proverbs 11:9-12",
@@ -2255,7 +2255,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 205,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 30-31",
     "reading_two": "Zephaniah 3",
     "psalm_proverb": "Proverbs 11:13-16",
@@ -2266,7 +2266,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 206,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 32-33",
     "reading_two": "Baruch 1-2",
     "psalm_proverb": "Proverbs 11:17-20",
@@ -2277,7 +2277,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 207,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 34-36",
     "reading_two": "Baruch 3-4",
     "psalm_proverb": "Proverbs 11:21-24",
@@ -2288,7 +2288,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 208,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 37-38",
     "reading_two": "Baruch 5-6",
     "psalm_proverb": "Proverbs 11:25-28",
@@ -2299,7 +2299,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 209,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 39-40",
     "reading_two": "Ezekiel 1",
     "psalm_proverb": "Proverbs 11:29-31",
@@ -2310,7 +2310,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 210,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 41-42",
     "reading_two": "Ezekiel 2-3",
     "psalm_proverb": "Proverbs 12:1-4",
@@ -2321,7 +2321,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 211,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 43-44",
     "reading_two": "Ezekiel 4-5",
     "psalm_proverb": "Proverbs 12:5-8",
@@ -2332,7 +2332,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 212,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 45-46",
     "reading_two": "Ezekiel 6-7",
     "psalm_proverb": "Proverbs 12:9-12",
@@ -2343,7 +2343,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 213,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 47-48",
     "reading_two": "Ezekiel 8-9",
     "psalm_proverb": "Proverbs 12:13-16",
@@ -2354,7 +2354,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 214,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 49-50",
     "reading_two": "Ezekiel 10-11",
     "psalm_proverb": "Proverbs 12:17-20",
@@ -2365,7 +2365,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 215,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 51-52",
     "reading_two": "Ezekiel 12-13",
     "psalm_proverb": "Proverbs 12:21-24",
@@ -2376,7 +2376,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 216,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 53-54",
     "reading_two": "Ezekiel 14-15",
     "psalm_proverb": "Proverbs 12:25-28",
@@ -2387,7 +2387,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 217,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 55-56",
     "reading_two": "Ezekiel 16",
     "psalm_proverb": "Proverbs 13:1-4",
@@ -2398,7 +2398,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 218,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 57-58",
     "reading_two": "Ezekiel 17-18",
     "psalm_proverb": "Proverbs 13:5-8",
@@ -2409,7 +2409,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 219,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 59-60",
     "reading_two": "Ezekiel 19",
     "psalm_proverb": "Proverbs 13:9-12",
@@ -2420,7 +2420,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 220,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 61-62",
     "reading_two": "Ezekiel 20",
     "psalm_proverb": "Proverbs 13:13-16",
@@ -2431,7 +2431,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 221,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 63-64",
     "reading_two": "Ezekiel 21-22",
     "psalm_proverb": "Proverbs 13:17-20",
@@ -2442,7 +2442,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 222,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 65",
     "reading_two": "Ezekiel 23-24",
     "psalm_proverb": "Proverbs 13:21-25",
@@ -2453,7 +2453,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 223,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Isaiah 66",
     "reading_two": "Ezekiel 25-26",
     "psalm_proverb": "Proverbs 14:1-4",
@@ -2464,7 +2464,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 224,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 1",
     "reading_two": "Ezekiel 27",
     "psalm_proverb": "Proverbs 14:5-8",
@@ -2475,7 +2475,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 225,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 2",
     "reading_two": "Ezekiel 28",
     "psalm_proverb": "Proverbs 14:9-12",
@@ -2486,7 +2486,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 226,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 3",
     "reading_two": "Ezekiel 29-30",
     "psalm_proverb": "Proverbs 14:13-16",
@@ -2497,7 +2497,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 227,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 4",
     "reading_two": "Ezekiel 31-32",
     "psalm_proverb": "Proverbs 14:17-20",
@@ -2508,7 +2508,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 228,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 5",
     "reading_two": "Ezekiel 33",
     "psalm_proverb": "Proverbs 14:21-24",
@@ -2519,7 +2519,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 229,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 6",
     "reading_two": "Ezekiel 34-35",
     "psalm_proverb": "Proverbs 14:25-28",
@@ -2530,7 +2530,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 230,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 7",
     "reading_two": "Ezekiel 36",
     "psalm_proverb": "Proverbs 14:29-32",
@@ -2541,7 +2541,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 231,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 8",
     "reading_two": "Ezekiel 37-38",
     "psalm_proverb": "Proverbs 14:33-35",
@@ -2552,7 +2552,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 232,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 9",
     "reading_two": "Ezekiel 39",
     "psalm_proverb": "Proverbs 15:1-4",
@@ -2563,7 +2563,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 233,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 10-11",
     "reading_two": "Ezekiel 40",
     "psalm_proverb": "Proverbs 15:5-8",
@@ -2574,7 +2574,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 234,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 12-13",
     "reading_two": "Ezekiel 41-42",
     "psalm_proverb": "Proverbs 15:9-12",
@@ -2585,7 +2585,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 235,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 14-15",
     "reading_two": "Ezekiel 43-44",
     "psalm_proverb": "Proverbs 15:13-16",
@@ -2596,7 +2596,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 236,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 16-17",
     "reading_two": "Ezekiel 45-46",
     "psalm_proverb": "Proverbs 15:17-20",
@@ -2607,7 +2607,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 237,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 18-19",
     "reading_two": "Ezekiel 47-48",
     "psalm_proverb": "Proverbs 15:21-24",
@@ -2618,7 +2618,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 238,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 20-21",
     "reading_two": "Daniel 1-2",
     "psalm_proverb": "Proverbs 15:25-28",
@@ -2629,7 +2629,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 239,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 22",
     "reading_two": "Daniel 3",
     "psalm_proverb": "Proverbs 15:29-33",
@@ -2640,7 +2640,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 240,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 23",
     "reading_two": "Daniel 4-5",
     "psalm_proverb": "Proverbs 16:1-4",
@@ -2651,7 +2651,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 241,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 24-25",
     "reading_two": "Daniel 6-7",
     "psalm_proverb": "Proverbs 16:5-8",
@@ -2662,7 +2662,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 242,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 26-27",
     "reading_two": "Daniel 8-9",
     "psalm_proverb": "Proverbs 16:9-12",
@@ -2673,7 +2673,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 243,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 28-29",
     "reading_two": "Daniel 10-11",
     "psalm_proverb": "Proverbs 16:13-16",
@@ -2684,7 +2684,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 244,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 30",
     "reading_two": "Daniel 12-13",
     "psalm_proverb": "Proverbs 16:17-20",
@@ -2695,7 +2695,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 245,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 31",
     "reading_two": "Daniel 14",
     "psalm_proverb": "Proverbs 16:21-24",
@@ -2706,7 +2706,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 246,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 32",
     "reading_two": "Judith 1-2",
     "psalm_proverb": "Proverbs 16:25-28",
@@ -2717,7 +2717,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 247,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 33-34",
     "reading_two": "Judith 3-5",
     "psalm_proverb": "Proverbs 16:29-33",
@@ -2728,7 +2728,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 248,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 35-36",
     "reading_two": "Judith 6-7",
     "psalm_proverb": "Proverbs 17:1-4",
@@ -2739,7 +2739,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 249,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 37-38",
     "reading_two": "Judith 8-9",
     "psalm_proverb": "Proverbs 17:5-8",
@@ -2750,7 +2750,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 250,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 39-40",
     "reading_two": "Judith 10-11",
     "psalm_proverb": "Proverbs 17:9-12",
@@ -2761,7 +2761,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 251,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 41-42",
     "reading_two": "Judith 12-14",
     "psalm_proverb": "Proverbs 17:13-16",
@@ -2772,7 +2772,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 252,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 43-44",
     "reading_two": "Judith 15-16",
     "psalm_proverb": "Proverbs 17:17-20",
@@ -2783,7 +2783,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 253,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 45-46",
     "reading_two": "Lamentations 1",
     "psalm_proverb": "Proverbs 17:21-24",
@@ -2794,7 +2794,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 254,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 47-48",
     "reading_two": "Lamentations 2",
     "psalm_proverb": "Proverbs 18:1-4",
@@ -2805,7 +2805,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 255,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 49-50",
     "reading_two": "Lamentations 3",
     "psalm_proverb": "Proverbs 18:5-8",
@@ -2816,7 +2816,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 256,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 51",
     "reading_two": "Lamentations 4-5",
     "psalm_proverb": "Proverbs 18:9-12",
@@ -2827,7 +2827,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 257,
-    "period": "Exile",
+    "period": "Exile & Hope",
     "reading_one": "Jeremiah 52",
     "reading_two": "Obadiah 1",
     "psalm_proverb": "Proverbs 18:13-16",
@@ -2838,7 +2838,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 258,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 1-4",
     "reading_two": "",
     "psalm_proverb": "Proverbs 18:17-20",
@@ -2849,7 +2849,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 259,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 5-7",
     "reading_two": "",
     "psalm_proverb": "Proverbs 18:21-24",
@@ -2860,7 +2860,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 260,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 8-10",
     "reading_two": "",
     "psalm_proverb": "Proverbs 19:1-4",
@@ -2871,7 +2871,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 261,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 11-13",
     "reading_two": "",
     "psalm_proverb": "Proverbs 19:5-8",
@@ -2882,7 +2882,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 262,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 14-17",
     "reading_two": "",
     "psalm_proverb": "Proverbs 19:9-12",
@@ -2893,7 +2893,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 263,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 18-21",
     "reading_two": "",
     "psalm_proverb": "Proverbs 19:13-16",
@@ -2904,7 +2904,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 264,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 22-24",
     "reading_two": "",
     "psalm_proverb": "Proverbs 19:17-20",
@@ -2915,7 +2915,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 265,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 25-26",
     "reading_two": "",
     "psalm_proverb": "Proverbs 19:21-24",
@@ -2926,7 +2926,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 266,
-    "period": "Messianic Checkpoint",
+    "period": "Christ Connection",
     "reading_one": "Matthew 27-28",
     "reading_two": "",
     "psalm_proverb": "Proverbs 19:25-29",
@@ -2937,7 +2937,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 267,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Ezra 1-2",
     "reading_two": "Haggai 1-2",
     "psalm_proverb": "Proverbs 20:1-3",
@@ -2948,7 +2948,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 268,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Ezra 3-4",
     "reading_two": "Zechariah 1-3",
     "psalm_proverb": "Proverbs 20:4-7",
@@ -2959,7 +2959,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 269,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Ezra 5-6",
     "reading_two": "Zechariah 4-6",
     "psalm_proverb": "Proverbs 20:8-11",
@@ -2970,7 +2970,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 270,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Ezra 7-8",
     "reading_two": "Zechariah 7-8",
     "psalm_proverb": "Proverbs 20:12-15",
@@ -2981,7 +2981,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 271,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Ezra 9-10",
     "reading_two": "Zechariah 9-11",
     "psalm_proverb": "Proverbs 20:16-19",
@@ -2992,7 +2992,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 272,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 1-2",
     "reading_two": "Zechariah 12-13",
     "psalm_proverb": "Proverbs 20:20-22",
@@ -3003,7 +3003,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 273,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 3",
     "reading_two": "Zechariah 14",
     "psalm_proverb": "Proverbs 20:23-26",
@@ -3014,7 +3014,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 274,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 4-5",
     "reading_two": "Esther 1-2",
     "psalm_proverb": "Proverbs 20:27-30",
@@ -3025,7 +3025,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 275,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 6-7",
     "reading_two": "Esther 3, 13",
     "psalm_proverb": "Proverbs 21:1-4",
@@ -3036,7 +3036,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 276,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 8",
     "reading_two": "Esther 4, 14",
     "psalm_proverb": "Proverbs 21:5-8",
@@ -3047,7 +3047,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 277,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 9",
     "reading_two": "Esther 15, 6-7",
     "psalm_proverb": "Proverbs 21:9-12",
@@ -3058,7 +3058,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 278,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 10",
     "reading_two": "Esther 8, 16",
     "psalm_proverb": "Proverbs 21:13-16",
@@ -3069,7 +3069,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 279,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 11",
     "reading_two": "Esther 9-11",
     "psalm_proverb": "Proverbs 21:17-20",
@@ -3080,7 +3080,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 280,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 12",
     "reading_two": "Esther 10-12",
     "psalm_proverb": "Proverbs 21:21-24",
@@ -3091,7 +3091,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 281,
-    "period": "Return",
+    "period": "Coming Home",
     "reading_one": "Nehemiah 13",
     "reading_two": "Malachi 1-4",
     "psalm_proverb": "Proverbs 21:25-28",
@@ -3102,7 +3102,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 282,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 1",
     "reading_two": "Sirach 1-3",
     "psalm_proverb": "Proverbs 21:29-31",
@@ -3113,7 +3113,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 283,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 2",
     "reading_two": "Sirach 4-6",
     "psalm_proverb": "Proverbs 22:1-4",
@@ -3124,7 +3124,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 284,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 3",
     "reading_two": "Sirach 7-9",
     "psalm_proverb": "Proverbs 22:5-8",
@@ -3135,7 +3135,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 285,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 4",
     "reading_two": "Sirach 10-12",
     "psalm_proverb": "Proverbs 22:9-12",
@@ -3146,7 +3146,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 286,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 5",
     "reading_two": "Sirach 13-15",
     "psalm_proverb": "Proverbs 22:13-16",
@@ -3157,7 +3157,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 287,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 6",
     "reading_two": "Sirach 16-18",
     "psalm_proverb": "Proverbs 22:17-21",
@@ -3168,7 +3168,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 288,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 7",
     "reading_two": "Sirach 19-21",
     "psalm_proverb": "Proverbs 22:22-25",
@@ -3179,7 +3179,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 289,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 8",
     "reading_two": "Sirach 22-23",
     "psalm_proverb": "Proverbs 22:26-29",
@@ -3190,7 +3190,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 290,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 9",
     "reading_two": "Sirach 24-25",
     "psalm_proverb": "Proverbs 23:1-4",
@@ -3201,7 +3201,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 291,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 10",
     "reading_two": "Sirach 26-27",
     "psalm_proverb": "Proverbs 23:5-8",
@@ -3212,7 +3212,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 292,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 11",
     "reading_two": "Sirach 28-29",
     "psalm_proverb": "Proverbs 23:9-12",
@@ -3223,7 +3223,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 293,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 12",
     "reading_two": "Sirach 30-31",
     "psalm_proverb": "Proverbs 23:13-16",
@@ -3234,7 +3234,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 294,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 13",
     "reading_two": "Sirach 32-33",
     "psalm_proverb": "Proverbs 23:17-21",
@@ -3245,7 +3245,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 295,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 14",
     "reading_two": "Sirach 34-35",
     "psalm_proverb": "Proverbs 23:22-25",
@@ -3256,7 +3256,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 296,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 15",
     "reading_two": "Sirach 36-37",
     "psalm_proverb": "Proverbs 23:26-28",
@@ -3267,7 +3267,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 297,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "1 Maccabees 16",
     "reading_two": "Sirach 38-39",
     "psalm_proverb": "Proverbs 23:29-35",
@@ -3278,7 +3278,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 298,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 1",
     "reading_two": "Sirach 40-41",
     "psalm_proverb": "Proverbs 24:1-7",
@@ -3289,7 +3289,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 299,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 2",
     "reading_two": "Sirach 42-44",
     "psalm_proverb": "Proverbs 24:8-9",
@@ -3300,7 +3300,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 300,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 3",
     "reading_two": "Sirach 45-46",
     "psalm_proverb": "Proverbs 24:10-12",
@@ -3311,7 +3311,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 301,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 4",
     "reading_two": "Sirach 47-49",
     "psalm_proverb": "Proverbs 24:13-16",
@@ -3322,7 +3322,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 302,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 5",
     "reading_two": "Sirach 50-51",
     "psalm_proverb": "Proverbs 24:17-20",
@@ -3333,7 +3333,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 303,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 6",
     "reading_two": "Wisdom 1-2",
     "psalm_proverb": "Proverbs 24:21-26",
@@ -3344,7 +3344,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 304,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 7",
     "reading_two": "Wisdom 3-4",
     "psalm_proverb": "Proverbs 24:27-29",
@@ -3355,7 +3355,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 305,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 8",
     "reading_two": "Wisdom 5-6",
     "psalm_proverb": "Proverbs 24:30-34",
@@ -3366,7 +3366,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 306,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 9",
     "reading_two": "Wisdom 7-8",
     "psalm_proverb": "Proverbs 25:1-3",
@@ -3377,7 +3377,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 307,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 10",
     "reading_two": "Wisdom 9-10",
     "psalm_proverb": "Proverbs 25:4-7",
@@ -3388,7 +3388,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 308,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 11",
     "reading_two": "Wisdom 11-12",
     "psalm_proverb": "Proverbs 25:8-10",
@@ -3399,7 +3399,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 309,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 12",
     "reading_two": "Wisdom 13-14",
     "psalm_proverb": "Proverbs 25:11-14",
@@ -3410,7 +3410,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 310,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 13",
     "reading_two": "Wisdom 15-16",
     "psalm_proverb": "Proverbs 25:15-17",
@@ -3421,7 +3421,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 311,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 14",
     "reading_two": "Wisdom 17-18",
     "psalm_proverb": "Proverbs 25:18-20",
@@ -3432,7 +3432,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 312,
-    "period": "Maccabean Revolt",
+    "period": "Faith & Courage",
     "reading_one": "2 Maccabees 15",
     "reading_two": "Wisdom 19",
     "psalm_proverb": "Proverbs 25:21-23",
@@ -3443,7 +3443,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 313,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 1-2",
     "reading_two": "",
     "psalm_proverb": "Proverbs 25:24-26",
@@ -3454,7 +3454,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 314,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 3-5",
     "reading_two": "",
     "psalm_proverb": "Proverbs 25:27-28",
@@ -3465,7 +3465,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 315,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 6-8",
     "reading_two": "",
     "psalm_proverb": "Proverbs 26:1-3",
@@ -3476,7 +3476,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 316,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 9-10",
     "reading_two": "",
     "psalm_proverb": "Proverbs 26:4-6",
@@ -3487,7 +3487,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 317,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 11-12",
     "reading_two": "",
     "psalm_proverb": "Proverbs 26:7-9",
@@ -3498,7 +3498,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 318,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 13-16",
     "reading_two": "",
     "psalm_proverb": "Proverbs 26:10-12",
@@ -3509,7 +3509,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 319,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 17-19",
     "reading_two": "",
     "psalm_proverb": "Proverbs 26:13-16",
@@ -3520,7 +3520,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 320,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 20-22:38",
     "reading_two": "",
     "psalm_proverb": "Proverbs 26:17-19",
@@ -3531,7 +3531,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 321,
-    "period": "Messianic Fulfillment",
+    "period": "Christ the Messiah",
     "reading_one": "Luke 22:39-24",
     "reading_two": "",
     "psalm_proverb": "Proverbs 26:20-23",
@@ -3542,7 +3542,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 322,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 1",
     "reading_two": "Romans 1",
     "psalm_proverb": "Proverbs 26:24-26",
@@ -3553,7 +3553,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 323,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 2",
     "reading_two": "Romans 2-3",
     "psalm_proverb": "Proverbs 26:27-28",
@@ -3564,7 +3564,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 324,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 3",
     "reading_two": "Romans 4-5",
     "psalm_proverb": "Proverbs 27:1-3",
@@ -3575,7 +3575,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 325,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 4",
     "reading_two": "Romans 6-7",
     "psalm_proverb": "Proverbs 27:4-6",
@@ -3586,7 +3586,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 326,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 5",
     "reading_two": "Romans 8",
     "psalm_proverb": "Proverbs 27:7-9",
@@ -3597,7 +3597,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 327,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 6",
     "reading_two": "Romans 9-10",
     "psalm_proverb": "Proverbs 27:10-12",
@@ -3608,7 +3608,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 328,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 7",
     "reading_two": "Romans 11-12",
     "psalm_proverb": "Proverbs 27:13-14",
@@ -3619,7 +3619,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 329,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 8",
     "reading_two": "Romans 13-14",
     "psalm_proverb": "Proverbs 27:15-17",
@@ -3630,7 +3630,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 330,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 9",
     "reading_two": "Romans 15-16",
     "psalm_proverb": "Proverbs 27:18-20",
@@ -3641,7 +3641,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 331,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 10",
     "reading_two": "1 Corinthians 1-2",
     "psalm_proverb": "Proverbs 27:21-22",
@@ -3652,7 +3652,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 332,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 11",
     "reading_two": "1 Corinthians 3-4",
     "psalm_proverb": "Proverbs 27:23-27",
@@ -3663,7 +3663,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 333,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 12",
     "reading_two": "1 Corinthians 5-6",
     "psalm_proverb": "Proverbs 28:1-3",
@@ -3674,7 +3674,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 334,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 13",
     "reading_two": "1 Corinthians 7-8",
     "psalm_proverb": "Proverbs 28:4-6",
@@ -3685,7 +3685,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 335,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 14",
     "reading_two": "1 Corinthians 9-10",
     "psalm_proverb": "Proverbs 28:7-9",
@@ -3696,7 +3696,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 336,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 15",
     "reading_two": "1 Corinthians 11-12",
     "psalm_proverb": "Proverbs 28:10-12",
@@ -3707,7 +3707,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 337,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 16",
     "reading_two": "1 Corinthians 13-14",
     "psalm_proverb": "Proverbs 28:13-15",
@@ -3718,7 +3718,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 338,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 17",
     "reading_two": "1 Corinthians 15",
     "psalm_proverb": "Proverbs 28:16-18",
@@ -3729,7 +3729,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 339,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 18",
     "reading_two": "1 Corinthians 16",
     "psalm_proverb": "Proverbs 28:19-21",
@@ -3740,7 +3740,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 340,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 19",
     "reading_two": "2 Corinthians 1-2",
     "psalm_proverb": "Proverbs 28:22-24",
@@ -3751,7 +3751,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 341,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 20",
     "reading_two": "2 Corinthians 3-5",
     "psalm_proverb": "Proverbs 28:25-28",
@@ -3762,7 +3762,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 342,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 21",
     "reading_two": "2 Corinthians 6-8",
     "psalm_proverb": "Proverbs 29:1-4",
@@ -3773,7 +3773,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 343,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 22",
     "reading_two": "2 Corinthians 9-11",
     "psalm_proverb": "Proverbs 29:5-7",
@@ -3784,7 +3784,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 344,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 23",
     "reading_two": "2 Corinthians 12-13",
     "psalm_proverb": "Proverbs 29:8-11",
@@ -3795,7 +3795,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 345,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 24",
     "reading_two": "Galatians 1-3",
     "psalm_proverb": "Proverbs 29:12-14",
@@ -3806,7 +3806,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 346,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 25",
     "reading_two": "Galatians 4-6",
     "psalm_proverb": "Proverbs 29:15-17",
@@ -3817,7 +3817,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 347,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 26",
     "reading_two": "Ephesians 1-3",
     "psalm_proverb": "Proverbs 29:18-21",
@@ -3828,7 +3828,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 348,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 27",
     "reading_two": "Ephesians 4-6",
     "psalm_proverb": "Proverbs 29:22-24",
@@ -3839,7 +3839,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 349,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Acts 28",
     "reading_two": "Philippians 1-2",
     "psalm_proverb": "Proverbs 29:25-27",
@@ -3850,7 +3850,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 350,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "James 1-2",
     "reading_two": "Philippians 3-4",
     "psalm_proverb": "Proverbs 30:1-6",
@@ -3861,7 +3861,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 351,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "James 3-5",
     "reading_two": "Colossians 1-2",
     "psalm_proverb": "Proverbs 30:7-9",
@@ -3872,7 +3872,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 352,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "1 Peter 1-2",
     "reading_two": "Colossians 3-4",
     "psalm_proverb": "Proverbs 30:10-14",
@@ -3883,7 +3883,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 353,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "1 Peter 3-5",
     "reading_two": "1 Thessalonians 1-3",
     "psalm_proverb": "Proverbs 30:15-16",
@@ -3894,7 +3894,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 354,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "2 Peter 1-3",
     "reading_two": "1 Thessalonians 4-5",
     "psalm_proverb": "Proverbs 30:17-19",
@@ -3905,7 +3905,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 355,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "1 John 1-3",
     "reading_two": "2 Thessalonians 1-3",
     "psalm_proverb": "Proverbs 30:20-23",
@@ -3916,7 +3916,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 356,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "1 John 4-5",
     "reading_two": "1 Timothy 1-3",
     "psalm_proverb": "Proverbs 30:24-28",
@@ -3927,7 +3927,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 357,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "2 John, 3 John",
     "reading_two": "1 Timothy 4-6",
     "psalm_proverb": "Proverbs 30:29-33",
@@ -3938,7 +3938,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 358,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Jude",
     "reading_two": "2 Timothy 1-2",
     "psalm_proverb": "Proverbs 31:1-7",
@@ -3949,7 +3949,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 359,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Revelation 1-3",
     "reading_two": "2 Timothy 3-4",
     "psalm_proverb": "Proverbs 31:8-9",
@@ -3960,7 +3960,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 360,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Revelation 4-7",
     "reading_two": "Titus 1-3",
     "psalm_proverb": "Proverbs 31:10-15",
@@ -3971,7 +3971,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 361,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Revelation 8-11",
     "reading_two": "Philemon",
     "psalm_proverb": "Proverbs 31:16-18",
@@ -3982,7 +3982,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 362,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Revelation 12-14",
     "reading_two": "Hebrews 1-4",
     "psalm_proverb": "Proverbs 31:19-22",
@@ -3993,7 +3993,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 363,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Revelation 15-17",
     "reading_two": "Hebrews 5-8",
     "psalm_proverb": "Proverbs 31:23-25",
@@ -4004,7 +4004,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 364,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Revelation 18-20",
     "reading_two": "Hebrews 9-10",
     "psalm_proverb": "Proverbs 31:26-29",
@@ -4015,7 +4015,7 @@ export const readingPlan: ReadingDay[] = [
   },
   {
     "day_number": 365,
-    "period": "The Church",
+    "period": "The Early Church",
     "reading_one": "Revelation 21-22",
     "reading_two": "Hebrews 11-13",
     "psalm_proverb": "Proverbs 31:30-31",

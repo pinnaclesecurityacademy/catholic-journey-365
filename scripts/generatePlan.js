@@ -10,21 +10,21 @@ const path = require('path');
 
 // Period start days (carried forward until the next one).
 const PERIOD_STARTS = [
-  [1, 'Early World'],
-  [6, 'Patriarchs'],
-  [27, 'Egypt and Exodus'],
-  [52, 'Desert Wanderings'],
-  [81, 'Conquest and Judges'],
-  [99, 'Messianic Checkpoint'],
-  [106, 'Royal Kingdom'],
-  [154, 'Messianic Checkpoint'],
-  [162, 'Divided Kingdom'],
-  [184, 'Exile'],
-  [258, 'Messianic Checkpoint'],
-  [267, 'Return'],
-  [282, 'Maccabean Revolt'],
-  [313, 'Messianic Fulfillment'],
-  [322, 'The Church'],
+  [1, 'Creation & Covenant'],
+  [6, 'Fathers of Faith'],
+  [27, 'Deliverance & Freedom'],
+  [52, 'The Wilderness Journey'],
+  [81, 'The Promised Land'],
+  [99, 'Christ Connection'],
+  [106, 'Kings & the Kingdom'],
+  [154, 'Christ Connection'],
+  [162, 'Division & the Prophets'],
+  [184, 'Exile & Hope'],
+  [258, 'Christ Connection'],
+  [267, 'Coming Home'],
+  [282, 'Faith & Courage'],
+  [313, 'Christ the Messiah'],
+  [322, 'The Early Church'],
 ];
 
 function periodFor(day) {
@@ -416,19 +416,19 @@ const readings = {
 const content = require('./planContent.js');
 
 const PERIOD_THEME = {
-  'Early World': 'God creating the world and calling humanity back after the fall',
-  Patriarchs: "God's covenant promises to Abraham, Isaac, and Jacob, set beside Job's wrestling with suffering",
-  'Egypt and Exodus': "God rescuing Israel from slavery and teaching them to worship him in holiness",
-  'Desert Wanderings': "Israel learning to trust God in the wilderness as the Law is given again",
-  'Conquest and Judges': "Israel entering the Promised Land and the cycle of sin and rescue under the judges",
-  'Messianic Checkpoint': 'a Gospel pause to look on the face of Jesus, the fulfillment of the story',
-  'Royal Kingdom': "the rise of Israel's kings and David's heart for God",
-  'Divided Kingdom': "the kingdom splitting and the prophets calling God's people back",
-  Exile: "judgment, exile, and the prophets' promises of restoration",
-  Return: "God's people returning home to rebuild the temple and the city",
-  'Maccabean Revolt': 'faithful resistance under persecution and the wisdom of the sages',
-  'Messianic Fulfillment': 'the coming of Christ as the fulfillment of all the promises',
-  'The Church': 'the birth of the Church and the spread of the Gospel through the apostles',
+  'Creation & Covenant': 'God creating the world and calling humanity back after the fall',
+  'Fathers of Faith': "God's covenant promises to Abraham, Isaac, and Jacob, set beside Job's wrestling with suffering",
+  'Deliverance & Freedom': "God rescuing Israel from slavery and teaching them to worship him in holiness",
+  'The Wilderness Journey': "Israel learning to trust God in the wilderness as the Law is given again",
+  'The Promised Land': "Israel entering the Promised Land and the cycle of sin and rescue under the judges",
+  'Christ Connection': 'a Gospel pause to look on the face of Jesus, the fulfillment of the story',
+  'Kings & the Kingdom': "the rise of Israel's kings and David's heart for God",
+  'Division & the Prophets': "the kingdom splitting and the prophets calling God's people back",
+  'Exile & Hope': "judgment, exile, and the prophets' promises of restoration",
+  'Coming Home': "God's people returning home to rebuild the temple and the city",
+  'Faith & Courage': 'faithful resistance under persecution and the wisdom of the sages',
+  'Christ the Messiah': 'the coming of Christ as the fulfillment of all the promises',
+  'The Early Church': 'the birth of the Church and the spread of the Gospel through the apostles',
 };
 
 function fallback(day, period, r1, r2, psalm) {

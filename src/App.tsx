@@ -1,23 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import AuthScreen from './components/AuthScreen';
 import JourneySetup from './components/JourneySetup';
 import { AccountProvider, useAccount } from './lib/account';
-import Home from './pages/Home';
-import Journey from './pages/Journey';
-import DayDetail from './pages/DayDetail';
-import DiveDeeper from './pages/DiveDeeper';
-import SaintOfDay from './pages/SaintOfDay';
-import SaintLibrary from './pages/SaintLibrary';
-import Profile from './pages/Profile';
-import Faith from './pages/Faith';
-import Prayer from './pages/Prayer';
-import PrayerDetail from './pages/PrayerDetail';
-import Rosary from './pages/Rosary';
-import Bible from './pages/Bible';
-import ScriptureReading from './pages/ScriptureReading';
-import Landing from './pages/Landing';
+
+// Route-based code splitting: each page (and the large data it imports) loads
+// in its own chunk on demand instead of inflating the initial bundle. Landing
+// and the authenticated app no longer download content they do not render.
+const Home = lazy(() => import('./pages/Home'));
+const Journey = lazy(() => import('./pages/Journey'));
+const DayDetail = lazy(() => import('./pages/DayDetail'));
+const DiveDeeper = lazy(() => import('./pages/DiveDeeper'));
+const SaintOfDay = lazy(() => import('./pages/SaintOfDay'));
+const SaintLibrary = lazy(() => import('./pages/SaintLibrary'));
+const Profile = lazy(() => import('./pages/Profile'));
+const Faith = lazy(() => import('./pages/Faith'));
+const Prayer = lazy(() => import('./pages/Prayer'));
+const PrayerDetail = lazy(() => import('./pages/PrayerDetail'));
+const Rosary = lazy(() => import('./pages/Rosary'));
+const Bible = lazy(() => import('./pages/Bible'));
+const ScriptureReading = lazy(() => import('./pages/ScriptureReading'));
+const Landing = lazy(() => import('./pages/Landing'));
 
 function Splash() {
   return (
@@ -50,6 +54,7 @@ function AppShell() {
   return (
     <BrowserRouter basename="/app">
       <div className="min-h-screen bg-parchment-100" style={{ paddingBottom: 80 }}>
+        <Suspense fallback={<Splash />}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/journey" element={<Journey />} />
@@ -67,6 +72,7 @@ function AppShell() {
           <Route path="/bible/reading/:day" element={<ScriptureReading />} />
           <Route path="/profile" element={<Profile />} />
         </Routes>
+        </Suspense>
         <BottomNav />
       </div>
     </BrowserRouter>
@@ -86,7 +92,9 @@ function isAppPath() {
 export default function App() {
   return (
     <AccountProvider>
-      {isAppPath() ? <AppShell /> : <Landing />}
+      <Suspense fallback={<Splash />}>
+        {isAppPath() ? <AppShell /> : <Landing />}
+      </Suspense>
     </AccountProvider>
   );
 }

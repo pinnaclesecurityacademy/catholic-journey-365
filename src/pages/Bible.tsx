@@ -4,53 +4,43 @@ import { BibleReader } from '../components/BibleReader';
 import {
   getBook,
   getCategories,
-  getCategory,
   getCategoryBooks,
   loadChapter,
   BibleChapter,
   Testament,
 } from '../data/bible';
 
-// Bible Library (route: /bible), V3.6 navigation foundation.
+// Bible Library (route: /bible), V3.6.1 access polish.
 //
-// A browsable path into Sacred Scripture:
-//   home -> testament -> category -> book -> chapter -> reader
+// A faster path into Sacred Scripture:
+//   home (books grouped by category) -> chapter picker -> reader
 //
 // The reader itself (BibleReader) and lazy chapter loading (loadChapter) are
 // reused unchanged, so the existing reader behaviour and one-chapter-at-a-time
-// loading are preserved. No Scripture text is bundled here.
+// loading are preserved. No Scripture text is bundled here. WEBC attribution
+// continues to live in the reader.
 
-type View = 'home' | 'testament' | 'category' | 'chapters' | 'reader';
+type View = 'home' | 'chapters' | 'reader';
 
 const TESTAMENT_LABEL: Record<Testament, string> = {
   old: 'Old Testament',
   new: 'New Testament',
 };
 
-/** A tappable card used throughout the library (title plus optional blurb). */
-function NavCard({
-  title,
-  description,
-  onClick,
-}: {
-  title: string;
-  description?: string;
-  onClick: () => void;
-}) {
+/** A category heading with a visual info button (no content yet, V3.6.1). */
+function CategoryHeading({ name }: { name: string }) {
   return (
-    <button
-      onClick={onClick}
-      className="w-full text-left rounded-2xl bg-white border border-parchment-200 p-5 active:scale-[0.99] transition"
-    >
-      <h2 className="font-display text-lg font-semibold text-leather-900">
-        {title}
-      </h2>
-      {description && (
-        <p className="mt-1 text-sm text-stone-500 leading-relaxed">
-          {description}
-        </p>
-      )}
-    </button>
+    <div className="flex items-center gap-2 mt-7 mb-3 first:mt-0">
+      <h3 className="font-display text-base font-semibold text-leather-900">
+        {name}
+      </h3>
+      <span
+        aria-hidden="true"
+        className="inline-flex h-4 w-4 items-center justify-center rounded-full border border-parchment-200 text-[10px] font-semibold text-stone-400"
+      >
+        i
+      </span>
+    </div>
   );
 }
 
@@ -58,8 +48,6 @@ export default function Bible() {
   const navigate = useNavigate();
 
   const [view, setView] = useState<View>('home');
-  const [testament, setTestament] = useState<Testament>('old');
-  const [categoryId, setCategoryId] = useState<string>('');
   const [bookId, setBookId] = useState<string>('');
   const [chapterNumber, setChapterNumber] = useState(1);
   const [chapter, setChapter] = useState<BibleChapter | null>(null);
@@ -69,7 +57,6 @@ export default function Bible() {
     window.scrollTo(0, 0);
   }, [view]);
 
-  const category = getCategory(categoryId);
   const book = getBook(bookId);
 
   // Lazily load only the requested chapter, and only while the reader is shown.
@@ -90,20 +77,8 @@ export default function Bible() {
   // Contextual back: step one level up the library, or leave the tab from home.
   function goBack() {
     if (view === 'reader') return setView('chapters');
-    if (view === 'chapters') return setView('category');
-    if (view === 'category') return setView('testament');
-    if (view === 'testament') return setView('home');
+    if (view === 'chapters') return setView('home');
     navigate(-1);
-  }
-
-  function openTestament(t: Testament) {
-    setTestament(t);
-    setView('testament');
-  }
-
-  function openCategory(id: string) {
-    setCategoryId(id);
-    setView('category');
   }
 
   function openBook(id: string) {
@@ -118,23 +93,11 @@ export default function Bible() {
   }
 
   // Header label changes with depth, matching the existing reverent style.
-  const eyebrow =
-    view === 'home'
-      ? 'Holy Bible'
-      : view === 'testament'
-      ? TESTAMENT_LABEL[testament]
-      : view === 'category'
-      ? category?.name ?? 'Sacred Scripture'
-      : book?.name ?? 'Sacred Scripture';
+  const eyebrow = view === 'home' ? 'Holy Bible' : book?.name ?? 'Sacred Scripture';
 
-  const heading =
-    view === 'home'
-      ? 'Sacred Scripture'
-      : view === 'testament'
-      ? TESTAMENT_LABEL[testament]
-      : view === 'category'
-      ? category?.name ?? ''
-      : book?.name ?? '';
+  const heading = view === 'home' ? 'Sacred Scripture' : book?.name ?? '';
+
+  const testaments: Testament[] = ['old', 'new'];
 
   return (
     <div className="max-w-md mx-auto px-5 pt-6 pb-12">
@@ -155,57 +118,36 @@ export default function Bible() {
         {view === 'home' && (
           <p className="text-leather-900 leading-relaxed mt-3">
             The Word of God in the Old and New Testaments, given to the Church
-            to lead us to Jesus Christ. Choose a testament to begin.
-          </p>
-        )}
-        {view === 'category' && category && (
-          <p className="text-sm text-stone-500 leading-relaxed mt-3">
-            {category.description}
+            to lead us to Jesus Christ. Choose a book to begin.
           </p>
         )}
       </header>
 
-      {/* Home: choose a testament */}
+      {/* Home: books grouped by testament and category */}
       {view === 'home' && (
-        <div className="space-y-3">
-          <NavCard
-            title="Old Testament"
-            description="From creation and the covenant with Israel to the prophets who awaited the Messiah."
-            onClick={() => openTestament('old')}
-          />
-          <NavCard
-            title="New Testament"
-            description="The life of Jesus Christ and the faith of the early Church, the fulfilment of God's promises."
-            onClick={() => openTestament('new')}
-          />
-        </div>
-      )}
-
-      {/* Testament: choose a category */}
-      {view === 'testament' && (
-        <div className="space-y-3">
-          {getCategories(testament).map((c) => (
-            <NavCard
-              key={c.id}
-              title={c.name}
-              description={c.description}
-              onClick={() => openCategory(c.id)}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Category: choose a book */}
-      {view === 'category' && (
-        <div className="flex flex-wrap gap-2">
-          {getCategoryBooks(categoryId).map((b) => (
-            <button
-              key={b.id}
-              onClick={() => openBook(b.id)}
-              className="rounded-full border px-4 py-2 text-sm bg-white text-leather-900 border-parchment-200 active:scale-[0.99] transition"
-            >
-              {b.name}
-            </button>
+        <div className="space-y-8">
+          {testaments.map((t) => (
+            <section key={t}>
+              <p className="text-xs uppercase tracking-widest text-stone-400 border-b border-parchment-200 pb-2">
+                {TESTAMENT_LABEL[t]}
+              </p>
+              {getCategories(t).map((c) => (
+                <div key={c.id}>
+                  <CategoryHeading name={c.name} />
+                  <div className="flex flex-wrap gap-2">
+                    {getCategoryBooks(c.id).map((b) => (
+                      <button
+                        key={b.id}
+                        onClick={() => openBook(b.id)}
+                        className="rounded-full border px-4 py-2 text-sm bg-white text-leather-900 border-parchment-200 active:scale-[0.99] transition"
+                      >
+                        {b.name}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </section>
           ))}
         </div>
       )}

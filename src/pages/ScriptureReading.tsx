@@ -27,6 +27,7 @@ export default function ScriptureReading() {
   const { day } = useParams();
   const dayNum = Number(day);
   const journeyDay = getReadingDay(dayNum);
+  const nextJourneyDay = getReadingDay(dayNum + 1);
   const steps = journeyDay ? getReadingSteps(journeyDay) : [];
 
   const { completionId } = useAccount();
@@ -41,10 +42,20 @@ export default function ScriptureReading() {
   const book = step ? getBook(step.bookId) : undefined;
   const isLast = stepIndex === steps.length - 1;
 
+  useEffect(() => {
+    setStepIndex(0);
+    setChapter(null);
+    setLoading(true);
+    setSaving(false);
+  }, [dayNum]);
+
   // Lazily load only the current step's chapter.
   useEffect(() => {
     let active = true;
-    if (!step) return;
+    if (!step) {
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     window.scrollTo(0, 0);
     loadChapter(step.bookId, step.chapter).then((result) => {
@@ -121,6 +132,14 @@ export default function ScriptureReading() {
           >
             Return to Journey
           </button>
+          {nextJourneyDay && (
+            <button
+              onClick={() => navigate(`/bible/reading/${nextJourneyDay.day_number}`)}
+              className="w-full rounded-xl bg-parchment-100 border border-gold/40 py-3 font-semibold text-leather-600 active:scale-[0.99] transition"
+            >
+              Continue to Day {nextJourneyDay.day_number}
+            </button>
+          )}
         </div>
 
         <BibleFooter />

@@ -226,11 +226,13 @@ export default function Rosary() {
         {m && (
           <>
             {artwork && (
-              <section className="rounded-2xl bg-white border border-parchment-200 p-2 mb-4 shadow-sm overflow-hidden">
+              <section className="rounded-2xl bg-parchment-100 border border-gold/40 p-2 mb-4 shadow-sm overflow-hidden">
                 <img
                   src={artwork}
                   alt={`${m.title} artwork`}
-                  className="h-80 max-h-80 w-full rounded-xl object-cover shadow-sm md:h-[420px] md:max-h-[420px]"
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-[380px] w-full rounded-xl object-contain shadow-sm md:max-h-[420px]"
                 />
               </section>
             )}

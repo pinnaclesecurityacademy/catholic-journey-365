@@ -164,6 +164,8 @@ export default function PrayerDetail() {
           <img
             src={stationImage}
             alt={`${prayer.title} artwork`}
+            loading="lazy"
+            decoding="async"
             className="h-80 max-h-80 w-full rounded-xl object-cover shadow-sm"
           />
         </section>

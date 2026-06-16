@@ -651,32 +651,193 @@ export const massSections: MassSection[] = [
     number: '4',
     title: 'Communion Rite',
     intro:
-      'Placeholder. We prepare to receive Christ, or to draw near to him spiritually, in unity and peace.',
+      'Receiving Jesus Christ. The Mass now moves from the altar to our personal encounter with Christ. We have listened to God’s Word. We have witnessed the bread and wine become the Body and Blood of Jesus. Now the Church prepares to receive Him in Holy Communion. For Catholics, Communion is not only a symbol of remembering Jesus. It is a real sharing in His life. Jesus said, "Whoever eats my flesh and drinks my blood remains in me and I in him." (John 6:56).',
     cards: [
       {
-        heading: 'What is happening?',
+        heading: 'The Lord’s Prayer',
         body:
-          'Placeholder. The Lord’s Prayer, the Sign of Peace, the Lamb of God, and the reception of Holy Communion.',
+          'The Church stands together and prays the prayer Jesus Himself taught us.\n\nBefore receiving Communion, we call God Father.',
       },
       {
         heading: 'Biblical connection',
-        body: 'Placeholder. The bread of life and communion with Christ.',
+        body:
+          'When the disciples asked Jesus how to pray, He taught them the Our Father.\n\nThis prayer comes directly from Christ.',
       },
       {
         heading: 'What do I do?',
-        body:
-          'Placeholder. If you are able to receive Holy Communion, come forward reverently. If you are not able to receive, you may remain in your place in prayer, or come forward with your arms crossed over your chest to ask for a blessing. Local custom varies, so it is good to notice how others in your parish do this.',
+        body: 'Stand.\n\nPray with everyone.',
       },
       {
         heading: 'What do I say?',
         body:
-          'Before Communion we say together, "Lord, I am not worthy that you should enter under my roof, but only say the word and my soul shall be healed." When the minister says "The Body of Christ," we respond, "Amen."',
+          'Pray the Our Father with the congregation, following the words used at your parish.',
       },
       {
         heading: 'Why does this matter?',
         body:
-          'Placeholder. For those who cannot receive Holy Communion at this time, you can still unite yourself to Christ through a prayer of Spiritual Communion.',
+          'Before approaching the altar, we remember who we are:\n\nChildren of God.\n\nWe approach not because we are perfect, but because we trust the Father.',
+      },
+      {
+        heading: 'Sign of Peace',
+        body:
+          'The priest offers Christ’s peace to the people.\n\nThe congregation may share a simple gesture of peace with those nearby.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'Jesus said:\n\n"Peace I leave with you; my peace I give to you."\nJohn 14:27',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Stand.\n\nOffer peace respectfully to people near you.\n\nDepending on local custom, this might be:\n\nA handshake.\nA nod.\nA simple greeting.',
+      },
+      {
+        heading: 'What do I say?',
+        body: '"Peace be with you."\n\nor simply:\n\n"Peace."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'Before receiving Communion, we remember we are united as brothers and sisters in Christ.\n\nThe Eucharist brings us into communion with God and each other.',
+      },
+      {
+        heading: 'Lamb of God',
+        body:
+          'The priest breaks the consecrated Host.\n\nThe Church calls Jesus the Lamb of God.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'When John the Baptist saw Jesus, he said:\n\n"Behold, the Lamb of God, who takes away the sin of the world."\nJohn 1:29\n\nThis connects Jesus to the Passover lamb.\n\nThrough His sacrifice, Jesus brings salvation.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nThen kneel when appropriate.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Follow the words at your parish.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'We are preparing to receive the same Jesus who gave Himself for us on the Cross.',
+      },
+      {
+        heading: 'Before Communion',
+        body:
+          'The priest shows the Eucharist to the people.\n\nTogether, we acknowledge our need for God’s mercy before receiving Jesus.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'The words we say are connected to the faith of the Roman centurion who came to Jesus.\n\nHe said:\n\n"Lord, I am not worthy to have you come under my roof."\nMatthew 8:8\n\nJesus praised his faith.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Kneel.\n\nPrepare your heart.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Follow the words at Mass.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'This prayer is not saying:\n\n"God does not love me."\n\nIt means:\n\n"I recognise how great this gift is."\n\nWe receive Communion because of God’s grace, not because we earned it.',
+      },
+      {
+        heading: 'Receiving Holy Communion',
+        body:
+          'Catholics who are properly prepared come forward to receive Jesus in the Eucharist.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Walk forward reverently.\n\nYou may receive on your tongue or in your hands.\n\nIf receiving in your hands, make a throne with your hands and consume the Host immediately.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'When the priest or minister says:\n\n"The Body of Christ."\n\nYou respond:\n\n"Amen."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'This small Amen is a huge statement of faith.\n\nYou are saying you believe this is truly Jesus.',
+      },
+      {
+        heading: 'What if I cannot receive Holy Communion?',
+        body:
+          'Not everyone who attends Mass receives Communion.\n\nSome people are still preparing to become Catholic.\n\nSome have not yet received First Holy Communion.\n\nSome Catholics may choose not to receive because they need to go to Confession first.\n\nIf this is you, do not feel like you do not belong.\n\nBeing at Mass is still a beautiful step toward God.\n\nJesus is still calling you closer.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'You may remain in your pew and pray.\n\nIn many parishes, you may also join the Communion procession and cross your arms over your chest to indicate that you are not receiving Communion.\n\nThe priest or minister may offer a short blessing or prayer.\n\nBecause customs can vary, follow the practice of your local parish.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'You may pray quietly from your heart.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'If you cannot receive today, do not walk away from Jesus.\n\nKeep coming.\n\nKeep praying.\n\nKeep seeking Him.',
+      },
+      {
+        heading: 'Spiritual Communion',
+        body:
+          'A Spiritual Communion is a prayer asking Jesus to come into your heart when you cannot receive the Eucharist sacramentally.\n\nIt expresses your desire to be close to Him.\n\nGod sees your love and your desire for Him.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Pray quietly and sincerely from your heart:',
         pray: true,
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The desire for Jesus is already a movement of grace.\n\nThe journey toward Christ continues.',
+      },
+      {
+        heading: 'After Receiving Communion',
+        body:
+          'After Communion, the church enters a time of prayer and thanksgiving.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Return to your pew.\n\nKneel or sit according to local practice.\n\nPray.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'You might say:\n\n"Jesus, thank you for coming to me. Help me follow you."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'Communion is not the end of Mass.\n\nIt is the beginning of allowing Christ to transform our lives.',
+      },
+      {
+        heading: 'Prayer After Communion',
+        body:
+          'The priest gathers everyone’s prayers after receiving the Eucharist.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Amen.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The Church thanks God for the gift received and prepares to go back into the world.',
       },
     ],
   },

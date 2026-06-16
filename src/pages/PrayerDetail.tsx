@@ -5,6 +5,23 @@ import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
 import NovenaFlow from '../components/NovenaFlow';
 import ChapletFlow from '../components/ChapletFlow';
 
+const stationArtwork: Record<string, string> = {
+  'station-1': '/images/01-condemned.webp.webp',
+  'station-2': '/images/02-takes-cross.webp.webp',
+  'station-3': '/images/03-first-fall.webp.webp',
+  'station-4': '/images/04-meets-mary.webp.webp',
+  'station-5': '/images/05-simon-cyrene.webp.webp',
+  'station-6': '/images/06-veronica.webp.webp',
+  'station-7': '/images/07-second-fall.webp.webp',
+  'station-8': '/images/08-women-jerusalem.webp.webp',
+  'station-9': '/images/09-third-fall.webp.webp',
+  'station-10': '/images/10-stripped-garments.webp.webp',
+  'station-11': '/images/11-nailed-cross.webp.webp',
+  'station-12': '/images/12-jesus-dies.webp.webp',
+  'station-13': '/images/13-taken-down-cross.webp.webp',
+  'station-14': '/images/14-laid-in-tomb.webp.webp',
+};
+
 /**
  * A formation section (Stations reflections, the "Simple Way to Pray" guide,
  * and the Divine Mercy steps). Reflection prose stays left-aligned and readable;
@@ -72,6 +89,7 @@ export default function PrayerDetail() {
     inStations && stationIdx < stationIds.length - 1
       ? stationIds[stationIdx + 1]
       : null;
+  const stationImage = prayerId ? stationArtwork[prayerId] : undefined;
 
   // Land at the top when moving between prayers/stations; close the About panel.
   useEffect(() => {
@@ -138,6 +156,16 @@ export default function PrayerDetail() {
               {prayer.content}
             </p>
           )}
+        </section>
+      )}
+
+      {stationImage && (
+        <section className="rounded-2xl bg-white border border-gold/40 p-2 mb-5 shadow-sm overflow-hidden">
+          <img
+            src={stationImage}
+            alt={`${prayer.title} artwork`}
+            className="h-80 max-h-80 w-full rounded-xl object-cover shadow-sm"
+          />
         </section>
       )}
 

@@ -6,20 +6,20 @@ import NovenaFlow from '../components/NovenaFlow';
 import ChapletFlow from '../components/ChapletFlow';
 
 const stationArtwork: Record<string, string> = {
-  'station-1': '/images/01-condemned.webp.webp',
-  'station-2': '/images/02-takes-cross.webp.webp',
-  'station-3': '/images/03-first-fall.webp.webp',
-  'station-4': '/images/04-meets-mary.webp.webp',
-  'station-5': '/images/05-simon-cyrene.webp.webp',
-  'station-6': '/images/06-veronica.webp.webp',
-  'station-7': '/images/07-second-fall.webp.webp',
-  'station-8': '/images/08-women-jerusalem.webp.webp',
-  'station-9': '/images/09-third-fall.webp.webp',
-  'station-10': '/images/10-stripped-garments.webp.webp',
-  'station-11': '/images/11-nailed-cross.webp.webp',
-  'station-12': '/images/12-jesus-dies.webp.webp',
-  'station-13': '/images/13-taken-down-cross.webp.webp',
-  'station-14': '/images/14-laid-in-tomb.webp.webp',
+  'station-1': '/images/stations/station-01-jesus-condemned.webp',
+  'station-2': '/images/stations/station-02-jesus-takes-cross.webp',
+  'station-3': '/images/stations/station-03-jesus-falls-first-time.webp',
+  'station-4': '/images/stations/station-04-jesus-meets-mary.webp',
+  'station-5': '/images/stations/station-05-simon-helps-jesus.webp',
+  'station-6': '/images/stations/station-06-veronica-wipes-face.webp',
+  'station-7': '/images/stations/station-07-jesus-falls-second-time.webp',
+  'station-8': '/images/stations/station-08-jesus-meets-women.webp',
+  'station-9': '/images/stations/station-09-jesus-falls-third-time.webp',
+  'station-10': '/images/stations/station-10-jesus-stripped.webp',
+  'station-11': '/images/stations/station-11-jesus-nailed-cross.webp',
+  'station-12': '/images/stations/station-12-jesus-dies-cross.webp',
+  'station-13': '/images/stations/station-13-jesus-taken-down.webp',
+  'station-14': '/images/stations/station-14-jesus-laid-tomb.webp',
 };
 
 /**

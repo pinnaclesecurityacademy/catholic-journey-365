@@ -1,11 +1,11 @@
 // Order of the Mass: a beginner-friendly guided walk through the parts of the
-// Mass. Structure and placeholder content only. Each section carries a set of
-// optional teaching cards. The actual catechesis is filled in later, after a
-// Catholic accuracy review, so the prose below is intentionally placeholder.
+// Mass. Each section carries a set of teaching cards covering what is
+// happening, the biblical connection, history and tradition, what to do, what
+// to say, and why it matters.
 //
 // Copyright note: this guide does not reproduce the full official Roman Missal
 // text, full Eucharistic Prayers, the full Gloria, or the full Creed. Only
-// short common responses appear, and only once approved content is added.
+// short common responses appear.
 
 export type MassCard = {
   // Usually one of the fixed teaching prompts ("What is happening?",

@@ -89,6 +89,7 @@ export default function PrayerDetail() {
     inStations && stationIdx < stationIds.length - 1
       ? stationIds[stationIdx + 1]
       : null;
+  const isFinalStation = inStations && !nextStationId && prayerId !== 'about';
   const stationImage = prayerId ? stationArtwork[prayerId] : undefined;
 
   // Land at the top when moving between prayers/stations; close the About panel.
@@ -160,13 +161,13 @@ export default function PrayerDetail() {
       )}
 
       {stationImage && (
-        <section className="rounded-2xl bg-white border border-gold/40 p-2 mb-5 shadow-sm overflow-hidden">
+        <section className="rounded-2xl bg-parchment-100 border border-gold/40 p-2 mb-5 shadow-sm overflow-hidden">
           <img
             src={stationImage}
             alt={`${prayer.title} artwork`}
             loading="lazy"
             decoding="async"
-            className="h-80 max-h-80 w-full rounded-xl object-cover shadow-sm"
+            className="max-h-[380px] w-full rounded-xl object-contain shadow-sm md:max-h-[420px]"
           />
         </section>
       )}
@@ -218,11 +219,15 @@ export default function PrayerDetail() {
             ← Previous
           </button>
           <button
-            disabled={!nextStationId}
-            onClick={() => navigate(`/prayer/stations/${nextStationId}`)}
+            disabled={!nextStationId && !isFinalStation}
+            onClick={() =>
+              isFinalStation
+                ? navigate('/prayer')
+                : navigate(`/prayer/stations/${nextStationId}`)
+            }
             className="flex-1 rounded-xl bg-leather-600 py-3 font-semibold text-white disabled:opacity-40 active:scale-[0.99] transition"
           >
-            Next →
+            {isFinalStation ? 'Finish' : 'Next →'}
           </button>
         </div>
       )}

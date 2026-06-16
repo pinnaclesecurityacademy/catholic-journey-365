@@ -24,9 +24,9 @@ const FAITH_CARDS: FaithCard[] = [
     to: '/saints',
   },
   {
-    title: 'Mass',
+    title: 'Introduction to the Mass',
     description:
-      'Understand the prayers, Scripture, and meaning behind the celebration of the Mass.',
+      'Learn what happens at Mass, what to do, what to say, and why it matters.',
     to: '/mass',
   },
   {

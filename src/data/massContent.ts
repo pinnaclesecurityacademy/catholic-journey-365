@@ -28,7 +28,7 @@ export type MassSection = {
 };
 
 export const massWelcome = {
-  title: 'Order of the Mass',
+  title: 'Introduction to the Mass',
   whatIsIt:
     'A guide to understanding and entering into the Catholic Mass.\n\nThe Mass is the central prayer of the Catholic Church.\n\nAt Mass, Catholics gather to hear the Word of God, worship the Father, and receive Jesus Christ in the Eucharist.',
   whoIsItFor:

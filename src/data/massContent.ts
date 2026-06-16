@@ -483,34 +483,166 @@ export const massSections: MassSection[] = [
     number: '3',
     title: 'Liturgy of the Eucharist',
     intro:
-      'Placeholder. The heart of the Mass, where bread and wine become the Body and Blood of Christ.',
+      'The sacrifice and gift of Jesus. Everything in the Mass has been leading to this moment. We have gathered as God’s family. We have asked for mercy. We have listened to His Word. Now we enter the Eucharist. Catholics believe the Eucharist is not only a symbol. Jesus Christ becomes truly present: Body, Blood, Soul, and Divinity. At the Last Supper, Jesus gave the Church this gift and commanded, "Do this in remembrance of me." (Luke 22:19). The Mass makes present the one sacrifice of Jesus on the Cross. It is not Jesus being sacrificed again. It is the one sacrifice of Christ made present to us.',
     cards: [
       {
-        heading: 'What is happening?',
+        heading: 'Presentation of the Gifts',
         body:
-          'Placeholder. The presentation of the gifts, the Eucharistic Prayer, and the consecration.',
+          'Bread and wine are brought to the altar.\n\nThe priest prepares the gifts that will become the Body and Blood of Christ.\n\nThe collection may also take place, where people offer support for the needs of the Church and others.',
       },
       {
         heading: 'Biblical connection',
-        body: 'Placeholder. The Last Supper and the sacrifice of Christ.',
-      },
-      {
-        heading: 'History and Tradition',
         body:
-          'Placeholder. The altar bells are sometimes rung at the consecration to call our attention to the moment when the bread and wine become the Body and Blood of Christ.',
+          'Throughout Scripture, people offered gifts to God.\n\nAbel offered the first of his flock.\n\nMelchizedek offered bread and wine.\n\nJesus took bread and wine at the Last Supper.\n\nThese signs find their fulfilment in the Eucharist.',
       },
       {
         heading: 'What do I do?',
-        body: 'Placeholder. Kneel during the Eucharistic Prayer where it is the custom.',
+        body:
+          'Sit.\n\nYou may sing the offertory hymn.\n\nYou can also quietly offer your own life to God:\n\nYour struggles.\nYour family.\nYour work.\nYour worries.\nYour gratitude.',
       },
       {
         heading: 'What do I say?',
         body:
-          'When the priest says "Pray, brethren...," we respond, "May the Lord accept the sacrifice at your hands, for the praise and glory of his name, for our good and the good of all his holy Church."',
+          'Usually nothing.\n\nIf the priest says the prayers aloud, there may be a response.',
       },
       {
         heading: 'Why does this matter?',
-        body: 'Placeholder. Christ makes himself truly present in the Eucharist.',
+        body:
+          'The bread and wine represent more than physical gifts.\n\nWe place ourselves before God.\n\nWe offer Him our lives and allow Him to transform us.',
+      },
+      {
+        heading: 'Preparation for the Eucharistic Prayer',
+        body:
+          'The priest invites everyone to pray that the sacrifice may be acceptable to God.\n\nThe Church prepares to enter the most sacred part of the Mass.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nRespond with the congregation.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Follow the response at Mass.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The Eucharist is not only the priest’s prayer.\n\nThe whole Church joins together in offering worship to the Father through Jesus Christ.',
+      },
+      {
+        heading: 'Eucharistic Prayer',
+        body:
+          'This is the centre of the Mass.\n\nThe priest gives thanks to God the Father and calls upon the Holy Spirit.\n\nThrough the words of Jesus and the power of the Holy Spirit, the bread and wine become the Body and Blood of Christ.\n\nThis change is called transubstantiation.\n\nThe appearance of bread and wine remains, but their deepest reality has changed.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'At the Last Supper Jesus said:\n\n"This is my body, which is given for you."\nLuke 22:19\n\nSaint Paul wrote:\n\n"The cup of blessing that we bless, is it not a participation in the blood of Christ?"\n1 Corinthians 10:16',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Stand at the beginning.\n\nWhen appropriate, kneel.\n\nListen carefully.\n\nThis is a moment of deep reverence.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'At the altar, heaven and earth meet.\n\nThe Church joins the worship of Christ offered to the Father.',
+      },
+      {
+        heading: 'Holy, Holy, Holy',
+        body:
+          'Before the Consecration, the Church joins the song of heaven.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'The words come from the worship described by the prophet Isaiah:\n\n"Holy, holy, holy is the Lord of hosts."\nIsaiah 6:3\n\nIn the Book of Revelation, heaven worships God with similar praise.\n\nAt Mass, we join that heavenly worship.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nSing or pray.\n\nThen kneel where this is the custom.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Follow the words at your parish.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'Catholics believe Mass is not just something happening on earth.\n\nWe are joining the eternal worship of heaven.',
+      },
+      {
+        heading: 'Consecration',
+        body:
+          'This is the most sacred moment of the Mass.\n\nThe priest repeats the words of Jesus from the Last Supper.\n\nThe bread and wine become the Body and Blood of Christ.\n\nThe priest lifts up the Host and Chalice.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Kneel.\n\nLook toward Jesus in the Eucharist.\n\nMany Catholics silently pray:\n\n"My Lord and my God."',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'After the Resurrection, Thomas saw Jesus and said:\n\n"My Lord and my God."\nJohn 20:28',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'This is not a reminder of something Jesus did long ago.\n\nThe sacrifice of the Cross is made present.\n\nWe stand at Calvary with Mary and the disciples.',
+      },
+      {
+        heading: 'Why do bells ring?',
+        body:
+          'In many Catholic churches, you may hear bells ring during the most sacred moments of the Mass.\n\nThese are often called altar bells.\n\nThey are commonly rung around the time of the Consecration, especially when the priest elevates the Body and Blood of Christ.\n\nThe bells are a way of saying:\n\n"Pay attention. Something sacred is happening."',
+      },
+      {
+        heading: 'History and Tradition',
+        body:
+          'For centuries, parts of the Mass were prayed quietly and churches were often large.\n\nThe bells helped the faithful know when the Consecration was taking place so they could focus their hearts on Christ.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Remain kneeling.\n\nLook toward Jesus in the Eucharist.\n\nPause.\n\nPray.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'Many Catholics quietly pray:\n\n"My Lord and my God."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The bells are not magic and they do not cause the change to happen.\n\nThe change happens through the power of God during the Eucharistic Prayer.\n\nThe bells are a sign of reverence, joy, and attention.\n\nThey remind us:\n\nJesus is here.\n\nNot every parish uses bells, so do not worry if you do not hear them.',
+      },
+      {
+        heading: 'Memorial Acclamation',
+        body:
+          'After the Consecration, the people proclaim the mystery of faith.\n\nWe announce the death and resurrection of Jesus and look forward to His return.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Remain kneeling.\n\nRespond with the congregation.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Follow the acclamation used at Mass.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'Christianity is centred on the death and resurrection of Jesus.\n\nThe Eucharist is connected to this saving mystery.',
+      },
+      {
+        heading: 'Great Amen',
+        body:
+          'The Eucharistic Prayer ends with praise of God.\n\nThe people respond:\n\nAmen.\n\nThis word means: Yes. I believe. So be it.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'This is one of the most important Amens of the Mass.\n\nThe Church joins itself to everything that has been prayed.',
       },
     ],
   },

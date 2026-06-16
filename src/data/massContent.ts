@@ -152,34 +152,143 @@ export const massSections: MassSection[] = [
     number: '1',
     title: 'Introductory Rites',
     intro:
-      'Placeholder. The opening of the Mass that gathers us together as one body and prepares us to listen and to celebrate.',
+      'Coming together as the family of God. The Introductory Rites begin the celebration of the Mass. We entered the church as individuals, carrying different worries, struggles, joys, and prayers. Now we are gathered together as one Body of Christ. Before listening to Scripture and before receiving the Eucharist, the Church prepares our hearts. The Mass begins by reminding us: we belong to God, we need His mercy, and we are here to worship Him.',
     cards: [
       {
-        heading: 'What is happening?',
+        heading: 'Entrance Procession',
         body:
-          'Placeholder. The procession, the Sign of the Cross, the greeting, the Penitential Act, and the opening prayer.',
+          'The priest, deacon, and ministers process toward the altar while the people sing.\n\nThis is more than simply walking to the front of the church.\n\nThe procession represents the Church journeying toward God. We are a pilgrim people moving toward heaven.\n\nThe priest reverences the altar because the altar represents Christ and is where the Eucharistic sacrifice will take place.',
       },
       {
         heading: 'Biblical connection',
-        body: 'Placeholder. Scriptural roots of gathering, repentance, and praise.',
-      },
-      {
-        heading: 'History and Tradition',
-        body: 'Placeholder. How the introductory rites developed in the Church.',
+        body:
+          'Throughout Scripture, God’s people are on a journey.\n\nThe Israelites journeyed from slavery in Egypt toward the Promised Land.\n\nJesus journeyed to Jerusalem, where He offered Himself for our salvation.\n\nAt Mass, we join the journey toward God.',
       },
       {
         heading: 'What do I do?',
         body:
-          'Placeholder. Stand for the procession, make the Sign of the Cross, and join in the responses.',
+          'Stand.\n\nJoin the hymn if you can.\n\nIf you do not know the words, that is okay. Listen, pray, and allow yourself to enter into worship.',
       },
       {
         heading: 'What do I say?',
         body:
-          'When the priest says "The Lord be with you," we respond, "And with your spirit."',
+          'Usually nothing.\n\nThe entrance hymn is the prayer of the people at this moment.',
       },
       {
         heading: 'Why does this matter?',
-        body: 'Placeholder. We begin by acknowledging God and asking for mercy.',
+        body:
+          'Mass is not a performance where the priest acts and everyone watches.\n\nEveryone present participates.\n\nThe Entrance Procession reminds us:\n\n"The journey toward God begins together."',
+      },
+      {
+        heading: 'Sign of the Cross',
+        body:
+          'The priest begins Mass by calling upon the Holy Trinity:\n\nFather.\nSon.\nHoly Spirit.\n\nThis is the same name in which Christians are baptised.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'Jesus told His disciples:\n\n"Baptise them in the name of the Father and of the Son and of the Holy Spirit."\nMatthew 28:19',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Stand.\n\nMake the Sign of the Cross:\n\nForehead.\nChest.\nLeft shoulder.\nRight shoulder.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Amen.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The first words and actions of Mass remind us:\n\nThis is not about ourselves.\n\nWe enter into the life and love of God.',
+      },
+      {
+        heading: 'Greeting',
+        body:
+          'The priest greets the people, and the people respond.\n\nThis greeting recognises that Christ is present with His Church gathered in prayer.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nListen and respond.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'The priest may say:\n\n"The Lord be with you."\n\nWe respond:\n\n"And with your spirit."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'This is not simply saying hello back.\n\nThe response recognises the work of the Holy Spirit through the priest as he leads the celebration of the Mass.',
+      },
+      {
+        heading: 'Penitential Act',
+        body:
+          'Before moving deeper into worship, we acknowledge our sins and ask God for mercy.\n\nThe Church does not begin Mass by pretending everyone is perfect.\n\nWe begin with humility.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'Jesus taught:\n\n"God, be merciful to me, a sinner."\nLuke 18:13',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Stand.\n\nThink about your life.\n\nWhere have I failed to love God?\n\nWhere have I failed to love others?\n\nAsk sincerely for mercy.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'The priest invites everyone to acknowledge their sins.\n\nThe response may take different forms depending on the Mass.\n\nYou may pray:\n\n"I confess to almighty God..."\n\nor respond:\n\n"Lord, have mercy."\n"Christ, have mercy."\n"Lord, have mercy."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'This moment reminds us:\n\nWe do not earn God’s love.\n\nWe receive His mercy.\n\nThe Penitential Act prepares our hearts, but it does not replace the Sacrament of Confession for serious sin.',
+      },
+      {
+        heading: 'Gloria',
+        body:
+          'The Church praises God.\n\nAfter asking for mercy, we respond with worship.\n\nThe focus moves from our weakness to God’s greatness.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'The opening words come from the angels announcing the birth of Jesus:\n\n"Glory to God in the highest."\nLuke 2:14',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nSing or pray along.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'Follow the words used at your parish.\n\nThe Gloria begins, "Glory to God in the highest, and on earth peace to people of good will."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The Gloria reminds us that worship is not only about asking God for help.\n\nSometimes we simply praise Him because He is God.',
+      },
+      {
+        heading: 'Collect Prayer',
+        body:
+          'The priest invites everyone to pray.\n\nThere is a moment of silence.\n\nThe prayers of everyone gathered are brought together into one prayer offered to God.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Stand.\n\nUse the silence.\n\nBring your intentions before God:\n\nFamily.\nStruggles.\nGratitude.\nPeople who need prayer.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Amen.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'We came into church with many different prayers.\n\nNow the Church moves forward united.\n\nThe preparation is complete.\n\nWe are ready to listen to God speak.',
       },
     ],
   },

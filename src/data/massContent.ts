@@ -297,30 +297,184 @@ export const massSections: MassSection[] = [
     number: '2',
     title: 'Liturgy of the Word',
     intro:
-      'Placeholder. God speaks to us through the Scriptures, and we respond in faith.',
+      'God speaks to His people. After preparing our hearts, we sit and listen. The Mass now moves from gathering together to hearing the voice of God through Sacred Scripture. Catholics believe Scripture is not just a history book or inspirational writing. When the Bible is proclaimed at Mass, God is speaking to His people today. The same God who spoke to Abraham, Moses, the prophets, and the apostles continues to speak to His Church.',
     cards: [
       {
-        heading: 'What is happening?',
+        heading: 'Today’s Mass Readings',
         body:
-          'Placeholder. The readings, the Responsorial Psalm, the Gospel, the homily, the Profession of Faith, and the Prayer of the Faithful.',
+          'Every Mass has Scripture readings chosen by the Church.\n\nCatholics around the world hear the same readings each day, uniting the Church in prayer.\n\nYou can prepare your heart by reading and reflecting on the readings before Mass. This is a time to listen.',
+      },
+      {
+        heading: 'First Reading',
+        body:
+          'A reader proclaims the first Scripture reading.\n\nMost Sundays, this reading comes from the Old Testament.\n\nThe Old Testament tells the story of creation, God’s promises, His covenant with Israel, and His preparation for the coming of Jesus.',
       },
       {
         heading: 'Biblical connection',
-        body: 'Placeholder. The Word of God proclaimed and received.',
+        body:
+          'Jesus Himself read Scripture publicly in worship.\n\nIn the synagogue, He stood and read from the prophet Isaiah.\n\nHe said:\n\n"Today this Scripture has been fulfilled in your hearing."\nLuke 4:21',
       },
       {
         heading: 'What do I do?',
         body:
-          'Placeholder. Sit for the readings, stand for the Gospel, and listen attentively.',
+          'Sit.\n\nListen carefully.\n\nDo not think of this as someone simply reading a book.\n\nHear it as God speaking.',
       },
       {
         heading: 'What do I say?',
         body:
-          'After the readings we respond, "Thanks be to God." Before the Gospel we say, "Glory to you, O Lord," and after it, "Praise to you, Lord Jesus Christ."',
+          'At the end:\n\nReader:\n"The word of the Lord."\n\nYou respond:\n\n"Thanks be to God."',
       },
       {
         heading: 'Why does this matter?',
-        body: 'Placeholder. God truly speaks to us when the Scriptures are proclaimed.',
+        body:
+          'The story of salvation did not begin when Jesus was born in Bethlehem.\n\nGod was preparing humanity for Christ from the beginning.\n\nThe Old Testament helps us understand who Jesus is and why He came.',
+      },
+      {
+        heading: 'Responsorial Psalm',
+        body:
+          'After the First Reading, we respond by praying a Psalm.\n\nThe Psalms are ancient prayers from Scripture.\n\nThey express every human emotion:\n\nJoy.\nFear.\nSuffering.\nRepentance.\nTrust.\nPraise.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'Jesus Himself prayed the Psalms.\n\nEven on the Cross, Jesus prayed using the words of Psalm 22:\n\n"My God, my God, why have you forsaken me?"',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Sit.\n\nListen and join the repeated response.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'The response changes each Mass.\n\nThe reader or cantor will usually say it first.\n\nYou repeat the response.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'After God speaks, we respond.\n\nThe Psalms teach us how to bring our whole life before God.',
+      },
+      {
+        heading: 'Second Reading',
+        body:
+          'On Sundays and special celebrations, there is usually a second reading.\n\nThis normally comes from the letters of the apostles in the New Testament.\n\nThese letters were written to guide the early Christians.',
+      },
+      {
+        heading: 'History and Tradition',
+        body:
+          'The first Christians gathered together and listened to the teaching of the apostles.\n\nThe same letters that strengthened the early Church continue to strengthen us today.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Sit.\n\nListen.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'At the end:\n\nReader:\n"The word of the Lord."\n\nYou respond:\n\n"Thanks be to God."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The Church today is connected to the Church of the apostles.\n\nWe are listening to the same faith handed down from the beginning.',
+      },
+      {
+        heading: 'Gospel Acclamation',
+        body:
+          'The assembly stands to welcome the Gospel.\n\nThe Gospel is the high point of the Liturgy of the Word because it contains the words and actions of Jesus Christ.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nSing or say the acclamation.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Usually:\n\n"Alleluia."\n\nDuring Lent, another acclamation is used.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'We stand because we are about to hear the words and life of our King.\n\nThe Gospel receives special honour because Christ Himself is at the centre.',
+      },
+      {
+        heading: 'Gospel Reading',
+        body:
+          'The priest or deacon proclaims the Gospel.\n\nBefore hearing it, Catholics make three small crosses:\n\nOne on the forehead.\nOne on the lips.\nOne on the heart.\n\nIt is a silent prayer:\n\nMay God’s Word be in my mind.\n\nMay God’s Word be on my lips.\n\nMay God’s Word be in my heart.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nMake the three small crosses.\n\nListen.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'Priest:\n"A reading from the holy Gospel according to..."\n\nYou respond:\n\n"Glory to you, O Lord."\n\nAt the end:\n\nPriest:\n"The Gospel of the Lord."\n\nYou respond:\n\n"Praise to you, Lord Jesus Christ."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The Gospel is not only information about Jesus.\n\nIt is an encounter with Jesus.',
+      },
+      {
+        heading: 'Homily',
+        body:
+          'The priest or deacon explains the Scriptures and connects them to our lives.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'After His Resurrection, Jesus walked with two disciples on the road to Emmaus.\n\nHe explained the Scriptures and showed how they pointed to Him.\n\nThe homily continues this tradition.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Sit.\n\nListen.\n\nAsk:\n\n"What is God trying to show me?"',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The purpose is not just learning.\n\nThe goal is conversion.\n\nWe allow God to change our hearts.',
+      },
+      {
+        heading: 'Profession of Faith',
+        body:
+          'After hearing God’s Word and the homily, the Church responds by proclaiming what we believe.\n\nThe Creed is a summary of the Christian faith handed down through the centuries.\n\nWe do not say only what we feel.\n\nWe profess the faith of the Church.',
+      },
+      {
+        heading: 'History and Tradition',
+        body:
+          'The Nicene Creed comes from the early centuries of Christianity, especially the Councils of Nicaea in 325 and Constantinople in 381.\n\nThe Church used it to clearly explain the faith and protect the truth about who Jesus is.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Stand.\n\nPray together with the Church.\n\nBow when remembering the mystery of Jesus becoming man.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'Pray the Creed together with the Church, following the words used at your parish.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The Creed reminds us that Christianity is bigger than ourselves.\n\nWe join the same faith proclaimed by Christians across the world and throughout history.',
+      },
+      {
+        heading: 'Prayers of the Faithful',
+        body:
+          'The Church brings prayers and needs before God.\n\nWe pray for:\n\nThe Church.\nThe world.\nThose suffering.\nOur community.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nPray with everyone.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Usually:\n\n"Lord, hear our prayer."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The Mass is never only about ourselves.\n\nWe pray as members of the Body of Christ for the needs of others.',
       },
     ],
   },

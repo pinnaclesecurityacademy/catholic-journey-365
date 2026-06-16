@@ -8,14 +8,11 @@
 // short common responses appear, and only once approved content is added.
 
 export type MassCard = {
-  // The fixed teaching prompt this card answers.
-  heading:
-    | 'What is happening?'
-    | 'Biblical connection'
-    | 'History and Tradition'
-    | 'What do I do?'
-    | 'What do I say?'
-    | 'Why does this matter?';
+  // Usually one of the fixed teaching prompts ("What is happening?",
+  // "Biblical connection", "History and Tradition", "What do I do?",
+  // "What do I say?", "Why does this matter?"). A card may also use a short
+  // sub-topic label to head a grouped set of prompts within a section.
+  heading: string;
   body: string;
   // When true, the body is shown set apart in the Sacred Prayer style.
   pray?: boolean;
@@ -63,22 +60,90 @@ export const massSections: MassSection[] = [
     number: '0',
     title: 'Before Mass Begins',
     intro:
-      'Placeholder. How we prepare ourselves as we arrive, entering into a spirit of reverence and prayer.',
+      'Preparing to meet Jesus. Before the Mass officially begins, Catholics prepare their hearts. For someone new, returning, or unsure, the questions often begin before the opening hymn. What do I do with the holy water? Why are people kneeling? Where is Jesus in the church? This section helps you enter the church with peace and reverence.',
     cards: [
       {
-        heading: 'What is happening?',
+        heading: 'Entering the Church',
         body:
-          'Placeholder. We arrive, quiet our hearts, and prepare to enter into worship.',
+          'When Catholics enter a church, they are entering a sacred place set apart for prayer and worship.\n\nThe church is not just a meeting hall. At the centre of every Catholic church is Jesus Christ, truly present in the Eucharist reserved in the tabernacle.\n\nBefore Mass begins, Catholics take time to slow down, quiet their hearts, and remember whose presence they are entering.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'When Moses approached the burning bush, God said:\n\n"Take your sandals off your feet, for the place where you stand is holy ground."\nExodus 3:5',
       },
       {
         heading: 'What do I do?',
+        body: 'Enter quietly and reverently.\n\nTake time to prepare your heart.',
+      },
+      {
+        heading: 'What do I say?',
         body:
-          'Placeholder. Blessing yourself with holy water at the entrance as a reminder of Baptism. Genuflecting toward the tabernacle before taking your seat, out of reverence for the presence of Christ. Keeping a prayerful silence before Mass begins.',
+          'Usually nothing.\n\nYou may quietly pray:\n\n"Lord, help me be present. Open my heart to hear you."',
       },
       {
         heading: 'Why does this matter?',
         body:
-          'Placeholder. These small gestures help us turn our attention to God and recall who we are about to meet.',
+          'You are not simply entering a building.\n\nYou are preparing yourself to encounter God.',
+      },
+      {
+        heading: 'Holy Water',
+        body:
+          'Near the entrance of most Catholic churches is holy water.\n\nCatholics dip their fingers into the water and make the Sign of the Cross.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Dip your fingers lightly into the holy water.\n\nMake the Sign of the Cross:\n\nForehead\nChest\nLeft shoulder\nRight shoulder',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          '"In the name of the Father, and of the Son, and of the Holy Spirit. Amen."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'Holy water reminds us of Baptism.\n\nThrough Baptism we became children of God and members of the Church.\n\nIt is a small action, but it reminds us:\n\n"I belong to Christ."',
+      },
+      {
+        heading: 'Genuflecting Before Sitting',
+        body:
+          'Before entering the pew, Catholics usually genuflect toward the tabernacle.\n\nA genuflection is briefly kneeling on one knee as an act of reverence.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Face the tabernacle.\n\nLower your right knee briefly to the ground.\n\nMake the Sign of the Cross if you wish.\n\nThen enter the pew.\n\nIf you cannot kneel, a respectful bow is appropriate.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'Saint Paul writes:\n\n"At the name of Jesus every knee should bow."\nPhilippians 2:10',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'Catholics genuflect because Jesus is truly present in the Eucharist reserved in the tabernacle.\n\nWe are not bowing to a building.\n\nWe are showing love and reverence to Christ.',
+      },
+      {
+        heading: 'Personal Prayer Before Mass',
+        body:
+          'Before Mass starts, Catholics usually spend a few moments in silent prayer.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Sit or kneel.\n\nSpeak honestly to God.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'You might pray:\n\n"Lord, help me be present. Open my heart to hear you."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'Mass is not something we watch.\n\nIt is something we enter into.\n\nThis quiet time helps us prepare to receive what God wants to give us.',
       },
     ],
   },

@@ -10,11 +10,14 @@ type SacredImageCardProps = SacredCardProps & {
   imageAlt?: string;
 };
 
+export const sacredCardClassName =
+  'rounded-2xl border border-parchment-200 bg-white/90 p-5 shadow-[0_12px_32px_rgba(74,55,40,0.08)]';
+
+export const sacredButtonCardClassName = `${sacredCardClassName} active:scale-[0.99] transition`;
+
 export function SacredCard({ children, className = '' }: SacredCardProps) {
   return (
-    <div
-      className={`rounded-2xl border border-parchment-200 bg-white/90 p-5 shadow-[0_12px_32px_rgba(74,55,40,0.08)] ${className}`}
-    >
+    <div className={`${sacredCardClassName} ${className}`}>
       {children}
     </div>
   );

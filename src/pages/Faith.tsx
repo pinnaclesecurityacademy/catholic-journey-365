@@ -1,4 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+import {
+  SacredCard,
+  sacredButtonCardClassName,
+} from '../components/SacredCard';
 
 // Faith hub. Groups the app's devotional libraries (Prayer, Saints) and
 // upcoming areas (Mass, Sacraments) behind one tab. Access only: each live
@@ -41,8 +45,8 @@ export default function Faith() {
   const navigate = useNavigate();
 
   return (
-    <div className="max-w-md mx-auto px-5 pt-8">
-      <header className="mb-6">
+    <div className="mx-auto max-w-md px-4 pt-5 pb-6">
+      <header className="mb-6 px-1">
         <h1 className="font-display text-3xl font-bold text-leather-900">
           Faith
         </h1>
@@ -56,10 +60,7 @@ export default function Faith() {
         {FAITH_CARDS.map((card) => {
           if (card.comingSoon) {
             return (
-              <div
-                key={card.title}
-                className="w-full text-left rounded-2xl bg-white border border-parchment-200 p-5 opacity-70"
-              >
+              <SacredCard key={card.title} className="opacity-70">
                 <div className="flex items-center justify-between">
                   <span className="font-display text-xl font-semibold text-leather-900">
                     {card.title}
@@ -69,20 +70,20 @@ export default function Faith() {
                   </span>
                 </div>
                 <p className="mt-1 text-sm text-stone-500">{card.description}</p>
-              </div>
+              </SacredCard>
             );
           }
           return (
             <button
               key={card.title}
               onClick={() => navigate(card.to!)}
-              className="w-full text-left rounded-2xl bg-white border border-parchment-200 p-5 active:scale-[0.99] transition"
+              className={`${sacredButtonCardClassName} w-full text-left`}
             >
               <div className="flex items-center justify-between">
                 <span className="font-display text-xl font-semibold text-leather-900">
                   {card.title}
                 </span>
-                <span className="text-leather-600 text-lg">→</span>
+                <span className="text-lg text-leather-600">&rarr;</span>
               </div>
               <p className="mt-1 text-sm text-stone-500">{card.description}</p>
             </button>

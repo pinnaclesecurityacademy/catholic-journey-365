@@ -5,6 +5,10 @@ import { TOTAL_DAYS } from '../config/journey';
 import { getAllCompletions } from '../lib/completions';
 import { useAccount, Member } from '../lib/account';
 import { CompletionRecord, ReadingDay } from '../lib/supabase';
+import {
+  SacredCard,
+  sacredButtonCardClassName,
+} from '../components/SacredCard';
 
 function isComplete(
   records: CompletionRecord[],
@@ -37,7 +41,7 @@ function Dot({ done }: { done: boolean }) {
           : 'border border-stone-300 text-stone-400'
       }`}
     >
-      {done ? '✓' : ''}
+      {done ? '\u2713' : ''}
     </span>
   );
 }
@@ -83,7 +87,7 @@ function buildPeriods(): Period[] {
       }
     }
     p.books =
-      seen.slice(0, 3).join(' / ') + (seen.length > 3 ? ' …' : '');
+      seen.slice(0, 3).join(' / ') + (seen.length > 3 ? ' ...' : '');
   }
   return periods;
 }
@@ -111,28 +115,28 @@ export default function Journey() {
   // ---- Period detail view (days within one period) ----
   if (selected) {
     return (
-      <div className="max-w-md mx-auto px-5 pt-8">
+      <div className="mx-auto max-w-md px-4 pt-5 pb-6">
         <button
           onClick={() => setSelected(null)}
-          className="text-leather-600 font-medium mb-4"
+          className="mb-4 rounded-xl border border-parchment-200 bg-white/80 px-4 py-2 text-sm font-semibold text-leather-600 shadow-[0_10px_28px_rgba(74,55,40,0.07)] transition active:scale-[0.99]"
         >
-          ← All Periods
+          &larr; All Periods
         </button>
-        <header className="mb-6">
+        <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
           <h1 className="font-display text-3xl font-bold text-leather-900">
             {selected.name}
           </h1>
           <p className="text-stone-500">
-            Day {selected.start}–{selected.end} · {selected.books}
+            Day {selected.start}-{selected.end} &middot; {selected.books}
           </p>
-        </header>
+        </SacredCard>
 
         <div className="space-y-3">
           {selected.days.map((day) => (
             <button
               key={day.day_number}
               onClick={() => navigate(`/day/${day.day_number}`)}
-              className="w-full text-left rounded-xl bg-white border border-parchment-200 p-4 active:scale-[0.99] transition"
+              className={`${sacredButtonCardClassName} w-full text-left`}
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -163,7 +167,7 @@ export default function Journey() {
 
   // ---- Periods overview (Bible Timeline) ----
   return (
-    <div className="max-w-md mx-auto px-5 pt-8">
+    <div className="mx-auto max-w-md px-4 pt-5 pb-6">
       <header className="mb-6">
         <h1 className="font-display text-3xl font-bold text-leather-900">
           Journey
@@ -185,10 +189,10 @@ export default function Journey() {
             <button
               key={`${p.name}-${p.start}`}
               onClick={() => setSelected(p)}
-              className={`w-full text-left rounded-xl p-4 active:scale-[0.99] transition border ${
+              className={`w-full text-left rounded-2xl p-5 shadow-[0_12px_32px_rgba(74,55,40,0.08)] active:scale-[0.99] transition border ${
                 isActive
-                  ? 'bg-parchment-50 border-leather-400 ring-1 ring-leather-400'
-                  : 'bg-white border-parchment-200'
+                  ? 'bg-parchment-50/95 border-leather-400 ring-1 ring-leather-400'
+                  : 'bg-white/90 border-parchment-200'
               }`}
             >
               <div className="flex items-start justify-between gap-3">
@@ -204,7 +208,7 @@ export default function Journey() {
                     )}
                   </div>
                   <p className="text-sm text-stone-500">
-                    Day {p.start}–{p.end}
+                    Day {p.start}-{p.end}
                   </p>
                   <p className="text-sm text-leather-600 mt-0.5">{p.books}</p>
                 </div>
@@ -220,9 +224,9 @@ export default function Journey() {
                   </span>
                   <span>{pct}%</span>
                 </div>
-                <div className="h-2 w-full rounded-full bg-parchment-200 overflow-hidden">
+                <div className="h-3 w-full rounded-full bg-parchment-200 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-leather-600"
+                    className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
                     style={{ width: `${pct}%` }}
                   />
                 </div>

@@ -9,6 +9,7 @@ import {
   BibleChapter,
   Testament,
 } from '../data/bible';
+import { SacredCard } from '../components/SacredCard';
 
 // Bible Library (route: /bible), V3.6.1 access polish.
 //
@@ -32,7 +33,7 @@ function InfoButton() {
   return (
     <span
       aria-hidden="true"
-      className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-parchment-200 text-xs font-semibold text-stone-400"
+      className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-parchment-200 bg-parchment-50 text-xs font-semibold text-stone-400"
     >
       i
     </span>
@@ -93,15 +94,15 @@ export default function Bible() {
   const testaments: Testament[] = ['old', 'new'];
 
   return (
-    <div className="max-w-md mx-auto px-5 pt-6 pb-12">
+    <div className="mx-auto max-w-md px-4 pt-5 pb-12">
       <button
         onClick={goBack}
-        className="text-leather-600 font-medium mb-6"
+        className="mb-5 rounded-xl border border-parchment-200 bg-white/80 px-4 py-2 text-sm font-semibold text-leather-600 shadow-[0_10px_28px_rgba(74,55,40,0.07)] transition active:scale-[0.99]"
       >
-        ← Back
+        &larr; Back
       </button>
 
-      <header className="mb-6">
+      <header className="mb-6 px-1">
         {view !== 'home' && (
           <p className="text-xs uppercase tracking-widest text-stone-400">
             {book?.name ?? 'Sacred Scripture'}
@@ -128,9 +129,8 @@ export default function Bible() {
               </p>
               <div className="space-y-3">
                 {getCategories(t).map((c) => (
-                  <div
+                  <SacredCard
                     key={c.id}
-                    className="rounded-2xl bg-white border border-parchment-200 p-5"
                   >
                     <div className="flex items-center gap-2 mb-2">
                       <h2 className="font-display text-xl font-bold text-leather-900">
@@ -149,12 +149,12 @@ export default function Bible() {
                             {b.name}
                           </span>
                           <span aria-hidden="true" className="text-leather-600">
-                            ›
+                            &rsaquo;
                           </span>
                         </button>
                       ))}
                     </div>
-                  </div>
+                  </SacredCard>
                 ))}
               </div>
             </section>
@@ -174,7 +174,7 @@ export default function Bible() {
                 <button
                   key={n}
                   onClick={() => openChapter(n)}
-                  className="flex items-center justify-center h-14 min-w-[3.5rem] rounded-2xl border text-xl font-semibold bg-white text-leather-900 border-parchment-200 active:scale-[0.97] transition"
+                  className="flex h-14 min-w-[3.5rem] items-center justify-center rounded-2xl border border-parchment-200 bg-white/90 text-xl font-semibold text-leather-900 shadow-[0_10px_28px_rgba(74,55,40,0.07)] transition active:scale-[0.97]"
                 >
                   {n}
                 </button>
@@ -188,9 +188,9 @@ export default function Bible() {
       {view === 'reader' &&
         book &&
         (loading ? (
-          <section className="rounded-2xl bg-white border border-parchment-200 p-5">
-            <p className="text-leather-900 leading-relaxed italic">Loading…</p>
-          </section>
+          <SacredCard>
+            <p className="text-leather-900 leading-relaxed italic">Loading...</p>
+          </SacredCard>
         ) : (
           <BibleReader book={book} chapter={chapter} />
         ))}

@@ -16,6 +16,11 @@ import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
 
 // The fixed teaching prompts. Any card whose heading is not one of these is the
 // start of a new subtopic group (its heading names the subtopic).
+// The subtopic whose card opens the daily Mass readings (same external source
+// used by the Today tab). Matched against the heading in massContent.
+const READINGS_HEADING = 'Today’s Mass Readings';
+const READINGS_URL = 'https://universalis.com/mass.htm';
+
 const PROMPTS = new Set([
   'What is happening?',
   'Biblical connection',
@@ -83,7 +88,7 @@ export default function OrderOfMass() {
       </h2>
       <p className="text-sm text-stone-500 mb-4">{hint}</p>
       <a
-        href="https://universalis.com/mass.htm"
+        href={READINGS_URL}
         target="_blank"
         rel="noreferrer"
         className="block w-full text-center rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
@@ -261,16 +266,22 @@ export default function OrderOfMass() {
                       </div>
                     )
                   )}
+                  {first.heading === READINGS_HEADING && (
+                    <a
+                      href={READINGS_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="block w-full text-center rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+                    >
+                      Open Today’s Readings
+                    </a>
+                  )}
                 </div>
               )}
             </section>
           );
         })}
       </div>
-
-      {/* Today's Mass readings link, available within the Word part. */}
-      {section.id === 'liturgy-of-the-word' &&
-        readingsCard('Follow along with today’s readings from the Mass.')}
 
       <button
         className={secondaryBtn + ' mb-3'}

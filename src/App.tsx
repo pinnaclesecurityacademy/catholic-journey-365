@@ -19,6 +19,7 @@ const Faith = lazy(() => import('./pages/Faith'));
 const Prayer = lazy(() => import('./pages/Prayer'));
 const PrayerDetail = lazy(() => import('./pages/PrayerDetail'));
 const Rosary = lazy(() => import('./pages/Rosary'));
+const OrderOfMass = lazy(() => import('./pages/OrderOfMass'));
 const Bible = lazy(() => import('./pages/Bible'));
 const ScriptureReading = lazy(() => import('./pages/ScriptureReading'));
 const Landing = lazy(() => import('./pages/Landing'));
@@ -68,6 +69,7 @@ function AppShell() {
           <Route path="/prayer/:categoryId/:prayerId" element={<PrayerDetail />} />
           <Route path="/rosary" element={<Rosary />} />
           <Route path="/rosary/:mystery" element={<Rosary />} />
+          <Route path="/mass" element={<OrderOfMass />} />
           <Route path="/bible" element={<Bible />} />
           <Route path="/bible/reading/:day" element={<ScriptureReading />} />
           <Route path="/profile" element={<Profile />} />

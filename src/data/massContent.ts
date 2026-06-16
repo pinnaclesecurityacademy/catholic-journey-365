@@ -846,24 +846,113 @@ export const massSections: MassSection[] = [
     number: '5',
     title: 'Concluding Rites',
     intro:
-      'Placeholder. We are blessed and sent out to live what we have celebrated.',
+      'Sent out to live the Gospel. The Mass does not end because our time with God is finished. It ends because we are being sent. We have gathered as God’s people. We have heard His Word. We have encountered Christ in the Eucharist. Now we are called to carry Christ into our families, workplaces, and the world. The word Mass comes from the Latin dismissal, "Ite, missa est," which carries the idea of being sent on a mission.',
     cards: [
       {
-        heading: 'What is happening?',
-        body: 'Placeholder. The final blessing and the dismissal.',
+        heading: 'Announcements',
+        body:
+          'Sometimes the priest or parish community shares announcements.\n\nThese might include parish events, opportunities to serve, or important information.',
       },
       {
         heading: 'What do I do?',
         body:
-          'Placeholder. Receive the blessing, and you may genuflect toward the tabernacle as you leave.',
+          'Sit or remain attentive, depending on the parish.\n\nListen.',
       },
       {
         heading: 'What do I say?',
-        body: 'At the dismissal we respond, "Thanks be to God."',
+        body: 'Usually nothing.',
       },
       {
         heading: 'Why does this matter?',
-        body: 'Placeholder. The Mass sends us out to bring Christ to the world.',
+        body:
+          'The Church is not only a place we visit once a week.\n\nIt is a community we are part of.',
+      },
+      {
+        heading: 'Final Blessing',
+        body:
+          'Before leaving, the priest blesses the people.\n\nWe entered the church making the Sign of the Cross.\n\nNow we leave with the blessing of the Trinity.\n\nThe Mass begins and ends with God.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'Before Jesus ascended into heaven, He blessed His disciples.\n\nLuke tells us:\n\n"He lifted up his hands and blessed them."\nLuke 24:50',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'Stand.\n\nMake the Sign of the Cross as the priest gives the blessing.',
+      },
+      {
+        heading: 'What do I say?',
+        body: 'Amen.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'A blessing is not just a nice ending.\n\nWe receive God’s grace and are strengthened to live as disciples.',
+      },
+      {
+        heading: 'Dismissal',
+        body:
+          'The priest or deacon sends the people out.\n\nWe are reminded that the Christian life continues outside the church doors.',
+      },
+      {
+        heading: 'Biblical connection',
+        body:
+          'Jesus told His disciples:\n\n"Go therefore and make disciples of all nations."\nMatthew 28:19',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Stand.\n\nRespond.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'The priest or deacon gives the dismissal.\n\nYou respond:\n\n"Thanks be to God."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'We are not saying:\n\n"Thanks, the Mass is finally over."\n\nWe are thanking God for what we have received and accepting the mission to live differently.',
+      },
+      {
+        heading: 'Final Hymn and Leaving the Church',
+        body:
+          'The priest and ministers process out.\n\nA hymn may be sung.\n\nMany people stay for a moment of personal prayer.',
+      },
+      {
+        heading: 'What do I do?',
+        body:
+          'You may join the hymn.\n\nBefore leaving your pew:\n\nFace the tabernacle.\nGenuflect or bow reverently.\nLeave quietly.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'Usually nothing.\n\nYou may quietly thank God for the Mass.',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The same Jesus we honoured when we entered the church remains present.\n\nWe leave with gratitude and respect.',
+      },
+      {
+        heading: 'After Mass',
+        body:
+          'The real journey begins.\n\nThe goal of Mass is not only to spend an hour with God.\n\nThe goal is transformation.\n\nAsk yourself:\n\nWhat did God say to me today?\n\nWho can I love better?\n\nHow can I bring Christ into my home?\n\nYour family.\nYour workplace.\nYour struggles.\nYour ordinary life.\n\nThat is where you now live the Mass.',
+      },
+      {
+        heading: 'What do I do?',
+        body: 'Go in peace.\n\nTry to live what you have received.',
+      },
+      {
+        heading: 'What do I say?',
+        body:
+          'You might pray:\n\n"Lord, help me live this Mass in my ordinary life."',
+      },
+      {
+        heading: 'Why does this matter?',
+        body:
+          'The Mass sends us out to love, serve, forgive, and witness to Christ.',
       },
     ],
   },

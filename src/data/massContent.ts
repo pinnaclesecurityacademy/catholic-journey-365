@@ -30,17 +30,17 @@ export type MassSection = {
 export const massWelcome = {
   title: 'Order of the Mass',
   whatIsIt:
-    'Placeholder. A short, welcoming introduction to what the Mass is and how this guide will walk you through it step by step.',
+    'A guide to understanding and entering into the Catholic Mass.\n\nThe Mass is the central prayer of the Catholic Church.\n\nAt Mass, Catholics gather to hear the Word of God, worship the Father, and receive Jesus Christ in the Eucharist.',
   whoIsItFor:
-    'Placeholder. A friendly note for newcomers, returning Catholics, and anyone who wants to understand the Mass more deeply.',
+    'This guide is for anyone who is new, returning to the Church, or simply wants to understand the Mass more deeply.',
   howToUse:
-    'Placeholder. Explain that the guide moves through the Mass in order, with simple cards explaining what is happening and what to do.',
+    'Walk step by step through what happens, what to do, what to say, and why each moment matters.\n\nThe goal is not just to follow along. The goal is to enter more deeply into the mystery of Christ.\n\nIf you feel unsure at Mass, you are not alone. Follow those around you, listen, pray, and keep coming closer to God.',
 };
 
 export const massComplete = {
-  title: 'Go in Peace',
+  title: 'You have completed the Order of the Mass guide',
   body:
-    'Placeholder. A closing reflection encouraging the reader to carry the grace of the Mass into daily life.',
+    'You now have a deeper understanding of the prayers, actions, and meaning of the Mass.\n\nThe Mass is not only something Catholics attend. It is something we enter into.\n\nThrough the Mass we hear God’s Word, encounter Jesus in the Eucharist, and are sent out to live our faith.\n\nCome back to this guide whenever you need help following along.\n\nYour journey with Christ continues.',
 };
 
 // The Spiritual Communion prayer, offered for those who cannot receive Holy

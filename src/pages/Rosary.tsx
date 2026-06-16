@@ -15,6 +15,29 @@ import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
 // Guided Rosary, Christ-centred meditation. Education + opening prayers + per-mystery content.
 type Step = 'start' | 'opening' | 'mysteries' | 'decades' | 'finish';
 
+const mysteryArtwork: Record<string, string> = {
+  'The Annunciation': '/images/rosary/joyful-annunciation.webp',
+  'The Visitation': '/images/rosary/joyful-visitation.webp',
+  'The Nativity': '/images/rosary/joyful-nativity.webp',
+  'The Presentation': '/images/rosary/joyful-presentation.webp',
+  'The Finding in the Temple': '/images/rosary/joyful-finding-jesus-temple.webp',
+  'The Baptism of Jesus': '/images/rosary/luminous-baptism.webp',
+  'The Wedding at Cana': '/images/rosary/luminous-wedding-cana.webp',
+  'The Proclamation of the Kingdom': '/images/rosary/luminous-proclamation-kingdom.webp',
+  'The Transfiguration': '/images/rosary/luminous-transfiguration.webp',
+  'The Institution of the Eucharist': '/images/rosary/luminous-institution-eucharist.webp',
+  'The Agony in the Garden': '/images/rosary/sorrowful-agony-garden.webp',
+  'The Scourging at the Pillar': '/images/rosary/sorrowful-scourging.webp',
+  'The Crowning with Thorns': '/images/rosary/sorrowful-crowning-thorns.webp',
+  'The Carrying of the Cross': '/images/rosary/sorrowful-carrying-cross.webp',
+  'The Crucifixion': '/images/rosary/sorrowful-crucifixion.webp',
+  'The Resurrection': '/images/rosary/glorious-resurrection.webp',
+  'The Ascension': '/images/rosary/glorious-ascension.webp',
+  'The Descent of the Holy Spirit': '/images/rosary/glorious-holy-spirit.webp',
+  'The Assumption of Mary': '/images/rosary/glorious-assumption.webp',
+  'The Coronation of Mary': '/images/rosary/glorious-coronation.webp',
+};
+
 export default function Rosary() {
   const { mystery } = useParams();
   const navigate = useNavigate();
@@ -188,6 +211,7 @@ export default function Rosary() {
   if (step === 'decades') {
     const group = getMysteryGroup(selectedMystery);
     const m = group?.mysteries[decade - 1];
+    const artwork = m ? mysteryArtwork[m.title] : undefined;
     return (
       <Shell>
         <header className="mb-5">
@@ -201,6 +225,16 @@ export default function Rosary() {
 
         {m && (
           <>
+            {artwork && (
+              <section className="rounded-2xl bg-white border border-parchment-200 p-2 mb-4 shadow-sm overflow-hidden">
+                <img
+                  src={artwork}
+                  alt={`${m.title} artwork`}
+                  className="h-80 max-h-80 w-full rounded-xl object-cover shadow-sm md:h-[420px] md:max-h-[420px]"
+                />
+              </section>
+            )}
+
             <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-4">
               <h2 className="font-display text-lg font-semibold text-leather-600 mb-2">
                 Story

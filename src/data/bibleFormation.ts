@@ -304,6 +304,47 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  exodus: {
+    book: 'Exodus',
+    subtitle: 'God rescues His people and forms them in covenant',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Exodus continues the story after Genesis. At the end of Genesis, the family of Jacob, also called Israel, has gone down into Egypt. By the beginning of Exodus, their descendants have grown into a large people, but they are enslaved. God hears their cry and raises up Moses to lead them out of slavery. Exodus is the story of rescue, covenant, worship, and God forming His people.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Exodus takes place in the ancient world of Egypt and the wilderness. Egypt was one of the great powers of the ancient world, with kings, temples, armies, and many gods. Against this background, the Lord reveals that He alone is God. He rescues Israel not because they are powerful, but because He is faithful to His promises. The journey from Egypt to Mount Sinai becomes one of the most important memories in Israel\'s faith.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Jewish and Catholic tradition have long connected Exodus with Moses and the first five books of the Bible. The Church also recognises that God worked through human authors, traditions, and communities who preserved these sacred writings. Exodus is inspired Scripture, written through real human history, and handed down as part of God\'s saving revelation.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Rescue from slavery: God hears the suffering of His people and acts to save them. Passover: The blood of the lamb marks God\'s people and becomes a lasting sign of deliverance. Covenant: At Mount Sinai, God gives His people the Law and calls them to live as His holy people. Worship: The tabernacle, priesthood, sacrifices, and sacred worship show that God wants to dwell among His people. Trust: In the wilderness, Israel must learn to trust God day by day.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Moses is called by God to lead Israel out of Egypt. Aaron assists Moses and becomes connected with the priesthood of Israel. Pharaoh resists God\'s command and shows the hardness of a heart turned against the Lord. The plagues reveal that the Lord is greater than the false gods and powers of Egypt. The Passover, the crossing of the Red Sea, the manna in the wilderness, the Ten Commandments, and the building of the tabernacle all become central moments in the story of salvation.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Exodus in the light of Jesus Christ. The Passover lamb points toward Jesus, the Lamb of God, who saves us through His sacrifice. The crossing of the Red Sea has long been seen as a sign of Baptism, where God brings His people from slavery into new life. The manna in the wilderness prepares us to understand the Eucharist, the true bread from heaven. The tabernacle points toward God dwelling with His people, fulfilled most deeply in Christ and continued in the life of the Church.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Exodus teaches us that God hears His people and rescues them. It helps Catholics understand the Mass, the Eucharist, Baptism, covenant, priesthood, sacrifice, and worship. It also reminds us that freedom is not just escape from slavery. True freedom is being brought into covenant with God. Exodus is the story of God leading His people out of bondage so they can worship Him and live as His own.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

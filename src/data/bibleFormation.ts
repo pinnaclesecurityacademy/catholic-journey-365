@@ -196,6 +196,42 @@ export const bibleSectionIntroductions: Record<string, BibleSectionIntroduction>
       },
     ],
   },
+  acts: {
+    title: 'Acts of the Apostles',
+    subtitle: 'The Holy Spirit guides the birth of the Church',
+    sections: [
+      {
+        heading: 'What is this section?',
+        content:
+          'Acts continues the story after the resurrection and ascension of Jesus. It shows how the apostles, filled with the Holy Spirit, began proclaiming the Gospel and carrying Christ\'s mission into the world. Acts tells the story of the early Church: prayer, preaching, miracles, persecution, conversion, and the spread of the faith. It shows that Jesus\' work continues through His Church.',
+      },
+      {
+        heading: 'Historical background',
+        content:
+          'Acts takes place in the first century world of the Roman Empire. After Jesus\' ascension, His followers began in Jerusalem and gradually carried the Gospel beyond the Jewish people to other nations. The book follows key moments in the growth of the Church, especially through the ministry of Peter and Paul. It shows the challenges faced by the first Christians as they followed Christ in a complex and often hostile world.',
+      },
+      {
+        heading: 'Importance to the Jewish people',
+        content:
+          'The earliest Christians were Jewish and understood Jesus as the fulfilment of God\'s promises to Israel. Acts shows the apostles preaching from the Scriptures of Israel and explaining how God\'s plan reaches fulfilment in Christ. It also shows a major moment in salvation history as Gentiles, people from all nations, are welcomed into God\'s covenant family.',
+      },
+      {
+        heading: 'How Jesus and the early Christians understood it',
+        content:
+          'Before ascending into heaven, Jesus promised that the Holy Spirit would come and guide His followers. Acts shows that promise fulfilled at Pentecost. The early Christians understood that they were not continuing the mission by their own strength. Christ remained with His Church through the Holy Spirit.',
+      },
+      {
+        heading: 'Catholic understanding today',
+        content:
+          'Catholics see Acts as the beginning of the visible mission of the Church. We see the apostles teaching, baptising, celebrating the breaking of bread, appointing leaders, and spreading the Gospel. Acts helps Catholics understand apostolic faith, the work of the Holy Spirit, and the Church\'s mission to bring Christ to the world.',
+      },
+      {
+        heading: 'How it fits into salvation history',
+        content:
+          'Acts continues the journey: Resurrection, Ascension, Pentecost, Church, Mission, All nations. The same Holy Spirit who guided the apostles continues to guide the Church today. The story of God\'s salvation continues through the life and mission of Christ\'s Church.',
+      },
+    ],
+  },
 };
 
 export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {

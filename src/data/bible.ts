@@ -236,7 +236,7 @@ export const BIBLE_CATEGORIES: BibleCategory[] = [
   },
   {
     id: 'letters',
-    name: 'Letters',
+    name: 'Epistles',
     testament: 'new',
     description:
       'Letters of Saint Paul and the other apostles guiding the first Christian communities in faith and love.',

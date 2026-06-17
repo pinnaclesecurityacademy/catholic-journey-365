@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { SacredCard } from './SacredCard';
 
 type JourneyTimelineProps = {
@@ -47,6 +48,25 @@ export default function JourneyTimeline({
   period,
   progressPercent,
 }: JourneyTimelineProps) {
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const currentStageRef = useRef<HTMLLIElement | null>(null);
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    const currentStage = currentStageRef.current;
+    if (!scroller || !currentStage) return;
+
+    const targetLeft =
+      currentStage.offsetLeft -
+      scroller.clientWidth / 2 +
+      currentStage.offsetWidth / 2;
+
+    scroller.scrollTo({
+      left: Math.max(0, targetLeft),
+      behavior: 'smooth',
+    });
+  }, [currentDay]);
+
   return (
     <SacredCard className="mb-4 overflow-hidden p-0">
       <div className="px-5 pt-5">
@@ -67,6 +87,7 @@ export default function JourneyTimeline({
       </div>
 
       <div
+        ref={scrollerRef}
         aria-label="Scripture journey stages"
         className="mt-4 overflow-x-auto px-5 pb-5"
       >
@@ -81,7 +102,11 @@ export default function JourneyTimeline({
             const isCurrent = state === 'current';
 
             return (
-              <li key={stage.label} className="relative w-24 shrink-0">
+              <li
+                key={stage.label}
+                ref={isCurrent ? currentStageRef : null}
+                className="relative w-24 shrink-0"
+              >
                 <div className="flex flex-col items-center text-center">
                   <span
                     className={`z-10 flex h-10 w-10 items-center justify-center rounded-full border text-xs font-semibold shadow-[0_8px_18px_rgba(74,55,40,0.08)] ${

@@ -233,7 +233,10 @@ export default function Journey() {
   // ---- Periods overview (Bible Timeline) ----
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-6">
-      <section className="relative mb-5 overflow-hidden rounded-[1.75rem] bg-leather-900 text-white shadow-[0_24px_56px_rgba(28,25,23,0.22)]">
+      <button
+        onClick={() => navigate(`/day/${currentDay}`)}
+        className="relative mb-5 block w-full overflow-hidden rounded-[1.75rem] bg-leather-900 text-left text-white shadow-[0_24px_56px_rgba(28,25,23,0.22)] transition active:scale-[0.99]"
+      >
         <img
           src={periodIconSrc(currentPeriod)}
           alt=""
@@ -271,7 +274,7 @@ export default function Journey() {
             </div>
           </div>
         </div>
-      </section>
+      </button>
 
       <header className="mb-4 px-1">
         <h2 className="font-display text-2xl font-bold text-leather-900">

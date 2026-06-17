@@ -1148,6 +1148,293 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  job: {
+    book: 'Job',
+    subtitle: 'Holding on to God in the mystery of suffering',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Job is the first of the Wisdom books, and it wrestles with one of the deepest questions of the human heart: why do good people suffer. It tells of a faithful man who loses nearly everything and pours out his pain honestly before God. Job is poetry and sacred drama more than a simple history, and it invites us to bring our own struggles into the presence of the Lord.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Job is set in an ancient world outside the main story of Israel, in the land of Uz, giving it a timeless quality that speaks to people everywhere. Its style is largely poetic, framed by a story at the beginning and end. Rather than recording dated events, it explores a question that belongs to every age and every life.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Job was treasured among the wisdom writings of Israel and is received by the Church as inspired Scripture. Its author is unknown, and the Church leaves open questions about when and how it was composed. What matters is its inspired wisdom, which gently teaches us how to trust God even when life does not make sense.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Suffering: Job\'s pain is real, and the book does not offer easy answers. Faith in the dark: even while questioning, Job refuses to turn away from God. The limits of human understanding: Job\'s friends try to explain his suffering and get it wrong. The mystery of God\'s wisdom: in the end, God reveals His greatness, and Job learns to trust the One whose ways are higher than ours.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Job is a righteous man who suffers staggering losses yet continues to seek God. His friends come to comfort him but end up accusing him, insisting his suffering must be punishment. Job cries out honestly, longing for answers. At last God speaks from the whirlwind, not explaining everything but revealing His majesty, and Job humbly entrusts himself to the Lord.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Job in the light of Jesus Christ. Job, the innocent sufferer who pleads for one to stand between him and God, points toward Christ, the truly innocent One who suffers for us and becomes our mediator. On the Cross, Jesus enters fully into human pain, and in His resurrection He gives suffering a hidden meaning and a sure hope that Job could only reach toward.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Job speaks to everyone who has ever asked why a loving God allows pain. It gives us permission to bring our questions and sorrows honestly to the Lord. And it teaches that faith is not having every answer, but trusting the goodness of God in the dark, a trust that finds its rest in Christ, who suffered, died, and rose for us.',
+      },
+    ],
+  },
+  psalms: {
+    book: 'Psalms',
+    subtitle: 'The prayer book of the people of God',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'The Psalms are a collection of one hundred fifty prayers and songs that give voice to the whole life of faith. Here God\'s people praise, weep, repent, give thanks, and cry out for help. The Psalms are poetry meant to be prayed and sung, and they have been the heartbeat of worship for Israel, for Jesus, and for the Church ever since.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The Psalms were gathered over many centuries and used in the worship of Israel, especially at the temple in Jerusalem. They come from many situations: royal celebrations, times of national distress, personal sorrow, and overflowing joy. Together they form the prayer book that shaped how God\'s people spoke to Him.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Many Psalms are linked by tradition with King David, who is remembered as a singer and worshipper, while others are connected with various authors and temple singers. The Church honors this tradition while recognizing that the Psalms grew over time. Above all, they are received as inspired Scripture, the words God gives us to pray back to Him.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Praise: many Psalms simply glorify God for who He is. Worship: they lead the gathered people in adoring the Lord. Sorrow and repentance: the Psalms make room for grief and for turning back to God after sin. Trust: again and again they teach the heart to rely on God in every circumstance. Honesty: every human emotion finds a place here, lifted up to God.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'The Psalms are less about events than about the soul before God, yet they carry the memory of David, the temple, and the journeys of God\'s people. Some recall great moments of rescue, others the quiet ache of waiting on God. Across them all, the voice of the believer rises in praise, lament, thanksgiving, and hope.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read the Psalms in the light of Jesus Christ, who prayed them throughout His life and even from the Cross. Many Psalms speak prophetically of the Messiah, His suffering, and His victory, and the Church sees them fulfilled in Him. Today the Psalms remain at the center of Catholic prayer, sung at every Mass and prayed each day in the Liturgy of the Hours, so that the Church prays with the very words Christ Himself prayed.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'The Psalms teach us how to pray with our whole heart, in joy and in sorrow alike. They give words to feelings we struggle to express and lift them up to God. Praying the Psalms unites us with Jesus, with Israel, and with the whole Church across the ages, and they remain a daily school of worship, trust, and love for the Lord.',
+      },
+    ],
+  },
+  proverbs: {
+    book: 'Proverbs',
+    subtitle: 'Practical wisdom for a life shaped by God',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Proverbs is a treasury of short, memorable sayings about how to live wisely and well. Unlike the grand stories of earlier books, it focuses on everyday life: our words, our work, our friendships, and our choices. Its goal is to form the heart, teaching us to live in harmony with God\'s good order for the world.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Proverbs belongs to Israel\'s wisdom tradition, the kind of teaching passed from parents to children and from elders to the young. Such sayings were gathered and treasured over generations. The book reflects a settled life in which faithful people sought to live rightly day by day under God.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Proverbs is associated by tradition with King Solomon, famous for his wisdom, though the book itself gathers sayings from more than one source. The Church receives it as inspired Scripture and does not need to settle every question about its authorship. Its purpose is clear: to help us grow wise and good in the sight of God.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The fear of the Lord: reverence for God is the beginning of true wisdom. Practical wisdom: the book speaks to honesty, hard work, humility, and self control. Forming the heart: wisdom is not just being clever but becoming the kind of person God calls us to be. God\'s order: living wisely means living in tune with the way God made the world and the human heart.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Proverbs is not a story but a collection of teachings, often framed as a parent lovingly instructing a child. It personifies Wisdom as a gracious woman who calls out in the streets, inviting people to follow her path. Through its many sayings, it sketches the contrast between the wise and the foolish, and the everyday choices that shape a whole life.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Proverbs in the light of Jesus Christ. The figure of Wisdom, present with God and delighting in His works, prepares us to recognize Jesus, whom the Church calls the Wisdom of God made flesh. To follow the way of wisdom is, in the end, to follow Christ, who is Himself the way, the truth, and the life.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Proverbs offers down to earth guidance for living faithfully in ordinary life. It reminds us that holiness is built in small daily choices about how we speak, work, and treat others. By rooting all wisdom in reverence for God, it leads us toward Christ, in whom true wisdom and a well lived life are found.',
+      },
+    ],
+  },
+  ecclesiastes: {
+    book: 'Ecclesiastes',
+    subtitle: 'The search for meaning that only God can satisfy',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Ecclesiastes is a thoughtful, searching book that asks what life is really for. Its speaker explores pleasure, work, wealth, and wisdom, and finds that none of them, on their own, can fill the human heart. With striking honesty, the book exposes the emptiness of a life lived apart from God and quietly points us toward Him.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Ecclesiastes belongs to Israel\'s wisdom tradition and reflects on life in a prosperous, settled world. Its reflective, poetic style explores the limits of human achievement. Rather than telling a story, it offers the honest meditations of a seeker examining everything under the sun.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is traditionally associated with Solomon, the wise king, presenting itself as the reflection of one who had everything and still searched for meaning. The Church receives it as inspired Scripture while leaving open the questions of its exact authorship and date. Its enduring gift is its honest wisdom about the human longing for something more.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The search for meaning: the book probes whether life has lasting purpose. The limits of worldly success: pleasure, riches, and achievements cannot finally satisfy. The emptiness of life without God: apart from Him, everything feels like chasing the wind. Reverence and trust: the book concludes that we should fear God and keep His commandments, hinting that meaning is found in Him alone.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Ecclesiastes is a personal meditation rather than a narrative. Its speaker recalls testing every path to happiness, from grand projects to simple pleasures, and finding them all passing. There is a famous reflection that for everything there is a season. In the end, the seeker turns from the restless search to a humble trust in God.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Ecclesiastes in the light of Jesus Christ. Its honest restlessness echoes the truth that our hearts are made for God and cannot rest until they rest in Him. The emptiness it uncovers prepares us to welcome Christ, who alone gives life its lasting meaning and fills the longing that the world can never satisfy.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Ecclesiastes speaks to anyone who has wondered whether life adds up to anything. It gently warns us not to place our deepest hopes in success, pleasure, or possessions. And by exposing the emptiness of life without God, it turns our hearts toward Christ, in whom our search for meaning finds its true and lasting answer.',
+      },
+    ],
+  },
+  'song-of-solomon': {
+    book: 'Song of Songs',
+    subtitle: 'A poem of love that reveals the love of God',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'The Song of Songs is a beautiful poem celebrating the love between a bride and her bridegroom. On its surface it is a tender song of human love and marriage, full of poetry and imagery. Within the Bible it shines as a sign of something even greater: the faithful, passionate love between God and His people. It is poetry to be savored, not a historical account.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The Song belongs to Israel\'s wisdom and poetic tradition and uses the rich imagery of gardens, vineyards, and the beauty of creation. Its language is that of love poetry, meant to stir the heart. Rather than recording events, it draws us into the wonder of love itself, seen as a gift from God.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The Song is associated by tradition with Solomon, in keeping with its place among the wisdom writings, though it reads as carefully crafted poetry. The Church receives it as inspired Scripture and does not insist on settling every question of authorship. From early times, believers have treasured it as far more than a love song.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Love: the book honors the goodness and beauty of love between husband and wife. Marriage: it reflects the covenant union of two persons given to each other. Covenant love: in the prophets, God often describes His bond with His people as a marriage, and the Song echoes that imagery. Longing and delight: the poem captures the yearning of love that seeks and rejoices in the beloved.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'The Song unfolds as a dialogue of love between the bride and the bridegroom, with moments of seeking, finding, and rejoicing. There is little plot in the usual sense; instead the poem moves through images of beauty, desire, and faithful devotion. Its famous line that love is strong as death sums up the depth of the love it celebrates.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read the Song of Songs in the light of Jesus Christ. The Catholic spiritual tradition has long seen in it the love of God for His people and, above all, the love of Christ the Bridegroom for the Church, His bride. Saints and mystics have also read it as a picture of God\'s intimate love for each soul. In this way a poem of human love becomes a window into the heart of God.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'The Song reminds us that human love and marriage are good and holy gifts from God. Even more, it reveals that God loves us with a love that is faithful, tender, and strong. Read in the Catholic tradition, it draws us into the love of Christ for His Church and invites each of us into a deeper, more personal love for the Lord.',
+      },
+    ],
+  },
+  wisdom: {
+    book: 'Wisdom',
+    subtitle: "God's wisdom, justice, and the hope of immortality",
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'The Book of Wisdom is a rich reflection on the wisdom of God and the path of the righteous. It encourages believers to seek true wisdom, to live justly, and to trust that God will reward the faithful, even beyond death. It is part of the Catholic Old Testament canon and offers some of the clearest hope for eternal life in the Old Testament.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Wisdom was written for Jews living in a wider Greek speaking world, where faith was tested by the surrounding culture. It seeks to strengthen believers, reminding them that God\'s wisdom is greater than any human philosophy. Its style is reflective and exhortative, encouraging fidelity to the Lord.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Wisdom is written in the spirit of Solomon, the model of the wise king, though it comes from a later time. The Catholic Church receives it as inspired Scripture, part of the Old Testament canon. The Church honors its inspired teaching without depending on identifying its human author by name.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'God\'s wisdom: a radiant gift that guides and blesses those who seek it. Righteousness: living justly matters, even when the wicked seem to prosper. Immortality: the souls of the just are in the hand of God, and their hope is full of immortality. Justice: God will set things right, and faithfulness is never in vain. Wisdom is portrayed as a beautiful reflection of God\'s own goodness.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Wisdom is a meditation rather than a story, yet it looks back on God\'s saving acts, especially the rescue of His people in the past, as proof of His care. It contrasts the fate of the righteous and the wicked, and it famously describes how the just one may be tested and even put to death, yet is precious in God\'s sight. Throughout, Wisdom herself is praised as a gift to be sought above all.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read the Book of Wisdom in the light of Jesus Christ. Its description of the righteous one who is rejected and condemned yet vindicated by God has long been seen as a striking foreshadowing of Christ\'s passion. Its praise of divine Wisdom prepares us to recognize Jesus as the Wisdom of God, and its hope of immortality is fulfilled in His resurrection.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Wisdom strengthens us to seek God\'s wisdom above the passing ideas of the world. It assures us that living justly is worthwhile, even when goodness seems unrewarded. And its bright hope of immortality lifts our hearts toward the eternal life Christ has won, encouraging us to trust that our souls are safe in the hand of God.',
+      },
+    ],
+  },
+  sirach: {
+    book: 'Sirach',
+    subtitle: 'Wisdom for daily life, family, and faithful worship',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Sirach, also called Ecclesiasticus, is a rich collection of wise teaching about how to live a good and holy life. It covers family, friendship, work, speech, humility, and the worship of God. Warm and practical, it reads like the counsel of a wise and loving teacher. It is part of the Catholic Old Testament canon and has long been treasured for forming character and faith.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Sirach was written by a devout teacher in Jerusalem who wished to pass on the wisdom of Israel to the next generation, at a time when Greek culture was influencing the world around them. It seeks to root the young in the faith and traditions of their ancestors. Its style is that of practical instruction drawn from a life of faith.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Unusually for a wisdom book, Sirach names its author, a teacher known as Ben Sira, and his grandson explains in a preface how he translated the work. The Catholic Church receives it as inspired Scripture, part of the Old Testament canon. The Church treasures its guidance while simply receiving the book as it presents itself.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Practical wisdom: down to earth guidance for everyday choices. Family: honoring parents and caring for the home are shown as paths of holiness. Virtue: humility, patience, honesty, and self control are praised. Worship: reverence for God and faithful prayer stand at the center of a wise life. Tradition: the book honors the faith handed down and calls each generation to remain faithful.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Sirach is mostly teaching rather than narrative, but near its end it offers a beautiful praise of the faithful ancestors of Israel, recalling the great figures of salvation history with gratitude. Throughout, it personifies Wisdom as coming forth from God and making her home among His people, inviting all to seek her and live by her ways.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Sirach in the light of Jesus Christ. Its portrait of Wisdom dwelling among God\'s people prepares us for Jesus, the Wisdom of God who came to dwell with us. Its call to humility, mercy, and faithful worship reflects the very life Christ would teach and live, and its love of the tradition handed down points to the living faith carried on in the Church.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Sirach offers gentle, practical guidance for living faithfully in family life, work, and friendship. It reminds us that holiness grows through humble virtue and faithful worship. By honoring the wisdom handed down through the generations, it draws us toward Christ, the Wisdom of God, and helps us walk the everyday path of holiness.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

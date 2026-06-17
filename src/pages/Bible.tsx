@@ -9,6 +9,12 @@ import {
   BibleChapter,
   Testament,
 } from '../data/bible';
+import {
+  BibleBookIntroduction,
+  BibleSectionIntroduction,
+  getBibleBookIntroduction,
+  getBibleSectionIntroduction,
+} from '../data/bibleFormation';
 import { SacredCard } from '../components/SacredCard';
 
 // Bible Library (route: /bible), V3.6.1 access polish.
@@ -37,6 +43,53 @@ function InfoButton() {
     >
       i
     </span>
+  );
+}
+
+function FormationIntroCard({
+  label,
+  intro,
+}: {
+  label: string;
+  intro: BibleBookIntroduction | BibleSectionIntroduction;
+}) {
+  const title = 'book' in intro ? intro.book : intro.title;
+
+  return (
+    <SacredCard className="p-0 overflow-hidden">
+      <div className="border-b border-parchment-200 bg-parchment-50/70 px-5 py-4">
+        <p className="text-[0.65rem] uppercase tracking-widest text-stone-400">
+          {label}
+        </p>
+        <h3 className="font-display text-xl font-bold text-leather-900 mt-1">
+          {title}
+        </h3>
+        <p className="mt-1 text-sm leading-relaxed text-stone-500">
+          {intro.subtitle}
+        </p>
+      </div>
+
+      <div className="divide-y divide-parchment-200">
+        {intro.sections.map((section, index) => (
+          <details key={section.heading} open={index === 0} className="group">
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left">
+              <span className="font-semibold text-leather-900">
+                {section.heading}
+              </span>
+              <span
+                aria-hidden="true"
+                className="text-lg leading-none text-gold transition group-open:rotate-90"
+              >
+                &rsaquo;
+              </span>
+            </summary>
+            <p className="px-5 pb-4 text-sm leading-relaxed text-stone-600">
+              {section.content}
+            </p>
+          </details>
+        ))}
+      </div>
+    </SacredCard>
   );
 }
 
@@ -92,6 +145,14 @@ export default function Bible() {
   const heading = view === 'home' ? 'Sacred Scripture' : book?.name ?? '';
 
   const testaments: Testament[] = ['old', 'new'];
+  const bookCategory = book
+    ? getCategories(book.testament).find((c) => c.bookIds.includes(book.id))
+    : undefined;
+  const bookIntro = book ? getBibleBookIntroduction(book.id) : undefined;
+  const sectionIntro = bookCategory
+    ? getBibleSectionIntroduction(bookCategory.id)
+    : undefined;
+  const hasFormationIntro = Boolean(bookIntro || sectionIntro);
 
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-12">
@@ -165,6 +226,25 @@ export default function Bible() {
       {/* Book: choose a chapter (large, comfortable tap targets) */}
       {view === 'chapters' && book && (
         <div>
+          {hasFormationIntro && (
+            <section className="mb-7">
+              <p className="text-xs uppercase tracking-widest text-stone-400 mb-3">
+                Before You Read
+              </p>
+              <div className="space-y-3">
+                {bookIntro && (
+                  <FormationIntroCard label="Book Introduction" intro={bookIntro} />
+                )}
+                {sectionIntro && (
+                  <FormationIntroCard
+                    label="Section Introduction"
+                    intro={sectionIntro}
+                  />
+                )}
+              </div>
+            </section>
+          )}
+
           <label className="block text-xs uppercase tracking-widest text-stone-400 mb-3">
             Chapters
           </label>

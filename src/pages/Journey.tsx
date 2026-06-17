@@ -156,6 +156,15 @@ export default function Journey() {
     readingPlan.find(
       (d) => !groupComplete(completions, d.day_number, members)
     )?.day_number ?? TOTAL_DAYS;
+  const currentPeriod =
+    periods.find((p) => currentDay >= p.start && currentDay <= p.end) ??
+    periods[0];
+  const currentPeriodDone = currentPeriod.days.filter((d) =>
+    groupComplete(completions, d.day_number, members)
+  ).length;
+  const currentPeriodPct = Math.round(
+    (currentPeriodDone / currentPeriod.days.length) * 100
+  );
 
   // ---- Period detail view (days within one period) ----
   if (selected) {
@@ -224,14 +233,58 @@ export default function Journey() {
   // ---- Periods overview (Bible Timeline) ----
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-6">
-      <header className="mb-6">
-        <h1 className="font-display text-3xl font-bold text-leather-900">
+      <section className="relative mb-5 overflow-hidden rounded-[1.75rem] bg-leather-900 text-white shadow-[0_24px_56px_rgba(28,25,23,0.22)]">
+        <img
+          src={periodIconSrc(currentPeriod)}
+          alt=""
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-leather-900/35 via-leather-900/70 to-leather-900/95" />
+        <div className="relative px-5 pb-5 pt-24">
+          <p className="text-xs uppercase tracking-widest text-gold">
+            Scripture Pilgrimage
+          </p>
+          <h1 className="mt-1 font-display text-3xl font-bold leading-tight">
+            Day {currentDay} of {TOTAL_DAYS}
+          </h1>
+          <div className="mt-4 rounded-2xl border border-white/20 bg-white/12 p-4 backdrop-blur-sm">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <p className="font-display text-xl font-semibold leading-tight text-parchment-50">
+                  {currentPeriod.name}
+                </p>
+                <p className="mt-1 text-sm text-parchment-100/80">
+                  {currentPeriod.books}
+                </p>
+              </div>
+              <span className="rounded-full bg-gold px-3 py-1 text-xs font-semibold text-leather-900">
+                {currentPeriodPct}%
+              </span>
+            </div>
+            <div className="mt-4 h-3 overflow-hidden rounded-full bg-parchment-100/25">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-gold to-parchment-100"
+                style={{ width: `${currentPeriodPct}%` }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <header className="mb-4 px-1">
+        <h2 className="font-display text-2xl font-bold text-leather-900">
           Journey
-        </h1>
-        <p className="text-stone-500">The Bible Timeline</p>
+        </h2>
+        <p className="text-sm text-stone-500">The Bible Timeline</p>
       </header>
 
-      <div className="space-y-3">
+      <div className="relative space-y-4 pb-2">
+        <span
+          aria-hidden="true"
+          className="absolute left-7 top-4 bottom-4 w-px bg-gradient-to-b from-gold/60 via-parchment-200 to-parchment-200"
+        />
         {periods.map((p) => {
           const total = p.days.length;
           const done = p.days.filter((d) =>
@@ -243,73 +296,78 @@ export default function Journey() {
             currentDay >= p.start && currentDay <= p.end;
 
           return (
-            <button
-              key={`${p.name}-${p.start}`}
-              onClick={() => setSelected(p)}
-              className={`w-full text-left rounded-2xl p-5 shadow-[0_12px_32px_rgba(74,55,40,0.08)] active:scale-[0.99] transition border ${
-                isActive
-                  ? 'bg-parchment-50/95 border-gold ring-2 ring-gold/20'
-                  : isComplete
-                    ? 'bg-gradient-to-br from-white to-parchment-50 border-gold/70'
-                    : 'bg-white/80 border-parchment-200'
-              }`}
-            >
-              <div className="flex items-start justify-between gap-3">
-                <div className="flex min-w-0 gap-3">
+            <div key={`${p.name}-${p.start}`} className="relative pl-10">
+              <button
+                onClick={() => setSelected(p)}
+                className={`w-full rounded-2xl border p-4 text-left shadow-[0_12px_32px_rgba(74,55,40,0.08)] transition active:scale-[0.99] ${
+                  isActive
+                    ? 'border-gold bg-parchment-50/95 ring-2 ring-gold/20 shadow-[0_18px_42px_rgba(124,92,62,0.14)]'
+                    : isComplete
+                      ? 'border-gold/70 bg-gradient-to-br from-white to-parchment-50'
+                      : 'border-parchment-200 bg-white/80'
+                }`}
+              >
+                <div className="flex items-start gap-3">
                   <img
                     src={periodIconSrc(p)}
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className={`h-14 w-14 shrink-0 rounded-full border-2 object-cover shadow-[0_10px_20px_rgba(74,55,40,0.08)] ${
+                    className={`-ml-12 mt-1 shrink-0 rounded-full border-2 object-cover shadow-[0_10px_20px_rgba(74,55,40,0.08)] ${
                       isActive
-                        ? 'border-gold ring-4 ring-gold/15'
+                        ? 'h-20 w-20 border-gold ring-4 ring-gold/15'
                         : isComplete
-                          ? 'border-gold'
-                          : 'border-parchment-200 opacity-60'
+                          ? 'h-16 w-16 border-gold'
+                          : 'h-16 w-16 border-parchment-200 opacity-60'
                     }`}
                   />
-                  <div className={isActive || isComplete ? '' : 'opacity-75'}>
-                  <div className="flex items-center gap-2">
-                    <h2 className="font-display text-xl font-bold text-leather-900">
-                      {p.name}
-                    </h2>
-                    {isActive && (
-                      <span className="text-[10px] uppercase tracking-wider font-semibold text-white bg-leather-600 rounded-full px-2 py-0.5">
-                        Current
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm text-stone-500">
-                    Day {p.start}-{p.end}
-                  </p>
-                  <p className="text-sm text-leather-600 mt-0.5">{p.books}</p>
-                  </div>
-                </div>
-                <div className="flex gap-1.5 shrink-0">
-                  <Dot done={isComplete} />
-                </div>
-              </div>
-
-              <div className="mt-3">
-                <div className="flex justify-between text-xs text-stone-500 mb-1">
-                  <span>
-                    {done}/{total} complete
-                  </span>
-                  <span>{pct}%</span>
-                </div>
-                <div className="h-3 w-full rounded-full bg-parchment-200 overflow-hidden">
                   <div
-                    className={`h-full rounded-full ${
-                      isComplete
-                        ? 'bg-gold'
-                        : 'bg-gradient-to-r from-leather-600 to-gold'
+                    className={`min-w-0 flex-1 ${
+                      isActive || isComplete ? '' : 'opacity-75'
                     }`}
-                    style={{ width: `${pct}%` }}
-                  />
+                  >
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="font-display text-xl font-bold text-leather-900">
+                        {p.name}
+                      </h3>
+                      {isActive && (
+                        <span className="rounded-full bg-leather-600 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
+                          Current Journey
+                        </span>
+                      )}
+                      {isComplete && !isActive && (
+                        <span className="rounded-full bg-gold px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-leather-900">
+                          Complete
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-sm text-stone-500">
+                      Day {p.start}-{p.end}
+                    </p>
+                    <p className="mt-0.5 text-sm text-leather-600">{p.books}</p>
+                  </div>
                 </div>
-              </div>
-            </button>
+
+                <div className="mt-4">
+                  <div className="mb-1 flex justify-between text-xs text-stone-500">
+                    <span>
+                      {done}/{total} complete
+                    </span>
+                    <span>{pct}%</span>
+                  </div>
+                  <div className="h-3 w-full overflow-hidden rounded-full bg-parchment-200">
+                    <div
+                      className={`h-full rounded-full ${
+                        isComplete
+                          ? 'bg-gold'
+                          : 'bg-gradient-to-r from-leather-600 to-gold'
+                      }`}
+                      style={{ width: `${pct}%` }}
+                    />
+                  </div>
+                </div>
+              </button>
+            </div>
           );
         })}
       </div>

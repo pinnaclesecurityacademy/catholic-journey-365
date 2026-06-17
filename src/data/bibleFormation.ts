@@ -253,6 +253,37 @@ export const bibleSectionIntroductions: Record<string, BibleSectionIntroduction>
       },
     ],
   },
+  revelation: {
+    title: 'Revelation',
+    subtitle: 'Christ is victorious and God makes all things new',
+    sections: [
+      {
+        heading: 'What is this section?',
+        content:
+          'Revelation is the final book of the Bible. It is a book of prophecy, vision, worship, warning, hope, and victory. At first, Revelation can feel confusing because it uses symbols, numbers, beasts, angels, heavenly worship, and dramatic images. But its central message is clear: Jesus Christ is Lord, evil will not win, and God will bring His people safely into the fullness of His Kingdom.',
+      },
+      {
+        heading: 'Historical background',
+        content:
+          'Revelation was written to Christians facing pressure, suffering, and persecution. The early Church lived in a world where the Roman Empire appeared powerful and permanent. Revelation helped believers see beyond earthly power and remember that Christ, not any empire, rules history. Its symbols draw deeply from the Old Testament, especially the prophets, Exodus, temple worship, and images of God\'s final victory.',
+      },
+      {
+        heading: 'How the early Christians understood it',
+        content:
+          'The early Christians received Revelation as a message of hope and endurance. It reminded them that their suffering was not forgotten by God. They saw heavenly worship, the victory of the Lamb, and the final defeat of evil as encouragement to remain faithful to Christ. They understood that Jesus had already conquered through His death and resurrection, even while the Church still waited for the final fulfilment of God\'s Kingdom.',
+      },
+      {
+        heading: 'Catholic understanding today',
+        content:
+          'Catholics read Revelation carefully and reverently, not as a codebook for guessing dates or predicting every world event. The Church sees Revelation as inspired Scripture that reveals Christ\'s victory, the seriousness of evil, the hope of heaven, and the final renewal of creation. Revelation also gives Catholics a powerful vision of worship: angels, saints, prayers rising before God, and the Lamb who was slain. It reminds us that the Mass on earth is joined to the worship of heaven.',
+      },
+      {
+        heading: 'How it fits into salvation history',
+        content:
+          'Revelation brings the Bible\'s story to its final hope. The journey becomes: Creation, Fall, Covenant, Christ, Church, Victory, New Creation. The Bible begins with creation and ends with new creation. God does not abandon His people or His world. In Christ, all things are brought to fulfilment, and God makes all things new.',
+      },
+    ],
+  },
 };
 
 export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {

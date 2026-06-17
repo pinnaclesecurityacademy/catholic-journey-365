@@ -2378,6 +2378,375 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  romans: {
+    book: 'Romans',
+    subtitle: 'The good news of grace, faith, and new life in Christ',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Romans is one of Saint Paul\'s greatest letters, a rich explanation of the Gospel he preached as an apostle of Christ. Writing to the Christians in Rome, Paul unfolds how God saves us through Jesus, bringing both Jews and Gentiles into one family. As inspired Scripture handed on by the Church, Romans helps us understand sin, grace, and the new life God offers in His Son.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Paul wrote to a Christian community in Rome that he had not yet visited, hoping to strengthen their faith and prepare for a future journey. The Church there included believers from both Jewish and Gentile backgrounds, who needed to understand how they belonged together in Christ. Paul writes as an apostolic teacher, setting out the heart of the Gospel.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Romans is firmly received as a letter of Saint Paul, written through a scribe as was common in his day. The Church treasures it as inspired Scripture, the teaching of an apostle handed on within the living community of faith. Paul writes not as a lone voice but as one sent by Christ to build up the Church.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Sin: all people stand in need of God\'s mercy. Grace: salvation is God\'s free gift, which we could never earn. Faith: we are justified by faith in Christ, a faith that the Church understands as living and active through love. New life in Christ: through Baptism we die to sin and rise to new life. Jew and Gentile: God\'s plan unites all peoples in one family of faith.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Romans is a letter of teaching rather than a story, yet it carries the passion of Paul\'s mission. He explains how all have sinned and how God offers salvation freely in Christ. He speaks movingly of Baptism, in which we are joined to Christ\'s death and resurrection, and of the Holy Spirit who lives in believers. He closes with practical guidance on love, humility, and life together in the Church.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Romans proclaims that we are saved by God\'s grace through faith in Jesus Christ, not by our own merits. The Church understands this saving faith as one that transforms us from within, bearing fruit in love, obedience, and holiness by the power of the Holy Spirit. Through Baptism we are united to Christ\'s death and resurrection, and through grace we are made new, called to live no longer for sin but for God.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Romans fills us with gratitude for the gift of salvation we receive in Christ. It teaches that grace truly changes us, calling us to a holy life lived in love and empowered by the Spirit. And its vision of Jew and Gentile united in one family encourages us to treasure the unity of the Church, where God gathers all people into His grace.',
+      },
+    ],
+  },
+  '1-corinthians': {
+    book: '1 Corinthians',
+    subtitle: 'Building up a holy community in love',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First Corinthians is a heartfelt letter from Saint Paul to a young Church struggling with division and confusion. As their apostle and spiritual father, Paul writes to heal their quarrels and to call them to holiness and love. The letter touches on many practical matters of Christian life, and it contains some of the most beautiful teaching in the New Testament on the Eucharist, on love, and on the resurrection.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Corinth was a bustling, diverse city, and its Christian community had absorbed some of the divisions and moral confusion around it. The believers were splitting into factions and struggling to live their new faith. Paul writes as their founder in the Gospel to guide them back to unity and to a way of life worthy of Christ.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'First Corinthians is firmly received as a genuine letter of Saint Paul. The Church treasures it as inspired Scripture and as the teaching of an apostle caring for a community he loved. Paul writes with the authority Christ gave him, calling the Corinthians to faithful Christian living.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Unity: Paul pleads with the divided community to be reconciled in Christ. The Eucharist: he hands on the words of Jesus at the Last Supper and warns against receiving the Body and Blood of the Lord unworthily. Love: the famous hymn to love teaches that without charity, nothing else has value. Holiness: he calls the believers to honor God in their bodies and their conduct. Resurrection: he proclaims that Christ is risen and that we too will rise.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul addresses real problems in the Corinthian Church, from rivalries to moral failings to confusion at their gatherings. He recalls the institution of the Eucharist, giving us some of the earliest written words of the Last Supper. He offers the great teaching on love that is read at countless weddings, and he insists on the truth of Christ\'s resurrection as the foundation of our hope.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'First Corinthians draws us deeply into the mystery of Christ present in the Eucharist, his Body and Blood truly given for us. It teaches that the Church is the Body of Christ, with many members united in love. And it grounds our hope in the risen Jesus, the first fruits of those who have died, assuring us that because He lives, we too will share in His resurrection.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First Corinthians speaks to every community that struggles with division, calling us to unity and charity. Its teaching on the Eucharist deepens our reverence for the gift of the Mass. And its hymn to love and its proclamation of the resurrection lift our hearts, reminding us that love endures and that Christ has conquered death.',
+      },
+    ],
+  },
+  '2-corinthians': {
+    book: '2 Corinthians',
+    subtitle: 'Strength made perfect in weakness',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second Corinthians is Saint Paul\'s most personal letter, written after a painful period in his relationship with the Corinthian Church. As their apostle, he opens his heart, speaking of his sufferings, his love for them, and the comfort God gives in trials. The letter is a moving witness to how God\'s grace works through human weakness, and to the call to reconciliation and generosity.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'After earlier tensions and misunderstandings, Paul writes to mend the relationship with the Corinthians and to defend his ministry against critics. He had suffered much for the Gospel, and some doubted him. Paul responds not with pride but by pointing to Christ, whose power shines through Paul\'s own frailty.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Second Corinthians is firmly received as a letter of Saint Paul. The Church treasures it as inspired Scripture and as the witness of an apostle who poured out his life for the Gospel. Paul writes with tenderness and authority, seeking reconciliation with a community he deeply loves.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Apostolic suffering: Paul shares the hardships he endures for Christ. Reconciliation: he longs to be at peace with the Corinthians and proclaims that God reconciles us to Himself in Christ. Weakness and grace: he learns that God\'s grace is sufficient, and that power is made perfect in weakness. Generosity: he encourages joyful, generous giving to support fellow Christians in need.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul recounts his many trials, including persecutions, dangers, and a personal hardship he calls a thorn in the flesh, through which he learned to rely on God\'s grace. He appeals for reconciliation and forgiveness within the community. He also organizes a collection for the struggling Church in Jerusalem, teaching that God loves a cheerful giver.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Second Corinthians reveals that God\'s grace shines most brightly through human weakness, as it did supremely in the Cross of Christ. Paul proclaims that in Christ, God was reconciling the world to Himself, and he calls believers to be ambassadors of that reconciliation. Through our weaknesses united to Christ, His strength is made present, and we become a new creation in Him.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second Corinthians comforts us when we feel weak or burdened, assuring us that God\'s grace is enough. It calls us to seek reconciliation and to be generous toward those in need. And it teaches us, with Paul, to find strength not in our own power but in Christ, whose grace works wonders through our littleness.',
+      },
+    ],
+  },
+  galatians: {
+    book: 'Galatians',
+    subtitle: 'The freedom of God\'s children, living by the Spirit',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Galatians is a passionate letter in which Saint Paul defends the heart of the Gospel: that we are saved by God\'s grace in Christ. Some were teaching the Galatian Christians that they had to take on the full requirements of the Jewish law to be saved. Paul, as their apostle, insists that true freedom comes through faith in Christ, a faith that lives and bears fruit in love.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Paul had brought the Gospel to the Galatians, but after he left, other teachers insisted that Gentile converts must follow practices like circumcision and the whole Mosaic law. This threatened to obscure the gift of salvation in Christ. Paul writes urgently to call the Galatians back to the true Gospel of grace.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Galatians is firmly received as a genuine letter of Saint Paul. The Church treasures it as inspired Scripture and as the apostolic teaching that safeguards the Gospel of grace. Paul writes with deep concern, defending the truth that Christ has set us free.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Freedom in Christ: we are freed from sin and from trying to earn salvation by our own works. Grace: salvation is God\'s gift, received through faith. Faith working through love: Paul teaches that what matters is faith expressing itself in love, a faith that is living and active. Life in the Spirit: he calls believers to walk by the Spirit and to bear its fruit, such as love, joy, peace, and patience.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul recounts his own calling by Christ and his ministry alongside the other apostles, showing his unity with the Church. He confronts the confusion troubling the Galatians and reminds them that in Baptism they have put on Christ, becoming children of God. He famously lists the fruit of the Spirit, describing the transformed life that grace makes possible.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Galatians proclaims that Christ has set us free and made us children of God. The Church understands this grace not as a license to do as we please, but as the power to live a new life in the Spirit, where faith bears fruit in love and good works. Through Baptism we are clothed in Christ, and by His Spirit we are enabled to live as God\'s beloved children.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Galatians reminds us that our salvation is a gift of God\'s grace, freeing us from fear and self reliance. It teaches that genuine faith is alive, working through love and producing the fruit of the Spirit. And it encourages us to live as the free children of God, walking each day in the new life Christ won for us.',
+      },
+    ],
+  },
+  ephesians: {
+    book: 'Ephesians',
+    subtitle: 'The mystery of the Church, the Body of Christ',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Ephesians is a soaring letter about God\'s great plan to unite all things in Christ and about the Church as the Body of Christ. Written in Paul\'s name to encourage believers, it lifts our eyes to the grandeur of God\'s grace and then shows how that grace shapes everyday Christian life. It is a letter about unity, holiness, and living as God\'s beloved people.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Ephesians addresses Christians living amid a culture of many beliefs, helping them grasp the dignity of their calling in Christ. It encourages a community drawn from different backgrounds to live as one in the Lord. The letter moves from the heights of God\'s plan to very practical guidance for the home and daily life.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Ephesians is received within the Church as a letter of the Pauline tradition, treasured as inspired Scripture. The Church honors it as apostolic teaching without needing to settle every scholarly question about how it was written. Its message carries the authority of the Gospel handed on through Paul.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The Church as the Body of Christ: believers are joined to Christ the head and to one another. Unity: Jew and Gentile are made one in Christ, breaking down every dividing wall. Grace: we are saved by grace as God\'s gift, created for good works. Spiritual battle: Paul urges us to put on the armor of God against evil. Christian household life: love, respect, and self giving shape our families and relationships.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Ephesians is more meditation and exhortation than narrative. It praises God\'s plan to gather all things in Christ and celebrates how the Gentiles are now full members of God\'s household. It describes the Church as a holy temple and as Christ\'s own Body. It offers guidance for marriage and family rooted in mutual love, and it calls believers to stand firm against evil with the armor of God.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Ephesians reveals Christ as the head of the Church, his Body, in whom we are united by grace. The love of Christ for the Church is held up as the model for Christian marriage, a sign of His self giving love. Through Baptism we are made members of this one Body, and we are called to grow together into a holy dwelling place for God in the Spirit.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Ephesians fills us with wonder at God\'s plan to unite us in Christ and to make us His Church. It teaches that grace is a gift meant to bear fruit in good works and holy living. And its vision of unity, family life, and spiritual strength encourages us to live worthy of our calling as members of the Body of Christ.',
+      },
+    ],
+  },
+  philippians: {
+    book: 'Philippians',
+    subtitle: 'Joy and humility in the love of Christ',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Philippians is a warm and joyful letter from Saint Paul to a community he dearly loved. Remarkably, Paul writes it from prison, yet it overflows with joy and gratitude. As their apostle and friend, he encourages the Philippians to rejoice in the Lord always, to live in humility, and to imitate the self emptying love of Christ.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Paul wrote to the Christians at Philippi, who had supported him faithfully, while he himself was imprisoned for the Gospel. Despite his chains, he wished to thank them, to encourage them, and to strengthen their unity. The letter radiates affection and a deep, Christ centered joy that rises above hardship.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Philippians is firmly received as a genuine letter of Saint Paul. The Church treasures it as inspired Scripture and as the witness of an apostle whose joy in Christ shone even in suffering. Paul writes with tenderness, sharing his own heart with a beloved community.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Joy: Paul repeatedly calls the Philippians to rejoice in the Lord. Humility: he urges them to count others as more important than themselves. Christ\'s self emptying love: the beautiful hymn describes how Christ humbled Himself, even to death on a cross, and was exalted by God. Suffering: Paul shows how trials, united to Christ, can deepen faith and joy. Hope: he presses on toward the goal of life in Christ.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul shares his situation in prison and his unshakeable trust that Christ will be glorified whatever happens. At the heart of the letter is the great hymn of Christ, who did not cling to His divine glory but emptied Himself, becoming a servant and obediently embracing the Cross, and so was lifted high by the Father. Paul invites the Philippians to share this same mind of humble, self giving love.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Philippians draws us into the heart of Christ, who humbled Himself in love for our salvation. His self emptying, from the glory of heaven to the Cross, reveals the depth of God\'s love and shows us the path of true greatness through humility. United to Christ, even our sufferings can become a share in His love, leading to the joy of his resurrection.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Philippians teaches us to find joy in the Lord, even in difficult times. Its call to humility and to imitate Christ\'s self giving love shapes the way we treat others. And its example of Paul rejoicing in prison inspires us to trust that, in Christ, nothing can rob us of the deep peace and joy God offers.',
+      },
+    ],
+  },
+  colossians: {
+    book: 'Colossians',
+    subtitle: 'The supremacy of Christ and our new life in Him',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Colossians is a letter that lifts up the greatness of Jesus Christ above all things. Written to a community facing confusing teachings, it proclaims that Christ is supreme, the image of the invisible God, in whom all things hold together. As inspired Scripture handed on by the Church, it calls believers to hold fast to Christ and to live the new life they received in Him.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The Christians at Colossae were being unsettled by ideas that mixed the Gospel with other philosophies and practices. They needed to be reassured that Christ alone is sufficient and supreme. The letter answers this confusion by exalting the fullness of God dwelling in Christ.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Colossians is received within the Church as a letter of the Pauline tradition and is treasured as inspired Scripture. The Church honors it as apostolic teaching without needing to settle every scholarly question about its composition. Its message carries the authority of the Gospel proclaimed through Paul.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Christ\'s supremacy: Jesus is Lord of all creation, the head of the Church, in whom God\'s fullness dwells. New life in Christ: through Baptism believers have died and risen with Christ and are called to set their hearts on things above. Resisting false teaching: Paul warns against ideas that would diminish Christ or add empty practices. Holy living: clothed in compassion, kindness, humility, and love, believers live as God\'s chosen ones.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'At the center of Colossians stands a magnificent hymn praising Christ as the image of the invisible God, the firstborn of all creation, through whom and for whom all things were made. The letter urges the Colossians not to be led astray by hollow teachings. It then describes the new life of those raised with Christ in Baptism, calling them to put on love above all.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Colossians proclaims the fullness and supremacy of Christ, in whom the whole fullness of God dwells and through whom we are reconciled to God. It teaches that in Baptism we are buried and raised with Christ, sharing already in His risen life. Holding fast to Christ, the head of the Church, we are made complete in Him and called to live in His love.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Colossians reminds us that Christ is above all things and that He alone fulfills the deepest longings of our hearts. It encourages us to hold fast to Him amid confusing voices and passing ideas. And its teaching on our new life in Baptism inspires us to set our hearts on heaven and to clothe ourselves daily in love.',
+      },
+    ],
+  },
+  '1-thessalonians': {
+    book: '1 Thessalonians',
+    subtitle: 'Living in hope while awaiting the Lord',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First Thessalonians is one of Saint Paul\'s earliest letters, written to a young and faithful community he had recently helped to found. As their apostle, Paul writes with warmth to encourage them in their new faith, to comfort them in their questions, and to strengthen their hope in the return of the Lord Jesus. It is a letter full of affection, encouragement, and gentle guidance.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Paul had spent only a short time with the Thessalonians before having to leave, and he longed to know how they were faring. They were holding firm despite difficulties, but had questions, including about those who had died before the Lord\'s return. Paul writes to reassure and encourage this beloved community.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'First Thessalonians is firmly received as a genuine letter of Saint Paul, among the earliest writings of the New Testament. The Church treasures it as inspired Scripture and as the tender care of an apostle for a young Church. Paul writes as a spiritual father, nurturing their growing faith.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Hope: Paul comforts the Thessalonians with the promise of being forever with the Lord. Holiness: he calls them to live pure and upright lives, pleasing to God. Encouragement: he praises their faith, love, and steadfastness. Waiting for Christ: he urges them to be watchful and ready, living in faith and love as they await the Lord\'s coming, without anxiety or fear.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul recalls his time among the Thessalonians and his deep affection for them. He gives thanks for their faith and perseverance amid trials. He gently teaches them about the hope of resurrection, comforting those grieving loved ones who have died, and encourages all to live holy, watchful lives, building one another up in love.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'First Thessalonians centers our hope on Jesus Christ, who died and rose and who will gather His people to Himself. This hope comforts us in the face of death, assuring us that those who belong to Christ will share in His life. The letter calls us to grow in holiness by the grace of God, living each day in readiness for the Lord we love and await.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First Thessalonians fills us with hope in the promises of Christ and comforts us in our grief. It encourages us to live holy lives and to support one another in faith and love. And it teaches us to await the Lord not with fear but with joyful confidence, growing in goodness as we look forward to being with Him forever.',
+      },
+    ],
+  },
+  '2-thessalonians': {
+    book: '2 Thessalonians',
+    subtitle: 'Standing firm in hope and faithful endurance',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second Thessalonians follows up on Paul\'s first letter, addressing some confusion that had arisen about the return of the Lord. As their apostle, Paul encourages the Thessalonians to remain steadfast and to keep living faithfully. The letter gently corrects misunderstandings and calls believers to perseverance, hard work, and trust in God\'s good timing.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Some in the Thessalonian community had become anxious or unsettled, thinking the day of the Lord had already come or was so imminent that ordinary life no longer mattered. A few had even stopped working. Paul writes to calm their fears, correct the confusion, and encourage faithful, steady living.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Second Thessalonians is received within the Church as a letter of the Pauline tradition and is treasured as inspired Scripture. The Church honors it as apostolic teaching without needing to settle every scholarly question about its composition. Its message carries the authority of the Gospel handed on through Paul.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Perseverance: Paul urges the believers to stand firm in their faith amid trials. Hope: he reassures them of God\'s faithfulness and final victory. Avoiding confusion: he gently corrects mistaken ideas about the timing of Christ\'s return, calling for calm trust rather than fear. Faithful living: he encourages everyone to keep working quietly and doing good while awaiting the Lord.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul commends the Thessalonians for their endurance and faith under persecution. He addresses their worry about the Lord\'s return, encouraging them not to be alarmed or easily shaken. Rather than fueling speculation, he calls them to hold fast to what they were taught, to keep working honestly, and to never grow weary in doing good.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Second Thessalonians keeps our hope fixed on Christ, who will come again in glory, while teaching us to live faithfully in the present. It guards us against fear and false speculation, inviting us instead to trust in God\'s providence and timing. Standing firm in Christ, we are called to persevere in faith and to continue doing good as we await Him.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second Thessalonians encourages us to persevere in faith through difficulties and to trust in God\'s faithfulness. It steadies us against anxiety and confusion about the future, calling us to a calm and confident hope. And it reminds us to keep doing good and living faithfully each day, leaving the timing of all things in the hands of the Lord.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

@@ -54,60 +54,19 @@ function InfoButton({
   );
 }
 
-function FormationIntroCard({
-  label,
-  intro,
-}: {
-  label: string;
-  intro: BibleBookIntroduction | BibleSectionIntroduction;
-}) {
-  const title = 'book' in intro ? intro.book : intro.title;
-
-  return (
-    <SacredCard className="p-0 overflow-hidden">
-      <div className="border-b border-parchment-200 bg-parchment-50/70 px-5 py-4">
-        <p className="text-[0.65rem] uppercase tracking-widest text-stone-400">
-          {label}
-        </p>
-        <h3 className="font-display text-xl font-bold text-leather-900 mt-1">
-          {title}
-        </h3>
-        <p className="mt-1 text-sm leading-relaxed text-stone-500">
-          {intro.subtitle}
-        </p>
-      </div>
-
-      <div className="divide-y divide-parchment-200">
-        {intro.sections.map((section, index) => (
-          <details key={section.heading} open={index === 0} className="group">
-            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left">
-              <span className="font-semibold text-leather-900">
-                {section.heading}
-              </span>
-              <span
-                aria-hidden="true"
-                className="text-lg leading-none text-gold transition group-open:rotate-90"
-              >
-                &rsaquo;
-              </span>
-            </summary>
-            <p className="px-5 pb-4 text-sm leading-relaxed text-stone-600">
-              {section.content}
-            </p>
-          </details>
-        ))}
-      </div>
-    </SacredCard>
-  );
-}
-
-function SectionInfoModal({
+// A single Bible Formation popup, reused for both section introductions
+// (Pentateuch, Gospels, ...) and individual book introductions (Genesis, ...).
+function FormationInfoModal({
   intro,
   onClose,
 }: {
-  intro: BibleSectionIntroduction;
+  intro: BibleBookIntroduction | BibleSectionIntroduction;
   onClose: () => void;
 }) {
+  const isBook = 'book' in intro;
+  const title = isBook ? intro.book : intro.title;
+  const eyebrow = isBook ? 'Bible Book' : 'Bible Section';
+
   return (
     <div className="fixed inset-0 z-40 flex items-end overflow-hidden bg-leather-900/45 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-16 backdrop-blur-sm sm:items-center sm:justify-center sm:pb-4">
       <div
@@ -120,13 +79,13 @@ function SectionInfoModal({
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="text-[0.65rem] uppercase tracking-widest text-stone-400">
-                Bible Section
+                {eyebrow}
               </p>
               <h2
                 id="bible-section-title"
                 className="mt-1 font-display text-2xl font-bold text-leather-900"
               >
-                {intro.title}
+                {title}
               </h2>
             </div>
             <button
@@ -176,18 +135,18 @@ export default function Bible() {
   const [chapterNumber, setChapterNumber] = useState(1);
   const [chapter, setChapter] = useState<BibleChapter | null>(null);
   const [loading, setLoading] = useState(false);
-  const [sectionInfo, setSectionInfo] = useState<BibleSectionIntroduction | null>(
-    null,
-  );
+  const [infoIntro, setInfoIntro] = useState<
+    BibleBookIntroduction | BibleSectionIntroduction | null
+  >(null);
 
   useEffect(() => {
-    if (!sectionInfo) return;
+    if (!infoIntro) return;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = previousOverflow;
     };
-  }, [sectionInfo]);
+  }, [infoIntro]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -236,7 +195,7 @@ export default function Bible() {
 
   function openSectionInfo(category: BibleCategory) {
     const intro = getBibleSectionIntroduction(category.id);
-    if (intro) setSectionInfo(intro);
+    if (intro) setInfoIntro(intro);
   }
 
   return (
@@ -254,9 +213,17 @@ export default function Bible() {
             {book?.name ?? 'Sacred Scripture'}
           </p>
         )}
-        <h1 className="font-display text-3xl font-bold text-leather-900 mt-1">
-          {heading}
-        </h1>
+        <div className="mt-1 flex items-center gap-2">
+          <h1 className="font-display text-3xl font-bold text-leather-900">
+            {heading}
+          </h1>
+          {view !== 'home' && bookIntro && (
+            <InfoButton
+              label={`About ${book?.name ?? 'this book'}`}
+              onClick={() => setInfoIntro(bookIntro)}
+            />
+          )}
+        </div>
         {view === 'home' && (
           <p className="text-stone-500 leading-relaxed mt-2">
             Read the Word of God through the Old and New Testaments. Choose a
@@ -316,17 +283,6 @@ export default function Bible() {
       {/* Book: choose a chapter (large, comfortable tap targets) */}
       {view === 'chapters' && book && (
         <div>
-          {bookIntro && (
-            <section className="mb-7">
-              <p className="text-xs uppercase tracking-widest text-stone-400 mb-3">
-                Before You Read
-              </p>
-              <div className="space-y-3">
-                <FormationIntroCard label="Book Introduction" intro={bookIntro} />
-              </div>
-            </section>
-          )}
-
           <label className="block text-xs uppercase tracking-widest text-stone-400 mb-3">
             Chapters
           </label>
@@ -357,10 +313,10 @@ export default function Bible() {
           <BibleReader book={book} chapter={chapter} />
         ))}
 
-      {sectionInfo && (
-        <SectionInfoModal
-          intro={sectionInfo}
-          onClose={() => setSectionInfo(null)}
+      {infoIntro && (
+        <FormationInfoModal
+          intro={infoIntro}
+          onClose={() => setInfoIntro(null)}
         />
       )}
     </div>

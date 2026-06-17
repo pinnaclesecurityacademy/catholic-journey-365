@@ -2747,6 +2747,211 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  '1-timothy': {
+    book: '1 Timothy',
+    subtitle: 'Caring for the household of God',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First Timothy is a letter of guidance from Paul to Timothy, a younger leader entrusted with caring for a Christian community. It belongs to a group of letters often called the pastoral letters, because they help shepherd the life of the Church. As inspired Scripture handed on by the Church, it shows how the early Christians ordered their common life, chose leaders, and held fast to sound teaching.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The letter addresses a growing Church that needed steady leadership and protection from confusing teachings. Timothy is encouraged to guide the community, to appoint trustworthy leaders, and to keep the faith pure. It reflects a time when the apostles were handing on their ministry to a new generation.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'First Timothy is received in the Church as part of the Pauline tradition, written to hand on apostolic guidance, and is treasured as inspired Scripture. The Church honors it as authentic apostolic teaching without needing to settle every scholarly question about how it was composed. Its concern is the faithful ordering and care of the Church.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Church leadership: the letter describes the qualities of those who serve as overseers and deacons. Sound teaching: Timothy is to guard the faith against error. Prayer: Paul urges that prayers be offered for all people. Pastoral care: leaders are to shepherd God\'s people with gentleness and integrity. Order in the community: the letter helps the Church live in a fitting and holy way.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul writes personally to Timothy, encouraging him in his responsibilities. He outlines the character needed for those who lead and serve, including overseers and deacons, roles the Church sees reflected in the ministry of bishops and deacons. He calls for prayer for everyone, including those in authority, and he warns against false teaching, urging Timothy to remain faithful and devoted.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'First Timothy reminds us that Christ Jesus is the one mediator between God and humanity, who gave Himself for our salvation. The care for leadership and teaching flows from the desire to keep the community faithful to Him. The Church sees in these instructions the early roots of her ordained ministry, through which Christ continues to shepherd, teach, and sanctify His people.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First Timothy helps us appreciate the gift of leadership and order in the Church, given for our good. It encourages prayer for all people and faithful, sound teaching. And it reminds us that the ministry of bishops, priests, and deacons has deep roots in the apostolic age, carrying forward the care of Christ for His people.',
+      },
+    ],
+  },
+  '2-timothy': {
+    book: '2 Timothy',
+    subtitle: 'A faithful witness, handing on the faith to the end',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second Timothy reads like Paul\'s heartfelt farewell, written as he faces the end of his life. With deep affection, he encourages Timothy to be courageous, to hold fast to the faith, and to hand it on faithfully to others. As inspired Scripture treasured by the Church, it is a moving witness to perseverance and to the precious gift of passing on the faith from one generation to the next.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The letter is set as Paul endures imprisonment and suffering for the Gospel, sensing that his earthly journey is nearly over. He longs to strengthen Timothy for the challenges ahead. Its tone is personal and urgent, like the last words of a spiritual father to a beloved son.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Second Timothy is received in the Church as part of the Pauline tradition and is treasured as inspired Scripture. The Church honors it as authentic apostolic witness without needing to settle every scholarly question about its composition. It carries the heart of Paul\'s final encouragement to remain faithful.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Perseverance: Paul urges Timothy to endure hardship for the Gospel. Handing on the faith: he calls Timothy to entrust what he has received to faithful teachers. Scripture: he praises the holy writings as inspired by God and useful for forming us in righteousness. Courage in suffering: he encourages Timothy not to be ashamed but to be strong in grace. Faithful witness: Paul declares that he has fought the good fight and kept the faith.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul pours out his heart to Timothy, recalling his sincere faith, nurtured from childhood. He urges him to guard the Gospel and to pass it on to reliable people who can teach others, a beautiful picture of how the faith is handed down. He speaks of the Scriptures as inspired by God, and near the end he gives his famous testimony that he has finished the race and kept the faith.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Second Timothy points us to Christ, for whom Paul gladly suffers and in whom he places all his hope, even facing death. The handing on of the faith reflects how Christ\'s truth is passed down through the Church across the generations. Paul\'s confident hope in the crown of righteousness reveals the promise of eternal life that Christ gives to all who remain faithful to Him.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second Timothy inspires us to persevere in faith, even when it is costly. It reminds us of the importance of handing on the faith to others, as it was handed on to us. And its love for the Scriptures and its example of faithful endurance encourage us to keep the faith to the end, trusting in the eternal reward Christ has promised.',
+      },
+    ],
+  },
+  titus: {
+    book: 'Titus',
+    subtitle: 'Sound faith that shows itself in good works',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Titus is another of the pastoral letters, written to a leader named Titus who was helping to organize the Church in a new region. It offers guidance on appointing good leaders, teaching sound doctrine, and living the faith openly through good works. As inspired Scripture handed on by the Church, it shows how Christian belief is meant to shine forth in a holy and visible way of life.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Titus was entrusted with caring for young Christian communities that needed structure and good example. The surrounding culture posed challenges, and the believers needed trustworthy leaders and clear teaching. Titus is encouraged to help these communities grow in faith and integrity.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Titus is received in the Church as part of the Pauline tradition and is treasured as inspired Scripture. The Church honors it as authentic apostolic guidance without needing to settle every scholarly question about its composition. Its concern is sound teaching lived out in goodness.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Church order: Titus is to appoint qualified leaders for the communities. Sound teaching: he is to hold firmly to true doctrine and resist error. Good works: the letter repeatedly stresses that faith should bear fruit in good deeds. Living the faith publicly: Christians are called to be examples of integrity, so that their lives commend the Gospel to others.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul instructs Titus to appoint leaders of good character for the Church, roles the Church sees reflected in her ordained ministry. He urges sound teaching for people of every age and station, and he repeatedly calls believers to be eager to do good. He grounds all of this in the grace of God that has appeared in Christ, training us to live upright and godly lives.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Titus proclaims that the grace of God has appeared in Jesus Christ, our Savior, who gave Himself to redeem us and to make us a people eager to do good. The letter reminds us of the new birth we receive in Baptism, through the washing of regeneration and the Holy Spirit. In Christ, sound faith and a holy life belong together, and the Church carries on his work through faithful leaders and good works.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Titus reminds us that genuine faith shows itself in how we live, especially in our goodness toward others. It helps us value sound teaching and trustworthy leadership in the Church. And its reminder of the grace given in Baptism encourages us to live as a people made new in Christ, eager to do good in the world.',
+      },
+    ],
+  },
+  philemon: {
+    book: 'Philemon',
+    subtitle: 'Christian love that transforms every relationship',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Philemon is the shortest of Paul\'s letters, a personal and tender note about forgiveness and brotherhood in Christ. Paul writes on behalf of Onesimus, a slave who had become a Christian, asking his master Philemon to receive him back not merely as a servant but as a beloved brother. It is a beautiful example of how the Gospel transforms human relationships through mercy and love.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'In the world of Paul\'s time, slavery was common, and Onesimus had become separated from his master Philemon. Having met Paul and embraced the faith, Onesimus is now sent back, carrying this gentle letter. Paul does not issue commands but appeals to Philemon\'s heart, asking him to act out of Christian love.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Philemon is firmly received as a genuine letter of Saint Paul. The Church treasures it as inspired Scripture and as a witness to the transforming power of Christian charity. Though brief and personal, it carries the apostolic call to live the Gospel in our relationships.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Forgiveness: Paul appeals for Onesimus to be welcomed back without resentment. Brotherhood in Christ: in the faith, master and servant are now brothers. Mercy: Paul models gentle persuasion rather than demand. Christian love transforming relationships: the Gospel reshapes how believers see and treat one another, planting seeds that challenge every injustice and division.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Paul writes warmly to Philemon, a Christian whose home hosts a local gathering of believers. He pleads for Onesimus, whom he has come to love as a son in the faith, even offering to repay anything Onesimus may owe. He asks Philemon to receive him as he would receive Paul himself, appealing to love rather than authority. The letter quietly reveals how faith changes hearts and relationships.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Philemon reflects the heart of Christ, who reconciles us to God and to one another and makes us all brothers and sisters in Him. Paul\'s willingness to take on Onesimus\' debt echoes how Christ takes upon Himself what we owe, so that we might be received as beloved children. In Christ, every relationship is meant to be transformed by mercy, forgiveness, and love.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Philemon shows that the Gospel touches even our most ordinary and personal relationships, calling us to forgiveness and love. It teaches that in Christ, our dignity comes from being children of God and brothers and sisters to one another. And it inspires us to let faith reshape how we treat everyone, with the mercy and gentleness Christ has shown to us.',
+      },
+    ],
+  },
+  hebrews: {
+    book: 'Hebrews',
+    subtitle: 'Jesus our great High Priest and the perfect sacrifice',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Hebrews is a rich and beautiful writing that shows how everything in the Old Testament finds its fulfillment in Jesus. It was written to encourage Christians who were growing weary, reminding them that Christ is greater than all that came before. Above all, it presents Jesus as our great High Priest, who offers the one perfect sacrifice and opens for us the way to God. As inspired Scripture, it helps us treasure the worship that Christ makes possible.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Hebrews was written for believers familiar with the worship, priesthood, and sacrifices of Israel, some of whom were tempted to lose heart or turn back. It encourages them to hold fast to Christ, who fulfills all those earlier signs. Its purpose is to strengthen faith and perseverance by lifting the eyes of believers to Jesus.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The human author of Hebrews is not named, and the Church has long received it as inspired Scripture without settling who wrote it. It was treasured among the apostolic writings and read in the Church from early times. What matters is its inspired message about the priesthood and sacrifice of Christ.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Christ the High Priest: Jesus is the perfect priest who brings us to God. The perfect sacrifice: He offers Himself once for all, fulfilling and surpassing the sacrifices of old. A new covenant: Christ establishes a better covenant, sealed in His own blood. Worship: He leads us into the true sanctuary of heaven. Faith and perseverance: the letter calls us to keep trusting and to run the race with endurance, surrounded by a great cloud of witnesses.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Hebrews shows how the priests, sacrifices, and temple of the Old Testament pointed forward to Jesus. It recalls great figures of faith, like Abraham and Moses, and then lifts up a stirring roll call of the faithful who trusted God against all odds. It presents Christ as the one who, unlike the many priests of old, offers a single perfect sacrifice and lives forever to intercede for us.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Hebrews reveals Jesus as both the High Priest and the offering, who gave Himself once for all to take away sin and to bring us to God. Catholics see in this the deep meaning of the Mass, where Christ\'s one sacrifice is made present on the altar, not repeated but re presented, so that we share in its saving power. At Mass we are drawn into the heavenly worship that Hebrews describes, joining the angels and saints before God.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Hebrews helps us understand and treasure the Mass, where Christ our High Priest offers His perfect sacrifice for us. It encourages us to persevere in faith when we feel weary, looking to Jesus who leads us onward. And it fills us with confidence to draw near to God, knowing that Christ has opened the way and ever lives to intercede for us.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BibleReader } from '../components/BibleReader';
 import {
+  BibleCategory,
   getBook,
   getCategories,
   getCategoryBooks,
@@ -34,15 +35,22 @@ const TESTAMENT_LABEL: Record<Testament, string> = {
   new: 'New Testament',
 };
 
-/** A visual info button (display only for now, no modal/content yet). */
-function InfoButton() {
+function InfoButton({
+  label,
+  onClick,
+}: {
+  label: string;
+  onClick: () => void;
+}) {
   return (
-    <span
-      aria-hidden="true"
+    <button
+      type="button"
+      aria-label={label}
+      onClick={onClick}
       className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-parchment-200 bg-parchment-50 text-xs font-semibold text-stone-400"
     >
       i
-    </span>
+    </button>
   );
 }
 
@@ -93,6 +101,73 @@ function FormationIntroCard({
   );
 }
 
+function SectionInfoModal({
+  intro,
+  onClose,
+}: {
+  intro: BibleSectionIntroduction;
+  onClose: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-40 flex items-end bg-leather-900/45 px-4 pb-4 pt-16 backdrop-blur-sm sm:items-center sm:justify-center">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="bible-section-title"
+        className="max-h-[82vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] border border-parchment-200 bg-parchment-50 shadow-[0_28px_70px_rgba(28,25,23,0.28)]"
+      >
+        <div className="border-b border-parchment-200 bg-white/75 px-5 py-4">
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <p className="text-[0.65rem] uppercase tracking-widest text-stone-400">
+                Bible Section
+              </p>
+              <h2
+                id="bible-section-title"
+                className="mt-1 font-display text-2xl font-bold text-leather-900"
+              >
+                {intro.title}
+              </h2>
+            </div>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label="Close section introduction"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-parchment-200 bg-white text-lg leading-none text-leather-600 shadow-sm"
+            >
+              &times;
+            </button>
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-stone-500">
+            {intro.subtitle}
+          </p>
+        </div>
+
+        <div className="divide-y divide-parchment-200">
+          {intro.sections.map((section, index) => (
+            <details key={section.heading} open={index === 0} className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left">
+                <span className="font-semibold text-leather-900">
+                  {section.heading}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="text-lg leading-none text-gold transition group-open:rotate-90"
+                >
+                  &rsaquo;
+                </span>
+              </summary>
+              <p className="px-5 pb-4 text-sm leading-relaxed text-stone-600">
+                {section.content}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function Bible() {
   const navigate = useNavigate();
 
@@ -101,6 +176,9 @@ export default function Bible() {
   const [chapterNumber, setChapterNumber] = useState(1);
   const [chapter, setChapter] = useState<BibleChapter | null>(null);
   const [loading, setLoading] = useState(false);
+  const [sectionInfo, setSectionInfo] = useState<BibleSectionIntroduction | null>(
+    null,
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -145,14 +223,12 @@ export default function Bible() {
   const heading = view === 'home' ? 'Sacred Scripture' : book?.name ?? '';
 
   const testaments: Testament[] = ['old', 'new'];
-  const bookCategory = book
-    ? getCategories(book.testament).find((c) => c.bookIds.includes(book.id))
-    : undefined;
   const bookIntro = book ? getBibleBookIntroduction(book.id) : undefined;
-  const sectionIntro = bookCategory
-    ? getBibleSectionIntroduction(bookCategory.id)
-    : undefined;
-  const hasFormationIntro = Boolean(bookIntro || sectionIntro);
+
+  function openSectionInfo(category: BibleCategory) {
+    const intro = getBibleSectionIntroduction(category.id);
+    if (intro) setSectionInfo(intro);
+  }
 
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-12">
@@ -197,7 +273,12 @@ export default function Bible() {
                       <h2 className="font-display text-xl font-bold text-leather-900">
                         {c.name}
                       </h2>
-                      <InfoButton />
+                      {getBibleSectionIntroduction(c.id) && (
+                        <InfoButton
+                          label={`About ${c.name}`}
+                          onClick={() => openSectionInfo(c)}
+                        />
+                      )}
                     </div>
                     <div className="divide-y divide-parchment-200">
                       {getCategoryBooks(c.id).map((b) => (
@@ -226,21 +307,13 @@ export default function Bible() {
       {/* Book: choose a chapter (large, comfortable tap targets) */}
       {view === 'chapters' && book && (
         <div>
-          {hasFormationIntro && (
+          {bookIntro && (
             <section className="mb-7">
               <p className="text-xs uppercase tracking-widest text-stone-400 mb-3">
                 Before You Read
               </p>
               <div className="space-y-3">
-                {bookIntro && (
-                  <FormationIntroCard label="Book Introduction" intro={bookIntro} />
-                )}
-                {sectionIntro && (
-                  <FormationIntroCard
-                    label="Section Introduction"
-                    intro={sectionIntro}
-                  />
-                )}
+                <FormationIntroCard label="Book Introduction" intro={bookIntro} />
               </div>
             </section>
           )}
@@ -274,6 +347,13 @@ export default function Bible() {
         ) : (
           <BibleReader book={book} chapter={chapter} />
         ))}
+
+      {sectionInfo && (
+        <SectionInfoModal
+          intro={sectionInfo}
+          onClose={() => setSectionInfo(null)}
+        />
+      )}
     </div>
   );
 }

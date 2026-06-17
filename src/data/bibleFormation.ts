@@ -289,18 +289,42 @@ export const bibleSectionIntroductions: Record<string, BibleSectionIntroduction>
 export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
   genesis: {
     book: 'Genesis',
-    subtitle:
-      'The beginning of creation, covenant, promise, and the long road toward Christ.',
+    subtitle: 'The beginning of creation, covenant, and the promise of salvation',
     sections: [
       {
-        heading: 'Before you begin',
+        heading: 'Where are we in the Bible story?',
         content:
-          "Placeholder formation note. Genesis will be introduced as the opening of God's story, inspired by God and written through human authors.",
+          'Genesis is the very beginning of the Bible. Its name means "beginning", and that is exactly what it gives us: the beginning of the world, of humanity, of sin, and of God\'s plan to save us. Genesis moves from the creation of all things to the calling of one family through whom God will bless the whole world. By the end, we are ready to follow this family into Egypt, where the next book, Exodus, begins.',
       },
       {
-        heading: 'Look for Christ',
+        heading: 'Historical setting',
         content:
-          'Placeholder formation note. This will point readers toward how the Old Testament prepares for and is fulfilled in Jesus Christ.',
+          'Genesis reaches back to the earliest times and into the world of the ancient Near East, a world of shepherds, tribes, and great cities. The stories of Abraham, Isaac, Jacob, and Joseph are set among the lands of Mesopotamia, Canaan, and Egypt. The Church teaches that Genesis communicates true religious meaning about God, creation, and humanity. It uses the language and imagery of its time to reveal who God is and who we are before Him.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Jewish and Catholic tradition have long connected Genesis with Moses and the first five books of the Bible. The Church also recognises that God worked through human authors and faithful communities who treasured and handed on these sacred writings. Above all, Genesis is inspired by God. It is His word given through real human history, and it opens the long story that leads to Jesus Christ.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Creation: God makes all things good, and makes humanity in His own image. Original Sin: Adam and Eve turn away from God, and sin wounds the whole human family. Promise: even after the fall, God promises that one will come to crush evil. Covenant: God binds Himself to Abraham and his descendants in love and faithfulness. Providence: through the story of Joseph, we see that God can bring good even out of human sin.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Adam and Eve are the first parents of the human family, created in friendship with God. Noah is preserved through the flood as God renews His care for the world. Abraham is called by God and believes the promise of a great family and a blessing for all nations. Isaac and Jacob carry that promise forward, and Jacob is given the name Israel. Joseph, sold by his brothers, rises in Egypt and saves his family, preparing the way for the book of Exodus.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Genesis in the light of Jesus Christ. The promise after the fall, that the offspring of the woman will crush the serpent, has long been seen as the first glimpse of the Gospel and a pointer to Christ and His Mother. The blessing promised to Abraham, that all nations would be blessed through his family, is fulfilled in Jesus, a son of Abraham. The near sacrifice of Isaac, carrying the wood up the mountain, quietly foreshadows the Son who carries His cross.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Genesis answers the deepest questions of the human heart: where we come from, why the world is wounded, and whether there is hope. It teaches us that creation is good, that every person is made in God\'s image, and that sin is real but never the end of the story. Most of all, Genesis shows a God who makes promises and keeps them, beginning the journey of salvation that will reach its fullness in Jesus Christ.',
       },
     ],
   },
@@ -342,6 +366,129 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
         heading: 'Why Catholics read this book today',
         content:
           'Exodus teaches us that God hears His people and rescues them. It helps Catholics understand the Mass, the Eucharist, Baptism, covenant, priesthood, sacrifice, and worship. It also reminds us that freedom is not just escape from slavery. True freedom is being brought into covenant with God. Exodus is the story of God leading His people out of bondage so they can worship Him and live as His own.',
+      },
+    ],
+  },
+  leviticus: {
+    book: 'Leviticus',
+    subtitle: 'A holy God teaches His people how to live and worship',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Leviticus picks up right where Exodus leaves off. God has rescued Israel from Egypt and met them at Mount Sinai, and now He wants to dwell among them. Leviticus is largely God speaking from the tabernacle, teaching His people how to worship Him and how to live as His own. Many readers find this book difficult because it is full of laws about sacrifices, priests, and purity. But underneath it all is a beautiful truth: the holy God wants to be close to His people.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Leviticus belongs to the time when Israel was camped at Sinai, freshly freed from slavery and still learning to be God\'s people. In the ancient world, every nation had its temples, priests, and sacrifices. Leviticus shows how Israel\'s worship was different, because it was given by the one true God. Its detailed instructions about offerings and holiness were the practical shape of a people set apart to belong to the Lord.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Jewish and Catholic tradition connect Leviticus with Moses and the first five books of the Bible. The Church also recognises that God formed this Scripture through human authors and the worshipping life of Israel, who preserved these sacred laws. Leviticus is inspired by God, and though much of it concerns worship long since fulfilled in Christ, it still reveals God\'s holiness and His desire to draw near to us.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Holiness: God is holy, and He calls His people to be holy too. Sacrifice: offerings express worship, thanksgiving, and sorrow for sin, and point to a deeper need for atonement. Priesthood: through Aaron and his sons, God gives Israel mediators who lead worship and offer sacrifice. Atonement: especially on the Day of Atonement, God provides a way for the sins of the people to be covered. Presence: every law serves one goal, that a holy God may dwell among His people.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Aaron and his sons are set apart as priests to serve at the tabernacle and offer sacrifice for the people. The various offerings, including burnt offerings, peace offerings, and sin offerings, teach Israel how to approach God. The Day of Atonement stands at the heart of the book, when the high priest enters the holy place and the sins of the people are placed on the scapegoat. Through these moments, Israel learns that drawing near to God is both a gift and a serious thing.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Leviticus in the light of Jesus Christ, and the Letter to the Hebrews helps us see how. The sacrifices of Leviticus could never take away sin completely. They pointed forward to the one perfect sacrifice of Jesus, the true Lamb, who offers Himself for us. The priesthood of Aaron foreshadows Christ, our great High Priest, who enters the true sanctuary of heaven. The Day of Atonement finds its fulfilment in the Cross, where Jesus reconciles us to God once and for all.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Leviticus can feel distant, but it teaches us that worship matters and that holiness is real. It helps Catholics understand the Mass, where Christ\'s one sacrifice is made present, and the priesthood that serves at the altar. It reminds us that God is holy, that sin is serious, and that He has gone to great lengths to bring us close to Him. Read with Christ in view, Leviticus becomes a quiet preparation for the Gospel.',
+      },
+    ],
+  },
+  numbers: {
+    book: 'Numbers',
+    subtitle: 'God leads His people through the wilderness with patient love',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Numbers follows Israel as they leave Mount Sinai and journey through the wilderness toward the Promised Land. The book takes its name from the counting, or census, of the people, but its real story is the long road between rescue and rest. Along the way, Israel struggles to trust God, and a journey that could have been short stretches into forty years. Numbers is the story of a people learning, slowly and painfully, to walk with the Lord.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Numbers is set in the deserts between Egypt and the land of Canaan, a harsh world of wandering, tents, and dependence on God for water and food. Israel travels as a great company, organised around the tabernacle that stands at their centre. This was a formative time in Israel\'s memory, when they had been freed but had not yet arrived, living each day on God\'s provision.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Jewish and Catholic tradition connect Numbers with Moses and the first five books of the Bible. The Church also recognises that God worked through human authors and the remembered experience of Israel, handed down faithfully across generations. Numbers is inspired Scripture, and its honest account of failure and grace continues to teach the people of God.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Trust: God asks His people to believe His promises, even when the way is hard. Rebellion: again and again, Israel grumbles and turns away, and we see how unbelief wounds the journey. God\'s patience: though the people fail, God does not abandon them, and He provides for them day by day. Preparation: through testing and time, God forms a new generation ready to enter the land. Hope: the Promised Land stays on the horizon, a sign of the rest God intends for His people.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Moses continues to lead, interceding for the people even when they turn against him. The twelve spies are sent into the land, and the fearful report of ten of them leads Israel to doubt God, while Joshua and Caleb trust His promise. The people\'s rebellions, the gift of manna and water, and the strange episode of the bronze serpent all mark the wilderness years. Through it all, God remains faithful, leading a stubborn people toward their inheritance.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Numbers in the light of Jesus Christ. Jesus Himself pointed to the bronze serpent lifted up in the wilderness as a sign of His own being lifted up on the Cross, so that all who look to Him in faith may live. The manna that fed Israel each day prepares us to understand the Eucharist, the true bread from heaven. And the long journey toward the Promised Land becomes an image of our own pilgrimage through life toward the rest God has prepared for us in Christ.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Numbers speaks honestly to anyone who has found the life of faith to be a long journey with setbacks. It teaches us that grumbling and unbelief lead us away from God, while trust keeps us walking with Him. Most of all, it reveals a God whose patience is greater than our failures, who feeds us along the way and never gives up on leading us home. Our own life is a kind of wilderness journey, and God walks it with us.',
+      },
+    ],
+  },
+  deuteronomy: {
+    book: 'Deuteronomy',
+    subtitle: "Moses' final words: remember the covenant and choose life",
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Deuteronomy stands at the edge of the Promised Land. The wilderness journey is over, Moses is nearing the end of his life, and a new generation is about to enter the land God promised. The book is mostly Moses speaking to the people, looking back on all God has done and urging them to stay faithful. Its name means "second law", because Moses repeats and renews the covenant for those who will cross over without him.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Deuteronomy is set on the plains of Moab, just across the river from the land of Canaan. Israel pauses here on the threshold of a new life, no longer slaves and no longer wanderers, but not yet settled. In this in between place, Moses gathers the people for his final teaching, preparing their hearts before they take hold of the promise.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Jewish and Catholic tradition connect Deuteronomy with Moses and the first five books of the Bible. The Church also recognises that God formed this Scripture through human authors and the faithful memory of Israel, who preserved Moses\' teaching for later generations. Deuteronomy is inspired by God, and its call to love the Lord with all our heart still speaks at the centre of the life of faith.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Remembering: Moses calls the people to recall all that God has done, so gratitude shapes their lives. Covenant: God renews His bond with Israel and calls them to faithful love. The greatest commandment: "Love the Lord your God with all your heart" stands at the heart of the book. Choosing: Moses sets before the people life and death, blessing and curse, and urges them to choose life. Faithfulness: the land is a gift, and Israel is called to live in it as God\'s grateful people.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Moses gives his great farewell speeches, the work of a lifetime poured out in love for the people. He proclaims the Shema, the call to love God with all one\'s heart, soul, and strength. Joshua is appointed to lead Israel into the land after Moses. At the end, Moses is allowed to see the Promised Land from a mountain but not to enter it, and he dies as a faithful servant of the Lord, leaving the people on the brink of the promise.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Deuteronomy in the light of Jesus Christ. When tempted in the desert, Jesus answered the devil with words from Deuteronomy, showing that He lived by every word from the mouth of God. When asked for the greatest commandment, Jesus drew on this book: to love God with all our heart. In Christ, the covenant is not only renewed but fulfilled, and the love that Deuteronomy commands becomes possible through His grace poured into our hearts.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Deuteronomy invites us to remember God\'s faithfulness and to respond with wholehearted love. It teaches that faith is a daily choice, lived in gratitude rather than taken for granted. Its call to love God above all is the very heart of the Christian life, repeated by Jesus and lived out in the Church. Standing with Israel on the edge of the promise, we hear Moses inviting us, too, to choose life and to follow the Lord.',
       },
     ],
   },

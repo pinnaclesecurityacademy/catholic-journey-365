@@ -2173,6 +2173,170 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  matthew: {
+    book: 'Matthew',
+    subtitle: 'Jesus, the promised Messiah who fulfills the Scriptures',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Matthew opens the New Testament and bridges the long hope of Israel with its fulfillment in Jesus. A Gospel is an inspired testimony to Jesus Christ, written so that we may believe in Him, and preserved and handed on to us by the Church. Matthew especially shows that Jesus is the Messiah whom the Old Testament promised, the long awaited King who brings the Kingdom of Heaven.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Matthew was written for a community deeply rooted in the Scriptures and traditions of Israel, helping them see how Jesus fulfills the Law and the Prophets. It carefully shows Jesus as the fulfillment of God\'s promises to His people. The Gospel speaks both to those familiar with Jewish hope and to a Church now opening to all nations.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Christian tradition attributes this Gospel to Matthew, the tax collector called by Jesus to be an apostle. The Church treasures this tradition while also recognizing that the Gospels came to us through real human authors and the living memory of the early Church, guided by the Holy Spirit. What the Church holds firmly is that this Gospel is inspired and hands on the truth about Jesus.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Fulfillment: again and again Matthew shows how Jesus fulfills the Old Testament. The Kingdom of Heaven: Jesus proclaims and inaugurates God\'s reign. The Sermon on the Mount: Jesus teaches the way of life for His followers. The new Moses: as Moses gave the law, Jesus gives a deeper law of the heart. The Church: Jesus entrusts Peter with a special role and founds a community that will carry His mission to all nations.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Matthew begins with a genealogy and the birth of Jesus, showing Him as the Son of David and Son of Abraham. Jesus preaches the Sermon on the Mount, including the Beatitudes and the Our Father. He calls disciples, works miracles, and confirms Peter as the rock on whom He will build His Church. After the resurrection, He gives the Great Commission, sending the apostles to baptize and teach all nations.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'The whole of Matthew reveals Jesus as the promised Messiah and the new Moses, who fulfills and deepens the covenant. His command to baptize in the name of the Father, Son, and Holy Spirit gives the Church her mission and points to the new life of Baptism. His words to Peter form the foundation of the Church\'s apostolic ministry, and His promise to be with us always assures us of His abiding presence.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Matthew helps us see Jesus as the fulfillment of all God\'s promises, deepening our trust in His faithfulness. Its teaching, especially the Sermon on the Mount, shapes the daily life of every disciple. And its vision of the Church, founded on Peter and sent to all nations, helps Catholics treasure the gift of belonging to the family Christ established.',
+      },
+    ],
+  },
+  mark: {
+    book: 'Mark',
+    subtitle: 'The Son of God revealed through the way of the Cross',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Mark is the shortest and most fast moving of the four Gospels, plunging us straight into the mission of Jesus. As an inspired testimony handed on by the Church, it proclaims with urgency that Jesus is the Son of God. Mark invites us to follow Jesus closely and to discover who He truly is, a discovery that becomes clearest at the foot of the Cross.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Mark is widely understood to be among the earliest of the Gospels, written for Christians who needed encouragement, including some facing hardship and persecution. Its direct, energetic style would have strengthened believers to follow Jesus faithfully, even through suffering. It speaks to a Church learning what it means to take up the cross.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Christian tradition links this Gospel with Mark, a companion of the apostles, who is said to have drawn on the preaching of Saint Peter. The Church honors this tradition while recognizing that the Gospels reached us through real human authors and the early Church\'s faithful memory, under the guidance of the Holy Spirit. The Church holds firmly that this Gospel is inspired and true.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Urgency: Mark moves quickly, conveying the immediacy of Jesus\' mission. Jesus as Son of God: this truth frames the whole Gospel. Discipleship: following Jesus means walking His path, even when it is hard. The suffering servant: Jesus comes not to be served but to serve and to give His life. The Cross: it is precisely in His suffering and death that Jesus is revealed as the Son of God.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Mark shows Jesus preaching, healing, and casting out evil with striking authority, while the disciples slowly come to understand Him. Peter confesses that Jesus is the Messiah, yet struggles to accept the way of the Cross. The Gospel builds toward the passion, where a Roman soldier at the foot of the Cross declares that truly this man was the Son of God, revealing the heart of Mark\'s message.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Mark reveals that the glory of Jesus is shown most fully in His self giving love on the Cross. Jesus, the suffering servant, gives His life as a ransom for many, opening the way of salvation. By calling us to take up our cross and follow Him, Mark draws us into the heart of the Gospel, where true discipleship is shaped by Christ\'s own love unto death and His victory in the resurrection.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Mark\'s brisk and vivid account makes the story of Jesus come alive and is a wonderful place to encounter Him. It teaches that following Jesus means embracing the way of the Cross with trust. And it assures us that even in suffering, Jesus is the Son of God who loves us to the end and leads us to new life.',
+      },
+    ],
+  },
+  luke: {
+    book: 'Luke',
+    subtitle: 'The Gospel of God\'s mercy for all people',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Luke offers a warm and beautiful account of Jesus, with a special tenderness for God\'s mercy and for those the world overlooks. As an inspired testimony preserved by the Church, it shows that salvation in Jesus is offered to everyone. Luke is also the first part of a two volume work, continuing into the Acts of the Apostles, which tells how the Gospel spread to all nations.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Luke was written for a wider audience that included many beyond the people of Israel, helping them see that Jesus is the Savior of the whole world. It carefully presents the story of Jesus as the fulfillment of God\'s plan, reaching out to Gentiles, the poor, and the forgotten. The Gospel reflects a Church discovering that God\'s mercy knows no boundaries.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Christian tradition attributes this Gospel to Luke, a companion of Saint Paul, often remembered as a physician. The Church treasures this tradition while recognizing that the Gospels came to us through real human authors who drew on the testimony of eyewitnesses, guided by the Holy Spirit. Luke himself speaks of carefully investigating all that had been handed down, and the Church holds his Gospel as inspired and true.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Mercy: Luke is filled with parables of God\'s forgiveness, like the prodigal son. Salvation for all: the poor, sinners, outcasts, and foreigners are welcomed by Jesus. Women in Jesus\' ministry: Luke gives special attention to the women who follow and serve Him. Mary: her faith and her great hymn, the Magnificat, shine at the beginning. The Holy Spirit and prayer: Jesus prays often and is led by the Spirit, a pattern for the Church.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Luke gives us the beloved Christmas story, with the angel\'s visit to Mary, her yes to God, and the birth of Jesus in Bethlehem. He records tender parables of mercy, healings of the marginalized, and Jesus\' constant compassion. Mary stands out as the faithful disciple who treasures all these things in her heart, and the Gospel ends with the risen Jesus opening the Scriptures and promising the gift of the Spirit.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Luke reveals Jesus as the merciful Savior who seeks the lost and welcomes all into God\'s family. His tender portrait of Mary helps us appreciate her unique role in salvation history as the mother of the Lord and model of faith. The Gospel\'s focus on the Holy Spirit and prayer prepares us for the life of the Church, where Christ\'s mercy continues to reach every person.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Luke fills us with confidence in God\'s mercy and His love for everyone, especially the poor and forgotten. It encourages us to pray, to trust the Holy Spirit, and to welcome others as Jesus did. And its loving portrait of Mary draws us closer to her, the faithful disciple who always points us to her Son.',
+      },
+    ],
+  },
+  john: {
+    book: 'John',
+    subtitle: 'The Word made flesh and the gift of eternal life',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'John is the fourth Gospel, and it offers a deep and prayerful reflection on who Jesus truly is. As an inspired testimony handed on by the Church, it gazes upon the mystery of Jesus as the eternal Word of God made flesh. Different in style from the other three Gospels, John draws us into intimacy with Jesus and invites us to find eternal life through believing in Him.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'John was written for a Church that had grown in its understanding of who Jesus is, helping believers contemplate His divine identity more deeply. It speaks to Christians seeking to know Jesus not just as teacher and healer but as the Son of God who shares the very life of the Father. The Gospel invites ongoing reflection and prayer.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Christian tradition associates this Gospel with John, the beloved disciple, and the community that treasured his witness. The Church honors this tradition while recognizing that the Gospels reached us through real human authors and the faithful handing on of the early Church, guided by the Holy Spirit. The Church holds firmly that this Gospel is inspired and reveals the truth of Christ.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The Word made flesh: John begins with the eternal Word who becomes man, the heart of the Incarnation. Signs: Jesus works signs that reveal His glory and call us to faith. Eternal life: believing in Jesus brings a share in God\'s own life. The Bread of Life and the Good Shepherd: Jesus reveals Himself in rich images full of meaning. Love and unity: at the Last Supper, Jesus gives the new commandment to love and prays that His followers may be one.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'John opens with the soaring hymn to the Word and unfolds through signs such as the wedding at Cana and the raising of Lazarus. Jesus speaks of Himself as the Bread of Life and the Good Shepherd. At the Last Supper He washes the disciples\' feet, gives the commandment of love, and prays for unity. The Gospel leads to the Cross and the glorious resurrection, where Thomas confesses Jesus as My Lord and my God.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'John reveals most clearly that Jesus is true God and true man, the Word through whom all things were made. His teaching on the Bread of Life nourishes the Church\'s faith in the Eucharist, where Jesus gives us His own Body and Blood. As the Good Shepherd who lays down His life, and the vine in whom we abide, Jesus draws us into living communion with Him and with one another in His Church.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'John draws us into a deep and personal love for Jesus, the Word made flesh who gives us eternal life. Its teaching on the Bread of Life helps Catholics treasure the gift of the Eucharist at the heart of our faith. And its call to love one another and to remain in Christ shapes the life of the Church, inviting each of us into closer union with the Lord.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

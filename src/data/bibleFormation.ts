@@ -2952,6 +2952,293 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  james: {
+    book: 'James',
+    subtitle: 'Faith that comes alive in love and good works',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'James is the first of the letters often called the catholic, or universal, epistles, because they were written for the whole Church rather than a single community. Practical and down to earth, James teaches that genuine faith shows itself in the way we live. It is full of wisdom for daily life, touching on our words, our care for the poor, our patience, and our prayer.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'James writes to Christians scattered in various places, encouraging them to live their faith with integrity. Many faced hardship, temptation, and the everyday struggles of getting along with others. The letter offers practical guidance for living as true followers of Christ in the ordinary moments of life.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The letter is associated with James, a leader of the early Church in Jerusalem, and was treasured among the apostolic writings. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its lasting message is that faith and love belong together in a life pleasing to God.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Living faith: James teaches that faith without works is dead, because true faith naturally bears fruit in love. Wisdom: he encourages us to ask God for wisdom and to live humbly. Speech: he warns about the power of the tongue to bless or to harm. Care for the poor: he calls us to treat the lowly with honor. Patience and prayer: he urges trust in God and prayer in every season, including prayer for the sick.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'James offers a series of practical teachings rather than a story. He insists that faith must show itself in action, especially in caring for those in need. He speaks vividly about taming the tongue and seeking heavenly wisdom. He encourages patience in suffering and constant prayer, and he gives the early Church\'s instruction to call the elders to pray over the sick and anoint them, which the Church sees reflected in the Anointing of the Sick.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'James echoes the teaching of Jesus, who said that we are known by our fruits and who blessed the poor and the merciful. When James says that faith without works is dead, he is not opposing faith to grace, but showing that true faith, given by grace, is living and active through love. The Church sees in his words on anointing the sick a foundation for the sacrament that brings Christ\'s healing grace to the suffering.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'James challenges us to let our faith come alive in real acts of love, especially toward the poor and suffering. It offers practical wisdom for our speech, our patience, and our prayer. And its teaching on praying for the sick deepens our appreciation for the Anointing of the Sick, through which Christ continues to comfort and heal His people.',
+      },
+    ],
+  },
+  '1-peter': {
+    book: '1 Peter',
+    subtitle: 'A holy people, full of hope, even in suffering',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First Peter is a letter of encouragement written in the name of the apostle Peter to Christians facing trials and suffering. It reminds believers of their new identity as God\'s holy people, reborn through Baptism into a living hope. As inspired Scripture handed on by the Church, it strengthens us to live faithfully and joyfully, even when following Christ is difficult.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The letter addresses Christians who were experiencing hardship and even persecution for their faith, living as a minority in a world that did not share their beliefs. They needed encouragement to stay faithful and hopeful. Peter writes to remind them who they are in Christ and to help them endure with courage.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'First Peter is associated with the apostle Peter, written with the help of companions as was common in that age, and was treasured among the apostolic writings. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its enduring message is hope and holiness rooted in Christ.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Christian identity: believers are a chosen race, a royal priesthood, a holy nation, God\'s own people. Baptism: through it we are born anew into a living hope. Holiness: we are called to be holy as God is holy. Suffering: trials can purify faith and unite us to Christ. Hope: even in hardship, Christians rejoice in the salvation that awaits them.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'First Peter speaks tenderly to suffering believers, reminding them of the new birth they received through Baptism and the resurrection of Jesus. It calls them to live good lives among their neighbors, to honor one another, and to entrust themselves to God. It describes the whole people of God as a spiritual house and a royal priesthood, offering their lives to God through Christ.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'First Peter points to Christ, who suffered for us and rose again, as the source of our living hope. Through Baptism we are joined to His death and resurrection and made part of God\'s holy people, the Church. The letter\'s vision of believers as a royal priesthood reveals the dignity Christ gives to all the baptized, called to offer their lives to God and to share in His holiness.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First Peter encourages us to live with hope and holiness, especially when faith is tested. It deepens our appreciation of Baptism, through which we are reborn as God\'s people. And its reminder that we are a chosen and royal priesthood lifts our hearts, calling us to live each day as the holy people Christ has made us to be.',
+      },
+    ],
+  },
+  '2-peter': {
+    book: '2 Peter',
+    subtitle: 'Growing in holiness and trusting the apostolic witness',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second Peter is a letter that encourages believers to grow in faith and holiness and to hold fast to the true teaching handed on by the apostles. It warns gently against teachers who would lead the faithful astray, and it strengthens hope in the promises of Christ. As inspired Scripture, it calls us to keep maturing in the life of grace.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The letter addresses communities where some were spreading confusing or harmful ideas and where a few had grown discouraged. Believers needed reassurance in the trustworthiness of what the apostles had taught. Second Peter calls them back to confidence in the faith they had received.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Second Peter is associated with the apostle Peter and was received among the apostolic writings, though the Church has long been aware of questions about its origin. The Church treasures it as inspired Scripture while leaving these scholarly questions open. Its message is one of growth in holiness and trust in the apostolic witness.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Growing in holiness: believers are encouraged to add to their faith virtue, knowledge, self control, and love. Apostolic witness: Peter recalls being an eyewitness to Christ\'s glory, assuring us the faith rests on solid ground. Discernment: the letter warns against false teachers with gentle honesty. Hope: it reassures believers that the Lord is patient, desiring that all come to repentance, and that His promises are sure.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Second Peter recalls the apostles as eyewitnesses, including the moment they beheld Christ\'s glory on the holy mountain. It urges believers to grow steadily in the virtues that flow from faith. It cautions against those who twist the truth, while keeping the focus on God\'s patience and mercy. It assures the faithful that the Lord\'s promises will be fulfilled in His own good time.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Second Peter draws us to Christ by encouraging us to grow in His grace and knowledge. It reminds us that the faith is grounded in the trustworthy witness of those who knew Jesus and saw His glory. Its hope in the Lord\'s return is not a cause for fear but for patient, joyful faithfulness, trusting that Christ desires the salvation of all and will bring His good promises to fulfillment.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second Peter inspires us to keep growing in holiness rather than standing still in our faith. It assures us that the Gospel rests on the solid witness of the apostles, handed down in the Church. And it teaches us to await Christ with patient hope and trust in His mercy, living faithfully and lovingly in the meantime.',
+      },
+    ],
+  },
+  '1-john': {
+    book: '1 John',
+    subtitle: 'God is love, and we are called to live in His love',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First John is a warm and tender letter about the heart of the Christian life: that God is love, and that we are called to love one another. Written in the spirit of the beloved disciple, it encourages believers to remain in the truth about Jesus and to let that truth show itself in love. It assures us of forgiveness and fills us with confidence in our friendship with God.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The letter was written to communities troubled by those who denied important truths about Jesus and who divided the community. Believers needed to be confirmed in the true faith and in genuine love. First John holds these together, showing that right belief and real love cannot be separated.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'First John is associated with John, the beloved disciple, and the community that treasured his witness. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its lasting message is the inseparable bond of truth and love in the life of faith.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'God is love: this is the heart of the letter and of the Gospel. Truth: faith in Jesus, true God and true man, must be held firmly. Sin and forgiveness: if we confess our sins, God is faithful to forgive us. Eternal life: we already share in God\'s life through faith in His Son. Love of neighbor: we cannot claim to love God while failing to love the brothers and sisters we can see.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'First John is reflection and exhortation rather than narrative. It proclaims that the eternal life made visible in Jesus has been seen and touched by His witnesses. It teaches that walking in the light means both believing rightly and loving truly. It reassures the fearful that God is greater than our hearts, and it gives the beautiful summary that God is love, and whoever abides in love abides in God.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'First John reveals the love of God made visible in Jesus Christ, who laid down His life for us. It teaches that to know Christ is to keep His commandments and to love one another as He has loved us. Truth and love are joined in Him, for the same Jesus who is the truth is also the love of God poured out, and abiding in Him we share already in eternal life.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First John fills us with confidence in God\'s love and forgiveness. It teaches that genuine faith always shows itself in love for others, never in word alone. And it holds together truth and love, reminding us that to follow Christ is both to believe rightly in Him and to love as He loved, sharing even now in the eternal life He gives.',
+      },
+    ],
+  },
+  '2-john': {
+    book: '2 John',
+    subtitle: 'Walking together in truth and love',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second John is a very short letter that joins together two great themes: truth and love. Written in the spirit of the beloved disciple, it encourages a Christian community to remain faithful to the true teaching about Jesus and to keep loving one another. Brief as it is, it reminds us that faithfulness and love always belong together.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The letter addresses a community that needed to hold firmly to the apostolic faith while some were spreading mistaken ideas about Jesus. It encourages believers to stay rooted in the truth they had received. Like a caring note from a shepherd, it is warm yet clear in its concern.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Second John is associated with John, the beloved disciple, and the community that preserved his witness. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its enduring message is to remain faithful to the truth while walking in love.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Truth: believers are to hold fast to the genuine teaching about Christ. Love: the community is called to love one another, fulfilling Christ\'s commandment. Faithfulness: remaining in the apostolic teaching keeps us united with God. The harmony of truth and love: the letter shows that neither can be set aside, for they belong together in the life of faith.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Second John is a brief, personal letter rather than a story. It rejoices that members of the community are walking in the truth, and it gently urges them to continue in love. It warns them not to be led astray by those who deny the truth about Jesus, encouraging them to remain steadfast. Its few lines hold a tender concern for the community\'s faith and unity.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Second John keeps our eyes on Jesus, true God and true man, in whom truth and love meet. To remain in His teaching is to remain in Him, and to love one another is to keep His commandment. The letter reminds us that following Christ means embracing both the truth He reveals and the love He commands, never one without the other.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second John reminds us that our faith calls us both to hold fast to the truth and to love one another. It warns gently against drifting from the heart of the Gospel. And it encourages us to live in a way where truth and love are never opposed but always joined, as they are in Christ.',
+      },
+    ],
+  },
+  '3-john': {
+    book: '3 John',
+    subtitle: 'Hospitality and faithful love in the community',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Third John is a short, personal letter about welcoming and supporting those who serve the Gospel. Written in the spirit of the beloved disciple, it praises a faithful believer for his hospitality and encourages the community to support those who travel and teach in the name of Christ. It shows how love is lived out in practical care for one another.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'In the early Church, traveling preachers and teachers depended on the hospitality of local believers. This letter commends one who generously welcomed such workers and gently notes another who refused. It reflects the everyday life of communities striving to support the spread of the Gospel.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Third John is associated with John, the beloved disciple, and the community that treasured his witness. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its lasting message is the call to live the truth through generous, faithful love.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Hospitality: welcoming and supporting those who serve the Gospel is praised as a holy work. Support for faithful teachers: the community is encouraged to help those who labor for the truth. Living truth in community: love is shown in concrete acts of kindness. Walking in the truth: the letter rejoices that believers are living according to the Gospel they received.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Third John warmly commends a believer named Gaius for his faithfulness and generous hospitality toward those who came in the name of the Lord. It contrasts this with another who refused to welcome them, and it points to a good example to imitate. The letter shows that true faith is shown in how we treat and support one another, especially those who serve the Gospel.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Third John reflects the love of Christ lived out in practical hospitality and generosity. Jesus taught that whoever welcomes those He sends welcomes Him, and this little letter puts that teaching into action. To support those who spread the Gospel is to share in the very mission of Christ and to love as He has loved us.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Third John reminds us that love is shown not only in words but in welcome and generosity. It encourages us to support those who serve the Gospel and the mission of the Church. And it shows that walking in the truth means living it out in kindness toward one another, as Christ has taught us.',
+      },
+    ],
+  },
+  jude: {
+    book: 'Jude',
+    subtitle: 'Holding fast to the faith with perseverance and mercy',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Jude is a short letter that urges believers to remain faithful to the Gospel they received and to be on guard against teachings that would lead them astray. Though it speaks frankly about the dangers of error, its deepest message is one of perseverance and mercy. It encourages Christians to build themselves up in faith and to keep themselves in the love of God.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The letter addresses communities where some were distorting the faith and living in ways contrary to the Gospel. Jude writes to strengthen believers and to help them stay rooted in the truth. His concern is pastoral: to protect the faithful and to call the wandering back.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Jude is associated with Jude, a relative of James and of the Lord\'s family, and was treasured among the apostolic writings. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its enduring message is faithful perseverance joined with mercy toward others.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Perseverance: believers are called to contend for the faith handed down to them. Faithfulness: they are to remain rooted in the truth amid confusion. Mercy: Jude urges compassion toward those who doubt or wander, seeking to draw them back. Trust in God: he closes with a beautiful prayer of confidence that God is able to keep us from falling and bring us safely into His presence.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Jude encourages believers to hold firmly to the faith and warns about those who were leading others astray. Yet he does not end in alarm. He calls the faithful to build themselves up in prayer, to keep themselves in God\'s love, and to show mercy to those who waver. The letter closes with a soaring blessing, praising the God who can keep us from stumbling and present us blameless in joy.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Jude points us to Jesus Christ, in whose love we are called to remain and whose mercy we are to extend to others. Its call to persevere is really a call to stay close to Christ, who keeps us faithful by His grace. The letter\'s confident closing prayer rests entirely on the saving power of God our Savior through Jesus Christ, to whom belongs all glory.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Jude encourages us to persevere in the faith and to stay close to Christ amid confusion. Rather than leaving us anxious, it calls us to build ourselves up in prayer and to keep ourselves in the love of God. And it reminds us to show mercy to those who struggle or doubt, trusting that God is able to keep us all safe in His love.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

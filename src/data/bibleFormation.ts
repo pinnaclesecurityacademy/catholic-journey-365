@@ -3239,6 +3239,47 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  revelation: {
+    book: 'Revelation',
+    subtitle: 'Christ the victorious Lamb and the renewal of all things',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Revelation is the final book of the Bible, and it draws the whole story of salvation to a close in hope. Written in the spirit of the beloved disciple, it is a book of vision and worship, full of vivid images of heaven. Its message is not a secret code for predicting world events, but a proclamation of good news: Jesus Christ has won the victory, and God will bring His people safely into a renewed creation.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Revelation was written to Christians facing hardship and persecution, to strengthen them to remain faithful. It belongs to a kind of writing called apocalyptic, which uses rich symbols and imagery to reveal deeper spiritual truths and to give hope to those who suffer. Its first readers were encouraged to endure, knowing that Christ reigns above every earthly power.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Revelation is associated with John and the tradition of the beloved disciple, and it was treasured among the apostolic writings. The Church receives it as inspired Scripture while leaving open the finer questions of its authorship. What matters most is its inspired vision of Christ\'s victory and the hope it gives to the Church.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Christ the Lamb: Jesus is shown as the Lamb who was slain and now lives in glory, victorious through His self giving love. Heavenly worship: the book is filled with scenes of angels and saints praising God around His throne. Endurance: believers are called to remain faithful through trials. The defeat of evil: the powers of sin and death, often pictured through symbols, are finally overcome by God. New creation: the book ends with a new heaven and a new earth, where God dwells with His people.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Revelation opens with messages to seven churches, encouraging them to faithfulness. It then lifts the reader into a vision of heaven, where the Lamb who was slain is worshiped by all creation. Its dramatic symbols, such as beasts and battles, picture the struggle between good and evil and God\'s sure triumph. It closes with one of the most beautiful images in Scripture: the holy city, where God wipes away every tear and makes all things new.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Revelation reveals Jesus as the risen and victorious Lamb, at the center of heaven\'s worship. Catholics see in its heavenly liturgy a beautiful reflection of the Mass, where we join the angels and saints in worshiping the same Lamb of God, present in the Eucharist. Every celebration of Mass is a foretaste of that heavenly worship, uniting earth and heaven in the praise of Christ who has conquered death.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Revelation fills us with hope, assuring us that Christ has already won the victory and that evil will not have the last word. Rather than inviting us to guess at the future, it calls us to faithful endurance and joyful worship. And its vision of a new heaven and a new earth lifts our hearts toward the day when God will dwell with us fully and make all things new in Christ.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

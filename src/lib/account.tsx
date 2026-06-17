@@ -3,6 +3,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useRef,
   useState,
   ReactNode,
 } from 'react';
@@ -22,8 +23,11 @@ interface Profile {
   completion_id: string | null;
 }
 
+type LoadGuard = () => boolean;
+
 interface AccountValue {
   loading: boolean;
+  accountLoading: boolean;
   user: User | null;
   profile: Profile | null;
   completionId: string | null;
@@ -61,6 +65,7 @@ function randomCode(): string {
 
 export function AccountProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
+  const [accountLoading, setAccountLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [journeyId, setJourneyId] = useState<string | null>(null);
@@ -68,21 +73,27 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   const [inviteCode, setInviteCode] = useState<string | null>(null);
   const [role, setRole] = useState<string | null>(null);
   const [members, setMembers] = useState<Member[]>([]);
+  const loadToken = useRef(0);
 
-  const loadJourney = useCallback(async (uid: string) => {
+  const clearJourney = useCallback(() => {
+    setJourneyId(null);
+    setJourneyName(null);
+    setInviteCode(null);
+    setRole(null);
+    setMembers([]);
+  }, []);
+
+  const loadJourney = useCallback(async (uid: string, shouldApply: LoadGuard = () => true) => {
     const { data: membership } = await supabase
       .from('journey_members')
       .select('journey_id, member_role')
       .eq('user_id', uid)
       .limit(1)
       .maybeSingle();
+    if (!shouldApply()) return;
 
     if (!membership) {
-      setJourneyId(null);
-      setJourneyName(null);
-      setInviteCode(null);
-      setRole(null);
-      setMembers([]);
+      clearJourney();
       return;
     }
 
@@ -95,15 +106,20 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       .select('name, invite_code')
       .eq('id', jid)
       .maybeSingle();
+    if (!shouldApply()) return;
     if (journey) {
       setJourneyName(journey.name as string);
       setInviteCode(journey.invite_code as string);
+    } else {
+      setJourneyName(null);
+      setInviteCode(null);
     }
 
     const { data: mem } = await supabase
       .from('journey_members')
       .select('profiles(id, display_name, completion_id)')
       .eq('journey_id', jid);
+    if (!shouldApply()) return;
     const list: Member[] = (mem ?? [])
       .map((r: any) => r.profiles)
       .filter((p: any) => p && p.completion_id)
@@ -113,27 +129,42 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         completion_id: p.completion_id,
       }));
     setMembers(list);
-  }, []);
+  }, [clearJourney]);
 
   const loadAll = useCallback(
     async (u: User | null) => {
+      const token = loadToken.current + 1;
+      loadToken.current = token;
+      const shouldApply = () => loadToken.current === token;
+
       if (!u) {
         setProfile(null);
-        setJourneyId(null);
-        setMembers([]);
+        clearJourney();
+        setAccountLoading(false);
         return;
       }
-      const { data: prof } = await supabase
-        .from('profiles')
-        .select('id, display_name, completion_id')
-        .eq('id', u.id)
-        .maybeSingle();
-      setProfile((prof as Profile) ?? null);
-      if (prof && (prof as Profile).completion_id) {
-        await loadJourney(u.id);
+
+      setAccountLoading(true);
+      setProfile(null);
+      clearJourney();
+
+      try {
+        const { data: prof } = await supabase
+          .from('profiles')
+          .select('id, display_name, completion_id')
+          .eq('id', u.id)
+          .maybeSingle();
+        if (!shouldApply()) return;
+
+        setProfile((prof as Profile) ?? null);
+        if (prof && (prof as Profile).completion_id) {
+          await loadJourney(u.id, shouldApply);
+        }
+      } finally {
+        if (shouldApply()) setAccountLoading(false);
       }
     },
-    [loadJourney]
+    [clearJourney, loadJourney]
   );
 
   useEffect(() => {
@@ -142,19 +173,20 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       const u = data.session?.user ?? null;
       if (!active) return;
       setUser(u);
-      await loadAll(u);
-      if (active) setLoading(false);
+      setLoading(false);
+      void loadAll(u);
     });
 
     const { data: sub } = supabase.auth.onAuthStateChange(async (_e, session) => {
       const u = session?.user ?? null;
       setUser(u);
-      await loadAll(u);
       setLoading(false);
+      void loadAll(u);
     });
 
     return () => {
       active = false;
+      loadToken.current += 1;
       sub.subscription.unsubscribe();
     };
   }, [loadAll]);
@@ -320,6 +352,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     <AccountContext.Provider
       value={{
         loading,
+        accountLoading,
         user,
         profile,
         completionId: profile?.completion_id ?? null,

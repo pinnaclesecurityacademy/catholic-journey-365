@@ -189,8 +189,8 @@ export default function DayDetail() {
                   className="h-32 w-full object-cover"
                 />
                 <div className="relative bg-gradient-to-br from-white via-parchment-50 to-white p-5 text-center">
-                  <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-sage-500 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(74,103,65,0.22)]">
-                    &#10003;
+                  <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full border border-gold/70 bg-gold/15 text-lg font-semibold text-leather-600 shadow-[0_10px_24px_rgba(212,169,106,0.18)]">
+                    &#10013;
                   </span>
                   <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-stone-400">
                     Today's journey is complete
@@ -199,7 +199,7 @@ export default function DayDetail() {
                     &ldquo;Go and announce the Gospel of the Lord.&rdquo;
                   </p>
                   <p className="mt-2 font-display text-xl font-semibold text-leather-600">
-                    &ldquo;Thanks be to God.&rdquo;
+                    Thanks be to God.
                   </p>
 
                   <div className="mt-5 space-y-3">

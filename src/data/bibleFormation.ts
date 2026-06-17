@@ -492,6 +492,334 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  joshua: {
+    book: 'Joshua',
+    subtitle: 'God brings His people into the land He promised',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Joshua takes up the story right after the death of Moses. Israel has wandered the wilderness for a generation, and now they finally cross the Jordan River into the land God promised to Abraham long ago. Joshua, who served at Moses\' side, is chosen to lead them. This book is about a promise being kept, as God settles His people in the land and calls them to remain faithful to Him.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Joshua is set in the land of Canaan, a region of fortified towns, local kings, and many gods. Israel enters as a people freed from slavery, learning to live as a nation under the Lord. The wars described in this book belong to that ancient world, and they are remembered as part of how Israel came to dwell in the land that God had pledged to give them.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Tradition links this book with Joshua and the memory of those early days in the land, and it was treasured and handed down within Israel over time. The Church receives Joshua as inspired Scripture without settling every question about exactly how and when it reached its final form. What matters most is its witness: God is faithful, and He keeps His word to His people.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Faithfulness of God: the Lord keeps the promise He made to the patriarchs. Covenant: Israel is called to obey God and worship Him alone in the new land. Courage and trust: Joshua is told again and again to be strong and not to be afraid, because God goes with him. The hard conquest accounts are part of this book, and we read them honestly, remembering that they belong to a particular moment in salvation history and are not a pattern for how God\'s people live today. Christ would later reveal the full way of mercy and love of enemies.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Joshua leads Israel with quiet faith and obedience to God. Rahab of Jericho shows surprising faith and is welcomed among God\'s people, later remembered as an ancestor in the family line of Jesus. The crossing of the Jordan on dry ground echoes the crossing of the Red Sea, and the fall of Jericho shows that the victory belongs to God. At the end, Joshua gathers the people and calls them to choose whom they will serve.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Joshua in the light of Jesus Christ. The name Joshua is the same name as Jesus, and it means "the Lord saves". Joshua led Israel into an earthly promised land, but Jesus, the true Joshua, leads us into the lasting promised land of heaven. The faith of Rahab, woven into the lineage of David and of Jesus, reminds us that God draws people of every background into His family.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Joshua assures us that God keeps His promises, even when they take a long time to unfold. It encourages us to be courageous and trusting, knowing the Lord goes with us. Read with Christ in view, it points us beyond any earthly land toward the salvation Jesus wins for us. Like Israel, we are invited to choose, each day, to serve the Lord.',
+      },
+    ],
+  },
+  judges: {
+    book: 'Judges',
+    subtitle: 'God rescues a wayward people again and again',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Judges covers the long, unsettled time after Joshua and before Israel had kings. The people are living in the land, but they keep drifting away from God and falling into trouble. Into this disorder, God raises up leaders called judges to rescue them. This book shows both the weakness of the human heart and the patient mercy of God who refuses to give up on His people.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Judges is set in the early days of Israel in Canaan, when the tribes lived loosely together without a central king. Surrounded by other peoples and their gods, Israel was often tempted to abandon the Lord. It was a rough and often violent era, and the book describes it honestly, including some of its darkest moments.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'This book gathers the memory of Israel\'s judges, handed down and preserved within the people of God. The Church receives Judges as inspired Scripture while leaving open the details of how it was composed. Its lasting message is clear: when God\'s people forget Him, they lose their way, and only His mercy brings them back.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'A repeating cycle: the people turn from God, fall into hardship, cry out, and God sends a deliverer, only for the cycle to begin again. Repentance: again and again, God responds to the people when they return to Him. God\'s mercy: the Lord keeps rescuing a people who do not deserve it. The need for faithful leadership: the closing chapters, where everyone does as they see fit, reveal how much Israel needs both a faithful king and, ultimately, God Himself as their true king.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Deborah, a prophetess and judge, leads Israel with wisdom and courage. Gideon is called from fear to trust as God uses a small band to win an unlikely victory. Samson, gifted with great strength yet weakened by his own choices, still serves God\'s purposes in the end. Through these flawed and very human leaders, God shows that deliverance comes from Him, not from human strength alone.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Judges in the light of Jesus Christ. The judges were partial saviors who rescued Israel for a time, but the people always slid back. Their limits awaken a longing for a Savior who can truly free us from sin once and for all. That Savior is Jesus, the faithful King and Deliverer, whose victory never fades and whose rescue reaches the heart.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Judges is honest about how easily we wander from God and how mercifully He calls us back. It gently warns us against the cycle of forgetting the Lord when life is comfortable. Most of all, it stirs in us a hunger for the leadership and salvation that only Christ can give, and it reminds us that God never tires of welcoming us home.',
+      },
+    ],
+  },
+  ruth: {
+    book: 'Ruth',
+    subtitle: 'Quiet faithfulness woven into the family of the Messiah',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Ruth is a short and beautiful story set during the time of the judges, but its tone is completely different from the turmoil around it. It follows an ordinary family touched by loss and a foreign woman whose loyalty changes everything. Amid a chaotic age, Ruth shows that God is quietly at work in faithful, everyday lives, weaving them into His larger plan of salvation.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'The story moves between Moab and the town of Bethlehem in a time of famine and recovery. Ruth is a Moabite, an outsider to Israel, which makes her welcome among God\'s people all the more striking. The customs of the book, such as gleaning in the fields and a kinsman redeeming the family, belong to the village world of ancient Israel.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Ruth was cherished and passed down within Israel, in part because it leads to the family of King David. The Church receives it as inspired Scripture without needing to settle every question about its author or date. What it reveals is timeless: God honors loyalty, faithfulness, and love.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Loyalty: Ruth\'s pledge to stay with Naomi is one of the most moving promises in Scripture. Faithfulness: in small, steady acts of love, God\'s goodness shines through. Redemption: Boaz acts as a redeemer who rescues the family from loss. Welcome: a foreign woman is drawn into the people of God, showing that His covenant has room for all who come to Him in faith.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Naomi, emptied by grief, slowly rediscovers hope. Ruth refuses to abandon her mother in law and embraces Naomi\'s God as her own. Boaz, a generous and upright man, becomes the family redeemer and marries Ruth. Their child becomes the grandfather of King David, placing this humble story right inside the royal line that leads to the Messiah.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Ruth in the light of Jesus Christ. Ruth and Boaz are ancestors of David, and so of Jesus, the Son of David, and Ruth is named in the Gospel genealogy of Christ. Boaz the redeemer foreshadows Jesus, our Redeemer, who buys us back and makes us His own. That a Moabite woman belongs to the Messiah\'s family quietly proclaims that salvation in Christ is offered to all peoples.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Ruth reminds us that faithfulness in ordinary life truly matters to God. It comforts those who have known loss with the promise that God can bring new life out of sorrow. And it shows that no one is too much of an outsider to be welcomed into God\'s family, a welcome made complete in Jesus Christ.',
+      },
+    ],
+  },
+  '1-samuel': {
+    book: '1 Samuel',
+    subtitle: 'From judges to kings, and the search for a faithful heart',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First Samuel stands at a turning point in Israel\'s story. The age of the judges is ending, and the people ask for a king so they can be like the nations around them. Through the prophet Samuel, God guides this transition, anointing first Saul and then David. The book asks a deep question that runs through all of Scripture: what does it mean to be ruled, and to live, under God.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'First Samuel is set as Israel moves from a loose union of tribes toward a kingdom, under pressure from powerful neighbors such as the Philistines. Worship still centers on the sanctuary where the ark of God is kept. It is a time of change, when Israel longs for stability and seeks it in a king.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The books of Samuel preserve the remembered history of Samuel, Saul, and David, handed down and treasured in Israel. The Church receives them as inspired Scripture while leaving open the questions of exactly who shaped them and when. Their enduring lesson is that God looks not at outward appearance but at the heart.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Listening to God: from the boy Samuel saying "Speak, for your servant is listening," the book honors those who hear and obey the Lord. True leadership: Saul looks the part of a king but turns from God, while David, though imperfect, seeks God\'s heart. God\'s choice: the Lord raises up the lowly and judges by the heart, not by appearances. Trust over power: David facing Goliath shows that the battle belongs to God.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Samuel, prophet and judge, anoints Israel\'s first kings and calls the people back to God. Saul begins well but unravels through disobedience and fear. David is anointed as a young shepherd, defeats Goliath in the Lord\'s name, and patiently waits for God\'s timing even while Saul pursues him. These stories reveal what kind of heart God seeks in a leader.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read First Samuel in the light of Jesus Christ. David, the shepherd anointed as king and chosen for his heart, foreshadows Jesus, the Good Shepherd and the true Anointed One, the Messiah. David\'s victory over Goliath points to Christ\'s greater victory over sin and death, won not by worldly might but by trust in God.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First Samuel teaches us to listen for God\'s voice and to value the heart over outward appearances. It shows that real leadership means faithfulness to God, not impressive strength. And in David it gives us a young shepherd who points us toward Christ, the Shepherd King who leads us with a faithful heart.',
+      },
+    ],
+  },
+  '2-samuel': {
+    book: '2 Samuel',
+    subtitle: 'King David and a promise that reaches to Christ',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second Samuel tells the story of David as king. He unites the tribes, makes Jerusalem the heart of the nation, and brings the ark of God into the city. Here God makes a remarkable promise to David about an everlasting kingdom. Yet the book is also honest about David\'s sins and their painful consequences, showing a great king who is still a man in need of mercy.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Second Samuel is set as Israel becomes an established kingdom with Jerusalem as its capital. David secures the nation against its enemies and gathers the people around the worship of God. It is the high point of Israel\'s monarchy, remembered ever after as a golden age tied to David\'s name.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Like First Samuel, this book preserves Israel\'s remembered history of David, handed down within the people of God. The Church receives it as inspired Scripture without settling every detail of its composition. Its heart is the covenant God makes with David, a promise that shapes Israel\'s hope for centuries.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The Davidic covenant: God promises David a house and a kingdom that will endure forever. Worship: David longs for God to dwell at the center of the nation\'s life. Human weakness: David\'s sin with Bathsheba and its aftermath show that even the greatest can fall. Repentance: confronted by the prophet Nathan, David humbles himself and turns back to God, becoming a model of contrition.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'David reigns as Israel\'s great king, bringing the ark to Jerusalem with joy. God\'s promise through Nathan that David\'s throne will last forever becomes a cornerstone of Israel\'s hope. David\'s grave sins bring suffering on his household, yet his sincere repentance, echoed in the psalms, reveals a heart that returns to God even after failing badly.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Second Samuel in the light of Jesus Christ. The promise of an everlasting kingdom to David is fulfilled in Jesus, the Son of David, whose reign truly has no end. Where David fell into sin, Christ remains perfectly faithful, the sinless King who saves His people. David\'s repentance points us to the mercy that Jesus offers to every sinner.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second Samuel shows that God can build His purposes even through flawed people, and that no sin is beyond His mercy when we truly repent. Its promise to David fills us with hope, because we know who fulfills it. And David\'s honest return to God after grievous failure encourages us never to despair, but to seek the forgiveness Christ freely gives.',
+      },
+    ],
+  },
+  '1-kings': {
+    book: '1 Kings',
+    subtitle: 'Wisdom, the temple, and a kingdom that begins to divide',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First Kings opens with the reign of Solomon, David\'s son, who builds the temple in Jerusalem and leads Israel to its height of glory. But the story soon turns. After Solomon, the kingdom splits in two, and many kings lead the people away from God. Into this decline God sends prophets to call the people back, beginning a long struggle between faithfulness and idolatry.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'First Kings is set in the era of Israel\'s monarchy, from the splendor of Solomon\'s reign to the division of the nation into a northern kingdom of Israel and a southern kingdom of Judah. Temples, royal courts, and rival worship shape the world of the book. It is a time of wealth and influence, but also of growing unfaithfulness.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The books of Kings gather Israel\'s remembered history of its rulers, handed down and shaped within the people of God. The Church receives them as inspired Scripture while leaving open the questions of their precise authorship and dating. Their steady measure of each king is simple: did he lead the people toward God or away from Him.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Wisdom: Solomon famously asks God for an understanding heart to govern well. The temple: God\'s house in Jerusalem becomes the center of worship and a sign of His presence. Division: pride and idolatry tear the kingdom apart. The prophets: figures like Elijah arise to confront false worship and call the people back to the Lord, showing that God never abandons His people even in their unfaithfulness.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Solomon receives wisdom from God and builds the temple, yet later lets foreign worship lead his heart astray. After him the kingdom divides, and a line of kings, many of them unfaithful, follows. The prophet Elijah stands out boldly, challenging the worship of false gods and calling Israel to return to the Lord, even at great personal risk.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read First Kings in the light of Jesus Christ. Solomon\'s wisdom and his temple point toward Jesus, who is greater than Solomon and who is Himself the true temple where God and humanity meet. The prophets who called Israel back prepare the way for Christ, the final and perfect prophet, who speaks the Father\'s word and gathers a divided people into one.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First Kings shows that God\'s gifts, even wisdom and worship, must be matched by a faithful heart. It warns how easily comfort and compromise can pull us away from the Lord. And in the prophets it reminds us that God keeps calling His people home, a call that reaches its fullness in Jesus Christ.',
+      },
+    ],
+  },
+  '2-kings': {
+    book: '2 Kings',
+    subtitle: 'Prophets, exile, and a faithful God who does not forget',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second Kings follows the two kingdoms of Israel and Judah through their decline and fall. Prophets continue to plead with the people, but unfaithfulness deepens. In the end the northern kingdom and then Judah are conquered, and the people are carried into exile. It is a sobering book, yet even here God\'s promises quietly endure beneath the ruins.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Second Kings is set in the later years of the divided monarchy, amid the rise of great empires like Assyria and Babylon. These powers eventually conquer Israel and Judah, destroy Jerusalem and its temple, and take the people into exile. It is one of the most painful chapters in Israel\'s history.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Like First Kings, this book preserves Israel\'s remembered history, handed down and gathered within the people of God. The Church receives it as inspired Scripture without settling every detail of its origin. Its message is searching but hopeful: turning from the covenant brings ruin, yet God remains faithful to His promises.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The prophets: figures like Elisha continue God\'s work of calling, warning, and showing His care. Consequences: abandoning the covenant leads, over time, to loss and exile. Judgment and mercy: God allows the painful results of sin, yet never fully withdraws His love. Enduring hope: even as Jerusalem falls, the promise to David is not erased, and God\'s plan continues beneath the sorrow.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Elisha carries on the prophetic mission of Elijah, working signs of God\'s mercy and power. Faithful kings like Hezekiah and Josiah bring times of renewal, but the long drift continues. The fall of the northern kingdom, and finally the destruction of Jerusalem and the exile to Babylon, bring the story to a heavy close, even as a small note of hope remains for David\'s line.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Second Kings in the light of Jesus Christ. The exile reveals how deeply God\'s people need a Savior who can heal the human heart, not just restore a kingdom. The promise to David survives the collapse and waits to be fulfilled in Jesus, the Son of David, who gathers the scattered people of God and leads us out of the deeper exile of sin.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second Kings teaches honestly that sin has real consequences and that turning from God wounds our lives. Yet it also assures us that God never abandons His promises, even when everything seems lost. It deepens our hope in Christ, who restores what was broken and brings His people home.',
+      },
+    ],
+  },
+  '1-chronicles': {
+    book: '1 Chronicles',
+    subtitle: 'Remembering who we are, worship, and the covenant with David',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First Chronicles retells much of Israel\'s history, especially the reign of David, from the perspective of a later age. Written for people who had returned from exile, it helps them remember who they are and where they belong. Rather than dwelling on failures, it lifts up worship, the temple, and God\'s faithful covenant, encouraging a wounded people to take heart.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'First Chronicles speaks to the community of Israel after the Babylonian exile, as they rebuild their life and faith in the land. They needed to recover their identity, their worship, and their hope. The book looks back to David and the temple to remind them of the foundations God had laid.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Chronicles was composed to retell Israel\'s story for the restored community, drawing on earlier records treasured within the people of God. The Church receives it as inspired Scripture while leaving open the questions of its exact author and date. Its purpose is clear: to renew identity, worship, and trust in God\'s covenant faithfulness.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Remembering identity: the long genealogies anchor the people in God\'s family and story. David: his reign is recalled with a focus on his devotion and his plans for worship. Temple worship: great attention is given to the temple, the priests, and the praise of God. Covenant faithfulness: God\'s promise to David is held up as a sure hope, encouraging the people to trust the Lord again.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'The opening genealogies trace Israel from Adam onward, reminding the people that they belong to a story far larger than the exile. David takes center stage, not chiefly as a warrior but as the one who longs for God\'s house and arranges for its worship and priesthood. The bringing of the ark and the preparations for the temple highlight a kingdom centered on the praise of God.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read First Chronicles in the light of Jesus Christ. Its hope rests on God\'s covenant with David, fulfilled in Jesus, the Son of David and everlasting King. Its love for the temple and for worship points to Christ, the true temple, and to the worship of the Church, where He is praised. The genealogies that lead toward David ultimately lead to the Messiah.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First Chronicles reminds us that remembering our place in God\'s family gives us strength, especially after hard times. It teaches that worship is at the heart of who we are as God\'s people. And by holding fast to the promise to David, it deepens our hope in Christ, in whom that promise comes true and in whom our worship finds its home.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

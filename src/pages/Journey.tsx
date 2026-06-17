@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { readingPlan } from '../data/readingPlan';
 import { TOTAL_DAYS } from '../config/journey';
@@ -9,6 +9,7 @@ import {
   SacredCard,
   sacredButtonCardClassName,
 } from '../components/SacredCard';
+import { scrollToContentStart } from '../lib/scroll';
 
 function isComplete(
   records: CompletionRecord[],
@@ -142,12 +143,17 @@ export default function Journey() {
   const { members } = useAccount();
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
   const [selected, setSelected] = useState<Period | null>(null);
+  const contentStartRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     getAllCompletions()
       .then(setCompletions)
       .catch(() => setCompletions([]));
   }, []);
+
+  useEffect(() => {
+    scrollToContentStart(contentStartRef.current);
+  }, [selected]);
 
   const periods = useMemo(buildPeriods, []);
 
@@ -177,6 +183,7 @@ export default function Journey() {
           &larr; All Periods
         </button>
         <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
+          <div ref={contentStartRef} />
           <div className="flex items-center gap-4">
             <img
               src={periodIconSrc(selected)}
@@ -276,6 +283,7 @@ export default function Journey() {
         </div>
       </button>
 
+      <div ref={contentStartRef} />
       <header className="mb-4 px-1">
         <h2 className="font-display text-2xl font-bold text-leather-900">
           Journey

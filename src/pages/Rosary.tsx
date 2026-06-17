@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   rosaryEducation,
@@ -11,6 +11,7 @@ import {
   mysteryExcerpt,
 } from '../data/rosaryContent';
 import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
+import { scrollToContentStart } from '../lib/scroll';
 
 // Guided Rosary, Christ-centred meditation. Education + opening prayers + per-mystery content.
 type Step = 'start' | 'opening' | 'mysteries' | 'decades' | 'finish';
@@ -45,10 +46,11 @@ export default function Rosary() {
   const [step, setStep] = useState<Step>('start');
   const [selectedMystery, setSelectedMystery] = useState<string>(mystery ?? '');
   const [decade, setDecade] = useState(1);
+  const contentStartRef = useRef<HTMLDivElement>(null);
 
   // Land at the top whenever the step or decade changes.
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToContentStart(contentStartRef.current);
   }, [step, decade, selectedMystery]);
 
   const Shell = ({ children }: { children: React.ReactNode }) => (
@@ -59,7 +61,9 @@ export default function Rosary() {
       >
         ← Prayer
       </button>
-      <div className="flex-1">{children}</div>
+      <div ref={contentStartRef} className="flex-1">
+        {children}
+      </div>
     </div>
   );
 

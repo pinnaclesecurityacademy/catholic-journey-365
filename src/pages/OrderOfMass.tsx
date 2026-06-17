@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   massWelcome,
@@ -8,6 +8,7 @@ import {
   MassCard,
 } from '../data/massContent';
 import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
+import { scrollToContentStart } from '../lib/scroll';
 
 // Introduction to the Mass. A beginner-friendly guide reached from the Faith
 // hub. Flow: a welcome intro, a menu of the parts of the Mass, then one page
@@ -54,15 +55,22 @@ export default function OrderOfMass() {
   const navigate = useNavigate();
   const [view, setView] = useState<View>({ kind: 'welcome' });
   const [openSub, setOpenSub] = useState<number | null>(null);
+  const contentStartRef = useRef<HTMLDivElement>(null);
+  const subtopicRefs = useRef<Record<number, HTMLElement | null>>({});
 
   const total = massSections.length;
 
   // Land at the top whenever the view changes, and close any open accordion
   // when moving between parts.
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToContentStart(contentStartRef.current);
     setOpenSub(null);
   }, [view]);
+
+  useEffect(() => {
+    if (openSub === null) return;
+    scrollToContentStart(subtopicRefs.current[openSub]);
+  }, [openSub]);
 
   const Shell = ({ children }: { children: React.ReactNode }) => (
     <div className="max-w-md mx-auto px-5 pt-6 min-h-screen flex flex-col">
@@ -72,7 +80,9 @@ export default function OrderOfMass() {
       >
         ← Faith
       </button>
-      <div className="flex-1">{children}</div>
+      <div ref={contentStartRef} className="flex-1">
+        {children}
+      </div>
     </div>
   );
 
@@ -212,7 +222,13 @@ export default function OrderOfMass() {
           const open = openSub === gi;
           const [first, ...rest] = group;
           return (
-            <section key={gi} className="mb-3">
+            <section
+              key={gi}
+              ref={(node) => {
+                subtopicRefs.current[gi] = node;
+              }}
+              className="mb-3"
+            >
               <button
                 type="button"
                 onClick={() => setOpenSub(open ? null : gi)}

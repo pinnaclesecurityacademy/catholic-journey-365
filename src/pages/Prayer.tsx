@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { prayerCategories, PrayerCategory } from '../data/prayers';
+import { scrollToContentStart } from '../lib/scroll';
 
 // Top-level prayer-library categories. Each maps to one or more underlying data
 // categories (whose ids and routing are unchanged), so prayers are grouped for
@@ -71,6 +72,11 @@ const INTENTION_SUBSECTIONS: {
 export default function Prayer() {
   const navigate = useNavigate();
   const [openGroup, setOpenGroup] = useState<string | null>(null);
+  const contentStartRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    scrollToContentStart(contentStartRef.current);
+  }, [openGroup]);
 
   const findCategory = (id: string): PrayerCategory | undefined =>
     prayerCategories.find((c) => c.id === id);
@@ -96,7 +102,7 @@ export default function Prayer() {
             ← Prayer
           </button>
 
-          <header className="mb-6">
+          <header ref={contentStartRef} className="mb-6">
             <h1 className="font-display text-3xl font-bold text-leather-900">
               {openGroup}
             </h1>
@@ -146,7 +152,7 @@ export default function Prayer() {
           ← Prayer
         </button>
 
-        <header className="mb-6">
+        <header ref={contentStartRef} className="mb-6">
           <h1 className="font-display text-3xl font-bold text-leather-900">
             {openGroup}
           </h1>
@@ -187,7 +193,7 @@ export default function Prayer() {
   // Category home view (cards only).
   return (
     <div className="max-w-md mx-auto px-5 pt-8">
-      <header className="mb-6">
+      <header ref={contentStartRef} className="mb-6">
         <h1 className="font-display text-3xl font-bold text-leather-900">
           Prayer
         </h1>

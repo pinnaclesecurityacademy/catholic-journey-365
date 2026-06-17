@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Prayer } from '../data/prayers';
 import { rosaryOpeningVerse, decadePrayerVerse } from '../data/rosaryContent';
 import { SacredPrayer, SacredPrayerLabel } from './SacredPrayer';
+import { scrollToContentStart } from '../lib/scroll';
 
 // Guided Divine Mercy Chaplet, mirroring the Rosary / Novena experience:
 // About -> Begin -> Opening prayers -> five decades (large bead + ten small
@@ -28,12 +29,13 @@ export default function ChapletFlow({ prayer }: { prayer: Prayer }) {
 
   // 0 = About, 1 = Opening prayers, 2..6 = Decades 1..5, 7 = Closing.
   const [step, setStep] = useState(0);
+  const contentStartRef = useRef<HTMLElement>(null);
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToContentStart(contentStartRef.current);
   }, [step]);
 
   const Header = ({ label, title }: { label?: string; title: string }) => (
-    <header className="mb-7 text-center">
+    <header ref={contentStartRef} className="mb-7 text-center">
       {label && (
         <p className="text-xs uppercase tracking-[0.2em] text-leather-400">
           {label}
@@ -67,7 +69,7 @@ export default function ChapletFlow({ prayer }: { prayer: Prayer }) {
     return (
       <div className="max-w-md mx-auto px-5 pt-6 pb-12">
         {backTo('exit')}
-        <header className="mb-8 text-center">
+        <header ref={contentStartRef} className="mb-8 text-center">
           <h1 className="font-display text-4xl font-bold text-leather-900 leading-tight">
             {prayer.title}
           </h1>

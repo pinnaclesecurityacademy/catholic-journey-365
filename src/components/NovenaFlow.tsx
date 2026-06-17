@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { Prayer } from '../data/prayers';
 import { SacredPrayer, SacredPrayerLabel } from './SacredPrayer';
+import { scrollToContentStart } from '../lib/scroll';
 
 // A reusable novena experience: an intro page, then nine days presented one at
 // a time (About → Begin Novena → Day 1 … Day 9 → Finish Novena). Built to work
@@ -24,9 +25,10 @@ export default function NovenaFlow({ prayer }: { prayer: Prayer }) {
 
   // -1 = About page; 0..days.length-1 = a specific day.
   const [index, setIndex] = useState(-1);
+  const contentStartRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToContentStart(contentStartRef.current);
   }, [index]);
 
   const primaryBtn =
@@ -45,7 +47,7 @@ export default function NovenaFlow({ prayer }: { prayer: Prayer }) {
           ← Back
         </button>
 
-        <header className="mb-8 text-center">
+        <header ref={contentStartRef} className="mb-8 text-center">
           <h1 className="font-display text-4xl font-bold text-leather-900 leading-tight">
             {prayer.title}
           </h1>
@@ -88,7 +90,7 @@ export default function NovenaFlow({ prayer }: { prayer: Prayer }) {
         ← Back
       </button>
 
-      <header className="mb-7 text-center">
+      <header ref={contentStartRef} className="mb-7 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-leather-400">
           Day {index + 1} of {days.length}
         </p>

@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getPrayer, getCategory, PrayerSection } from '../data/prayers';
 import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
 import NovenaFlow from '../components/NovenaFlow';
 import ChapletFlow from '../components/ChapletFlow';
+import { scrollToContentStart } from '../lib/scroll';
 
 const stationArtwork: Record<string, string> = {
   'station-1': '/images/stations/station-01-jesus-condemned.webp',
@@ -75,6 +76,8 @@ export default function PrayerDetail() {
   const prayer = getPrayer(categoryId ?? '', prayerId ?? '');
 
   const [aboutOpen, setAboutOpen] = useState(false);
+  const contentStartRef = useRef<HTMLElement>(null);
+  const aboutRef = useRef<HTMLElement>(null);
 
   // Continuous Previous/Next navigation through the Stations guide
   // (About → Station 1 → … → Station 14).
@@ -94,9 +97,14 @@ export default function PrayerDetail() {
 
   // Land at the top when moving between prayers/stations; close the About panel.
   useEffect(() => {
-    window.scrollTo(0, 0);
+    scrollToContentStart(contentStartRef.current);
     setAboutOpen(false);
   }, [categoryId, prayerId]);
+
+  useEffect(() => {
+    if (!aboutOpen) return;
+    scrollToContentStart(aboutRef.current);
+  }, [aboutOpen]);
 
   if (!prayer) {
     return (
@@ -136,7 +144,7 @@ export default function PrayerDetail() {
       </button>
 
       {/* Title, centred, with a quiet ornamental divider */}
-      <header className="mb-8 text-center">
+      <header ref={contentStartRef} className="mb-8 text-center">
         <h1 className="font-display text-4xl font-bold text-leather-900 leading-tight">
           {prayer.title}
         </h1>
@@ -179,7 +187,7 @@ export default function PrayerDetail() {
 
       {/* About this prayer, closed by default, prayer always appears first */}
       {prayer.explanation && (
-        <section className="mb-8">
+        <section ref={aboutRef} className="mb-8">
           <button
             type="button"
             onClick={() => setAboutOpen((v) => !v)}

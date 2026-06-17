@@ -1435,6 +1435,252 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  isaiah: {
+    book: 'Isaiah',
+    subtitle: 'The holiness of God and the promise of a Savior',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Isaiah is the first and one of the greatest of the prophets. A prophet is not mainly a predictor of the future but a messenger who speaks God\'s word, calling His people back to faithfulness. Isaiah speaks to Judah during times of crisis, warning of judgment for unfaithfulness yet filling the people with hope. His book overflows with promises of a coming Savior, and the Church treasures it as a doorway into the mystery of Christ.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Isaiah prophesied in and around Jerusalem during a dangerous age, when great empires threatened the small kingdom of Judah. Kings were tempted to trust in alliances and worldly power rather than in God. Into this fearful world Isaiah proclaimed that the Lord is holy, sovereign over the nations, and faithful to His promises.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is rooted in the prophet Isaiah, and its message was treasured and developed over time within the people of God, so that it speaks to several moments in Israel\'s history. The Church receives the whole of Isaiah as inspired Scripture and does not need to settle every scholarly question about how it took shape. What matters is its powerful witness to God\'s holiness and His saving plan.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The holiness of God: Isaiah\'s vision of the Lord, high and lifted up, fills the book with awe. Judgment and hope: God warns against sin yet always holds out the promise of mercy. The coming King: Isaiah foretells a child to be born, called Emmanuel, God with us. The suffering servant: he describes a mysterious servant who bears the sins of many. Restoration and the nations: God promises to renew His people and to draw all peoples to Himself.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Isaiah receives a stunning vision of God in the temple and answers God\'s call with the words, here am I, send me. He counsels kings during national crises, urging trust in God. He speaks the famous promises of Emmanuel and of a child born to us on whom the government shall rest. And he gives the haunting songs of the suffering servant, wounded for our transgressions, that the Church reads each year during Holy Week.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Isaiah in the light of Jesus Christ, and no Old Testament book is quoted more often in connection with Him. The promise of Emmanuel is fulfilled in the birth of Jesus. The suffering servant who is pierced for our offenses is fulfilled in Christ\'s passion. The hope of salvation reaching all nations is fulfilled as the Gospel goes out to the whole world. Isaiah truly prepares the way for the Savior.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Isaiah lifts our eyes to the holiness and majesty of God. It calls us, like Judah, to trust in the Lord rather than in passing powers. And it fills us with hope, for in Jesus we see the Emmanuel and the suffering servant whom Isaiah foretold. To read Isaiah is to walk closer to Christ and to the salvation He brings.',
+      },
+    ],
+  },
+  jeremiah: {
+    book: 'Jeremiah',
+    subtitle: 'A faithful prophet and the promise of a New Covenant',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Jeremiah prophesied in the final years before Jerusalem fell to Babylon. As God\'s messenger, he pleaded with the people to turn back to the covenant before it was too late. His words are filled with sorrow over the people\'s sin and with the pain of being rejected for telling the truth. Yet at the heart of his book shines one of the most beautiful promises in all of Scripture: a New Covenant written on the heart.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Jeremiah lived through Judah\'s last days, as the power of Babylon rose and Jerusalem moved toward destruction and exile. It was a time of false security, political turmoil, and spiritual decline. Jeremiah\'s task was to speak hard truths to a people who did not want to hear them.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is tied to the prophet Jeremiah and to his faithful scribe Baruch, who helped record his words, and it was treasured within the people of God. The Church receives it as inspired Scripture while leaving open questions about how the book was gathered and arranged. Its enduring message is God\'s call to return to Him and His promise of inner renewal.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Repentance: Jeremiah urgently calls the people to turn from sin and back to God. Sorrow over sin: he grieves deeply for his people and is often called the weeping prophet. Persecution: he suffers rejection, imprisonment, and loneliness for his faithfulness. The New Covenant: God promises a day when He will write His law on human hearts and forgive their sins, a promise that reaches far beyond Jeremiah\'s own time.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Jeremiah is called by God while still young and sent to speak despite his fears. He performs vivid sign actions, like the marred and remade potter\'s vessel, to make God\'s word clear. He endures opposition from kings, priests, and crowds, yet keeps proclaiming the truth. And he announces the promise of the New Covenant, in which God will give His people a new heart to know and love Him.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Jeremiah in the light of Jesus Christ. The New Covenant that Jeremiah foretold is fulfilled by Jesus, who at the Last Supper speaks of the new covenant in His blood, poured out for the forgiveness of sins. Jeremiah\'s own suffering as a rejected prophet foreshadows Christ, the faithful one rejected by His people yet faithful to the end for our salvation.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Jeremiah calls us to honest repentance and to trust God even when faithfulness is costly. It reminds us that God desires not just outward observance but a heart turned fully to Him. And its promise of the New Covenant fills us with gratitude, for in Christ that promise is fulfilled, and His Spirit writes God\'s love upon our hearts.',
+      },
+    ],
+  },
+  lamentations: {
+    book: 'Lamentations',
+    subtitle: 'Honest grief and quiet hope in God\'s mercy',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Lamentations is a series of sorrowful poems mourning the destruction of Jerusalem and its temple. It gives voice to the grief of a people who have lost almost everything. Yet even in the depths of sorrow, it turns to God in honest prayer and finds a flicker of hope in His unfailing mercy. It teaches us that we can bring even our deepest pain to the Lord.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Lamentations arises from the terrible time when Babylon destroyed Jerusalem and led the people into exile. The city that had been the center of worship and national life lay in ruins. These poems capture the raw sorrow of that loss with great honesty and tenderness.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Tradition has long associated these laments with the prophet Jeremiah, who witnessed Jerusalem\'s fall, and they were treasured within the worship and memory of God\'s people. The Church receives Lamentations as inspired Scripture without needing to settle every question about its author. Its value lies in how it teaches us to grieve and to hope before God.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Grief: the book does not hide its sorrow but pours it out openly. Honest prayer: it shows that lament itself can be a holy way of speaking to God. Repentance: it acknowledges the people\'s sin and the justice of their suffering. Hope in mercy: at its center stands the confident cry that God\'s mercies are new every morning, and great is His faithfulness.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Lamentations is not a story but a heartfelt response to the fall of Jerusalem, voiced as if by the grieving city and its people. It moves through scenes of devastation, hunger, and loss, and through cries of repentance. At its very heart, almost unexpectedly, it lifts up a steadfast confidence in the Lord\'s compassion, which never comes to an end.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Lamentations in the light of Jesus Christ. The Church prays these laments especially during Holy Week, hearing in them an echo of Christ\'s own suffering and of His sorrow over Jerusalem. In Jesus, God enters fully into human grief, and His resurrection turns lament into the sure hope that no sorrow is beyond God\'s power to redeem.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Lamentations gives us permission to grieve honestly and to bring our sorrows to God rather than hiding them. It teaches that faith and lament can live together, and that repentance opens the way to mercy. Above all, it assures us that God\'s compassion is new every morning, a faithfulness made fully visible in Christ.',
+      },
+    ],
+  },
+  baruch: {
+    book: 'Baruch',
+    subtitle: 'Repentance, wisdom, and hope for a people in exile',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Baruch is a short book associated with Jeremiah\'s faithful scribe of the same name. It speaks to God\'s people in exile, leading them in repentance, praising the gift of God\'s wisdom, and offering comfort and hope of restoration. It is part of the Catholic Old Testament canon and gently encourages a suffering people to return to the Lord.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Baruch reflects the experience of the exile, when God\'s people lived far from Jerusalem and longed for home. In that setting they needed to confess their sins, hold on to their faith, and trust that God had not forgotten them. The book speaks into this longing with words of repentance and hope.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is linked with Baruch, the companion of Jeremiah, and it was treasured among God\'s people. The Catholic Church receives it as inspired Scripture, part of the Old Testament canon. The Church honors its message of repentance and hope while simply receiving the book as part of the prophetic tradition.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Exile: the book speaks to the pain of being far from home and from the temple. Repentance: it leads the people in honestly confessing their sins. Wisdom: it praises wisdom as a gift of God, found in walking in His ways. Hope of restoration: it comforts the people with the promise that God will gather and renew them, turning their mourning into joy.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Baruch is more reflection and prayer than narrative. It includes a moving confession of sin on behalf of the people, a beautiful passage praising the wisdom of God, and words of consolation that picture Jerusalem looking with hope for her returning children. Through these, the exiles are encouraged to turn back to the Lord and trust His promises.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Baruch in the light of Jesus Christ. Its praise of God\'s wisdom, given to His people and walking among them, prepares us for Jesus, the Wisdom of God made flesh. Its hope that God will gather His scattered children and restore them points toward Christ, who brings us home from the deeper exile of sin into the joy of the Father\'s house.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Baruch encourages us to return to God with humble, honest repentance. It reminds us that true wisdom is found in walking faithfully in His ways. And its tender hope of restoration lifts our hearts, assuring us that God gathers His people and that, in Christ, our longing for home is answered.',
+      },
+    ],
+  },
+  ezekiel: {
+    book: 'Ezekiel',
+    subtitle: 'God with His people, and the promise of a new heart',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Ezekiel was a prophet among the exiles in Babylon, far from the ruined temple of Jerusalem. As God\'s messenger, he called the people to turn from sin and assured them that God had not abandoned them. His book is full of striking visions, and it carries one of the Bible\'s most hopeful promises: that God will give His people a new heart and a new spirit.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Ezekiel lived and prophesied during the exile, when many of God\'s people had been carried away to Babylon and Jerusalem had fallen. The people wondered whether God was still with them so far from the temple. Ezekiel\'s visions and words answered that question with a resounding yes.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is rooted in the prophet Ezekiel, a priest among the exiles, and was treasured within the people of God. The Church receives it as inspired Scripture while leaving open the finer questions of how it was composed. Its lasting witness is that God is present with His people and longs to renew them from within.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'God\'s presence: even in exile, God\'s glory comes to His people, who are not forgotten. A new heart: God promises to remove hearts of stone and give hearts of flesh, placing His Spirit within. The Good Shepherd: God promises to shepherd His scattered flock Himself. Restoration: in the vision of dry bones brought to life, God promises to revive His people. Renewed worship: Ezekiel envisions a restored temple where God dwells with His people forever.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Ezekiel receives a dazzling vision of God\'s glory and is called to speak boldly to a discouraged people. He performs dramatic sign actions to make God\'s message vivid. He sees the valley of dry bones come to life as a sign of Israel\'s restoration, and he promises that God Himself will gather and shepherd His people. His closing visions describe a renewed temple and the river of life flowing from God\'s presence.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Ezekiel in the light of Jesus Christ. God\'s promise to shepherd His people Himself is fulfilled in Jesus, the Good Shepherd who lays down His life for His sheep. The promise of a new heart and a new spirit is fulfilled when Christ pours out the Holy Spirit upon the Church. The river of life flowing from the temple points to the grace that flows from Christ and His Church.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Ezekiel assures us that God is with us even in our exiles and hardships. Its promise of a new heart speaks to our own need for inner conversion, which Christ makes possible through the Holy Spirit. And its image of the Good Shepherd draws us close to Jesus, who seeks us out, heals us, and leads us home.',
+      },
+    ],
+  },
+  daniel: {
+    book: 'Daniel',
+    subtitle: 'Faithful courage and the kingdom that will never end',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Daniel tells of faithful believers living under foreign rule, who stay true to God even when it is dangerous. The first half offers stirring stories of courage, and the second half contains powerful visions of hope. Throughout, the book proclaims that God is sovereign over every earthly empire and that His kingdom will outlast them all. It is written to strengthen faith in times of trial.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Daniel is set during the exile in Babylon and the rule of foreign kings, and it speaks powerfully to later generations of believers facing pressure to abandon their faith. Its visions use rich, symbolic imagery, in a style meant to encourage trust in God rather than to provide a timetable of future events. We read this imagery with the mind of the Church, not as material for end-times speculation.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book centers on the figure of Daniel and was treasured among God\'s people as a source of hope under persecution. The Catholic version includes additional passages, received as inspired Scripture in the Catholic canon. The Church honors the whole book while leaving open the scholarly questions of its date and composition.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Faithfulness under pressure: Daniel and his friends refuse to compromise their worship of God. Courage: they trust God even when facing death. God\'s sovereignty: earthly kingdoms rise and fall, but God\'s kingdom endures forever. Visions of hope: the book assures the faithful that God will triumph and vindicate His people. The Son of Man: a mysterious figure receives an everlasting kingdom from God, a vision rich with meaning.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Daniel and his companions remain faithful in a foreign court, choosing God over comfort and safety. Their friends are preserved in the fiery furnace, and Daniel is kept safe in the lions\' den, signs of God\'s protecting care. Daniel interprets dreams and receives visions of kingdoms that pass away, and of one like a Son of Man who is given dominion and a kingdom that shall not be destroyed.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Daniel in the light of Jesus Christ. Jesus took for Himself the title Son of Man, the very figure Daniel saw receiving an everlasting kingdom, revealing that this prophecy points to Him. The deliverance of the faithful from death foreshadows the resurrection, and the kingdom that never ends is the Kingdom of God that Christ proclaims and establishes. Daniel\'s hope finds its true fulfillment in Jesus.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Daniel encourages us to remain faithful to God when the world pressures us to give way. It assures us that no earthly power has the final word, for God\'s kingdom endures forever. Rather than fueling speculation about the future, its visions are meant to strengthen our hope in Christ, the Son of Man, whose Kingdom will never end and in whom our faithfulness is never in vain.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

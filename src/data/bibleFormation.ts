@@ -222,7 +222,7 @@ export const bibleSectionIntroductions: Record<string, BibleSectionIntroduction>
       },
     ],
   },
-  epistles: {
+  letters: {
     title: 'Epistles',
     subtitle: 'The Apostles teach the Church how to live in Christ',
     sections: [

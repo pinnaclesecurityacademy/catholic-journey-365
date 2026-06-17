@@ -52,6 +52,42 @@ export const bibleSectionIntroductions: Record<string, BibleSectionIntroduction>
       },
     ],
   },
+  historical: {
+    title: 'Historical Books',
+    subtitle: 'God forms, guides, and prepares His people',
+    sections: [
+      {
+        heading: 'What is this section?',
+        content:
+          'The Historical Books continue the story after the first five books of the Bible. They follow Israel as God leads His people into the Promised Land, forms them as a nation, gives them kings, allows them to experience the consequences of turning away, and continues preparing the way for the Messiah. These books show real people struggling with faith, obedience, failure, repentance, and trust in God. They are not just records of events. They reveal how God remains faithful throughout human history.',
+      },
+      {
+        heading: 'Historical background',
+        content:
+          'These books cover many centuries of Israel\'s story. They include the time of Joshua, the judges, the united kingdom under Saul, David, and Solomon, the divided kingdoms of Israel and Judah, exile from the land, and the eventual return of God\'s people. The events happen among powerful ancient nations and empires surrounding Israel. Understanding this history helps us understand why the people of Israel longed for rescue, restoration, and a promised King.',
+      },
+      {
+        heading: 'Importance to the Jewish people',
+        content:
+          'For the Jewish people, these books preserve the story of God\'s covenant relationship with Israel. They remember moments of victory and blessing, but also times when the people turned away from God. The stories of the kings, prophets, temple, exile, and return shaped Israel\'s hope that God would one day restore His people.',
+      },
+      {
+        heading: 'How Jesus and the early Christians understood it',
+        content:
+          'Jesus and the first Christians knew these stories deeply. They saw God\'s promises to Israel, especially the promises connected to King David, as leading toward Christ. Jesus is understood as the Son of David, the true King whose kingdom is not limited to one nation but offered to the whole world.',
+      },
+      {
+        heading: 'Catholic understanding today',
+        content:
+          'Catholics read the Historical Books as inspired Scripture that reveals God working through human history. The Church recognises the victories, failures, holiness, and sins of the people within these books. They remind us that God works through imperfect people and never abandons His plan of salvation.',
+      },
+      {
+        heading: 'How it fits into salvation history',
+        content:
+          'The Historical Books show the journey: Promised Land, Kingdom, Temple, Division, Exile, Return, Waiting for the Messiah. God prepares His people step by step for the coming of Jesus Christ.',
+      },
+    ],
+  },
 };
 
 export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {

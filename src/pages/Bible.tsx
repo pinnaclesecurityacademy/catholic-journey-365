@@ -109,14 +109,14 @@ function SectionInfoModal({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-40 flex items-end bg-leather-900/45 px-4 pb-4 pt-16 backdrop-blur-sm sm:items-center sm:justify-center">
+    <div className="fixed inset-0 z-40 flex items-end overflow-hidden bg-leather-900/45 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-16 backdrop-blur-sm sm:items-center sm:justify-center sm:pb-4">
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="bible-section-title"
-        className="max-h-[82vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] border border-parchment-200 bg-parchment-50 shadow-[0_28px_70px_rgba(28,25,23,0.28)]"
+        className="flex max-h-[calc(100dvh-5rem)] w-full max-w-md flex-col overflow-hidden rounded-[1.75rem] border border-parchment-200 bg-parchment-50 shadow-[0_28px_70px_rgba(28,25,23,0.28)]"
       >
-        <div className="border-b border-parchment-200 bg-white/75 px-5 py-4">
+        <div className="shrink-0 border-b border-parchment-200 bg-white/75 px-5 py-4">
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="text-[0.65rem] uppercase tracking-widest text-stone-400">
@@ -143,7 +143,7 @@ function SectionInfoModal({
           </p>
         </div>
 
-        <div className="divide-y divide-parchment-200">
+        <div className="min-h-0 flex-1 divide-y divide-parchment-200 overflow-y-auto overscroll-contain pb-[calc(5rem+env(safe-area-inset-bottom))]">
           {intro.sections.map((section, index) => (
             <details key={section.heading} open={index === 0} className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-3 px-5 py-4 text-left">
@@ -179,6 +179,15 @@ export default function Bible() {
   const [sectionInfo, setSectionInfo] = useState<BibleSectionIntroduction | null>(
     null,
   );
+
+  useEffect(() => {
+    if (!sectionInfo) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [sectionInfo]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

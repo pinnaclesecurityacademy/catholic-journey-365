@@ -128,64 +128,66 @@ export default function JourneyTimeline({
         </div>
       </div>
 
-      <div
-        ref={scrollerRef}
-        aria-label="Scripture journey stages"
-        className="mt-4 overflow-x-auto px-5 pb-5"
-      >
-        <ol className="relative flex min-w-max gap-3 pb-1">
-          <span
-            aria-hidden="true"
-            className="absolute left-6 right-6 top-6 h-px bg-gradient-to-r from-gold/70 via-parchment-200 to-parchment-200"
-          />
-          {JOURNEY_STAGES.map((stage, index) => {
-            const state = getStageState(index, currentDay);
-            const isCompleted = state === 'completed';
-            const isCurrent = state === 'current';
+      <div className="mx-4 mt-4 mb-5 rounded-2xl border border-parchment-200/80 bg-gradient-to-r from-parchment-50 via-white/80 to-parchment-100/70 shadow-[inset_0_1px_10px_rgba(212,169,106,0.12)]">
+        <div
+          ref={scrollerRef}
+          aria-label="Scripture journey stages"
+          className="overflow-x-auto px-4 py-4"
+        >
+          <ol className="relative flex min-w-max gap-2 pb-1">
+            <span
+              aria-hidden="true"
+              className="absolute left-7 right-7 top-7 h-px bg-gradient-to-r from-gold/75 via-parchment-200 to-parchment-200"
+            />
+            {JOURNEY_STAGES.map((stage, index) => {
+              const state = getStageState(index, currentDay);
+              const isCompleted = state === 'completed';
+              const isCurrent = state === 'current';
 
-            return (
-              <li
-                key={stage.label}
-                ref={isCurrent ? currentStageRef : null}
-                className="relative w-24 shrink-0"
-              >
-                <div className="flex flex-col items-center text-center">
-                  <span
-                    className={`z-10 flex items-center justify-center overflow-hidden rounded-full border-2 bg-parchment-50 shadow-[0_8px_18px_rgba(74,55,40,0.08)] transition ${
-                      isCompleted
-                        ? 'h-11 w-11 border-gold'
-                        : isCurrent
-                          ? 'h-12 w-12 border-gold ring-4 ring-gold/20'
-                          : 'h-11 w-11 border-parchment-200 opacity-45'
-                    }`}
-                  >
-                    <img
-                      src={stage.imageSrc}
-                      alt=""
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                    />
-                  </span>
-                  <span
-                    className={`mt-2 text-[11px] font-semibold leading-snug ${
-                      isCompleted || isCurrent
-                        ? 'text-leather-900'
-                        : 'text-stone-400'
-                    }`}
-                  >
-                    {stage.label}
-                  </span>
-                  {isCurrent && (
-                    <span className="mt-1 text-[10px] uppercase tracking-wider text-leather-600">
-                      Current
+              return (
+                <li
+                  key={stage.label}
+                  ref={isCurrent ? currentStageRef : null}
+                  className="relative w-28 shrink-0"
+                >
+                  <div className="flex flex-col items-center text-center">
+                    <span
+                      className={`z-10 flex items-center justify-center overflow-hidden rounded-full border-2 bg-parchment-50 transition ${
+                        isCompleted
+                          ? 'h-[3.25rem] w-[3.25rem] border-gold shadow-[0_10px_22px_rgba(212,169,106,0.18)]'
+                          : isCurrent
+                            ? 'h-14 w-14 border-gold shadow-[0_0_0_4px_rgba(212,169,106,0.18),0_14px_28px_rgba(124,92,62,0.22)] ring-1 ring-gold/40'
+                            : 'h-[3.25rem] w-[3.25rem] border-parchment-200 opacity-60 shadow-[0_8px_18px_rgba(74,55,40,0.06)]'
+                      }`}
+                    >
+                      <img
+                        src={stage.imageSrc}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                        className="h-full w-full object-cover"
+                      />
                     </span>
-                  )}
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+                    <span
+                      className={`mt-2 text-[11px] font-semibold leading-snug ${
+                        isCompleted || isCurrent
+                          ? 'text-leather-900'
+                          : 'text-stone-500'
+                      }`}
+                    >
+                      {stage.label}
+                    </span>
+                    {isCurrent && (
+                      <span className="mt-1 text-[10px] uppercase tracking-wider text-leather-600">
+                        Current
+                      </span>
+                    )}
+                  </div>
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </SacredCard>
   );

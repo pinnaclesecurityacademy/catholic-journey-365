@@ -37,7 +37,7 @@ function Dot({ done }: { done: boolean }) {
     <span
       className={`flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold ${
         done
-          ? 'bg-sage-500 text-white'
+          ? 'border border-gold bg-gold text-leather-900'
           : 'border border-stone-300 text-stone-400'
       }`}
     >
@@ -58,6 +58,51 @@ interface Period {
   end: number;
   days: ReadingDay[];
   books: string;
+}
+
+function periodIconSrc(period: Period): string {
+  if (period.name === 'Creation & Covenant') {
+    return period.start === 1
+      ? '/images/journey/creation.webp'
+      : '/images/journey/early-world.webp';
+  }
+  if (period.name === 'Fathers of Faith') {
+    return '/images/journey/fathers-of-faith.webp';
+  }
+  if (period.name === 'Deliverance & Freedom') {
+    return '/images/journey/egypt-exodus.webp';
+  }
+  if (period.name === 'The Wilderness Journey') {
+    return '/images/journey/desert-wanderings.webp';
+  }
+  if (period.name === 'The Promised Land') {
+    return '/images/journey/promised-land.webp';
+  }
+  if (period.name === 'Christ Connection') {
+    return '/images/journey/christ-connections.webp';
+  }
+  if (period.name === 'Kings & the Kingdom') {
+    return '/images/journey/royal-kingdom.webp';
+  }
+  if (period.name === 'Division & the Prophets') {
+    return '/images/journey/divided-kingdom.webp';
+  }
+  if (period.name === 'Exile & Hope') {
+    return '/images/journey/exile.webp';
+  }
+  if (period.name === 'Coming Home') {
+    return '/images/journey/return.webp';
+  }
+  if (period.name === 'Faith & Courage') {
+    return '/images/journey/maccabean-revolt.webp';
+  }
+  if (period.name === 'Christ the Messiah') {
+    return '/images/journey/messianic-fulfilment.webp';
+  }
+  if (period.name === 'The Early Church') {
+    return '/images/journey/church.webp';
+  }
+  return '/images/journey/judges.webp';
 }
 
 // Group the reading plan into contiguous Bible Timeline periods.
@@ -123,12 +168,23 @@ export default function Journey() {
           &larr; All Periods
         </button>
         <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
-          <h1 className="font-display text-3xl font-bold text-leather-900">
-            {selected.name}
-          </h1>
-          <p className="text-stone-500">
-            Day {selected.start}-{selected.end} &middot; {selected.books}
-          </p>
+          <div className="flex items-center gap-4">
+            <img
+              src={periodIconSrc(selected)}
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="h-16 w-16 shrink-0 rounded-full border-2 border-gold object-cover shadow-[0_12px_24px_rgba(212,169,106,0.16)]"
+            />
+            <div>
+              <h1 className="font-display text-3xl font-bold text-leather-900">
+                {selected.name}
+              </h1>
+              <p className="text-stone-500">
+                Day {selected.start}-{selected.end} &middot; {selected.books}
+              </p>
+            </div>
+          </div>
         </SacredCard>
 
         <div className="space-y-3">
@@ -182,6 +238,7 @@ export default function Journey() {
             groupComplete(completions, d.day_number, members)
           ).length;
           const pct = Math.round((done / total) * 100);
+          const isComplete = done === total;
           const isActive =
             currentDay >= p.start && currentDay <= p.end;
 
@@ -191,12 +248,28 @@ export default function Journey() {
               onClick={() => setSelected(p)}
               className={`w-full text-left rounded-2xl p-5 shadow-[0_12px_32px_rgba(74,55,40,0.08)] active:scale-[0.99] transition border ${
                 isActive
-                  ? 'bg-parchment-50/95 border-leather-400 ring-1 ring-leather-400'
-                  : 'bg-white/90 border-parchment-200'
+                  ? 'bg-parchment-50/95 border-gold ring-2 ring-gold/20'
+                  : isComplete
+                    ? 'bg-gradient-to-br from-white to-parchment-50 border-gold/70'
+                    : 'bg-white/80 border-parchment-200'
               }`}
             >
               <div className="flex items-start justify-between gap-3">
-                <div>
+                <div className="flex min-w-0 gap-3">
+                  <img
+                    src={periodIconSrc(p)}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className={`h-14 w-14 shrink-0 rounded-full border-2 object-cover shadow-[0_10px_20px_rgba(74,55,40,0.08)] ${
+                      isActive
+                        ? 'border-gold ring-4 ring-gold/15'
+                        : isComplete
+                          ? 'border-gold'
+                          : 'border-parchment-200 opacity-60'
+                    }`}
+                  />
+                  <div className={isActive || isComplete ? '' : 'opacity-75'}>
                   <div className="flex items-center gap-2">
                     <h2 className="font-display text-xl font-bold text-leather-900">
                       {p.name}
@@ -211,9 +284,10 @@ export default function Journey() {
                     Day {p.start}-{p.end}
                   </p>
                   <p className="text-sm text-leather-600 mt-0.5">{p.books}</p>
+                  </div>
                 </div>
                 <div className="flex gap-1.5 shrink-0">
-                  <Dot done={done === total} />
+                  <Dot done={isComplete} />
                 </div>
               </div>
 
@@ -226,7 +300,11 @@ export default function Journey() {
                 </div>
                 <div className="h-3 w-full rounded-full bg-parchment-200 overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
+                    className={`h-full rounded-full ${
+                      isComplete
+                        ? 'bg-gold'
+                        : 'bg-gradient-to-r from-leather-600 to-gold'
+                    }`}
                     style={{ width: `${pct}%` }}
                   />
                 </div>

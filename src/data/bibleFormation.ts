@@ -88,6 +88,42 @@ export const bibleSectionIntroductions: Record<string, BibleSectionIntroduction>
       },
     ],
   },
+  wisdom: {
+    title: 'Wisdom Literature',
+    subtitle: 'Learning to pray, suffer, worship, and live with God',
+    sections: [
+      {
+        heading: 'What is this section?',
+        content:
+          'Wisdom Literature is different from the story books of the Bible. These books teach us how to live with God in the middle of ordinary life: joy, suffering, work, family, prayer, worship, justice, temptation, and death. They include poetry, songs, prayers, proverbs, reflections, and deep questions about life. They show that faith is not only about knowing history. It is also about learning how to love God, trust Him, and walk with Him each day.',
+      },
+      {
+        heading: 'Historical background',
+        content:
+          'The Wisdom books grew from the prayer and reflection of God\'s people over many generations. Some are connected with King David and King Solomon, while others come from later periods of Israel\'s life. They were prayed, sung, taught, and treasured by the people of God. They speak from real human experience: grief, praise, confusion, repentance, patience, and hope.',
+      },
+      {
+        heading: 'Importance to the Jewish people',
+        content:
+          'For the Jewish people, these books helped form daily faith. The Psalms became the prayer book of Israel. Proverbs taught practical wisdom. Job wrestled with suffering. Ecclesiastes faced the limits of earthly life. These writings helped God\'s people bring every part of life before the Lord.',
+      },
+      {
+        heading: 'How Jesus and the early Christians understood it',
+        content:
+          'Jesus prayed the Psalms and used the language of Israel\'s wisdom. The early Christians continued praying the Psalms and saw in them the voice of Christ, the suffering Messiah, and the prayer of the Church. They understood true wisdom as more than cleverness. True wisdom is found in God and fulfilled in Jesus Christ.',
+      },
+      {
+        heading: 'Catholic understanding today',
+        content:
+          'Catholics still pray these books today, especially in the Psalms and the Liturgy of the Hours. They teach us that God welcomes honest prayer. We can bring Him praise, sorrow, fear, repentance, confusion, and trust. Wisdom Literature helps Catholics learn not only what to believe, but how to live faithfully.',
+      },
+      {
+        heading: 'How it fits into salvation history',
+        content:
+          'Wisdom Literature shows the heart of God\'s people being formed. After God gives His people a covenant, a land, worship, and a kingdom, He also teaches them how to pray, suffer, repent, praise, and hope. These books prepare us to recognise Jesus as the Wisdom of God and the one who teaches us how to live as children of the Father.',
+      },
+    ],
+  },
 };
 
 export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {

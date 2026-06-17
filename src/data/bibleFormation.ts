@@ -820,6 +820,334 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  '2-chronicles': {
+    book: '2 Chronicles',
+    subtitle: 'The temple, the kings of Judah, and a hope that survives exile',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second Chronicles continues the retelling of Israel\'s history, focusing on the temple in Jerusalem and the kings of Judah who came from David\'s line. Written for people rebuilding their faith after exile, it traces the nation from Solomon\'s glorious temple to the destruction of Jerusalem. Even as the book ends in loss, it closes with a note of hope: permission for the exiles to return home.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Second Chronicles looks back across the years of the southern kingdom of Judah, from Solomon to the Babylonian exile, and speaks to the community that returned afterward. Temple worship, faithful and unfaithful kings, and the call of the prophets fill its pages. The book gathers these memories to help a restored people understand who they are before God.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Chronicles was composed to retell Israel\'s story for the community after the exile, drawing on earlier records treasured within the people of God. The Church receives it as inspired Scripture while leaving open the questions of its exact author and date. Its purpose shines through clearly: to renew worship, identity, and trust in God\'s faithfulness.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The temple: Solomon\'s building and dedication of God\'s house stand at the heart of the book. Worship: right worship of the Lord is the measure of the nation\'s health. Covenant faithfulness: kings are remembered by whether they sought God or turned away. Exile and hope: unfaithfulness leads to ruin, yet the book ends looking forward, as God stirs a king to let His people return and rebuild.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Solomon builds and dedicates the temple, and God\'s glory fills the house of prayer. Later kings rise and fall, with faithful reformers like Hezekiah and Josiah bringing renewal, while others lead the people astray. The story moves through warning and repentance to the fall of Jerusalem, and then to the closing decree that opens the way home, keeping hope alive.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Second Chronicles in the light of Jesus Christ. The temple, where God dwelt with His people, points to Jesus, the true temple and the meeting place of God and humanity. The faithful kings of David\'s line foreshadow the perfect King, the Son of David, and the hope of return after exile points to the deeper homecoming Christ wins for us from the exile of sin.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second Chronicles reminds us that worship and faithfulness shape the life of God\'s people. It shows that turning from God brings loss, but that He always leaves a door open for return. Its closing hope encourages us to trust that no exile is the end of the story, because in Christ God brings His people home.',
+      },
+    ],
+  },
+  ezra: {
+    book: 'Ezra',
+    subtitle: 'Coming home to rebuild the temple and renew the covenant',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Ezra begins where the exile ends. The people of Judah are allowed to return from Babylon to Jerusalem, and the book tells how they rebuild the temple and restore the worship of God. Ezra himself is a priest and scribe who leads the people back to the Scriptures and the covenant. It is a story of new beginnings and of a people learning again to live as God\'s own.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Ezra is set after the Babylonian exile, when the Persian Empire allowed displaced peoples to return to their homelands. The returning Jews face hardship, opposition, and the long work of rebuilding both the temple and their community. It is a fragile, hopeful time of restoration.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is tied to the memory and mission of Ezra and was preserved within the worshipping life of Israel. The Church receives it as inspired Scripture while leaving open the details of how it was composed and joined with Nehemiah. Its enduring witness is the renewal of worship and faithfulness to God\'s word.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Return: God brings His people back from exile, keeping His promise. Rebuilding the temple: worship is restored at the heart of the community. Scripture: Ezra leads the people to hear and treasure God\'s law again. Covenant renewal: the people recommit themselves to the Lord, turning from past unfaithfulness and seeking to live as God asks.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'The first returning exiles lay the foundation of the new temple amid both joy and tears. Despite opposition, the temple is completed and worship resumes. Ezra arrives later, devoted to teaching God\'s law, and leads the people in repentance and renewed commitment to the covenant. Through him, the community is reformed around Scripture and faithful worship.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Ezra in the light of Jesus Christ. The rebuilt temple points beyond itself to Jesus, the true temple, and to the worship He makes possible. Ezra\'s devotion to God\'s word prepares us for Christ, the living Word, who opens the Scriptures to us. The return from exile foreshadows the homecoming Christ gives, leading us back to the Father.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Ezra encourages us that God can restore what seems lost and lead His people into new beginnings. It shows the importance of worship and of returning to Scripture to renew our faith. It reminds us that renewal often means humble repentance and recommitment, a path that finds its fulfillment in following Christ.',
+      },
+    ],
+  },
+  nehemiah: {
+    book: 'Nehemiah',
+    subtitle: 'Rebuilding the walls and the life of a faithful people',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Nehemiah continues the story of return from exile, alongside Ezra. While Ezra focused on the temple and the law, Nehemiah leads the rebuilding of Jerusalem\'s broken walls and the renewal of the community within them. It is a very human story of leadership, hard work, opposition, and prayer, showing how God restores not only worship but the whole life of His people.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Nehemiah is set in the same Persian era as Ezra, when Jerusalem lay vulnerable with its walls in ruins. Nehemiah, a Jew serving in the Persian court, returns to organize and protect the city. The book reflects the real struggles of a small community trying to rebuild amid threats and discouragement.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book draws on the memoirs and mission of Nehemiah and was treasured within Israel, closely linked to Ezra. The Church receives it as inspired Scripture while leaving open the questions of its precise composition. Its lasting message is one of perseverance, prayerful leadership, and communal renewal under God.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Rebuilding: the walls of Jerusalem are restored as a sign of security and identity. Leadership: Nehemiah leads with courage, wisdom, and constant prayer. Perseverance: the work continues despite ridicule, threats, and weariness. Communal renewal: the people gather to hear God\'s word, repent, and recommit to living as His covenant family.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Nehemiah hears of Jerusalem\'s broken walls and is moved to act, praying and then seeking permission to return. He organizes the people to rebuild, facing mockery and danger with steady trust in God. When the walls are finished, the community gathers as Ezra reads the law aloud, and the people respond with worship, repentance, and renewed dedication to the Lord.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Nehemiah in the light of Jesus Christ. The rebuilding of the city points toward the gathering and restoring of God\'s people, which Christ accomplishes fully. Nehemiah\'s prayerful, self giving leadership foreshadows the Good Shepherd who lays down his life for his flock. The renewal of the community around God\'s word looks ahead to the Church gathered around Christ, the living Word.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Nehemiah inspires us to persevere in good work even when it is hard and others oppose us. It shows that faithful leadership is rooted in prayer and trust in God. And it reminds us that God cares about the whole life of His people, drawing us together and renewing us around His word, a renewal made complete in Christ and his Church.',
+      },
+    ],
+  },
+  tobit: {
+    book: 'Tobit',
+    subtitle: 'Quiet faithfulness, prayer, and the providence of God',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Tobit is a warm and tender story set among the Israelites living in exile. It follows a faithful man named Tobit and his family as they strive to do what is right in a foreign land, and it shows how God lovingly guides their lives, even sending an angel to help. Tobit is one of the deuterocanonical books, part of the Catholic canon of Scripture, and it offers a beautiful picture of holiness lived at home.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Tobit is set during the exile, when many Israelites lived far from their homeland among the nations. In that setting, staying faithful to God, caring for the poor, and burying the dead could be difficult and even dangerous. The book paints an intimate portrait of family life and devotion in the midst of these challenges.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Tobit was cherished among God\'s people and is received by the Catholic Church as inspired Scripture, one of the deuterocanonical books included in the Catholic canon. It reads like a faith filled story meant to teach and encourage, and the Church does not claim to settle every question about its author or date. Its value lies in the holiness and trust it inspires.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Faithfulness in exile: Tobit clings to God and to good works even when it costs him. Prayer: the heartfelt prayers of Tobit and Sarah rise to God and are heard. Family and marriage: love, fidelity, and honoring parents shine throughout the story. Charity: caring for the poor and burying the dead are shown as holy duties. Providence and angels: God quietly arranges all things, working through the angel Raphael to bring healing and joy.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Tobit is a devout man who suffers misfortune yet keeps trusting God. His son Tobias sets out on a journey, accompanied by a mysterious companion who is the angel Raphael in disguise. Sarah, burdened by deep sorrow, becomes Tobias\' faithful wife. Through their prayers and Raphael\'s guidance, God brings healing, marriage, and homecoming, revealing His loving care over every detail.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Tobit in the light of Jesus Christ. Its love of prayer, mercy to the poor, and care for the dead reflect the heart of the Gospel that Jesus would teach and live. The angel Raphael, sent to heal and guide, reminds us that God watches over us with tender care, a care made fully visible in Christ, who heals us and leads us home to the Father.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Tobit speaks gently to everyday life, showing that holiness grows in the home through prayer, fidelity, and kindness. It comforts those who suffer with the assurance that God hears their prayers and guides their steps. And it encourages works of mercy, especially toward the poor and the dead, as a beautiful part of a life lived close to God.',
+      },
+    ],
+  },
+  judith: {
+    book: 'Judith',
+    subtitle: 'Courage and trust in God when His people are in danger',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Judith is a dramatic story of God\'s people facing a deadly threat and of one faithful woman whose courage and trust bring deliverance. When a mighty army surrounds her town and hope seems lost, Judith steps forward in prayer and bravery. It is one of the deuterocanonical books, part of the Catholic canon, and it celebrates how God saves the lowly who rely on Him.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Judith is set against the backdrop of a great empire threatening God\'s people, with a vast army laying siege to a small town. The book is told in a vivid, almost theatrical way to highlight its message rather than to serve as a precise historical chronicle. Its world is one of fear, faith, and the surprising power of trust in God.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Judith was treasured among God\'s people and is received by the Catholic Church as inspired Scripture, one of the deuterocanonical books in the Catholic canon. It reads as a powerful faith story meant to strengthen trust in God, and the Church leaves open the questions of its exact author and historical details. Its purpose is to proclaim that God defends those who hope in Him.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Courage: Judith acts boldly when others have given up. Trust in God: she relies not on weapons or strength but on the Lord. Deliverance: God saves His people through an unlikely instrument. Faith under threat: the story shows that fidelity and prayer matter most when danger is greatest, and that God lifts up the humble to confound the powerful.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'As an enemy army besieges her town and the people lose heart, Judith, a devout widow, rebukes their despair and calls them to trust God. With prayer and daring, she goes into the enemy camp and, through God\'s help, delivers her people from their commander. Her victory becomes a song of praise to God, who saves by His own power.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Judith in the light of Jesus Christ. Her humble courage and her role in crushing the enemy of God\'s people have long reminded the Church of Mary, whose faith helps bring the Savior into the world. Above all, Judith\'s deliverance points to the greater victory of Christ, who saves us not by force but through humble obedience and trust in the Father.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Judith encourages us to be brave and to trust God when we feel small or overwhelmed. It teaches that real strength comes from faith and prayer, not from worldly power. And it assures us that God watches over His people and can bring deliverance in surprising ways, a hope fulfilled in Christ our Savior.',
+      },
+    ],
+  },
+  esther: {
+    book: 'Esther',
+    subtitle: "God's hidden hand protecting His people",
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Esther tells how God\'s people, living under a foreign empire, are saved from destruction through the courage of a young queen. God is never mentioned by name in the main story, yet His quiet providence is felt on every page. It is a story of timing, bravery, and trust, showing that the Lord watches over His people even when He seems hidden.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Esther is set in the Persian Empire, where many Jews lived after the exile. The story unfolds in the royal court, full of intrigue, danger, and reversals of fortune. In this setting, a hidden plot threatens the Jewish people, and their survival hangs on the choices of a few faithful hearts.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Esther was treasured among God\'s people and is received as inspired Scripture. The Catholic version includes additional passages, found in the Greek tradition, that make explicit the prayers and faith at work in the story. The Church leaves open the questions of its precise authorship and date, while honoring its witness to God\'s saving care.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Hidden providence: God works quietly behind ordinary events to protect His people. Courage: Esther risks her life to plead for her people. Right timing: small decisions and turns of events combine to bring deliverance. Protection of God\'s people: even under threat in a foreign land, the Lord preserves those who are His, often through the brave faithfulness of unlikely heroes.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Esther, a young Jewish woman, becomes queen of Persia without revealing her people. Her wise relative Mordecai uncovers a plot to destroy the Jews. Urged on by the famous words that she may have come to her position for such a time as this, Esther bravely approaches the king and exposes the danger. The threat is turned aside, and the people are saved, an event remembered with joy.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Esther in the light of Jesus Christ. Esther steps forward to intercede for her people at the risk of her own life, foreshadowing the way Christ intercedes for us and offers Himself to save us. Her story reassures us that God is always at work for our salvation, even when His hand is hidden, a saving plan brought to fullness in Jesus.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Esther reminds us that God is present and active even when we cannot see Him clearly. It encourages courage and trust in the moments where we are called to stand up for what is right. And it assures us that the Lord cares for His people and can bring rescue through faithful hearts, a care perfectly revealed in Christ.',
+      },
+    ],
+  },
+  '1-maccabees': {
+    book: '1 Maccabees',
+    subtitle: 'Faithful courage when the covenant is under attack',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'First Maccabees tells how God\'s people resisted a fierce effort to stamp out their faith and force them into pagan worship. When their freedom to follow the Lord was threatened, a courageous family led a struggle to defend the covenant and restore true worship in the temple. It is one of the deuterocanonical books, part of the Catholic canon, and it shines with faithfulness under pressure.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'First Maccabees is set in the centuries between the Old and New Testaments, when a Greek empire ruled the land and a ruler tried to force the Jews to abandon their faith. The temple was desecrated and the law forbidden. Out of this crisis arose the Maccabean resistance, fighting for the freedom to worship the one true God.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'First Maccabees records the history of this struggle and was treasured among God\'s people. The Catholic Church receives it as inspired Scripture, one of the deuterocanonical books in the Catholic canon. It reads as a serious account of real events, and the Church honors its witness to fidelity, while not depending on settling every historical detail.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Persecution: God\'s people suffer for refusing to give up their faith. Courage: ordinary believers risk everything to remain faithful. Resistance to forced pagan worship: they refuse to bow to false gods, even under threat of death. Rededication of the temple: after great struggle, the temple is cleansed and worship restored, a joyful triumph remembered to this day.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'The crisis begins when a foreign ruler outlaws the practice of the faith and defiles the temple. The priest Mattathias and his sons, especially Judas Maccabeus, rise to defend the covenant. Through hardship and battle, they reclaim Jerusalem and cleanse and rededicate the temple, restoring the worship of God. This rededication is remembered in the celebration of Hanukkah.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read First Maccabees in the light of Jesus Christ. The longing for the temple to be cleansed and for God\'s people to be free points toward Jesus, who purifies worship and sets us free from sin. The faithful courage of those who would not abandon God prepares us for the witness of the martyrs and for Christ Himself, who remained faithful unto death.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'First Maccabees encourages us to hold fast to our faith even when the world pressures us to let it go. It honors the courage of those who suffer for believing in God. And it reminds us that the freedom to worship the Lord is a treasure worth defending, while pointing us to Christ, in whom true worship and true freedom are found.',
+      },
+    ],
+  },
+  '2-maccabees': {
+    book: '2 Maccabees',
+    subtitle: 'Martyrs, the hope of resurrection, and prayer for the dead',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Second Maccabees revisits the same time of persecution as First Maccabees, but with a deeper focus on faith, martyrdom, and hope beyond death. It tells unforgettable stories of believers who chose to die rather than betray God, trusting that He would raise them to new life. It is one of the deuterocanonical books, part of the Catholic canon, and it offers some of the clearest Old Testament hope in the resurrection.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Second Maccabees is set during the same struggle against a Greek ruler who tried to force the Jews to forsake their faith. Rather than a continuous history, it gathers powerful episodes that highlight fidelity and trust in God. Its world is one of suffering, courage, and unshakable hope in God\'s power over death.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Second Maccabees presents itself as a heartfelt retelling drawn from earlier records, written to encourage faith. The Catholic Church receives it as inspired Scripture, one of the deuterocanonical books in the Catholic canon. The Church honors its witness without depending on settling every question about its sources or composition.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Martyrdom: believers, including a mother and her seven sons, die rather than abandon God. Resurrection hope: the martyrs trust that God will raise them to everlasting life. Fidelity under persecution: faith is shown to be worth more than life itself. Prayer and sacrifice for the dead: the book bears witness to praying for those who have died, a practice the Church continues with love.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'The book recounts the courage of faithful Jews, including the elderly Eleazar and a mother who watches her seven sons die rather than deny God, all confessing their hope in the resurrection. It also describes Judas Maccabeus arranging prayers and an offering for soldiers who had died, so that they might be freed from their sin, a striking sign of belief in life beyond death.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Second Maccabees in the light of Jesus Christ. The martyrs\' hope in the resurrection looks forward to Christ, who rose from the dead and opened eternal life to us. The practice of praying and offering sacrifice for the dead, recorded here, helps us understand why Catholics pray for the faithful departed: out of love, trusting that God can purify and welcome them. In Christ, this hope for the dead finds its sure foundation.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Second Maccabees strengthens us to remain faithful to God even at great cost. It fills us with hope in the resurrection, assuring us that death does not have the final word. And it gently lights the way for one of the Church\'s most loving practices, praying for those who have died, a hope fulfilled and secured in the risen Christ.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

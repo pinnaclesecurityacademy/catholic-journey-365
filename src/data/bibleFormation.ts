@@ -1681,6 +1681,498 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  hosea: {
+    book: 'Hosea',
+    subtitle: "God's faithful love for an unfaithful people",
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Hosea is the first of the twelve shorter prophetic books, often called the Minor Prophets because they are brief, not because they matter less. Like all prophets, Hosea is a covenant messenger calling God\'s people back to faithfulness. His message is unforgettable: even when Israel is unfaithful, God loves them with a faithful, tender, and persevering love that longs to win them back.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Hosea prophesied in the northern kingdom of Israel during its final, troubled years before it fell to Assyria. It was a time of idolatry, broken promises, and unfaithfulness to the Lord. Into that setting, Hosea spoke God\'s sorrow and God\'s mercy.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Hosea and was treasured among the prophetic writings of God\'s people. The Church receives it as inspired Scripture while leaving open the finer questions of how it was gathered. Its enduring witness is the faithful love of God who never stops calling His people home.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Covenant love: God\'s bond with Israel is described as a marriage of deep love. Unfaithfulness: Israel\'s idolatry is like a spouse who strays. Mercy: God\'s heart is moved with compassion rather than only anger. Restoration: God promises to heal His people\'s waywardness and love them freely, drawing them back to Himself with cords of kindness.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'God asks Hosea to marry a wife who proves unfaithful, so that the prophet\'s own life becomes a living picture of God\'s love for wayward Israel. Through Hosea\'s pain and persistent love, God reveals His own faithfulness. The book moves through warnings of the consequences of sin to some of the most beautiful promises of mercy and restoration in all of Scripture.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Hosea in the light of Jesus Christ. The faithful love that pursues an unfaithful people is revealed fully in Jesus, who gives Himself out of love to win us back from sin. The Gospel even echoes Hosea\'s words that God desires mercy, not sacrifice, words Jesus quotes to reveal the merciful heart of God that He came to show.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Hosea assures us that God\'s love does not depend on our worthiness but flows from His own faithful heart. It calls us to return to Him whenever we wander. And it fills us with hope, for the love Hosea proclaimed is poured out completely in Christ, who never gives up on us and always invites us home.',
+      },
+    ],
+  },
+  joel: {
+    book: 'Joel',
+    subtitle: 'Repentance and the promise of God\'s outpoured Spirit',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Joel is a short prophetic book that calls God\'s people to heartfelt repentance and looks ahead to the Day of the Lord. As a covenant messenger, Joel urges the people to return to God with all their hearts. He also gives a stunning promise: that God will one day pour out His Spirit on all people, a promise the Church sees fulfilled at Pentecost.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Joel speaks against the background of a devastating locust plague that ruined the land, which he reads as a call to wake up and turn back to God. The exact timing of his ministry is not certain, but his message is timeless. He summons the whole community, young and old, to prayer and repentance.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Joel and was treasured among the prophetic writings. The Church receives it as inspired Scripture while leaving open the questions of its precise date. Its lasting message is the call to repentance and the promise of God\'s Spirit poured out on His people.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Repentance: Joel calls the people to rend their hearts, not just their garments. The Day of the Lord: a time of God\'s decisive coming, both for judgment and for salvation. The outpouring of the Spirit: God promises that His Spirit will fill His people, who will prophesy and call on His name. Hope: beyond judgment lies the promise of restoration and grace.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Joel describes the locust plague and uses it to summon the people to a sacred assembly of fasting and prayer. He proclaims God\'s readiness to relent and show mercy to those who return. At the heart of the book stands the promise that God will pour out His Spirit on all flesh, so that sons and daughters, young and old, will know Him.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Joel in the light of Jesus Christ. The promise that God will pour out His Spirit on all people is fulfilled at Pentecost, when the risen Christ sends the Holy Spirit upon the Church, and Saint Peter announces that this is what Joel foretold. Joel\'s call to repentance also prepares us for the Gospel, where Jesus invites all to turn to God and receive new life in the Spirit.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Joel calls us to return to God with sincere hearts, not mere outward show. It reminds us that God is gracious and merciful, ready to forgive those who turn back. And its promise of the outpoured Spirit fills us with gratitude for Pentecost and for the gift of the Holy Spirit, who is poured into our hearts through Christ.',
+      },
+    ],
+  },
+  amos: {
+    book: 'Amos',
+    subtitle: 'True worship lived out in justice and care for the poor',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Amos is a prophet who boldly proclaims that God cares deeply about justice and the treatment of the poor. As a covenant messenger, he warns that worship means little if it is not joined to a changed heart and a just life. His words are a powerful reminder that loving God and loving our neighbor cannot be separated.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Amos prophesied in the northern kingdom of Israel during a time of prosperity, when the wealthy lived in comfort while the poor were neglected and exploited. Outward religion flourished, but justice was lacking. Amos, a shepherd called by God, spoke uncomfortable truths to a complacent society.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Amos, a herdsman from Judah sent to the north, and was treasured among the prophetic writings. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its enduring witness is that God desires justice and mercy, not empty ritual.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Justice: Amos famously cries that justice should roll down like waters. Care for the poor: he condemns those who trample the needy. Empty worship: God rejects festivals and offerings when they mask injustice. A changed heart: true religion shows itself in how we treat the vulnerable, not merely in outward acts of devotion.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Amos, an ordinary shepherd, is called by God to speak against the injustices of a prosperous society. He boldly confronts those who grow rich by oppressing the poor and who think their religious ceremonies will excuse them. His message draws opposition, yet he keeps proclaiming God\'s call for justice to flow like an ever flowing stream.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Amos in the light of Jesus Christ, who taught that love of God and love of neighbor belong together. Jesus, too, warned against worship that neglects mercy and justice, and He showed special love for the poor and the outcast. Amos prepares us for the Gospel, where Christ calls His followers to a faith that bears fruit in justice and compassion.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Amos challenges us to let our worship overflow into real love for our neighbor, especially the poor. It reminds us that God sees how we treat the vulnerable and that justice is close to His heart. Read with Christ in view, it calls us to a living faith that joins prayer and worship with mercy and justice.',
+      },
+    ],
+  },
+  obadiah: {
+    book: 'Obadiah',
+    subtitle: "God's justice over pride and the wrongs of nations",
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Obadiah is the shortest book in the Old Testament, a single chapter, yet it carries a clear message. As a covenant messenger, the prophet announces God\'s justice against pride and cruelty, especially toward a neighboring people who gloated over Jerusalem\'s suffering. It assures us that God sees every injustice and that He alone is the true judge of all nations.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Obadiah speaks against Edom, a nation related to Israel that rejoiced and even joined in when Jerusalem fell. Their pride and betrayal of a brother people drew God\'s judgment. The book reflects the pain of that betrayal and the hope that God will set things right.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Obadiah and was preserved among the prophetic writings of God\'s people. The Church receives it as inspired Scripture while leaving open questions about its exact date. Its lasting message is that human pride is brought low and that God\'s justice reaches every nation.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Pride: Edom\'s arrogance leads to its downfall. Judgment: God holds nations accountable for cruelty and betrayal. God\'s justice: the Lord defends those who are wronged. Hope: the book ends by looking toward the day when the kingdom belongs to the Lord, a quiet note of hope amid judgment.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Obadiah delivers God\'s word against Edom for its pride and for standing by, and even taking part, when Jerusalem was attacked. The prophet warns that those who exalt themselves will be humbled. The book closes with the promise that deliverance will come and that the kingdom will be the Lord\'s, pointing beyond judgment to God\'s final reign.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Obadiah in the light of Jesus Christ. Its warning against pride echoes the Gospel, where Jesus teaches that the humble will be exalted and the proud brought low. Its closing hope that the kingdom belongs to the Lord points toward the Kingdom of God that Christ proclaims, where God\'s justice and mercy meet and every wrong is finally set right.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Obadiah warns us against pride and against rejoicing in others\' misfortune. It assures those who suffer injustice that God sees and that He is the just judge of all. And its hope in God\'s kingdom turns our eyes to Christ, in whom God\'s reign of justice and mercy comes to fulfillment.',
+      },
+    ],
+  },
+  jonah: {
+    book: 'Jonah',
+    subtitle: 'The surprising reach of God\'s mercy',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Jonah is a memorable story about a reluctant prophet and the boundless mercy of God. Unlike most prophetic books, it is mostly narrative, and it teaches through Jonah\'s own struggles. As a covenant messenger sent to a foreign city, Jonah learns that God\'s mercy reaches beyond Israel, even to those we might consider enemies. It is a gentle and surprising lesson in the wideness of God\'s love.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Jonah is sent to Nineveh, the capital of Assyria, a powerful and often hostile empire. The book uses a vivid, almost playful storytelling style to make its point, more concerned with God\'s mercy than with recording a detailed chronicle. Its setting highlights how shocking it would have been to imagine God showing mercy to such a city.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is associated with the prophet Jonah and was treasured among the prophetic writings. The Church receives it as inspired Scripture and reads it as a divinely inspired story that teaches deep truths about God\'s mercy, without needing to settle every question about how it was composed. Its message is what matters most: God desires the conversion of all people.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'God\'s mercy: the Lord is gracious even to those far from Him. Repentance: when Nineveh turns to God, He relents from judgment. Mercy beyond Israel: God seeks the good even of enemies. The struggle of the human heart: Jonah resists God\'s mercy, revealing how hard it can be for us to forgive as God forgives.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Jonah tries to flee from God\'s call and is swallowed by a great fish, only to be delivered after he prays. Sent again to Nineveh, he preaches, and to his dismay the whole city repents and God spares it. Jonah sulks at God\'s mercy, and the book ends with God gently teaching him, and us, that He cares for all people, even those Jonah would rather see condemned.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Jonah in the light of Jesus Christ, who pointed to this book Himself. Jesus spoke of the sign of Jonah, comparing Jonah\'s three days in the fish to His own three days in the tomb before rising. He also noted that Nineveh repented at Jonah\'s preaching, while something greater than Jonah was now present in Him. Jonah\'s story of mercy to outsiders foreshadows the Gospel reaching all nations.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Jonah reminds us that God\'s mercy is wider than we imagine and reaches even those we struggle to love. It calls us to repentance and to rejoice when others turn to God rather than resenting His compassion. And in the sign of Jonah, it points us to Christ, whose death and resurrection open the door of mercy to the whole world.',
+      },
+    ],
+  },
+  micah: {
+    book: 'Micah',
+    subtitle: 'Justice, mercy, humility, and a ruler from Bethlehem',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Micah is a prophet who pairs strong warnings about injustice with beautiful promises of hope. As a covenant messenger, he calls the people to live rightly before God. His book is famous for two things: a simple summary of what God asks of us, and a promise that a ruler would come from the little town of Bethlehem.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Micah prophesied in Judah during a time when the powerful exploited the poor and leaders grew corrupt, while the threat of Assyria loomed. He spoke God\'s word to both the countryside and the city, defending the lowly and calling leaders to account. His was a voice for ordinary people who suffered under injustice.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Micah and was treasured among the prophetic writings of God\'s people. The Church receives it as inspired Scripture while leaving open the finer questions of how it reached its final form. Its lasting message is the call to justice, mercy, and humble walking with God.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Justice: Micah condemns those who oppress the poor and pervert what is right. Mercy: God delights in steadfast love. Humility: the book\'s famous summary is to act justly, love mercy, and walk humbly with God. Hope: amid warnings, Micah promises a future ruler and a time of peace, when nations beat their swords into plowshares.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Micah confronts the injustices of his day and warns of coming judgment, yet he also lifts the people\'s eyes to hope. He gives the beloved teaching that God simply asks us to do justice, love kindness, and walk humbly with Him. And he foretells that from Bethlehem, small among the towns of Judah, will come one who is to rule, a shepherd for God\'s people.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Micah in the light of Jesus Christ. The promise of a ruler from Bethlehem is fulfilled in Jesus, born in that very town, and the Gospel recalls Micah\'s words when the wise men seek the newborn King. The shepherd ruler who brings peace points to Christ, the Good Shepherd, and Micah\'s call to justice and humility describes the very heart of the life Jesus teaches.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Micah gives us one of the clearest summaries of a holy life: do justice, love mercy, and walk humbly with God. It calls us to defend the poor and to live with integrity. And its Bethlehem promise draws us to Christ, the shepherd King, reminding us that God\'s greatest gifts often come through the small and humble.',
+      },
+    ],
+  },
+  nahum: {
+    book: 'Nahum',
+    subtitle: "God's justice and hope for those who suffer oppression",
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Nahum proclaims God\'s justice against a cruel and oppressive empire. As a covenant messenger, the prophet announces that the violence of Nineveh, the capital of Assyria, will not stand forever. For people who had suffered under that empire\'s brutality, Nahum\'s message is one of comfort and hope: God sees injustice and will set things right.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Nahum speaks about the coming fall of Nineveh, the great city of Assyria, which had long terrorized other nations, including God\'s people. The Assyrians were known for their cruelty. Nahum announces that their reign of violence is ending, and that God is the defender of those they oppressed.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Nahum and was preserved among the prophetic writings. The Church receives it as inspired Scripture while leaving open the questions of its precise date. Its enduring witness is that God is just, that He cares for the oppressed, and that no cruel power lasts forever.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'God\'s justice: the Lord does not ignore cruelty and violence. The fall of oppressors: even the mightiest empire is brought low. Refuge: God is a stronghold for those who trust in Him. Hope for the suffering: Nahum assures the oppressed that their pain is seen and that deliverance will come.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Nahum vividly foretells the downfall of Nineveh, picturing the end of a violent empire. Yet within his message stands a tender line, that the Lord is good, a stronghold in the day of trouble, and He knows those who take refuge in Him. The book holds together God\'s justice against cruelty and His care for those who suffer.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Nahum in the light of Jesus Christ. Its promise that God will judge oppression and shelter the suffering finds its deepest fulfillment in Christ, who lifts up the lowly and will come again to judge with perfect justice. The good news that God is a refuge for the troubled is fully revealed in Jesus, who invites the weary and burdened to find rest in Him.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Nahum comforts all who suffer under injustice with the assurance that God sees and cares. It reminds us that cruelty and violence do not have the last word. And it points us to Christ, our refuge and just judge, in whom the oppressed find both comfort now and the promise of justice fully restored.',
+      },
+    ],
+  },
+  habakkuk: {
+    book: 'Habakkuk',
+    subtitle: 'Honest questions and the call to live by faith',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Habakkuk is unusual among the prophets because much of the book is a conversation between the prophet and God. Habakkuk honestly asks why God allows injustice and suffering. As a covenant messenger, he models how to bring our hardest questions to God and to keep trusting Him. The book moves from troubled questioning to a beautiful expression of faith.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Habakkuk prophesied as a violent empire threatened God\'s people and wrongdoing seemed to go unpunished. The prophet struggled to understand how a good God could allow such things. His questions reflect a real and painful time, and his answers speak to anyone wrestling with the mystery of suffering.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Habakkuk and was treasured among the prophetic writings of God\'s people. The Church receives it as inspired Scripture while leaving open the finer questions of its date. Its lasting witness is the path from honest questioning to steadfast trust in God.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Honest questioning: Habakkuk brings his doubts and complaints directly to God. Faith and trust: God invites the prophet to wait and to trust His timing. Living by faith: the famous words that the righteous shall live by faith stand at the heart of the book. Joy in God: it ends with a song of trust, rejoicing in God even when everything seems to fail.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Habakkuk questions God about injustice, and God responds, assuring the prophet that wrongdoing will be judged in due time and that the righteous are to live by faith. The book closes with one of the most moving prayers in Scripture, in which Habakkuk declares that even if the crops fail and the flocks are gone, he will still rejoice in the Lord his Savior.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Habakkuk in the light of Jesus Christ. The call to live by faith is taken up in the New Testament to describe the life of trust in God that Christ makes possible. Habakkuk\'s journey from anguished questioning to joyful trust foreshadows the hope of the Gospel, where even in suffering we can rejoice, because in Christ God brings life out of death.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Habakkuk gives us permission to bring our honest questions and struggles to God. It teaches that faith is not the absence of doubt but trust in God through it. And its closing song inspires us to rejoice in the Lord even in hard times, a hope made sure in Christ, in whom the righteous truly live by faith.',
+      },
+    ],
+  },
+  zephaniah: {
+    book: 'Zephaniah',
+    subtitle: 'God purifying His people and rejoicing over them',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Zephaniah is a prophet who speaks both stern warnings and tender hope. As a covenant messenger, he calls God\'s people to turn back before the Day of the Lord. Yet his book moves beyond judgment to a beautiful promise: that God will purify His people and rejoice over them with gladness. It holds together the seriousness of sin and the joy of God\'s love.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Zephaniah prophesied in Judah during a time of idolatry and complacency, likely before a season of reform. He warned that the people could not drift from God without consequence. His message helped stir hearts toward repentance and renewal.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Zephaniah and was treasured among the prophetic writings. The Church receives it as inspired Scripture while leaving open the questions of its exact composition. Its enduring message is that God purifies His people and delights in those who are humble and faithful.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The Day of the Lord: a coming time of reckoning that calls for repentance. Judgment and restoration: God deals with sin yet promises to renew. Purification: God refines His people, leaving a humble and faithful remnant. Joy: the book ends with the wonderful image of God rejoicing over His people and quieting them with His love.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Zephaniah announces the Day of the Lord and calls the proud and complacent to humility and repentance. He promises that God will leave a humble and lowly people who trust in the name of the Lord. The book ends on a note of pure joy, picturing God in the midst of His people as a mighty savior who exults over them with singing.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Zephaniah in the light of Jesus Christ. Its call to humility and its promise of a faithful remnant point toward the lowly and trusting hearts that welcome the Savior, like Mary and the humble of Israel. The joy of God rejoicing over His people is fulfilled in Christ, who comes to dwell among us and to fill His people with the joy of salvation.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Zephaniah calls us to humble repentance and to trust in the Lord. It assures us that God\'s purifying work, though sometimes painful, leads to renewal and joy. And its closing image of God singing over His people fills us with wonder at how deeply we are loved, a love revealed completely in Christ.',
+      },
+    ],
+  },
+  haggai: {
+    book: 'Haggai',
+    subtitle: 'Putting God first and rebuilding His house',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Haggai is a prophet of the time after the exile, when God\'s people had returned home but had grown discouraged. As a covenant messenger, he urges them to finish rebuilding the temple and to put God first again. His short, practical message reminds us that our priorities matter and that God blesses those who give Him the first place in their lives.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Haggai spoke to the community that had returned from exile to Jerusalem. They had begun rebuilding the temple but had stopped, distracted by their own homes and struggles, leaving God\'s house in ruins. Haggai called them to take up the work again and to renew their devotion to the Lord.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book comes from the prophet Haggai and was treasured among the prophetic writings of God\'s people. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its lasting message is the call to put God first and to take up the work He gives.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Putting God first: the people are urged not to neglect God\'s house while caring only for their own. Rebuilding the temple: restoring worship is at the heart of renewing the community. Encouragement: God promises to be with the people and to fill the rebuilt temple with His presence and glory. Trust: God assures them that the work, though humble, is precious in His sight.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Haggai stirs the leaders and the people to resume building the temple, and they respond with renewed effort. He encourages those who remember the former temple and feel the new one is small, promising that God will fill it with glory. Through Haggai, God reassures His people of His presence and His blessing as they put Him first.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Haggai in the light of Jesus Christ. The promise that God would fill His house with glory points beyond the rebuilt temple to Jesus, the true temple, in whom God\'s glory dwells fully among us. Haggai\'s call to put God first echoes Christ\'s teaching to seek first the Kingdom of God, trusting that the Lord will provide for all our needs.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Haggai gently challenges us to examine our priorities and to put God first rather than letting Him slip to the margins of our busy lives. It encourages us to take up the work God gives, even when it feels small. And it assures us of God\'s presence, a presence revealed fully in Christ, in whom God\'s glory dwells with us.',
+      },
+    ],
+  },
+  zechariah: {
+    book: 'Zechariah',
+    subtitle: 'Restoration, hope, and the coming King',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Zechariah is a prophet of the time after the exile who encourages God\'s people as they rebuild. Alongside Haggai, he urges them to restore the temple, but he also lifts their eyes far ahead with rich visions of hope. As a covenant messenger, he speaks of God\'s plans to renew His people, and his book overflows with promises of a coming King that the Gospels later see fulfilled in Jesus.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Zechariah spoke to the community that had returned from exile and needed encouragement to rebuild the temple and their life of faith. It was a humble and uncertain time. Zechariah strengthened the people with visions of God\'s presence, protection, and future glory.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is rooted in the prophet Zechariah, and its message was treasured and developed within the people of God, so that it speaks both to the rebuilding and to a wider hope. The Church receives it as inspired Scripture while leaving open the scholarly questions of how it took shape. Its enduring witness is hope in God\'s faithful plan to restore and to send a Savior.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Restoration: God promises to renew Jerusalem and dwell among His people. Hope: a series of visions assures the people of God\'s care and ultimate victory. Messianic hope: the book foretells a humble king and a shepherd for God\'s people. Worship and holiness: it looks forward to a day when all will be holy to the Lord, and many nations will turn to Him.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Zechariah encourages the rebuilding of the temple and receives visions that reveal God\'s plans for His people. He foretells a king coming humble and riding on a donkey, and he speaks of a shepherd who is struck and of looking on one who was pierced. These images, given to comfort his own people, would later shine with deeper meaning in the story of Jesus.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Zechariah in the light of Jesus Christ, and the Gospels draw on him often. The humble king entering Jerusalem on a donkey is fulfilled when Jesus enters the city on Palm Sunday. The pierced one and the struck shepherd are seen in Christ\'s passion. Zechariah\'s hope of restoration and of God dwelling with His people comes true in Jesus, who establishes the Kingdom of God.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Zechariah fills us with hope that God is faithful to restore and renew, even after hard times. It encourages us to take up the work of faith with confidence in God\'s plan. And its many pointers to the coming King draw us to Christ, the humble Savior, helping us treasure how carefully God prepared the way for Him.',
+      },
+    ],
+  },
+  malachi: {
+    book: 'Malachi',
+    subtitle: 'Faithful worship and a messenger to prepare the way',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Malachi is the last of the prophetic books and, in the order of the Christian Old Testament, the final voice before the New Testament. As a covenant messenger, Malachi calls a discouraged people back to wholehearted, faithful worship. He ends with a promise that God will send a messenger to prepare the way for the Lord, words that point ahead to John the Baptist and to Christ.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Malachi spoke some time after the return from exile, when the first excitement had faded and the people had grown lax in their worship and their fidelity to God. Offerings were careless, marriages were broken, and hearts had cooled. Malachi called the people to renew their love and faithfulness toward the Lord.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'The book is attributed to Malachi, whose name means my messenger, and it was treasured among the prophetic writings of God\'s people. The Church receives it as inspired Scripture while leaving open the finer questions of its composition. Its enduring message is the call to honest, faithful worship and the promise of the messenger who prepares the Lord\'s coming.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'Faithfulness: God calls His people back to fidelity in worship and in marriage. True worship: He desires offerings given with love and reverence, not carelessly. Honesty before God: the people are invited to examine their hearts and return to Him. The coming messenger: God promises to send one who will prepare the way before the great day of the Lord.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Malachi addresses the priests and people about their half hearted worship and their unfaithfulness, calling them to return to God. He promises that the Lord will come to His temple and that a messenger will be sent ahead to prepare the way. He even speaks of one who will come in the spirit of Elijah, turning hearts back to God before the day of the Lord.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Catholics read Malachi in the light of Jesus Christ. The promise of a messenger who prepares the way is fulfilled in John the Baptist, who came in the spirit of Elijah to ready the people for the Lord. The promise that the Lord would come to His temple is fulfilled when Jesus comes into the world. Malachi\'s final words leave God\'s people waiting in hope for the Savior who is soon to appear.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Malachi calls us to offer God our best in worship and to live faithfully rather than letting our devotion grow cold. It invites honest self examination and a return to the Lord. And as the last word of the Old Testament, its promise of a messenger fills us with anticipation for John the Baptist and for Christ, drawing us to the threshold of the Gospel.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

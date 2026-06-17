@@ -4,6 +4,7 @@ import { getReadingDay } from '../data/readingPlan';
 import { getCompletions, markComplete, markIncomplete } from '../lib/completions';
 import { useAccount } from '../lib/account';
 import { CompletionRecord } from '../lib/supabase';
+import { SacredCard } from '../components/SacredCard';
 
 function isComplete(
   records: CompletionRecord[],
@@ -177,6 +178,50 @@ export default function DayDetail() {
         </h2>
         {(() => {
           const done = isComplete(completions, day.day_number, uid);
+          if (done) {
+            return (
+              <SacredCard className="relative overflow-hidden p-0">
+                <img
+                  src="/images/hero/church-home.webp"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="h-32 w-full object-cover"
+                />
+                <div className="relative bg-gradient-to-br from-white via-parchment-50 to-white p-5 text-center">
+                  <span className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-sage-500 text-sm font-semibold text-white shadow-[0_10px_24px_rgba(74,103,65,0.22)]">
+                    &#10003;
+                  </span>
+                  <p className="mt-3 text-xs font-semibold uppercase tracking-widest text-stone-400">
+                    Today's journey is complete
+                  </p>
+                  <p className="mt-4 font-display text-2xl font-semibold leading-snug text-leather-900">
+                    &ldquo;Go and announce the Gospel of the Lord.&rdquo;
+                  </p>
+                  <p className="mt-2 font-display text-xl font-semibold text-leather-600">
+                    &ldquo;Thanks be to God.&rdquo;
+                  </p>
+
+                  <div className="mt-5 space-y-3">
+                    <button
+                      onClick={() => navigate('/')}
+                      className="w-full rounded-xl bg-gold py-3 font-semibold text-leather-900 shadow-[0_12px_24px_rgba(212,169,106,0.18)] transition active:scale-[0.99]"
+                    >
+                      Back to Today
+                    </button>
+                    <button
+                      disabled={saving}
+                      onClick={() => handleToggle(true)}
+                      className="w-full rounded-xl border border-parchment-200 bg-white/70 py-3 text-sm font-semibold text-leather-600 transition active:scale-[0.99] disabled:opacity-60"
+                    >
+                      {saving ? 'Saving...' : 'Mark Incomplete'}
+                    </button>
+                  </div>
+                </div>
+              </SacredCard>
+            );
+          }
+
           return (
             <button
               disabled={saving}

@@ -2337,6 +2337,47 @@ export const bibleBookIntroductions: Record<string, BibleBookIntroduction> = {
       },
     ],
   },
+  acts: {
+    book: 'Acts of the Apostles',
+    subtitle: 'The Holy Spirit and the birth of the Church',
+    sections: [
+      {
+        heading: 'Where are we in the Bible story?',
+        content:
+          'Acts continues the story right where Luke\'s Gospel ends. Having told the life, death, and resurrection of Jesus, Luke now shows how the risen Lord continues His work through the Church. After Jesus ascends to the Father, the Holy Spirit comes upon the apostles, and the Good News begins to spread from Jerusalem outward to the whole world. Acts is the story of the Church being born and sent on mission.',
+      },
+      {
+        heading: 'Historical setting',
+        content:
+          'Acts unfolds in the first decades after the resurrection, across the cities and roads of the Roman Empire. The first believers, beginning in Jerusalem, carry the Gospel to Judea, Samaria, and eventually to distant nations. It was a time of great courage and rapid growth, as a small community of disciples became a Church reaching people of every background.',
+      },
+      {
+        heading: 'Authorship and tradition',
+        content:
+          'Acts is the second part of a two volume work and is attributed by Christian tradition to Luke, the companion of Saint Paul. The Church treasures this tradition while recognizing that the Scriptures came to us through real human authors drawing on eyewitness testimony, guided by the Holy Spirit. The Church holds firmly that Acts is inspired and faithfully hands on the story of the early Church.',
+      },
+      {
+        heading: 'Main themes',
+        content:
+          'The Holy Spirit: poured out at Pentecost, the Spirit guides and empowers the Church at every step. Apostolic preaching: the apostles boldly proclaim the risen Jesus. The sacraments: the first believers are baptized and devote themselves to the breaking of bread, the Eucharist. Church life: they share prayer, teaching, and fellowship as one community. Mission to the nations: the Gospel spreads outward, welcoming Jews and Gentiles alike into one Church.',
+      },
+      {
+        heading: 'Important people and events',
+        content:
+          'Acts begins with the Ascension of Jesus and the coming of the Holy Spirit at Pentecost, when Peter preaches and thousands are baptized. Peter leads the young Church in Jerusalem, working signs and welcoming the first Gentiles. Paul, once a persecutor, is transformed by an encounter with the risen Christ and becomes a tireless missionary to the nations. Along the way, the apostles gather to discern important questions together, guided by the Spirit.',
+      },
+      {
+        heading: 'Connection to Christ',
+        content:
+          'Acts shows that the risen Jesus continues His saving work through His Church by the power of the Holy Spirit. The apostles act with the authority Christ gave them, preaching, baptizing, and breaking bread in His name. The life Jesus began does not end with His Ascension but grows in the Church, His Body, where He remains present through the sacraments and the guidance of the Spirit He promised to send.',
+      },
+      {
+        heading: 'Why Catholics read this book today',
+        content:
+          'Acts helps us understand the Church as apostolic, born of Pentecost and built on the preaching and authority of the apostles. It shows the roots of our sacramental life in Baptism and the breaking of bread, and the call to mission that still belongs to every believer. Above all, it assures us that the same Holy Spirit who guided the early Church continues to guide and unite the Church today.',
+      },
+    ],
+  },
 };
 
 export function getBibleSectionIntroduction(

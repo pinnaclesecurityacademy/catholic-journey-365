@@ -5,11 +5,8 @@ import { TOTAL_DAYS } from '../config/journey';
 import { getAllCompletions } from '../lib/completions';
 import { useAccount } from '../lib/account';
 import { CompletionRecord } from '../lib/supabase';
-import {
-  SacredCard,
-  SacredImageCard,
-  SacredProgress,
-} from '../components/SacredCard';
+import { SacredCard, SacredProgress } from '../components/SacredCard';
+import JourneyTimeline from '../components/JourneyTimeline';
 
 function isComplete(
   records: CompletionRecord[],
@@ -32,15 +29,29 @@ const ROSARY_BY_DAY = [
   { id: 'joyful', label: 'Joyful Mysteries' }, // Saturday
 ];
 
+function getHeroImageSrc(hour = new Date().getHours()) {
+  if (hour >= 5 && hour < 12) return '/images/hero/morning-prayer.webp';
+  if (hour >= 12 && hour < 18) return '/images/hero/journey-with-christ.webp';
+  return '/images/hero/church-home.webp';
+}
+
 export default function Home() {
   const navigate = useNavigate();
   const { profile, completionId, members } = useAccount();
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
+  const [heroImageSrc, setHeroImageSrc] = useState(getHeroImageSrc);
 
   useEffect(() => {
     getAllCompletions()
       .then(setCompletions)
       .catch(() => setCompletions([]));
+  }, []);
+
+  useEffect(() => {
+    const updateHero = () => setHeroImageSrc(getHeroImageSrc());
+    updateHero();
+    const timer = window.setInterval(updateHero, 60000);
+    return () => window.clearInterval(timer);
   }, []);
 
   const uid = completionId ?? '';
@@ -64,7 +75,7 @@ export default function Home() {
     <div className="mx-auto max-w-md px-4 pt-5 pb-6">
       <section className="relative mb-4 overflow-hidden rounded-[1.75rem] bg-leather-900 text-white shadow-[0_24px_56px_rgba(28,25,23,0.24)]">
         <img
-          src="/images/hero/journey-with-christ.webp"
+          src={heroImageSrc}
           alt=""
           fetchPriority="high"
           decoding="async"
@@ -140,24 +151,14 @@ export default function Home() {
         />
       </div>
 
-      <SacredImageCard
-        className="mb-4"
-        imageSrc="/images/hero/morning-prayer.webp"
-        imageAlt=""
-      >
-        <h3 className="font-display text-lg font-semibold text-leather-900">
-          Daily Prayer
-        </h3>
-        <p className="mt-3 text-center italic text-leather-900 leading-loose whitespace-pre-line">
-          {day.daily_prayer}
-        </p>
-      </SacredImageCard>
+      <JourneyTimeline
+        currentDay={day.day_number}
+        totalDays={TOTAL_DAYS}
+        period={day.period}
+        progressPercent={progressPct}
+      />
 
-      <SacredImageCard
-        className="mb-4"
-        imageSrc="/images/hero/church-home.webp"
-        imageAlt=""
-      >
+      <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
         <p className="text-sm text-stone-500">Today's Rosary</p>
         <h3 className="mt-1 font-display text-xl font-semibold text-leather-900">
           {todayRosary.label}
@@ -168,7 +169,7 @@ export default function Home() {
         >
           Pray Rosary
         </button>
-      </SacredImageCard>
+      </SacredCard>
 
       <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
         <h3 className="font-display text-lg font-semibold text-leather-900">
@@ -230,6 +231,18 @@ export default function Home() {
           </div>
         </SacredCard>
       )}
+
+      <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
+        <p className="text-xs uppercase tracking-widest text-stone-400">
+          Daily Prayer
+        </p>
+        <p className="mt-3 text-center italic text-leather-900 leading-loose whitespace-pre-line">
+          {day.daily_prayer}
+        </p>
+        <p className="mt-5 border-t border-parchment-200 pt-4 text-center font-display text-lg font-semibold leading-relaxed text-leather-900">
+          &ldquo;Your word is a lamp to my feet and a light to my path.&rdquo;
+        </p>
+      </SacredCard>
     </div>
   );
 }

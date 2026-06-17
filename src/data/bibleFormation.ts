@@ -167,27 +167,22 @@ export const bibleSectionIntroductions: Record<string, BibleSectionIntroduction>
       {
         heading: 'What is this section?',
         content:
-          'The Gospels tell the life, teachings, death, and resurrection of Jesus Christ. The word Gospel means "good news". The four Gospels are Matthew, Mark, Luke, and John. Each Gospel gives a faithful witness to Jesus while highlighting different aspects of His mission. They are not simply biographies. They are inspired testimonies written so that we may know Jesus, believe in Him, and follow Him.',
+          'The Gospels tell the life, teachings, death, and resurrection of Jesus Christ. The word Gospel means "good news". The four Gospels are Matthew, Mark, Luke, and John. Each gives a faithful witness to Jesus while highlighting different aspects of His life and mission. They are not simply biographies. They are inspired testimonies written so that we may know Jesus, believe in Him, and follow Him.',
       },
       {
         heading: 'Historical background',
         content:
-          'The Gospels take place in the first century, when the Jewish people lived under Roman rule. Many were waiting for God to fulfil His promises: the coming of the Messiah, the restoration of Israel, forgiveness of sins, and the arrival of God\'s Kingdom. Into this world, Jesus came. He taught, healed, forgave sins, gathered disciples, challenged hearts, and revealed the love of the Father.',
+          'The Gospels take place in the first century, when the Jewish people lived under Roman rule. Many were waiting for God to fulfil His promises: the coming of the Messiah, the restoration of Israel, forgiveness of sins, and the arrival of God\'s Kingdom. Jesus was born into this world and lived within the faith, worship, and Scriptures of Israel. He taught, healed, forgave sins, gathered disciples, challenged hearts, and revealed the love of the Father.',
       },
       {
-        heading: 'Importance to the Jewish people',
+        heading: 'How the early Christians understood it',
         content:
-          'Jesus was born into the Jewish people and lived within the faith, worship, and Scriptures of Israel. The Gospels show how the promises given through the Law, Prophets, and writings of Israel reach their fulfilment in Him. Jesus did not reject God\'s earlier covenant promises. He brought them to their intended fulfilment.',
-      },
-      {
-        heading: 'How Jesus and the early Christians understood it',
-        content:
-          'Jesus revealed Himself as the centre of God\'s saving plan. After His resurrection, His disciples came to understand more fully how the Scriptures pointed toward Him. The early Church proclaimed that Jesus is the promised Messiah, the Son of God, who conquered sin and death through His cross and resurrection.',
+          'The first Christians did not see Jesus as the beginning of a new, disconnected religion. They understood Him as the fulfilment of God\'s promises throughout the Scriptures of Israel. The Apostles proclaimed that through His life, death, and resurrection, Jesus fulfilled God\'s plan of salvation and opened the way for all people to enter into covenant with God. The Gospels were preserved and proclaimed by the early Church so future generations could encounter Christ and follow Him.',
       },
       {
         heading: 'Catholic understanding today',
         content:
-          'For Catholics, the Gospels hold a unique place because they contain the words and actions of Jesus Christ Himself. At Mass, we stand for the Gospel reading as a sign of special reverence. Through the Gospels, Catholics encounter Jesus, learn His teachings, and discover what it means to become His disciples.',
+          'For Catholics, the Gospels hold a unique place because they contain the words and actions of Jesus Christ Himself. At Mass, we stand for the Gospel reading as a sign of special reverence. Through the Gospels, Catholics encounter Jesus, listen to His teachings, and learn what it means to become His disciples. The Church continues to preserve and proclaim the Gospel message handed down from the Apostles.',
       },
       {
         heading: 'How it fits into salvation history',

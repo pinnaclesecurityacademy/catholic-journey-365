@@ -203,22 +203,17 @@ export const bibleSectionIntroductions: Record<string, BibleSectionIntroduction>
       {
         heading: 'Historical background',
         content:
-          'Acts takes place in the first century world of the Roman Empire. After Jesus\' ascension, His followers began in Jerusalem and gradually carried the Gospel beyond the Jewish people to other nations. The book follows key moments in the growth of the Church, especially through the ministry of Peter and Paul. It shows the challenges faced by the first Christians as they followed Christ in a complex and often hostile world.',
+          'Acts takes place in the first century world of the Roman Empire. After Jesus\' ascension, His followers began in Jerusalem and gradually carried the Gospel beyond the Jewish people to all nations. The book follows key moments in the growth of the Church, especially through the ministry of Peter and Paul. It shows the challenges faced by the first Christians as they followed Christ and shared the Gospel.',
       },
       {
-        heading: 'Importance to the Jewish people',
+        heading: 'How the early Christians understood it',
         content:
-          'The earliest Christians were Jewish and understood Jesus as the fulfilment of God\'s promises to Israel. Acts shows the apostles preaching from the Scriptures of Israel and explaining how God\'s plan reaches fulfilment in Christ. It also shows a major moment in salvation history as Gentiles, people from all nations, are welcomed into God\'s covenant family.',
-      },
-      {
-        heading: 'How Jesus and the early Christians understood it',
-        content:
-          'Before ascending into heaven, Jesus promised that the Holy Spirit would come and guide His followers. Acts shows that promise fulfilled at Pentecost. The early Christians understood that they were not continuing the mission by their own strength. Christ remained with His Church through the Holy Spirit.',
+          'The early Christians understood Acts as the continuation of Jesus\' mission through the power of the Holy Spirit. They believed Christ remained present with His Church and continued to guide His people. Through preaching, baptism, prayer, the breaking of bread, and apostolic leadership, the Church carried forward the mission Jesus entrusted to His followers. The spread of the Gospel to all nations showed that God\'s plan of salvation was always meant for the whole world.',
       },
       {
         heading: 'Catholic understanding today',
         content:
-          'Catholics see Acts as the beginning of the visible mission of the Church. We see the apostles teaching, baptising, celebrating the breaking of bread, appointing leaders, and spreading the Gospel. Acts helps Catholics understand apostolic faith, the work of the Holy Spirit, and the Church\'s mission to bring Christ to the world.',
+          'Catholics see Acts as the beginning of the visible mission of the Church. Acts shows the importance of the Apostles, the guidance of the Holy Spirit, the unity of believers, and the life of the early Christian community. It helps Catholics understand the Church as apostolic, meaning connected to the faith handed down from the Apostles.',
       },
       {
         heading: 'How it fits into salvation history',

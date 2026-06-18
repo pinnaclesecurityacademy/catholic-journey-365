@@ -8,26 +8,31 @@ type BeginHereStep = {
   reflection: string;
   thinkAbout: string;
   takeStep: string;
+  prayer: string;
 };
 
 const BEGIN_HERE_STEPS: BeginHereStep[] = [
   {
     title: "I'm Catholic, where do I start?",
     reflection:
-      'Many people are baptized Catholic but never deeply learn their faith. Some return after years away. Some start because they become parents. Some simply feel a quiet pull toward God. Baptism begins our life in Christ, but like any relationship, faith needs to grow. This journey is not about pretending we have everything figured out. Catholics believe God continually invites us closer to Him. Is it too late to start? No. Throughout history many saints had moments of returning, conversion, and beginning again. The first step is simply turning toward God.',
+      'This step is for many different people. Some were baptized Catholic but never really learned the faith. Some are returning after years away. Some are not Catholic at all but feel quietly drawn to the Catholic Church. Some are spouses or family members trying to understand the faith of someone they love. Wherever you are, faith begins with responding to God\'s invitation. Baptism begins our life in Christ, but like any living relationship, faith continues to grow over time. This journey is not about pretending we have everything figured out. It begins one step at a time. Is it too late to begin? No. God continually calls His children home, and there is always room to start again with Him.',
     thinkAbout:
       'What part of the Catholic faith feels closest to you right now, and what part feels confusing or far away? Where do you sense God quietly inviting you to begin again?',
     takeStep:
-      'Make the Sign of the Cross slowly today and ask God to help you take the next step.',
+      'Make the Sign of the Cross slowly today and ask God to help you take the next step. Then pray this prayer, speaking to God from your heart.',
+    prayer:
+      'Heavenly Father,\n\nThank You for calling me closer to You.\n\nI do not have all the answers, and sometimes I do not even know where to begin.\n\nLord Jesus, walk with me on this journey. Help me understand Your love and the sacrifice You made for me.\n\nHoly Spirit, come into my heart. Fill me with Your love, guide my thoughts, strengthen my faith, and lead me closer to Christ.\n\nTeach me to pray.\nTeach me to trust.\nTeach me to follow You one step at a time.\n\nAmen.',
   },
   {
     title: 'Who is Jesus?',
     reflection:
-      'Christianity begins with Jesus Christ, not just rules, culture, or traditions. Catholics believe Jesus is the Son of God, fully God and fully human, and the One who reveals God\'s love. In the Incarnation, God comes near to us. On the Cross, Jesus gives Himself for us. In the Resurrection, He opens the way to new life. Building a relationship with Jesus can feel difficult because we cannot physically see Him. Catholics encounter Christ through prayer, Scripture, the Eucharist, and the Sacraments. What if I pray and feel nothing? Faith is deeper than feelings. Like any relationship, it grows through showing up, even when it feels difficult.',
+      'Christianity begins with Jesus Christ, not just rules, culture, or traditions. Catholics believe Jesus is the Son of God, fully God and fully man. In the Incarnation, God takes on our human nature and comes near to us. On the Cross, Jesus gives Himself completely for us out of love. In the Resurrection, He conquers death and opens the way to new life. Building a relationship with Jesus can feel difficult because we cannot physically see Him. Catholics encounter Christ through Scripture, prayer, the Eucharist, and the Sacraments. These are the living ways He meets us. And faith is deeper than emotions. Sometimes prayer feels powerful, and sometimes it feels quiet. What matters is continuing to turn toward Him, trusting that He is present even when we feel nothing.',
     thinkAbout:
       'When you hear the name Jesus, what comes to mind first: comfort, distance, questions, hope, or something else? What would it look like to show up for Him today, even in a small way?',
     takeStep:
-      'Read a short passage from one Gospel, such as Luke 15:1-7, and notice how Jesus looks for the one who is lost. Then speak to Him simply, in your own words.',
+      'Read a short passage from one Gospel, such as Luke 15:1-7, and notice how Jesus looks for the one who is lost. Then speak to Him simply, in your own words, and pray this prayer.',
+    prayer:
+      'Lord Jesus,\n\nYou are the Son of God, who became man and gave Your life for me. I want to know You, not only as an idea, but as a living Person who loves me.\n\nReveal Yourself to me. Open my eyes to see You in the Scriptures, in prayer, in the Eucharist, and in the people around me.\n\nHoly Spirit, open my heart. Take away my fear and my doubt. Help me to recognise the voice of Jesus and to follow Him.\n\nHeavenly Father, draw me ever closer to Your Son, that I may trust Him in the bright moments and the quiet ones alike.\n\nAmen.',
   },
   {
     title: 'Why the Catholic Church?',
@@ -37,6 +42,8 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
       'What questions do you have about the Church, its history, or why Catholics believe what they believe?',
     takeStep:
       'Look up the nearest Catholic parish and learn its Mass times, even if you are not ready to go yet.',
+    prayer:
+      'Heavenly Father, You gave us the Church to hold and hand on the gift of faith. Help me to trust the family You have built through the Apostles and the saints. Lord Jesus, You promised to remain with Your Church always; help me to find my place within it. Holy Spirit, guide me, settle my doubts, and lead me into the truth, that I may grow ever closer to Christ. Amen.',
   },
   {
     title: 'What happens at Mass?',
@@ -46,6 +53,8 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
       'Which part of Mass feels most familiar, and which part do you most want to understand better?',
     takeStep:
       'Attend Mass or watch closely next time you go. Notice when people stand, sit, kneel, listen, and pray.',
+    prayer:
+      'Heavenly Father, thank You for inviting me to Your table. Lord Jesus, You gave Yourself for me; teach me to worship You with my whole heart at Mass. Holy Spirit, open my eyes to what is truly happening in this holy gift, quiet my distractions, and strengthen my faith, that I may meet Christ more closely each time I come. Amen.',
   },
   {
     title: 'The Eucharist',
@@ -55,6 +64,8 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
       'What does it mean to you that Jesus wants to be close to His people in this way?',
     takeStep:
       'Spend one quiet minute in church, or at home, thanking Jesus for staying close to His Church.',
+    prayer:
+      'Lord Jesus, I believe You give Yourself to us in the Eucharist out of love. Heavenly Father, thank You for keeping Your Son so near to Your people. Holy Spirit, increase my faith, soften my heart, and help me to receive this gift with reverence and love, that I may grow closer to Christ each day. Amen.',
   },
   {
     title: 'Learning to Pray',
@@ -64,6 +75,8 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
       'What makes prayer hard for you: distraction, doubt, time, shame, or not knowing where to begin?',
     takeStep:
       'Pray one Our Father slowly. If your mind wanders, gently begin again.',
+    prayer:
+      'Heavenly Father, I want to learn to speak with You. Lord Jesus, You taught Your disciples to pray; teach me too. Holy Spirit, come into my heart, help me when I do not know what to say, and lead both my words and my silence closer to Christ. Even when prayer feels quiet, keep me faithful and near to You. Amen.',
   },
   {
     title: 'Mary and the Saints',
@@ -73,6 +86,8 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
       'Does asking the saints to pray for you feel comforting, confusing, or unfamiliar?',
     takeStep:
       'Ask Mary or a saint you know about to pray for you, then turn your heart to Jesus.',
+    prayer:
+      'Heavenly Father, thank You for the great family of saints who followed Your Son before me. Lord Jesus, You are the One to whom all worship belongs; let Mary and the saints always lead me to You. Holy Spirit, strengthen me through their prayers and their example, and draw me closer to Christ. Amen.',
   },
   {
     title: 'Confession and Mercy',
@@ -82,6 +97,8 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
       'Is there something in your life where you long for forgiveness, healing, or a new beginning?',
     takeStep:
       'Find your parish confession times or ask a priest how to prepare if it has been a long time.',
+    prayer:
+      'Heavenly Father, Your mercy is greater than my sins. Lord Jesus, You came to seek and save the lost, so I bring my heart honestly to You. Holy Spirit, give me courage to return, to be honest, and to begin again. Wash me, heal me, and lead me closer to Christ. Amen.',
   },
   {
     title: 'Living the Faith',
@@ -91,6 +108,8 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
       'Where is God inviting you to live your faith more honestly this week?',
     takeStep:
       'Choose one small act of love today: forgive, serve, pray, listen, or make time for someone.',
+    prayer:
+      'Heavenly Father, You meet me in the ordinary moments of each day. Lord Jesus, help me to follow You in my family, my work, and my choices. Holy Spirit, strengthen me to love when it is hard, to forgive, to serve, and to rise again when I fall, so that my whole life grows closer to Christ. Amen.',
   },
   {
     title: 'Your Next Step',
@@ -100,6 +119,8 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
       'What next step feels possible now: attending Mass, learning to pray, asking a question, or speaking with someone at a parish?',
     takeStep:
       'Speak with your local priest or parish about RCIA, Sacraments, and personal guidance.',
+    prayer:
+      'Heavenly Father, thank You for walking with me this far. Lord Jesus, lead me into the life of Your Church, the Sacraments, and the people who can guide me. Holy Spirit, give me courage to take the next step, whatever it may be, and keep drawing me closer to Christ each day. Amen.',
   },
 ];
 
@@ -148,6 +169,10 @@ export default function BeginHere() {
     if (selectedStep < BEGIN_HERE_STEPS.length - 1) {
       setSelectedStep(selectedStep + 1);
     }
+  }
+
+  function markCurrentIncomplete() {
+    setCompletedSteps((steps) => steps.filter((step) => step !== selectedStep));
   }
 
   return (
@@ -217,6 +242,12 @@ export default function BeginHere() {
           <p className="mt-2 text-sm leading-relaxed text-stone-600">
             {current.takeStep}
           </p>
+          <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+            A Prayer
+          </p>
+          <p className="mt-2 whitespace-pre-line text-sm italic leading-relaxed text-stone-600">
+            {current.prayer}
+          </p>
         </div>
 
         <button
@@ -226,6 +257,16 @@ export default function BeginHere() {
         >
           {isCurrentComplete ? 'Continue' : 'Complete Step'}
         </button>
+
+        {isCurrentComplete && (
+          <button
+            type="button"
+            onClick={markCurrentIncomplete}
+            className="mt-3 w-full rounded-xl border border-parchment-200 py-2.5 text-sm font-semibold text-leather-600 transition active:scale-[0.99]"
+          >
+            Mark Incomplete
+          </button>
+        )}
       </SacredCard>
 
       <div className="mb-4 grid grid-cols-5 gap-2">

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAccount } from '../lib/account';
+import { usePWAUpdate } from '../lib/pwaUpdates';
 
 export default function Profile() {
   const {
@@ -15,6 +16,7 @@ export default function Profile() {
     removeMember,
     signOut,
   } = useAccount();
+  const { status, updateReady, checkForUpdates, updateNow } = usePWAUpdate();
 
   const isOwner = role === 'owner';
 
@@ -246,6 +248,42 @@ export default function Profile() {
         >
           {joining ? 'Joining…' : 'Join Journey'}
         </button>
+      </section>
+
+      {/* App updates */}
+      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
+        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+          App Updates
+        </h2>
+        {updateReady ? (
+          <p className="text-sm text-stone-500 mb-3">
+            A new version of Catholic Journey 365 is ready.
+          </p>
+        ) : status === 'latest' ? (
+          <p className="text-sm text-stone-500 mb-3">
+            You're using the latest version.
+          </p>
+        ) : (
+          <p className="text-sm text-stone-500 mb-3">
+            Check whether a new app version is available.
+          </p>
+        )}
+        {updateReady ? (
+          <button
+            onClick={updateNow}
+            className="w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white active:scale-[0.99] transition"
+          >
+            Update now
+          </button>
+        ) : (
+          <button
+            onClick={checkForUpdates}
+            disabled={status === 'checking'}
+            className="w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
+          >
+            {status === 'checking' ? 'Checking...' : 'Check for updates'}
+          </button>
+        )}
       </section>
 
       {/* Sign out */}

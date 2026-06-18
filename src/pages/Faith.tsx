@@ -60,9 +60,10 @@ const FAITH_CARDS: FaithCard[] = [
     title: 'Sacraments',
     description:
       'Discover the encounters with God at the heart of Catholic life.',
+    cta: 'Explore the Sacraments',
     imageSrc: '/images/faith/sacraments.webp',
     imagePosition: 'object-[center_38%]',
-    comingSoon: true,
+    to: '/sacraments',
   },
 ];
 

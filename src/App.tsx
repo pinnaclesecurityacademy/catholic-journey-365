@@ -4,6 +4,7 @@ import BottomNav from './components/BottomNav';
 import AuthScreen from './components/AuthScreen';
 import JourneySetup from './components/JourneySetup';
 import { AccountProvider, useAccount } from './lib/account';
+import { PWAUpdateProvider, usePWAUpdate } from './lib/pwaUpdates';
 
 // Route-based code splitting: each page (and the large data it imports) loads
 // in its own chunk on demand instead of inflating the initial bundle. Landing
@@ -17,6 +18,8 @@ const SaintLibrary = lazy(() => import('./pages/SaintLibrary'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Faith = lazy(() => import('./pages/Faith'));
 const BeginHere = lazy(() => import('./pages/BeginHere'));
+const Sacraments = lazy(() => import('./pages/Sacraments'));
+const SacramentDetail = lazy(() => import('./pages/SacramentDetail'));
 const Prayer = lazy(() => import('./pages/Prayer'));
 const PrayerDetail = lazy(() => import('./pages/PrayerDetail'));
 const Rosary = lazy(() => import('./pages/Rosary'));
@@ -78,6 +81,8 @@ function PrivateRoutes() {
         <Route path="/saints" element={<SaintLibrary />} />
         <Route path="/faith" element={<Faith />} />
         <Route path="/faith/begin" element={<BeginHere />} />
+        <Route path="/sacraments" element={<Sacraments />} />
+        <Route path="/sacraments/:id" element={<SacramentDetail />} />
         <Route path="/prayer" element={<Prayer />} />
         <Route path="/prayer/:categoryId/:prayerId" element={<PrayerDetail />} />
         <Route path="/rosary" element={<Rosary />} />
@@ -104,6 +109,30 @@ function PrivateApp() {
     <AppFrame>
       <PrivateRoutes />
     </AppFrame>
+  );
+}
+
+function PWAUpdateBanner() {
+  const { updateReady, updateNow } = usePWAUpdate();
+
+  if (!updateReady) {
+    return null;
+  }
+
+  return (
+    <div className="fixed inset-x-0 bottom-24 z-50 px-4">
+      <div className="mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-gold/40 bg-white px-4 py-3 shadow-[0_16px_36px_rgba(74,55,40,0.16)]">
+        <p className="flex-1 text-sm font-medium text-leather-900">
+          A new version of Catholic Journey 365 is ready.
+        </p>
+        <button
+          onClick={updateNow}
+          className="shrink-0 rounded-xl bg-leather-600 px-3 py-2 text-sm font-semibold text-white active:scale-[0.99] transition"
+        >
+          Update now
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -153,9 +182,12 @@ function isAppPath() {
 export default function App() {
   return (
     <AccountProvider>
-      <Suspense fallback={<AuthGateLoading />}>
-        {isAppPath() ? <AppShell /> : <Landing />}
-      </Suspense>
+      <PWAUpdateProvider>
+        <Suspense fallback={<AuthGateLoading />}>
+          {isAppPath() ? <AppShell /> : <Landing />}
+        </Suspense>
+        <PWAUpdateBanner />
+      </PWAUpdateProvider>
     </AccountProvider>
   );
 }

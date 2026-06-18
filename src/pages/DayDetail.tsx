@@ -1,5 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useEffect, useState, useCallback, useLayoutEffect, useRef } from 'react';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { getReadingDay } from '../data/readingPlan';
 import { getCompletions, markComplete, markIncomplete } from '../lib/completions';
 import { useAccount } from '../lib/account';
@@ -19,6 +19,8 @@ function isComplete(
 export default function DayDetail() {
   const { dayNumber } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const pageRef = useRef<HTMLDivElement | null>(null);
   const dayNum = Number(dayNumber);
   const day = getReadingDay(dayNum);
 
@@ -32,6 +34,35 @@ export default function DayDetail() {
       .then(setCompletions)
       .catch(() => setCompletions([]));
   }, [dayNum]);
+
+  useLayoutEffect(() => {
+    const resetScroll = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      document.scrollingElement?.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+
+      let parent = pageRef.current?.parentElement;
+      while (parent) {
+        const style = window.getComputedStyle(parent);
+        if (/(auto|scroll|overlay)/.test(style.overflowY)) {
+          parent.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        }
+        parent = parent.parentElement;
+      }
+    };
+
+    resetScroll();
+    const frame = window.requestAnimationFrame(resetScroll);
+    const timer = window.setTimeout(resetScroll, 0);
+    const settledTimer = window.setTimeout(resetScroll, 50);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+      window.clearTimeout(settledTimer);
+    };
+  }, [location.pathname, dayNumber]);
 
   useEffect(() => {
     refresh();
@@ -70,7 +101,7 @@ export default function DayDetail() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-5 pt-6">
+    <div ref={pageRef} className="max-w-md mx-auto px-5 pt-6">
       <button
         onClick={() => navigate(-1)}
         className="text-leather-600 font-medium mb-4"

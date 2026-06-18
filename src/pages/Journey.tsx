@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { readingPlan } from '../data/readingPlan';
 import { TOTAL_DAYS } from '../config/journey';
 import { getAllCompletions } from '../lib/completions';
@@ -9,7 +9,6 @@ import {
   SacredCard,
   sacredButtonCardClassName,
 } from '../components/SacredCard';
-import { scrollToContentStart } from '../lib/scroll';
 
 function isComplete(
   records: CompletionRecord[],
@@ -140,10 +139,11 @@ function buildPeriods(): Period[] {
 
 export default function Journey() {
   const navigate = useNavigate();
+  const location = useLocation();
   const { members } = useAccount();
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
   const [selected, setSelected] = useState<Period | null>(null);
-  const contentStartRef = useRef<HTMLDivElement>(null);
+  const pageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     getAllCompletions()
@@ -151,9 +151,36 @@ export default function Journey() {
       .catch(() => setCompletions([]));
   }, []);
 
-  useEffect(() => {
-    scrollToContentStart(contentStartRef.current);
-  }, [selected]);
+  useLayoutEffect(() => {
+    if (selected) return;
+
+    const resetScroll = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      document.scrollingElement?.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+
+      let parent = pageRef.current?.parentElement;
+      while (parent) {
+        const style = window.getComputedStyle(parent);
+        if (/(auto|scroll|overlay)/.test(style.overflowY)) {
+          parent.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+        }
+        parent = parent.parentElement;
+      }
+    };
+
+    resetScroll();
+    const frame = window.requestAnimationFrame(resetScroll);
+    const timer = window.setTimeout(resetScroll, 0);
+    const settledTimer = window.setTimeout(resetScroll, 50);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+      window.clearTimeout(settledTimer);
+    };
+  }, [location.pathname, selected]);
 
   const periods = useMemo(buildPeriods, []);
 
@@ -183,7 +210,6 @@ export default function Journey() {
           &larr; All Periods
         </button>
         <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
-          <div ref={contentStartRef} />
           <div className="flex items-center gap-4">
             <img
               src={periodIconSrc(selected)}
@@ -239,7 +265,7 @@ export default function Journey() {
 
   // ---- Periods overview (Bible Timeline) ----
   return (
-    <div className="mx-auto max-w-md px-4 pt-5 pb-6">
+    <div ref={pageRef} className="mx-auto max-w-md px-4 pt-5 pb-6">
       <button
         onClick={() => navigate(`/day/${currentDay}`)}
         className="relative mb-5 block w-full overflow-hidden rounded-[1.75rem] bg-leather-900 text-left text-white shadow-[0_24px_56px_rgba(28,25,23,0.22)] transition active:scale-[0.99]"
@@ -283,7 +309,6 @@ export default function Journey() {
         </div>
       </button>
 
-      <div ref={contentStartRef} />
       <header className="mb-4 px-1">
         <h2 className="font-display text-2xl font-bold text-leather-900">
           Journey

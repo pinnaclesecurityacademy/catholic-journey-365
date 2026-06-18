@@ -39,9 +39,9 @@ const FAITH_CARDS: FaithCard[] = [
     to: '/prayer',
   },
   {
-    title: 'Rosary & Devotions',
+    title: 'The Rosary',
     description:
-      'Discover the prayers that have guided Catholics for generations.',
+      'Walk through the mysteries of Christ with Mary through this ancient prayer of the Church.',
     cta: 'Pray the Rosary',
     imageSrc: '/images/faith/rosary-devotions.webp',
     imagePosition: 'object-[center_55%]',

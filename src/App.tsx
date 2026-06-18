@@ -16,6 +16,7 @@ const SaintOfDay = lazy(() => import('./pages/SaintOfDay'));
 const SaintLibrary = lazy(() => import('./pages/SaintLibrary'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Faith = lazy(() => import('./pages/Faith'));
+const BeginHere = lazy(() => import('./pages/BeginHere'));
 const Prayer = lazy(() => import('./pages/Prayer'));
 const PrayerDetail = lazy(() => import('./pages/PrayerDetail'));
 const Rosary = lazy(() => import('./pages/Rosary'));
@@ -76,6 +77,7 @@ function PrivateRoutes() {
         <Route path="/saint/:key" element={<SaintOfDay />} />
         <Route path="/saints" element={<SaintLibrary />} />
         <Route path="/faith" element={<Faith />} />
+        <Route path="/faith/begin" element={<BeginHere />} />
         <Route path="/prayer" element={<Prayer />} />
         <Route path="/prayer/:categoryId/:prayerId" element={<PrayerDetail />} />
         <Route path="/rosary" element={<Rosary />} />

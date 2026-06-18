@@ -27,105 +27,26 @@ function CrossMark({ className = '' }: { className?: string }) {
 
 function PhoneMockup() {
   return (
-    <div className="relative mx-auto w-[235px] sm:w-[265px]">
+    <div className="relative mx-auto w-[255px] sm:w-[292px]">
       <div className="absolute -inset-8 rounded-[3.5rem] bg-amber-300/20 blur-3xl" />
       <div className="relative rounded-[2.8rem] border border-black/70 bg-gradient-to-b from-stone-950 via-black to-stone-900 p-2.5 shadow-[0_32px_70px_rgba(36,22,15,0.34)]">
         <div className="absolute left-1/2 top-3 z-20 h-5 w-24 -translate-x-1/2 rounded-full bg-black" />
         <div className="overflow-hidden rounded-[2.3rem] bg-[#f7f0df]">
-          <div className="relative min-h-[508px] overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.9),transparent_35%),linear-gradient(180deg,#fff9eb_0%,#f1dfbd_100%)]" />
-            <div className="relative px-4 pb-20 pt-10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-700">
-                Today
-              </p>
-              <h3 className="mt-1 font-display text-2xl font-bold text-leather-900">
-                Wednesday, June 17
-              </h3>
-
-              <div className="mt-4 flex items-center gap-3 rounded-[1.4rem] border border-amber-100 bg-white/82 p-3 shadow-[0_16px_34px_rgba(92,64,39,0.12)]">
-                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-amber-200 bg-[radial-gradient(circle_at_50%_28%,#fdeec4,#c79a4f)]">
-                  <div className="absolute left-1/2 top-2 h-3.5 w-3.5 -translate-x-1/2 rounded-full bg-amber-100/90 shadow-[0_0_8px_rgba(255,236,180,0.9)]" />
-                  <div className="absolute bottom-0 left-1/2 h-7 w-8 -translate-x-1/2 rounded-t-[1.2rem] bg-leather-800/80" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-700">
-                    Saint of the Day
-                  </p>
-                  <p className="mt-0.5 truncate font-display text-base font-bold text-leather-900">
-                    Saint Thérèse of Lisieux
-                  </p>
-                  <p className="text-[11px] font-medium text-stone-500">
-                    Pray for us
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-3 rounded-[1.4rem] border border-amber-100 bg-leather-900 p-4 shadow-[0_18px_38px_rgba(34,24,17,0.24)]">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-parchment-50">
-                    Continue your journey
-                  </p>
-                  <p className="text-xs font-semibold text-amber-300">Day 142</p>
-                </div>
-                <div className="mt-3 h-2 rounded-full bg-parchment-100/20">
-                  <div className="h-2 w-[39%] rounded-full bg-gradient-to-r from-amber-300 to-amber-500" />
-                </div>
-                <p className="mt-2 text-[11px] text-parchment-100/75">
-                  142 of 365 days walked
-                </p>
-              </div>
-
-              <div className="mt-3 rounded-[1.4rem] border border-white/70 bg-white/82 p-4 shadow-[0_16px_34px_rgba(92,64,39,0.1)]">
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-700">
-                  Today's Scripture
-                </p>
-                <p className="mt-2 font-display text-base leading-relaxed text-leather-900">
-                  Your word is a lamp to my feet and a light to my path.
-                </p>
-                <p className="mt-2 text-xs font-semibold text-stone-500">
-                  Psalm 119:105
-                </p>
-              </div>
-
-              <div className="mt-3 flex items-center gap-3 rounded-[1.4rem] border border-white/70 bg-white/82 p-3.5">
-                <div className="flex items-center gap-1">
-                  {[0, 1, 2, 3, 4].map((dot) => (
-                    <span
-                      key={dot}
-                      className="h-2 w-2 rounded-full bg-gradient-to-b from-amber-300 to-amber-600"
-                    />
-                  ))}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-semibold text-leather-900">
-                    Today's Rosary
-                  </p>
-                  <p className="text-[11px] font-medium text-stone-500">
-                    The Joyful Mysteries
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute inset-x-0 bottom-0 border-t border-amber-100/80 bg-[#fff8e7]/95 px-3 pb-4 pt-3 backdrop-blur">
-              <div className="grid grid-cols-5 gap-1 text-center text-[9px] font-semibold">
-                {['Today', 'Journey', 'Bible', 'Faith', 'Profile'].map((item) => (
-                  <span
-                    key={item}
-                    className={item === 'Today' ? 'text-amber-700' : 'text-stone-400'}
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </div>
+          <div
+            className="relative overflow-hidden bg-[#f7f0df]"
+            style={{ aspectRatio: '921 / 2048' }}
+          >
+            <img
+              src="/images/landing/app-today-real-screen.jpeg"
+              alt="Catholic Journey 365 Today screen"
+              className="absolute inset-0 h-full w-full object-contain object-center"
+            />
           </div>
         </div>
       </div>
     </div>
   );
 }
-
 function ImagePanel({
   src,
   alt,

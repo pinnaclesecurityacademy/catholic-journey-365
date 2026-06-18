@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { SacredCard } from '../components/SacredCard';
 import { getSacrament, sacraments } from '../data/sacramentsContent';
@@ -6,6 +7,11 @@ export default function SacramentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const sacrament = id ? getSacrament(id) : undefined;
+
+  // Land at the top when opening a new sacrament.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [id]);
 
   if (!sacrament) {
     return <Navigate to="/sacraments" replace />;

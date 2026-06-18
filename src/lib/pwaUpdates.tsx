@@ -18,6 +18,26 @@ type PWAUpdateValue = {
   updateNow: () => void;
 };
 
+// A single, guarded controllerchange handler shared across the app. The new
+// service worker taking control reloads the page exactly once so the fresh
+// assets are used. The guard prevents stacked listeners and reload loops.
+let controllerChangeBound = false;
+let reloading = false;
+
+function bindControllerChangeReload() {
+  if (controllerChangeBound || !('serviceWorker' in navigator)) {
+    return;
+  }
+  controllerChangeBound = true;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (reloading) {
+      return;
+    }
+    reloading = true;
+    window.location.reload();
+  });
+}
+
 const PWAUpdateContext = createContext<PWAUpdateValue>({
   status: 'idle',
   updateReady: false,
@@ -100,15 +120,7 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
       return;
     }
 
-    let refreshing = false;
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (refreshing) {
-        return;
-      }
-      refreshing = true;
-      window.location.reload();
-    });
-
+    bindControllerChangeReload();
     waitingWorker.postMessage({ type: 'SKIP_WAITING' });
   }, [waitingWorker]);
 

@@ -1,6 +1,7 @@
 import { useEffect, lazy, Suspense, type ReactNode } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
+import AppErrorBoundary from './components/AppErrorBoundary';
 import AuthScreen from './components/AuthScreen';
 import JourneySetup from './components/JourneySetup';
 import { AccountProvider, useAccount } from './lib/account';
@@ -183,9 +184,11 @@ export default function App() {
   return (
     <AccountProvider>
       <PWAUpdateProvider>
-        <Suspense fallback={<AuthGateLoading />}>
-          {isAppPath() ? <AppShell /> : <Landing />}
-        </Suspense>
+        <AppErrorBoundary>
+          <Suspense fallback={<AuthGateLoading />}>
+            {isAppPath() ? <AppShell /> : <Landing />}
+          </Suspense>
+        </AppErrorBoundary>
         <PWAUpdateBanner />
       </PWAUpdateProvider>
     </AccountProvider>

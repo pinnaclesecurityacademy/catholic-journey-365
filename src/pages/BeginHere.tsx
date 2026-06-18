@@ -14,20 +14,20 @@ const BEGIN_HERE_STEPS: BeginHereStep[] = [
   {
     title: "I'm Catholic, where do I start?",
     reflection:
-      'Many of us are baptized Catholic but were never shown how to live the faith day by day. The journey does not begin with having everything figured out. It begins with one honest step toward God.',
+      'Many people are baptized Catholic but never deeply learn their faith. Some return after years away. Some start because they become parents. Some simply feel a quiet pull toward God. Baptism begins our life in Christ, but like any relationship, faith needs to grow. This journey is not about pretending we have everything figured out. Catholics believe God continually invites us closer to Him. Is it too late to start? No. Throughout history many saints had moments of returning, conversion, and beginning again. The first step is simply turning toward God.',
     thinkAbout:
-      'What part of the Catholic faith feels closest to you right now, and what part feels confusing or far away?',
+      'What part of the Catholic faith feels closest to you right now, and what part feels confusing or far away? Where do you sense God quietly inviting you to begin again?',
     takeStep:
       'Make the Sign of the Cross slowly today and ask God to help you take the next step.',
   },
   {
     title: 'Who is Jesus?',
     reflection:
-      'Christianity begins with Jesus Christ. He is not only a teacher or example. He is the Son of God who comes near to us, calls us by name, and invites us into friendship with Him.',
+      'Christianity begins with Jesus Christ, not just rules, culture, or traditions. Catholics believe Jesus is the Son of God, fully God and fully human, and the One who reveals God\'s love. In the Incarnation, God comes near to us. On the Cross, Jesus gives Himself for us. In the Resurrection, He opens the way to new life. Building a relationship with Jesus can feel difficult because we cannot physically see Him. Catholics encounter Christ through prayer, Scripture, the Eucharist, and the Sacraments. What if I pray and feel nothing? Faith is deeper than feelings. Like any relationship, it grows through showing up, even when it feels difficult.',
     thinkAbout:
-      'When you hear the name Jesus, what comes to mind first: comfort, distance, questions, hope, or something else?',
+      'When you hear the name Jesus, what comes to mind first: comfort, distance, questions, hope, or something else? What would it look like to show up for Him today, even in a small way?',
     takeStep:
-      'Read a short passage from one Gospel, such as Luke 15:1-7, and notice how Jesus looks for the one who is lost.',
+      'Read a short passage from one Gospel, such as Luke 15:1-7, and notice how Jesus looks for the one who is lost. Then speak to Him simply, in your own words.',
   },
   {
     title: 'Why the Catholic Church?',

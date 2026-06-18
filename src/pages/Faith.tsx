@@ -16,8 +16,8 @@ const FAITH_CARDS: FaithCard[] = [
     description:
       'New, returning, or unsure where to start? Take the first steps into the Catholic faith.',
     cta: 'Start the Journey',
-    imageSrc: '/images/landing/pilgrimage-path.png',
-    imagePosition: 'object-[66%_center]',
+    imageSrc: '/images/faith/begin-here.webp',
+    imagePosition: 'object-center',
     to: '/faith/begin',
   },
   {
@@ -25,8 +25,8 @@ const FAITH_CARDS: FaithCard[] = [
     description:
       'Understand what is happening, why it matters, and the beauty behind every moment.',
     cta: 'Enter the Mass',
-    imageSrc: '/images/landing/first-communion.png',
-    imagePosition: 'object-[70%_center]',
+    imageSrc: '/images/faith/mass.webp',
+    imagePosition: 'object-[center_45%]',
     to: '/mass',
   },
   {
@@ -34,8 +34,8 @@ const FAITH_CARDS: FaithCard[] = [
     description:
       'Learn how to speak with God, even when you do not know where to begin.',
     cta: 'Begin to Pray',
-    imageSrc: '/images/rosary/sorrowful-agony-garden.webp',
-    imagePosition: 'object-[68%_center]',
+    imageSrc: '/images/faith/prayer.webp',
+    imagePosition: 'object-[center_40%]',
     to: '/prayer',
   },
   {
@@ -43,8 +43,8 @@ const FAITH_CARDS: FaithCard[] = [
     description:
       'Discover the prayers that have guided Catholics for generations.',
     cta: 'Pray the Rosary',
-    imageSrc: '/images/rosary/joyful-annunciation.webp',
-    imagePosition: 'object-[72%_center]',
+    imageSrc: '/images/faith/rosary-devotions.webp',
+    imagePosition: 'object-[center_55%]',
     to: '/rosary',
   },
   {
@@ -52,16 +52,16 @@ const FAITH_CARDS: FaithCard[] = [
     description:
       'Walk with the men and women who followed Christ before us.',
     cta: 'Meet the Saints',
-    imageSrc: '/images/rosary/glorious-coronation.webp',
-    imagePosition: 'object-[70%_center]',
+    imageSrc: '/images/faith/saints.webp',
+    imagePosition: 'object-[center_45%]',
     to: '/saints',
   },
   {
     title: 'Sacraments',
     description:
       'Discover the encounters with God at the heart of Catholic life.',
-    imageSrc: '/images/rosary/luminous-baptism.webp',
-    imagePosition: 'object-[70%_center]',
+    imageSrc: '/images/faith/sacraments.webp',
+    imagePosition: 'object-[center_38%]',
     comingSoon: true,
   },
 ];
@@ -75,12 +75,12 @@ function FaithHeroCard({ card }: { card: FaithCard }) {
         alt=""
         loading="lazy"
         decoding="async"
-        className={`absolute inset-0 h-full w-full object-cover opacity-[0.82] saturate-[0.92] transition duration-500 group-active:scale-[1.01] ${card.imagePosition ?? 'object-center'}`}
+        className={`absolute inset-0 h-full w-full object-cover opacity-[0.76] saturate-[0.92] transition duration-500 group-active:scale-[1.01] ${card.imagePosition ?? 'object-center'}`}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-leather-950/98 via-leather-950/80 to-leather-900/28" />
-      <div className="absolute inset-0 bg-gradient-to-t from-leather-950/96 via-leather-950/22 to-transparent" />
-      <div className="absolute inset-0 shadow-[inset_0_0_72px_rgba(17,12,8,0.8)]" />
-      <div className="relative flex min-h-[178px] flex-col justify-between p-5">
+      <div className="absolute inset-0 bg-gradient-to-r from-leather-950 via-leather-950/86 to-leather-900/34" />
+      <div className="absolute inset-0 bg-gradient-to-t from-leather-950 via-leather-950/38 to-transparent" />
+      <div className="absolute inset-0 shadow-[inset_0_0_92px_rgba(17,12,8,0.9)]" />
+      <div className="relative flex min-h-[286px] flex-col justify-between p-5 sm:min-h-[300px]">
         <div className="flex items-start justify-between gap-4">
           <div className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/45 bg-parchment-50/10 text-lg font-semibold text-gold shadow-[0_8px_18px_rgba(0,0,0,0.18)] backdrop-blur-sm">
             +

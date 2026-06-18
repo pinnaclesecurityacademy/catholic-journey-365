@@ -33,6 +33,8 @@ export default function Profile() {
   const [joining, setJoining] = useState(false);
   const [joinError, setJoinError] = useState<string | null>(null);
 
+  const [aboutOpen, setAboutOpen] = useState(false);
+
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
     setSavingName(true);
@@ -276,15 +278,42 @@ export default function Profile() {
         About Catholic Journey 365
       </p>
       <section className="rounded-2xl bg-gradient-to-br from-white to-parchment-50 border border-parchment-200 p-5 mb-6">
-        <p className="whitespace-pre-line text-sm leading-relaxed text-stone-600">
-          {`Catholic Journey 365 was built by a Catholic trying to return more deeply to the faith, not by someone pretending to have every answer.
+        <button
+          type="button"
+          onClick={() => setAboutOpen((open) => !open)}
+          aria-expanded={aboutOpen}
+          className="flex w-full items-center justify-between gap-3 text-left active:scale-[0.99] transition"
+        >
+          <span>
+            <span className="block font-display text-lg font-bold text-leather-900">
+              About Catholic Journey 365
+            </span>
+            <span className="mt-0.5 block text-sm text-stone-500">
+              Why this app was created.
+            </span>
+          </span>
+          <span className="flex shrink-0 items-center gap-1 text-sm font-semibold text-leather-600">
+            {aboutOpen ? 'Close' : 'Read more'}
+            <span
+              aria-hidden="true"
+              className={`transition-transform ${aboutOpen ? 'rotate-180' : ''}`}
+            >
+              &#8964;
+            </span>
+          </span>
+        </button>
+
+        {aboutOpen && (
+          <p className="mt-4 whitespace-pre-line border-t border-parchment-200 pt-4 text-sm leading-relaxed text-stone-600">
+            {`Catholic Journey 365 was built by a Catholic trying to return more deeply to the faith, not by someone pretending to have every answer.
 
 I was baptised Catholic, but like many people, I reached adulthood still needing to understand what the Church teaches, how to pray, how to follow the Mass, and how to build a real relationship with Jesus Christ.
 
 This app was created for people like me: Catholics returning, people who feel unsure at Mass, spouses and family members trying to understand Catholic belief, and anyone who wants to begin again.
 
 Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, and take the next step. It does not replace the Church. The journey continues in your parish, with the Sacraments, your priest, and the life of the Church.`}
-        </p>
+          </p>
+        )}
       </section>
 
       {/* App */}
@@ -298,17 +327,17 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
           App Updates
         </h2>
         {updateReady ? (
-          <p className="text-sm text-stone-500 mb-3">
-            A new version of Catholic Journey 365 is ready.
+          <p className="text-sm font-semibold text-leather-700 mb-3">
+            Update available
           </p>
-        ) : status === 'latest' ? (
+        ) : status === 'checking' ? (
+          <p className="text-sm text-stone-500 mb-3">Checking for updates</p>
+        ) : status === 'unsupported' ? (
           <p className="text-sm text-stone-500 mb-3">
-            You're using the latest version.
+            Service worker not active in this environment
           </p>
         ) : (
-          <p className="text-sm text-stone-500 mb-3">
-            Check whether a new app version is available.
-          </p>
+          <p className="text-sm text-stone-500 mb-3">App is up to date</p>
         )}
         {updateReady ? (
           <button
@@ -320,7 +349,7 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
         ) : (
           <button
             onClick={checkForUpdates}
-            disabled={status === 'checking'}
+            disabled={status === 'checking' || status === 'unsupported'}
             className="w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
           >
             {status === 'checking' ? 'Checking...' : 'Check for updates'}

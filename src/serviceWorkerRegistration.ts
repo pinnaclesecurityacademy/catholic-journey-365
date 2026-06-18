@@ -21,7 +21,7 @@ export function register(config?: Config) {
     return;
   }
 
-  window.addEventListener('load', () => {
+  const start = () => {
     const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
     if (isLocalhost) {
@@ -30,13 +30,27 @@ export function register(config?: Config) {
     } else {
       registerValidSW(swUrl, config);
     }
-  });
+  };
+
+  // On a warm navigation the window `load` event has often already fired before
+  // React mounts and calls register(), so a `load` listener would never run and
+  // the update detection (onupdatefound) would never be wired. Register
+  // immediately when the document is already loaded.
+  if (document.readyState === 'complete') {
+    start();
+  } else {
+    window.addEventListener('load', start);
+  }
 }
 
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
+      // Ask the browser to re-check the service worker script now, so an update
+      // deployed while the app is open is noticed without a manual refresh.
+      registration.update().catch(() => undefined);
+
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {

@@ -9,7 +9,7 @@ import {
 } from 'react';
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
 
-type UpdateStatus = 'idle' | 'checking' | 'latest' | 'ready';
+type UpdateStatus = 'idle' | 'checking' | 'latest' | 'ready' | 'unsupported';
 
 type PWAUpdateValue = {
   status: UpdateStatus;
@@ -59,25 +59,71 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    serviceWorkerRegistration.register({
-      onSuccess: setRegistration,
-      onUpdate: markReady,
-    });
-
     if (!('serviceWorker' in navigator)) {
+      setStatus('unsupported');
       return;
     }
 
+    let cancelled = false;
+
+    // Watch a worker that is currently installing; when it finishes installing
+    // while an existing controller is present, an update is waiting.
+    const trackInstalling = (
+      worker: ServiceWorker | null,
+      reg: ServiceWorkerRegistration
+    ) => {
+      if (!worker) {
+        return;
+      }
+      worker.addEventListener('statechange', () => {
+        if (
+          !cancelled &&
+          worker.state === 'installed' &&
+          navigator.serviceWorker.controller
+        ) {
+          markReady(reg);
+        }
+      });
+    };
+
+    serviceWorkerRegistration.register({
+      onSuccess: (reg) => {
+        if (!cancelled) {
+          setRegistration(reg);
+        }
+      },
+      onUpdate: (reg) => {
+        if (!cancelled) {
+          markReady(reg);
+        }
+      },
+    });
+
     navigator.serviceWorker.getRegistration().then((currentRegistration) => {
-      if (!currentRegistration) {
+      if (cancelled || !currentRegistration) {
         return;
       }
 
       setRegistration(currentRegistration);
-      if (currentRegistration.waiting) {
+
+      // An update may already be waiting from a previous visit.
+      if (currentRegistration.waiting && navigator.serviceWorker.controller) {
         markReady(currentRegistration);
+        return;
       }
+
+      // Or one may be installing right now, or appear after we ask for a check.
+      trackInstalling(currentRegistration.installing, currentRegistration);
+      currentRegistration.addEventListener('updatefound', () => {
+        trackInstalling(currentRegistration.installing, currentRegistration);
+      });
+
+      currentRegistration.update().catch(() => undefined);
     });
+
+    return () => {
+      cancelled = true;
+    };
   }, [markReady]);
 
   const checkForUpdates = useCallback(async () => {

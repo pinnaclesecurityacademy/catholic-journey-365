@@ -107,6 +107,11 @@ export default function Profile() {
         </h1>
       </header>
 
+      {/* My Profile */}
+      <p className="mb-3 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+        My Profile
+      </p>
+
       {/* Display name */}
       <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
@@ -137,10 +142,26 @@ export default function Profile() {
         )}
       </section>
 
+      {/* Sign out */}
+      <button
+        onClick={signOut}
+        className="mb-6 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-stone-500 active:scale-[0.99] transition"
+      >
+        Sign out
+      </button>
+
+      {/* Shared Journey */}
+      <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+        Shared Journey
+      </p>
+      <p className="mb-3 px-1 text-sm leading-relaxed text-stone-500">
+        Walk the journey with your spouse, family, friends, or small group.
+      </p>
+
       {/* Journey */}
       <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
-          Journey
+          Journey Name
         </h2>
 
         {isOwner ? (
@@ -250,6 +271,27 @@ export default function Profile() {
         </button>
       </section>
 
+      {/* About Catholic Journey 365 */}
+      <p className="mb-3 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+        About Catholic Journey 365
+      </p>
+      <section className="rounded-2xl bg-gradient-to-br from-white to-parchment-50 border border-parchment-200 p-5 mb-6">
+        <p className="whitespace-pre-line text-sm leading-relaxed text-stone-600">
+          {`Catholic Journey 365 was built by a Catholic trying to return more deeply to the faith, not by someone pretending to have every answer.
+
+I was baptised Catholic, but like many people, I reached adulthood still needing to understand what the Church teaches, how to pray, how to follow the Mass, and how to build a real relationship with Jesus Christ.
+
+This app was created for people like me: Catholics returning, people who feel unsure at Mass, spouses and family members trying to understand Catholic belief, and anyone who wants to begin again.
+
+Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, and take the next step. It does not replace the Church. The journey continues in your parish, with the Sacraments, your priest, and the life of the Church.`}
+        </p>
+      </section>
+
+      {/* App */}
+      <p className="mb-3 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+        App
+      </p>
+
       {/* App updates */}
       <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
         <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
@@ -285,14 +327,6 @@ export default function Profile() {
           </button>
         )}
       </section>
-
-      {/* Sign out */}
-      <button
-        onClick={signOut}
-        className="mb-4 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-stone-500 active:scale-[0.99] transition"
-      >
-        Sign out
-      </button>
     </div>
   );
 }

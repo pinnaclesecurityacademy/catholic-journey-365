@@ -29,6 +29,18 @@ const ROSARY_BY_DAY = [
   { id: 'joyful', label: 'Joyful Mysteries' }, // Saturday
 ];
 
+function TodayCardArtwork({ src, alt }: { src: string; alt: string }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+      className="mb-4 aspect-video w-full rounded-xl border border-gold/25 object-cover shadow-[0_10px_24px_rgba(74,55,40,0.12)]"
+    />
+  );
+}
+
 function getHeroImageSrc(hour = new Date().getHours()) {
   if (hour >= 5 && hour < 12) return '/images/hero/morning-prayer.webp';
   if (hour >= 12 && hour < 18) return '/images/hero/journey-with-christ.webp';
@@ -159,6 +171,10 @@ export default function Home() {
       />
 
       <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
+        <TodayCardArtwork
+          src="/images/today/rosary-today.webp"
+          alt="Mary praying with a rosary"
+        />
         <p className="text-sm text-stone-500">Today's Rosary</p>
         <h3 className="mt-1 font-display text-xl font-semibold text-leather-900">
           {todayRosary.label}
@@ -172,6 +188,10 @@ export default function Home() {
       </SacredCard>
 
       <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
+        <TodayCardArtwork
+          src="/images/today/saint-today.webp"
+          alt="Saints gathered in prayer"
+        />
         <h3 className="font-display text-lg font-semibold text-leather-900">
           Saint of the Day
         </h3>
@@ -188,6 +208,10 @@ export default function Home() {
 
       {/* Card 5, Daily Mass Readings (external: Universalis) */}
       <SacredCard className="mb-4">
+        <TodayCardArtwork
+          src="/images/today/mass-readings.webp"
+          alt="Open Mass readings on a church altar"
+        />
         <h3 className="font-display text-lg font-semibold text-leather-900">
           Daily Mass Readings
         </h3>
@@ -233,6 +257,10 @@ export default function Home() {
       )}
 
       <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
+        <TodayCardArtwork
+          src="/images/today/daily-prayer.webp"
+          alt="A woman praying in a chapel"
+        />
         <p className="text-xs uppercase tracking-widest text-stone-400">
           Daily Prayer
         </p>

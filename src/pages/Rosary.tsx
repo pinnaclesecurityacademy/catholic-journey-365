@@ -10,11 +10,19 @@ import {
   rosaryClosingVerse,
   mysteryExcerpt,
 } from '../data/rosaryContent';
-import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
+import { SacredPrayer } from '../components/SacredPrayer';
 import { scrollToContentStart } from '../lib/scroll';
 
 // Guided Rosary, Christ-centred meditation. Education + opening prayers + per-mystery content.
 type Step = 'start' | 'opening' | 'mysteries' | 'decades' | 'finish';
+
+type ExpandablePrayerCardProps = {
+  title: string;
+  text: string;
+  defaultOpen?: boolean;
+  children?: React.ReactNode;
+  className?: string;
+};
 
 const mysteryArtwork: Record<string, string> = {
   'The Annunciation': '/images/rosary/joyful-annunciation.webp',
@@ -38,6 +46,48 @@ const mysteryArtwork: Record<string, string> = {
   'The Assumption of Mary': '/images/rosary/glorious-assumption.webp',
   'The Coronation of Mary': '/images/rosary/glorious-coronation.webp',
 };
+
+function ExpandablePrayerCard({
+  title,
+  text,
+  defaultOpen = false,
+  children,
+  className = '',
+}: ExpandablePrayerCardProps) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <section
+      className={`rounded-2xl bg-parchment-50 border border-parchment-200 shadow-sm overflow-hidden ${className}`}
+    >
+      <button
+        type="button"
+        onClick={() => setIsOpen((open) => !open)}
+        aria-expanded={isOpen}
+        className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left active:scale-[0.99] transition"
+      >
+        <span className="text-xs font-semibold uppercase tracking-[0.2em] text-leather-500">
+          {title}
+        </span>
+        <span
+          aria-hidden="true"
+          className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/35 bg-white/70 text-lg leading-none text-leather-600 transition ${
+            isOpen ? 'rotate-180' : ''
+          }`}
+        >
+          v
+        </span>
+      </button>
+
+      {isOpen && (
+        <div className="border-t border-parchment-200 px-5 pb-7 pt-6">
+          <SacredPrayer text={text} />
+          {children}
+        </div>
+      )}
+    </section>
+  );
+}
 
 export default function Rosary() {
   const { mystery } = useParams();
@@ -117,8 +167,6 @@ export default function Rosary() {
 
   // ---- Begin the Rosary: opening prayers ----
   if (step === 'opening') {
-    const prayerCard =
-      'rounded-2xl bg-parchment-50 border border-parchment-200 px-5 py-7 mb-4 shadow-sm';
     return (
       <Shell>
         <header className="mb-6">
@@ -131,34 +179,41 @@ export default function Rosary() {
           </p>
         </header>
 
-        <section className={prayerCard}>
-          <SacredPrayerLabel>Sign of the Cross</SacredPrayerLabel>
-          <SacredPrayer text={rosaryOpeningVerse.signOfCross} />
-        </section>
+        <ExpandablePrayerCard
+          title="Sign of the Cross"
+          text={rosaryOpeningVerse.signOfCross}
+          defaultOpen
+          className="mb-4"
+        />
 
-        <section className={prayerCard}>
-          <SacredPrayerLabel>Apostles&rsquo; Creed</SacredPrayerLabel>
-          <SacredPrayer text={rosaryOpeningVerse.apostlesCreed} />
-        </section>
+        <ExpandablePrayerCard
+          title="Apostles' Creed"
+          text={rosaryOpeningVerse.apostlesCreed}
+          className="mb-4"
+        />
 
-        <section className={prayerCard}>
-          <SacredPrayerLabel>Our Father</SacredPrayerLabel>
-          <SacredPrayer text={decadePrayerVerse.ourFather} />
-        </section>
+        <ExpandablePrayerCard
+          title="Our Father"
+          text={decadePrayerVerse.ourFather}
+          className="mb-4"
+        />
 
-        <section className={prayerCard}>
-          <SacredPrayerLabel>Three Hail Marys</SacredPrayerLabel>
-          <SacredPrayer text={decadePrayerVerse.hailMary} />
+        <ExpandablePrayerCard
+          title="Three Hail Marys"
+          text={decadePrayerVerse.hailMary}
+          className="mb-4"
+        >
           <p className="mt-7 text-center text-sm text-leather-600">
             Pray this prayer three times, asking for an increase of faith,
             hope, and charity.
           </p>
-        </section>
+        </ExpandablePrayerCard>
 
-        <section className={prayerCard + ' mb-6'}>
-          <SacredPrayerLabel>Glory Be</SacredPrayerLabel>
-          <SacredPrayer text={decadePrayerVerse.gloryBe} />
-        </section>
+        <ExpandablePrayerCard
+          title="Glory Be"
+          text={decadePrayerVerse.gloryBe}
+          className="mb-6"
+        />
 
         <div className="flex gap-3 mb-6">
           <button className={secondaryBtn} onClick={() => setStep('start')}>
@@ -264,27 +319,27 @@ export default function Rosary() {
               </p>
             </section>
 
-            <section className="rounded-2xl bg-parchment-50 border border-parchment-200 px-5 py-7 mb-5 shadow-sm">
-              <div className="mb-7">
-                <SacredPrayerLabel>Our Father</SacredPrayerLabel>
-                <SacredPrayer text={decadePrayerVerse.ourFather} />
-              </div>
+            <section className="mb-5 space-y-3">
+              <ExpandablePrayerCard
+                title="Our Father"
+                text={decadePrayerVerse.ourFather}
+                defaultOpen
+              />
 
-              <div className="mb-7 pt-6 border-t border-parchment-200">
-                <SacredPrayerLabel>Hail Mary &times;10</SacredPrayerLabel>
-                <SacredPrayer text={decadePrayerVerse.hailMary} />
-              </div>
+              <ExpandablePrayerCard
+                title="Hail Mary x10"
+                text={decadePrayerVerse.hailMary}
+              />
 
-              <div className="mb-7 pt-6 border-t border-parchment-200">
-                <SacredPrayerLabel>Glory Be</SacredPrayerLabel>
-                <SacredPrayer text={decadePrayerVerse.gloryBe} />
-              </div>
+              <ExpandablePrayerCard
+                title="Glory Be"
+                text={decadePrayerVerse.gloryBe}
+              />
 
-              <div className="pt-6 border-t border-parchment-200">
-                <SacredPrayerLabel>Fatima Prayer</SacredPrayerLabel>
-                <SacredPrayer text={decadePrayerVerse.fatima} />
-              </div>
-
+              <ExpandablePrayerCard
+                title="Fatima Prayer"
+                text={decadePrayerVerse.fatima}
+              />
               <p className="mt-7 text-sm text-leather-600 text-center">
                 {decadePrayer.rhythm}
               </p>
@@ -325,14 +380,17 @@ export default function Rosary() {
           We entrust our prayers to God through Mary, who leads us to her Son.
         </p>
       </header>
-      <section className="rounded-2xl bg-parchment-50 border border-parchment-200 px-5 py-7 mb-4 shadow-sm">
-        <SacredPrayerLabel>Hail, Holy Queen</SacredPrayerLabel>
-        <SacredPrayer text={rosaryClosingVerse.hailHolyQueen} />
-      </section>
-      <section className="rounded-2xl bg-parchment-50 border border-parchment-200 px-5 py-7 mb-5 shadow-sm">
-        <SacredPrayerLabel>Final Prayer</SacredPrayerLabel>
-        <SacredPrayer text={rosaryClosingVerse.finalPrayer} />
-      </section>
+      <ExpandablePrayerCard
+        title="Hail, Holy Queen"
+        text={rosaryClosingVerse.hailHolyQueen}
+        defaultOpen
+        className="mb-4"
+      />
+      <ExpandablePrayerCard
+        title="Final Prayer"
+        text={rosaryClosingVerse.finalPrayer}
+        className="mb-5"
+      />
       <button className={primaryBtn} onClick={() => navigate('/prayer')}>
         Finish
       </button>

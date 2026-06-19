@@ -139,30 +139,50 @@ function buildGuidedRosaryItems(group: NonNullable<ReturnType<typeof getMysteryG
       title: 'Our Father',
       text: decadePrayerVerse.ourFather,
       phase: 'Opening',
-      positionLabel: 'Opening prayer 3 of 5',
+      positionLabel: 'Opening prayer 3 of 7',
       segmentKey: 'opening',
       rowIndex: 3,
-      rowTotal: 5,
+      rowTotal: 7,
     },
     {
-      key: 'opening-hail-mary',
-      title: 'Three Hail Marys',
+      key: 'opening-hail-mary-1',
+      title: 'Hail Mary',
       text: decadePrayerVerse.hailMary,
       phase: 'Opening',
-      positionLabel: 'Opening prayer 4 of 5',
+      positionLabel: 'Hail Mary 1 of 3',
       segmentKey: 'opening',
       rowIndex: 4,
-      rowTotal: 5,
+      rowTotal: 7,
+    },
+    {
+      key: 'opening-hail-mary-2',
+      title: 'Hail Mary',
+      text: decadePrayerVerse.hailMary,
+      phase: 'Opening',
+      positionLabel: 'Hail Mary 2 of 3',
+      segmentKey: 'opening',
+      rowIndex: 5,
+      rowTotal: 7,
+    },
+    {
+      key: 'opening-hail-mary-3',
+      title: 'Hail Mary',
+      text: decadePrayerVerse.hailMary,
+      phase: 'Opening',
+      positionLabel: 'Hail Mary 3 of 3',
+      segmentKey: 'opening',
+      rowIndex: 6,
+      rowTotal: 7,
     },
     {
       key: 'opening-glory-be',
       title: 'Glory Be',
       text: decadePrayerVerse.gloryBe,
       phase: 'Opening',
-      positionLabel: 'Opening prayer 5 of 5',
+      positionLabel: 'Opening prayer 7 of 7',
       segmentKey: 'opening',
-      rowIndex: 5,
-      rowTotal: 5,
+      rowIndex: 7,
+      rowTotal: 7,
     },
   ];
 
@@ -264,10 +284,40 @@ export default function Rosary() {
   const [decade, setDecade] = useState(1);
   const [guidedIndex, setGuidedIndex] = useState(0);
   const contentStartRef = useRef<HTMLDivElement>(null);
+  const mysteryTopRef = useRef<HTMLDivElement>(null);
+  const beadsRef = useRef<HTMLDivElement>(null);
+  const previousGuidedItemRef = useRef<GuidedRosaryItem | null>(null);
 
-  // Land at the top whenever the step, decade, or guided bead changes.
+  // Land at the top for guide sections, but keep guided bead movement anchored
+  // around the mystery or bead tracker so prayer does not feel interrupted.
   useEffect(() => {
-    scrollToContentStart(contentStartRef.current);
+    if (step !== 'guided') {
+      previousGuidedItemRef.current = null;
+      scrollToContentStart(contentStartRef.current);
+      return;
+    }
+
+    const group = getMysteryGroup(selectedMystery);
+    if (!group) return;
+
+    const guidedItems = buildGuidedRosaryItems(group);
+    const currentItem = guidedItems[guidedIndex] ?? guidedItems[0];
+    const previousItem = previousGuidedItemRef.current;
+    const startsNewMystery =
+      currentItem.phase === 'Mystery' &&
+      currentItem.rowIndex === 1 &&
+      currentItem.segmentKey !== previousItem?.segmentKey;
+    const target = startsNewMystery
+      ? mysteryTopRef.current
+      : beadsRef.current ?? contentStartRef.current;
+
+    target?.scrollIntoView({
+      behavior: 'auto',
+      block: 'start',
+      inline: 'nearest',
+    });
+
+    previousGuidedItemRef.current = currentItem;
   }, [step, decade, selectedMystery, guidedIndex]);
 
   const Shell = ({ children }: { children: React.ReactNode }) => (
@@ -508,51 +558,56 @@ export default function Rosary() {
           </p>
         </header>
 
-        <section className="rounded-2xl border border-gold/40 bg-parchment-100 p-3 mb-4 shadow-sm">
-          {currentItem.artwork && currentItem.mysteryTitle ? (
-            <img
-              src={currentItem.artwork}
-              alt={`${currentItem.mysteryTitle} artwork`}
-              loading="lazy"
-              decoding="async"
-              className="max-h-[320px] w-full rounded-xl object-contain shadow-sm"
-            />
-          ) : (
-            <div className="rounded-xl border border-gold/30 bg-white/70 px-4 py-8 text-center shadow-sm">
-              <p className="text-xs uppercase tracking-widest text-stone-400">
-                {currentItem.phase}
-              </p>
-              <p className="mt-2 font-display text-2xl font-semibold text-leather-900">
-                {currentItem.phase === 'Opening'
-                  ? 'Opening Prayers'
-                  : 'Closing Prayers'}
-              </p>
-            </div>
-          )}
-        </section>
-
-        {currentItem.mysteryTitle && (
-          <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-4">
-            <p className="text-xs uppercase tracking-widest text-stone-400">
-              Mystery {currentItem.mysteryNumber} of 5
-            </p>
-            <h2 className="mt-1 font-display text-xl font-semibold text-leather-900">
-              {currentItem.mysteryTitle}
-            </h2>
-            {currentItem.reflection && (
-              <p className="mt-3 text-sm leading-relaxed text-leather-900">
-                {currentItem.reflection}
-              </p>
-            )}
-            {currentItem.scripture && (
-              <p className="mt-2 text-sm font-semibold text-leather-600">
-                {currentItem.scripture}
-              </p>
+        <div ref={mysteryTopRef}>
+          <section className="rounded-2xl border border-gold/40 bg-parchment-100 p-3 mb-4 shadow-sm">
+            {currentItem.artwork && currentItem.mysteryTitle ? (
+              <img
+                src={currentItem.artwork}
+                alt={`${currentItem.mysteryTitle} artwork`}
+                loading="lazy"
+                decoding="async"
+                className="max-h-[320px] w-full rounded-xl object-contain shadow-sm"
+              />
+            ) : (
+              <div className="rounded-xl border border-gold/30 bg-white/70 px-4 py-8 text-center shadow-sm">
+                <p className="text-xs uppercase tracking-widest text-stone-400">
+                  {currentItem.phase}
+                </p>
+                <p className="mt-2 font-display text-2xl font-semibold text-leather-900">
+                  {currentItem.phase === 'Opening'
+                    ? 'Opening Prayers'
+                    : 'Closing Prayers'}
+                </p>
+              </div>
             )}
           </section>
-        )}
 
-        <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-4 shadow-[0_12px_32px_rgba(74,55,40,0.08)]">
+          {currentItem.mysteryTitle && (
+            <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-4">
+              <p className="text-xs uppercase tracking-widest text-stone-400">
+                Mystery {currentItem.mysteryNumber} of 5
+              </p>
+              <h2 className="mt-1 font-display text-xl font-semibold text-leather-900">
+                {currentItem.mysteryTitle}
+              </h2>
+              {currentItem.reflection && (
+                <p className="mt-3 text-sm leading-relaxed text-leather-900">
+                  {currentItem.reflection}
+                </p>
+              )}
+              {currentItem.scripture && (
+                <p className="mt-2 text-sm font-semibold text-leather-600">
+                  {currentItem.scripture}
+                </p>
+              )}
+            </section>
+          )}
+        </div>
+
+        <section
+          ref={beadsRef}
+          className="scroll-mt-4 rounded-2xl bg-white border border-parchment-200 p-5 mb-4 shadow-[0_12px_32px_rgba(74,55,40,0.08)]"
+        >
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs uppercase tracking-widest text-stone-400">
@@ -575,6 +630,8 @@ export default function Rosary() {
               const beadNumber = index + 1;
               const isCurrent = beadNumber === currentItem.rowIndex;
               const isCompleted = beadNumber < currentItem.rowIndex;
+              const isSignOfCross =
+                currentItem.segmentKey === 'opening' && beadNumber === 1;
               const beadLabel =
                 currentItem.segmentKey === 'opening'
                   ? `Opening prayer ${beadNumber}`
@@ -589,14 +646,20 @@ export default function Rosary() {
                   onClick={() => jumpToBead(beadNumber)}
                   aria-label={beadLabel}
                   aria-current={isCurrent ? 'step' : undefined}
-                  className={`h-4 w-4 rounded-full border transition ${
+                  className={`flex items-center justify-center border transition ${
                     isCurrent
-                      ? 'scale-125 border-leather-700 bg-leather-600 shadow-[0_0_0_4px_rgba(212,169,106,0.2)]'
+                      ? 'scale-125 border-leather-700 bg-leather-600 text-white shadow-[0_0_0_4px_rgba(212,169,106,0.2)]'
                       : isCompleted
-                        ? 'border-gold bg-gold'
-                        : 'border-parchment-300 bg-parchment-100'
+                        ? 'border-gold bg-gold text-leather-900'
+                        : 'border-parchment-300 bg-parchment-100 text-leather-500'
+                  } ${
+                    isSignOfCross
+                      ? 'h-6 w-6 rounded-full text-base font-semibold leading-none'
+                      : 'h-4 w-4 rounded-full'
                   }`}
-                />
+                >
+                  {isSignOfCross ? '+' : null}
+                </button>
               );
             })}
           </div>

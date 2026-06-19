@@ -35,6 +35,17 @@ export default function Profile() {
 
   const [aboutOpen, setAboutOpen] = useState(false);
 
+  const sectionTitle =
+    'mb-3 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold';
+  const cardClass =
+    'rounded-2xl bg-white/90 border border-parchment-200 p-5 shadow-[0_12px_32px_rgba(74,55,40,0.08)]';
+  const inputClass =
+    'w-full rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-leather-900 outline-none focus:border-leather-400';
+  const primaryButtonClass =
+    'w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition';
+  const subtleButtonClass =
+    'w-full rounded-xl border border-parchment-200 bg-white py-2.5 font-semibold text-stone-500 active:scale-[0.99] transition';
+
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
     setSavingName(true);
@@ -102,23 +113,27 @@ export default function Profile() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-5 pt-8">
+    <div className="max-w-md mx-auto px-5 pt-8 pb-8">
       <header className="mb-6">
         <h1 className="font-display text-3xl font-bold text-leather-900">
           Profile
         </h1>
       </header>
 
-      {/* My Profile */}
-      <p className="mb-3 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-        My Profile
-      </p>
+      <p className={sectionTitle}>My Profile</p>
+      <section className={`${cardClass} mb-6`}>
+        <div className="mb-4">
+          <h2 className="font-display text-xl font-semibold text-leather-900">
+            Account
+          </h2>
+          {user?.email && (
+            <p className="mt-1 text-sm text-stone-500">{user.email}</p>
+          )}
+        </div>
 
-      {/* Display name */}
-      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+        <label className="text-xs font-semibold uppercase tracking-wider text-stone-400">
           Display Name
-        </h2>
+        </label>
         <input
           type="text"
           value={name}
@@ -126,7 +141,7 @@ export default function Profile() {
             setName(e.target.value);
             setSavedName(false);
           }}
-          className="w-full rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-leather-900 outline-none focus:border-leather-400"
+          className={`${inputClass} mt-2`}
         />
         <button
           onClick={saveName}
@@ -135,68 +150,60 @@ export default function Profile() {
             !name.trim() ||
             name.trim() === profile?.display_name
           }
-          className="mt-3 w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
+          className={`${primaryButtonClass} mt-3`}
         >
-          {savingName ? 'Saving…' : savedName ? 'Saved ✓' : 'Save name'}
+          {savingName ? 'Saving...' : savedName ? 'Saved' : 'Save name'}
         </button>
-        {user?.email && (
-          <p className="mt-3 text-sm text-stone-500">{user.email}</p>
-        )}
+
+        <div className="mt-5 border-t border-parchment-200 pt-4">
+          <button onClick={signOut} className={subtleButtonClass}>
+            Sign out
+          </button>
+        </div>
       </section>
 
-      {/* Sign out */}
-      <button
-        onClick={signOut}
-        className="mb-6 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-stone-500 active:scale-[0.99] transition"
-      >
-        Sign out
-      </button>
-
-      {/* Shared Journey */}
-      <p className="mb-2 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-        Shared Journey
-      </p>
+      <p className={sectionTitle}>Shared Journey</p>
       <p className="mb-3 px-1 text-sm leading-relaxed text-stone-500">
         Walk the journey with your spouse, family, friends, or small group.
       </p>
+      <section className={`${cardClass} mb-6`}>
+        <div>
+          <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+            Journey Name
+          </h2>
 
-      {/* Journey */}
-      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
-          Journey Name
-        </h2>
-
-        {isOwner ? (
-          <>
-            <input
-              type="text"
-              value={jName}
-              onChange={(e) => {
-                setJName(e.target.value);
-                setSavedJourney(false);
-              }}
-              placeholder="Name your journey"
-              className="w-full rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-leather-900 outline-none focus:border-leather-400"
-            />
-            <button
-              onClick={saveJourneyName}
-              disabled={
-                savingJourney || !jName.trim() || jName.trim() === journeyName
-              }
-              className="mt-3 w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
-            >
-              {savingJourney
-                ? 'Saving…'
-                : savedJourney
-                ? 'Saved ✓'
-                : 'Save journey name'}
-            </button>
-          </>
-        ) : (
-          <p className="font-display text-xl font-semibold text-leather-900">
-            {journeyName ?? 'My Journey'}
-          </p>
-        )}
+          {isOwner ? (
+            <>
+              <input
+                type="text"
+                value={jName}
+                onChange={(e) => {
+                  setJName(e.target.value);
+                  setSavedJourney(false);
+                }}
+                placeholder="Name your journey"
+                className={inputClass}
+              />
+              <button
+                onClick={saveJourneyName}
+                disabled={
+                  savingJourney || !jName.trim() || jName.trim() === journeyName
+                }
+                className={`${primaryButtonClass} mt-3`}
+              >
+                {savingJourney
+                  ? 'Saving...'
+                  : savedJourney
+                  ? 'Saved'
+                  : 'Save journey name'}
+              </button>
+            </>
+          ) : (
+            <p className="font-display text-xl font-semibold text-leather-900">
+              {journeyName ?? 'My Journey'}
+            </p>
+          )}
+        </div>
 
         {members.length > 0 && (
           <div className="mt-4 border-t border-parchment-200 pt-4">
@@ -207,7 +214,7 @@ export default function Profile() {
               {members.map((m) => (
                 <div
                   key={m.completion_id}
-                  className="flex items-center justify-between"
+                  className="flex items-center justify-between rounded-xl bg-parchment-50 px-3 py-2"
                 >
                   <span className="text-sm text-leather-900">
                     {m.display_name}
@@ -225,59 +232,54 @@ export default function Profile() {
             </div>
           </div>
         )}
-      </section>
 
-      {/* Invite */}
-      {inviteCode && (
-        <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
+        {inviteCode && (
+          <div className="mt-4 border-t border-parchment-200 pt-4">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
+              Invite
+            </h2>
+            <p className="text-sm text-stone-500 mb-3">
+              Invite family to walk this journey with you.
+            </p>
+            <button
+              onClick={shareInvite}
+              className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+            >
+              {copied ? 'Invite copied' : 'Share Journey Invite'}
+            </button>
+          </div>
+        )}
+
+        <div className="mt-4 border-t border-parchment-200 pt-4">
           <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
-            Invite
+            Join a Journey
           </h2>
           <p className="text-sm text-stone-500 mb-3">
-            Invite family to walk this journey with you.
+            Have an invite code? Join a family member's journey.
           </p>
+          <input
+            type="text"
+            value={joinCode}
+            onChange={(e) => {
+              setJoinCode(e.target.value);
+              setJoinError(null);
+            }}
+            placeholder="CJ365-ABCD"
+            className={inputClass}
+          />
+          {joinError && <p className="mt-3 text-sm text-red-600">{joinError}</p>}
           <button
-            onClick={shareInvite}
-            className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white active:scale-[0.99] transition"
+            onClick={doJoin}
+            disabled={joining || !joinCode.trim()}
+            className={`${primaryButtonClass} mt-3`}
           >
-            {copied ? 'Invite copied ✓' : 'Share Journey Invite'}
+            {joining ? 'Joining...' : 'Join Journey'}
           </button>
-        </section>
-      )}
-
-      {/* Join a shared journey */}
-      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
-          Join a Journey
-        </h2>
-        <p className="text-sm text-stone-500 mb-3">
-          Have an invite code? Join a family member's journey.
-        </p>
-        <input
-          type="text"
-          value={joinCode}
-          onChange={(e) => {
-            setJoinCode(e.target.value);
-            setJoinError(null);
-          }}
-          placeholder="CJ365-ABCD"
-          className="w-full rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-leather-900 outline-none focus:border-leather-400"
-        />
-        {joinError && <p className="mt-3 text-sm text-red-600">{joinError}</p>}
-        <button
-          onClick={doJoin}
-          disabled={joining || !joinCode.trim()}
-          className="mt-3 w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
-        >
-          {joining ? 'Joining…' : 'Join Journey'}
-        </button>
+        </div>
       </section>
 
-      {/* About Catholic Journey 365 */}
-      <p className="mb-3 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-        About Catholic Journey 365
-      </p>
-      <section className="rounded-2xl bg-gradient-to-br from-white to-parchment-50 border border-parchment-200 p-5 mb-6">
+      <p className={sectionTitle}>About Catholic Journey 365</p>
+      <section className="rounded-2xl bg-gradient-to-br from-white to-parchment-50 border border-parchment-200 p-5 mb-6 shadow-[0_12px_32px_rgba(74,55,40,0.08)]">
         <button
           type="button"
           onClick={() => setAboutOpen((open) => !open)}
@@ -298,7 +300,7 @@ export default function Profile() {
               aria-hidden="true"
               className={`transition-transform ${aboutOpen ? 'rotate-180' : ''}`}
             >
-              &#8964;
+              v
             </span>
           </span>
         </button>
@@ -316,41 +318,38 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
         )}
       </section>
 
-      {/* App */}
-      <p className="mb-3 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-        App
-      </p>
+      <p className={sectionTitle}>App Updates</p>
+      <section className={`${cardClass} mb-5`}>
+        <div className="mb-4">
+          <h2 className="font-display text-lg font-semibold text-leather-900">
+            Version
+          </h2>
+          {updateReady ? (
+            <p className="mt-1 text-sm font-semibold text-leather-700">
+              A new version is ready.
+            </p>
+          ) : status === 'checking' ? (
+            <p className="mt-1 text-sm text-stone-500">Checking for updates.</p>
+          ) : status === 'unsupported' ? (
+            <p className="mt-1 text-sm text-stone-500">
+              App updates are checked after installation.
+            </p>
+          ) : (
+            <p className="mt-1 text-sm text-stone-500">
+              You're using the latest version.
+            </p>
+          )}
+        </div>
 
-      {/* App updates */}
-      <section className="rounded-2xl bg-white border border-parchment-200 p-5 mb-5">
-        <h2 className="text-xs font-semibold uppercase tracking-wider text-stone-400 mb-2">
-          App Updates
-        </h2>
         {updateReady ? (
-          <p className="text-sm font-semibold text-leather-700 mb-3">
-            Update available
-          </p>
-        ) : status === 'checking' ? (
-          <p className="text-sm text-stone-500 mb-3">Checking for updates</p>
-        ) : status === 'unsupported' ? (
-          <p className="text-sm text-stone-500 mb-3">
-            Service worker not active in this environment
-          </p>
-        ) : (
-          <p className="text-sm text-stone-500 mb-3">App is up to date</p>
-        )}
-        {updateReady ? (
-          <button
-            onClick={updateNow}
-            className="w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white active:scale-[0.99] transition"
-          >
+          <button onClick={updateNow} className={primaryButtonClass}>
             Update now
           </button>
         ) : (
           <button
             onClick={checkForUpdates}
             disabled={status === 'checking' || status === 'unsupported'}
-            className="w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition"
+            className={primaryButtonClass}
           >
             {status === 'checking' ? 'Checking...' : 'Check for updates'}
           </button>

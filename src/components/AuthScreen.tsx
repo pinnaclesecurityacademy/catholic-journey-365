@@ -172,11 +172,23 @@ export default function AuthScreen() {
         ) : (
           <button
             onClick={() => switchMode(mode === 'signup' ? 'login' : 'signup')}
-            className="mt-4 w-full text-sm text-leather-600 font-medium"
+            className="mt-4 w-full rounded-xl px-4 py-3 text-sm text-leather-600 font-medium active:scale-[0.99] transition"
           >
-            {mode === 'signup'
-              ? 'Already have an account? Log in'
-              : 'New here? Create an account'}
+            {mode === 'signup' ? (
+              <>
+                Already have an account?{' '}
+                <span className="font-bold text-gold underline underline-offset-4">
+                  Log in here
+                </span>
+              </>
+            ) : (
+              <>
+                Don&apos;t have an account?{' '}
+                <span className="font-bold text-gold underline underline-offset-4">
+                  Create an account
+                </span>
+              </>
+            )}
           </button>
         )}
       </div>

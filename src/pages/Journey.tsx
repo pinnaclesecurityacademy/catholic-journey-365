@@ -195,8 +195,6 @@ function JourneyHub({
   onOpenScripture: () => void;
   onOpenFaith: () => void;
 }) {
-  const faithProgress = Math.round((faithDone / faithTotal) * 100);
-
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-6">
       <header className="mb-5 px-1">
@@ -207,7 +205,7 @@ function JourneyHub({
           Journey
         </h1>
         <p className="mt-2 text-sm leading-relaxed text-stone-500">
-          Choose a path for prayer, Scripture, and formation.
+          Continue Scripture first, with prayer and formation nearby.
         </p>
       </header>
 
@@ -229,11 +227,11 @@ function JourneyHub({
               Scripture Journey
             </p>
             <h2 className="mt-1 font-display text-3xl font-bold leading-tight">
-              365 days
+              Scripture Journey
             </h2>
             <p className="mt-2 text-sm text-parchment-100/85">
-              Continue the Bible Timeline with readings, Dive Deeper, progress,
-              and your shared journey.
+              Continue the 365 day walk through Scripture with readings, Dive
+              Deeper, progress, and your shared journey.
             </p>
             <div className="mt-4 rounded-2xl border border-white/20 bg-white/12 p-4 backdrop-blur-sm">
               <div className="flex items-center justify-between text-sm font-semibold">
@@ -250,40 +248,32 @@ function JourneyHub({
           </div>
         </button>
 
-        <button
-          onClick={onOpenFaith}
-          className={`${sacredButtonCardClassName} w-full text-left bg-gradient-to-br from-white to-parchment-50`}
-        >
+        <SacredCard className="bg-gradient-to-br from-white to-parchment-50">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Faith Journey
+                Today&apos;s Rhythm
               </p>
-              <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
-                Daily Formation
+              <h2 className="mt-1 font-display text-xl font-bold text-leather-900">
+                Prayer and Reflection
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-stone-500">
-                A simple V1 rhythm for prayer, Scripture, devotion, and seeing
-                God in the day.
+                Add morning prayer, formation, and evening reflection when you
+                are ready.
               </p>
             </div>
-            <span className="rounded-full bg-leather-600 px-3 py-1 text-xs font-semibold text-white">
-              New
+            <span className="rounded-full border border-parchment-200 bg-white px-3 py-1 text-xs font-semibold text-leather-600">
+              {faithDone}/{faithTotal}
             </span>
           </div>
-          <div className="mt-4">
-            <div className="mb-1 flex justify-between text-xs text-stone-500">
-              <span>{faithDone}/{faithTotal} today</span>
-              <span>{faithProgress}%</span>
-            </div>
-            <div className="h-3 w-full overflow-hidden rounded-full bg-parchment-200">
-              <div
-                className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
-                style={{ width: `${faithProgress}%` }}
-              />
-            </div>
-          </div>
-        </button>
+          <button
+            type="button"
+            onClick={onOpenFaith}
+            className="mt-4 w-full rounded-xl bg-leather-600 py-3 text-sm font-semibold text-white transition active:scale-[0.99]"
+          >
+            Continue Today&apos;s Rhythm
+          </button>
+        </SacredCard>
 
         <SacredCard className="bg-white/75 opacity-80">
           <div className="flex items-start justify-between gap-3">
@@ -754,7 +744,7 @@ export default function Journey() {
         <div className="absolute inset-0 bg-gradient-to-b from-leather-900/35 via-leather-900/70 to-leather-900/95" />
         <div className="relative px-5 pb-5 pt-24">
           <p className="text-xs uppercase tracking-widest text-gold">
-            Scripture Pilgrimage
+            Scripture Journey
           </p>
           <h1 className="mt-1 font-display text-3xl font-bold leading-tight">
             Day {currentDay} of {TOTAL_DAYS}

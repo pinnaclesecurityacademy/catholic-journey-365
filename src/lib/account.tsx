@@ -194,20 +194,13 @@ export function AccountProvider({ children }: { children: ReactNode }) {
           statusRecord?.status === 'deactivated' ? 'deactivated' : 'active'
         );
 
-        const { data: sub, error: subError } = await supabase
+        const { data: sub } = await supabase
           .from('billing_subscriptions')
           .select(
-            'user_id, status, plan, trial_ends_at, current_period_end, stripe_customer_id, stripe_subscription_id'
+            'id, user_id, stripe_customer_id, stripe_subscription_id, status, price_id, current_period_start, current_period_end, cancel_at_period_end, created_at, updated_at'
           )
           .eq('user_id', u.id)
           .maybeSingle();
-        console.log('[account] subscription query', {
-          currentUserId: u.id,
-          subscriptionQueryResult: sub,
-          subscriptionQueryError: subError,
-          status: sub?.status ?? null,
-          current_period_end: sub?.current_period_end ?? null,
-        });
         if (!shouldApply()) return;
         setSubscription((sub as SubscriptionStatus) ?? null);
 
@@ -425,14 +418,6 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   };
 
   const hasBillingAccess = hasSubscriptionAccess(subscription, user?.id);
-
-  console.log('[account] hasBillingAccess result', {
-    currentUserId: user?.id ?? null,
-    subscription,
-    status: subscription?.status ?? null,
-    current_period_end: subscription?.current_period_end ?? null,
-    finalHasAccess: hasBillingAccess,
-  });
 
   return (
     <AccountContext.Provider

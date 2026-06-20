@@ -3,13 +3,19 @@ import { supabase } from './supabase';
 export type SubscriptionPlan = 'monthly' | 'yearly';
 
 export interface SubscriptionStatus {
+  id: string;
   user_id: string;
   status: string;
-  plan: SubscriptionPlan | null;
-  trial_ends_at: string | null;
+  price_id: string | null;
+  plan?: SubscriptionPlan | null;
+  trial_ends_at?: string | null;
+  current_period_start: string | null;
   current_period_end: string | null;
+  cancel_at_period_end: boolean | null;
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
+  created_at: string | null;
+  updated_at: string | null;
 }
 
 export type AccountStatus = 'active' | 'deactivated';
@@ -47,32 +53,14 @@ export function hasSubscriptionAccess(
   subscription: SubscriptionStatus | null,
   currentUserId: string | null | undefined
 ) {
-  let hasAccess = false;
-
-  if (!subscription) {
-    hasAccess = false;
-  } else if (!currentUserId || subscription.user_id !== currentUserId) {
-    hasAccess = false;
-  } else if (
-    subscription.status !== 'trialing' &&
-    subscription.status !== 'active'
-  ) {
-    hasAccess = false;
-  } else {
-    hasAccess = (
-      subscription.current_period_end === null ||
-      isFutureDate(subscription.current_period_end)
-    );
-  }
-
-  console.log('[billing] subscription access check', {
-    currentUserId,
-    status: subscription?.status ?? null,
-    current_period_end: subscription?.current_period_end ?? null,
-    finalHasAccess: hasAccess,
-  });
-
-  return hasAccess;
+  if (!subscription) return false;
+  if (!currentUserId || subscription.user_id !== currentUserId) return false;
+  if (subscription.status !== 'trialing' && subscription.status !== 'active')
+    return false;
+  return (
+    subscription.current_period_end === null ||
+    isFutureDate(subscription.current_period_end)
+  );
 }
 
 export async function startCheckout(plan: SubscriptionPlan) {

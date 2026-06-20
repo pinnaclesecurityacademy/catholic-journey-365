@@ -17,6 +17,7 @@ type ChapletItem = {
   segmentKey: string;
   rowIndex: number;
   rowTotal: number;
+  decadeNumber?: number;
 };
 
 const prayerCard =
@@ -80,13 +81,14 @@ function buildChapletItems(prayer: Prayer): ChapletItem[] {
     const segmentKey = `decade-${decade}`;
     items.push({
       key: `${segmentKey}-large`,
-      title: 'Eternal Father',
+      title: 'Decade Prayer',
       text: eternalFather,
       phase: 'Decade',
-      positionLabel: `Decade ${decade}, large bead`,
+      positionLabel: `Decade ${decade} of 5, Eternal Father`,
       segmentKey,
       rowIndex: 1,
       rowTotal: 11,
+      decadeNumber: decade,
     });
 
     for (let bead = 1; bead <= 10; bead += 1) {
@@ -99,6 +101,7 @@ function buildChapletItems(prayer: Prayer): ChapletItem[] {
         segmentKey,
         rowIndex: bead + 1,
         rowTotal: 11,
+        decadeNumber: decade,
       });
     }
   }
@@ -240,7 +243,11 @@ export default function ChapletFlow({ prayer }: { prayer: Prayer }) {
     <Shell>
       <header className="mb-6 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-leather-400">
-          {currentItem.phase}
+          {currentItem.phase === 'Opening'
+            ? 'Opening Prayers'
+            : currentItem.phase === 'Closing'
+              ? 'Closing Prayer'
+              : `Decade ${currentItem.decadeNumber} of 5`}
         </p>
         <h1 className="mt-1 font-display text-3xl font-bold leading-tight text-leather-900">
           {currentItem.title}
@@ -282,7 +289,11 @@ export default function ChapletFlow({ prayer }: { prayer: Prayer }) {
       </div>
 
       <section className={prayerCard}>
-        <SacredPrayerLabel>{currentItem.title}</SacredPrayerLabel>
+        <SacredPrayerLabel>
+          {currentItem.title === 'Decade Prayer'
+            ? 'Eternal Father'
+            : currentItem.title}
+        </SacredPrayerLabel>
         <SacredPrayer text={currentItem.text} />
       </section>
 

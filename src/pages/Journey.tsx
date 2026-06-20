@@ -354,6 +354,51 @@ function RhythmModal({
   );
 }
 
+function PrayerPreparation() {
+  return (
+    <div className="mb-4 rounded-2xl border border-gold/30 bg-parchment-50 px-4 py-4 text-sm text-leather-900">
+      <p className="font-semibold text-leather-700">Prepare to pray</p>
+      <ul className="mt-3 space-y-2 leading-relaxed text-stone-600">
+        <li>Pause and become still.</li>
+        <li>Breathe slowly.</li>
+        <li>Remember you are in God&apos;s presence.</li>
+        <li>Make the Sign of the Cross.</li>
+        <li>Pray slowly, not rushed.</li>
+      </ul>
+    </div>
+  );
+}
+
+const SIGN_OF_CROSS_LESSON = {
+  title: 'Why Catholics Begin with the Sign of the Cross',
+  introduction:
+    'The Sign of the Cross is one of the simplest Catholic prayers. It is also one of the richest. Before we say many words, we place ourselves before God, remember Christ, and begin with faith.',
+  sections: [
+    {
+      title: 'We begin with God as Trinity',
+      body: 'When Catholics say, "In the name of the Father, and of the Son, and of the Holy Spirit," we are not just starting a prayer. We are naming the God who has loved us first. Christian prayer begins in the life of the Trinity, not in our own effort.',
+    },
+    {
+      title: 'We remember the Cross of Christ',
+      body: 'Tracing the Cross over the body reminds us that Jesus saved us through his death and Resurrection. The Cross is not a decoration. It is the sign of the love that entered suffering, conquered sin, and opened the way to new life.',
+    },
+    {
+      title: 'We offer our whole self',
+      body: 'The gesture touches the head, heart, and shoulders. It quietly says that our mind, our love, our strength, and our actions belong to God. Even before a longer prayer begins, the body is already praying.',
+    },
+    {
+      title: 'We learn to pray with the Church',
+      body: 'Catholics make this sign at Mass, before personal prayer, before meals, and in moments of need. It joins our private prayer to the prayer of the whole Church and helps us remember that faith is lived with others.',
+    },
+  ],
+  scriptureConnection:
+    'Jesus tells his disciples to baptize "in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19). Saint Paul also reminds us that Christ crucified is the power and wisdom of God (1 Corinthians 1:23-24). The Sign of the Cross holds both truths together.',
+  catholicPractice:
+    'When you make the Sign of the Cross, try making it slowly. Let the words mean what they say. You are beginning in God, remembering Jesus, and asking the Holy Spirit to help you pray with your whole life.',
+  reflection:
+    'When I make the Sign of the Cross today, what part of my life do I most need to place under the love and mercy of Christ?',
+};
+
 function FaithJourneyDetail({
   checkedItems,
   autoItems,
@@ -433,6 +478,7 @@ function FaithJourneyDetail({
           subtitle="Begin the day in the name of the Holy Trinity."
           onClose={() => setActiveModal(null)}
         >
+          <PrayerPreparation />
           <div className="rounded-2xl bg-parchment-50 px-5 py-7">
             <SacredPrayer text={morningPrayer} />
           </div>
@@ -454,18 +500,53 @@ function FaithJourneyDetail({
           subtitle="Why Catholics begin prayer with the Sign of the Cross"
           onClose={() => setActiveModal(null)}
         >
-          <div className="rounded-2xl bg-parchment-50 p-5 text-leather-900">
-            <p className="leading-relaxed">
-              Catholics begin prayer with the Sign of the Cross because prayer
-              begins in God: Father, Son, and Holy Spirit. The sign reminds us
-              that we belong to Christ, that he saved us by the Cross, and that
-              even a simple prayer is an act of faith.
-            </p>
-            <p className="mt-4 leading-relaxed">
-              It is not a magic gesture. It is a small profession of the heart:
-              God is near, Christ is Lord, and I am placing this moment in his
-              care.
-            </p>
+          <div className="space-y-4 text-leather-900">
+            <section className="rounded-2xl bg-parchment-50 p-5">
+              <h3 className="font-display text-2xl font-semibold leading-tight">
+                {SIGN_OF_CROSS_LESSON.title}
+              </h3>
+              <p className="mt-3 leading-relaxed text-stone-700">
+                {SIGN_OF_CROSS_LESSON.introduction}
+              </p>
+            </section>
+
+            {SIGN_OF_CROSS_LESSON.sections.map((section) => (
+              <section key={section.title} className="rounded-2xl bg-white border border-parchment-200 p-5">
+                <h4 className="font-display text-xl font-semibold text-leather-900">
+                  {section.title}
+                </h4>
+                <p className="mt-2 leading-relaxed text-stone-700">
+                  {section.body}
+                </p>
+              </section>
+            ))}
+
+            <section className="rounded-2xl bg-parchment-50 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                Scripture Connection
+              </p>
+              <p className="mt-2 leading-relaxed text-stone-700">
+                {SIGN_OF_CROSS_LESSON.scriptureConnection}
+              </p>
+            </section>
+
+            <section className="rounded-2xl bg-parchment-50 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                Catholic Practice
+              </p>
+              <p className="mt-2 leading-relaxed text-stone-700">
+                {SIGN_OF_CROSS_LESSON.catholicPractice}
+              </p>
+            </section>
+
+            <section className="rounded-2xl border border-gold/40 bg-parchment-100 p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                Reflection Question
+              </p>
+              <p className="mt-2 font-display text-xl leading-snug text-leather-900">
+                {SIGN_OF_CROSS_LESSON.reflection}
+              </p>
+            </section>
           </div>
           <button
             type="button"
@@ -597,6 +678,7 @@ function FaithJourneyDetail({
           subtitle="Give thanks, review the day, repent, trust, and rest."
           onClose={() => setActiveModal(null)}
         >
+          <PrayerPreparation />
           <div className="rounded-2xl bg-parchment-50 px-5 py-7">
             <SacredPrayer text={eveningPrayer} />
           </div>

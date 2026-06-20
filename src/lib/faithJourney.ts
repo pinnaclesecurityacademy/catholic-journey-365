@@ -9,6 +9,16 @@ export const FAITH_JOURNEY_ITEMS = [
   'Evening Prayer',
 ];
 
+export const SCRIPTURE_READING_ITEM = 'Scripture Reading';
+export const DIVE_DEEPER_ITEM = 'Dive Deeper';
+
+export function mergeFaithJourneyChecks(
+  localItems: string[],
+  autoItems: string[]
+) {
+  return Array.from(new Set([...localItems, ...autoItems]));
+}
+
 function todayKey(date = new Date()) {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');

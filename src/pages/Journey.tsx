@@ -7,6 +7,8 @@ import { useAccount, Member } from '../lib/account';
 import { CompletionRecord, ReadingDay } from '../lib/supabase';
 import {
   FAITH_JOURNEY_ITEMS,
+  SCRIPTURE_READING_ITEM,
+  mergeFaithJourneyChecks,
   readFaithJourneyChecks,
   writeFaithJourneyChecks,
 } from '../lib/faithJourney';
@@ -22,6 +24,20 @@ function isComplete(
 ): boolean {
   return records.some(
     (r) => r.day_number === dayNumber && r.user_id === userId && r.completed
+  );
+}
+
+function wasCompletedToday(record: CompletionRecord, userId: string): boolean {
+  if (!record.completed || record.user_id !== userId || !record.completed_at) {
+    return false;
+  }
+
+  const completedAt = new Date(record.completed_at);
+  const today = new Date();
+  return (
+    completedAt.getFullYear() === today.getFullYear() &&
+    completedAt.getMonth() === today.getMonth() &&
+    completedAt.getDate() === today.getDate()
   );
 }
 
@@ -271,34 +287,12 @@ function JourneyHub({
                 90 Days with Mary
               </h2>
               <p className="mt-2 text-sm leading-relaxed text-stone-500">
-                Coming soon as a guided path of Marian prayer that points to
-                Christ.
+                Coming Soon
               </p>
             </div>
             <span className="rounded-full border border-parchment-200 bg-parchment-50 px-3 py-1 text-xs font-semibold text-stone-500">
-              Coming soon
+              Coming Soon
             </span>
-          </div>
-        </SacredCard>
-
-        <SacredCard className="bg-white/75 opacity-80">
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
-            Future Journeys
-          </p>
-          <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
-            Coming soon
-          </h2>
-          <div className="mt-4 grid gap-2">
-            {['Lent Journey', 'Early Church Journey', 'Sacramental Journey'].map(
-              (title) => (
-                <div
-                  key={title}
-                  className="rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-sm font-semibold text-leather-700"
-                >
-                  {title}
-                </div>
-              )
-            )}
           </div>
         </SacredCard>
       </div>
@@ -308,14 +302,17 @@ function JourneyHub({
 
 function FaithJourneyDetail({
   checkedItems,
+  autoItems,
   onToggleItem,
   onBack,
 }: {
   checkedItems: string[];
+  autoItems: string[];
   onToggleItem: (item: string) => void;
   onBack: () => void;
 }) {
-  const completed = checkedItems.length;
+  const effectiveItems = mergeFaithJourneyChecks(checkedItems, autoItems);
+  const completed = effectiveItems.length;
   const progress = Math.round((completed / FAITH_JOURNEY_ITEMS.length) * 100);
 
   return (
@@ -353,20 +350,29 @@ function FaithJourneyDetail({
 
       <div className="space-y-3">
         {FAITH_JOURNEY_ITEMS.map((item) => {
-          const done = checkedItems.includes(item);
+          const done = effectiveItems.includes(item);
+          const autoDone = autoItems.includes(item);
           return (
             <button
               key={item}
+              disabled={autoDone}
               onClick={() => onToggleItem(item)}
-              className={`${sacredButtonCardClassName} flex w-full items-center gap-3 text-left`}
+              className={`${sacredButtonCardClassName} flex w-full items-center gap-3 text-left disabled:active:scale-100`}
             >
               <CheckDot done={done} />
-              <span
-                className={`font-semibold ${
-                  done ? 'text-stone-400 line-through' : 'text-leather-900'
-                }`}
-              >
-                {item}
+              <span className="min-w-0 flex-1">
+                <span
+                  className={`block font-semibold ${
+                    done ? 'text-stone-400 line-through' : 'text-leather-900'
+                  }`}
+                >
+                  {item}
+                </span>
+                {autoDone && (
+                  <span className="mt-1 block text-xs font-medium text-sage-500">
+                    Completed from Scripture Journey
+                  </span>
+                )}
               </span>
             </button>
           );
@@ -379,7 +385,7 @@ function FaithJourneyDetail({
 export default function Journey() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { members } = useAccount();
+  const { completionId, members } = useAccount();
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
   const [selected, setSelected] = useState<Period | null>(null);
   const [faithCheckedItems, setFaithCheckedItems] = useState<string[]>(
@@ -445,8 +451,17 @@ export default function Journey() {
     groupComplete(completions, d.day_number, members)
   ).length;
   const progressPct = Math.round((completedCount / TOTAL_DAYS) * 100);
+  const scriptureDoneToday = completionId
+    ? completions.some((record) => wasCompletedToday(record, completionId))
+    : false;
+  const autoFaithItems = scriptureDoneToday ? [SCRIPTURE_READING_ITEM] : [];
+  const effectiveFaithItems = mergeFaithJourneyChecks(
+    faithCheckedItems,
+    autoFaithItems
+  );
 
   const toggleFaithItem = (item: string) => {
+    if (autoFaithItems.includes(item)) return;
     setFaithCheckedItems((current) => {
       const next = current.includes(item)
         ? current.filter((value) => value !== item)
@@ -460,6 +475,7 @@ export default function Journey() {
     return (
       <FaithJourneyDetail
         checkedItems={faithCheckedItems}
+        autoItems={autoFaithItems}
         onToggleItem={toggleFaithItem}
         onBack={() => navigate('/journey')}
       />
@@ -471,7 +487,7 @@ export default function Journey() {
       <JourneyHub
         scriptureDay={currentDay}
         scriptureProgress={progressPct}
-        faithDone={faithCheckedItems.length}
+        faithDone={effectiveFaithItems.length}
         faithTotal={FAITH_JOURNEY_ITEMS.length}
         onOpenScripture={() => navigate('/journey/scripture')}
         onOpenFaith={() => navigate('/journey/faith')}

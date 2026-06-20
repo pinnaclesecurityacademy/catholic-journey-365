@@ -4,13 +4,14 @@ export const FAITH_JOURNEY_ITEMS = [
   'Dive Deeper',
   'Faith Formation',
   'Daily Devotion',
-  'Five Finger Prayer',
+  'Personal Prayer',
   'Seeing God Today',
   'Evening Prayer',
 ];
 
 export const SCRIPTURE_READING_ITEM = 'Scripture Reading';
 export const DIVE_DEEPER_ITEM = 'Dive Deeper';
+export const PERSONAL_PRAYER_ITEM = 'Personal Prayer';
 
 export type DevotionCard = {
   title: string;
@@ -126,9 +127,10 @@ export function readFaithJourneyChecks(date = new Date()) {
   try {
     const raw = window.localStorage.getItem(faithJourneyStorageKey(date));
     const parsed = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed)
-      ? parsed.filter((item): item is string => typeof item === 'string')
-      : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed
+      .filter((item): item is string => typeof item === 'string')
+      .map((item) => (item === 'Five Finger Prayer' ? PERSONAL_PRAYER_ITEM : item));
   } catch {
     return [];
   }

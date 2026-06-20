@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { readingPlan } from '../data/readingPlan';
 import { TOTAL_DAYS } from '../config/journey';
@@ -8,6 +9,7 @@ import { CompletionRecord, ReadingDay } from '../lib/supabase';
 import {
   DIVE_DEEPER_ITEM,
   FAITH_JOURNEY_ITEMS,
+  PERSONAL_PRAYER_ITEM,
   SCRIPTURE_READING_ITEM,
   SeeingGodReflection,
   getRotatingDevotion,
@@ -24,6 +26,7 @@ import {
   sacredButtonCardClassName,
 } from '../components/SacredCard';
 import JourneyTimeline from '../components/JourneyTimeline';
+import { SacredPrayer } from '../components/SacredPrayer';
 
 function isComplete(
   records: CompletionRecord[],
@@ -298,6 +301,59 @@ function JourneyHub({
   );
 }
 
+type RhythmModalKind =
+  | 'morning'
+  | 'formation'
+  | 'devotion'
+  | 'personal'
+  | 'seeing'
+  | 'evening'
+  | 'complete'
+  | null;
+
+function RhythmModal({
+  title,
+  subtitle,
+  children,
+  onClose,
+}: {
+  title: string;
+  subtitle?: string;
+  children: ReactNode;
+  onClose: () => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-leather-900/45 px-4 pb-4 pt-10 backdrop-blur-sm">
+      <section className="max-h-[88vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] border border-gold/25 bg-white shadow-[0_24px_70px_rgba(28,25,23,0.32)]">
+        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-parchment-200 bg-white/95 px-5 py-4 backdrop-blur">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">
+              Today&apos;s Rhythm
+            </p>
+            <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+              {title}
+            </h2>
+            {subtitle && (
+              <p className="mt-1 text-sm leading-relaxed text-stone-500">
+                {subtitle}
+              </p>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close"
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-parchment-200 bg-parchment-50 text-sm font-semibold text-leather-600"
+          >
+            x
+          </button>
+        </div>
+        <div className="px-5 py-5">{children}</div>
+      </section>
+    </div>
+  );
+}
+
 function FaithJourneyDetail({
   checkedItems,
   autoItems,
@@ -316,152 +372,276 @@ function FaithJourneyDetail({
   onBack: () => void;
 }) {
   const navigate = useNavigate();
+  const [activeModal, setActiveModal] = useState<RhythmModalKind>(null);
   const effectiveItems = mergeFaithJourneyChecks(checkedItems, autoItems);
   const completed = effectiveItems.length;
   const progress = Math.round((completed / FAITH_JOURNEY_ITEMS.length) * 100);
   const morningPrayer = getRotatingMorningPrayer(currentDay);
   const eveningPrayer = getRotatingEveningPrayer(currentDay);
   const devotion = getRotatingDevotion(currentDay);
+  const allComplete = completed >= FAITH_JOURNEY_ITEMS.length;
   const inputClass =
     'mt-2 min-h-24 w-full rounded-xl border border-parchment-200 bg-white px-4 py-3 text-sm leading-relaxed text-leather-900 outline-none focus:border-leather-400';
 
-  const renderItemContent = (item: string, autoDone: boolean) => {
-    if (item === 'Morning Prayer') {
-      return (
-        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
-          {morningPrayer}
-        </div>
-      );
+  const completeItem = (item: string) => {
+    if (!effectiveItems.includes(item) && !autoItems.includes(item)) {
+      onToggleItem(item);
     }
+    setActiveModal(null);
+  };
 
+  const openItem = (item: string) => {
     if (item === SCRIPTURE_READING_ITEM) {
-      return (
-        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
-          <p>
-            Let Scripture shape the day. Read slowly, listen for one word or
-            phrase, and ask how Christ is calling you to respond.
-          </p>
-          {autoDone && (
-            <p className="mt-3 font-semibold text-sage-500">
-              Completed from today&apos;s Scripture Journey.
-            </p>
-          )}
-        </div>
-      );
+      navigate(`/day/${currentDay}`);
+      return;
     }
 
     if (item === DIVE_DEEPER_ITEM) {
+      navigate(`/day/${currentDay}/deeper`);
+      return;
+    }
+
+    if (item === 'Morning Prayer') setActiveModal('morning');
+    if (item === 'Faith Formation') setActiveModal('formation');
+    if (item === 'Daily Devotion') setActiveModal('devotion');
+    if (item === PERSONAL_PRAYER_ITEM) setActiveModal('personal');
+    if (item === 'Seeing God Today') setActiveModal('seeing');
+    if (item === 'Evening Prayer') setActiveModal('evening');
+  };
+
+  const completeRhythm = () => {
+    if (!allComplete) {
+      const ok = window.confirm(
+        'Some parts of today\'s rhythm are still open. Complete it anyway?'
+      );
+      if (!ok) return;
+    }
+
+    for (const item of FAITH_JOURNEY_ITEMS) {
+      if (!effectiveItems.includes(item) && !autoItems.includes(item)) {
+        onToggleItem(item);
+      }
+    }
+    setActiveModal('complete');
+  };
+
+  const modal = (() => {
+    if (activeModal === 'morning') {
       return (
-        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
-          <p>
-            Return to today&apos;s Scripture and look for the history, promise,
-            and connection to Christ. Carry one insight into prayer.
-          </p>
-          {autoDone && (
-            <p className="mt-3 font-semibold text-sage-500">
-              Completed from today&apos;s Dive Deeper reflection.
+        <RhythmModal
+          title="Morning Prayer"
+          subtitle="Begin the day in the name of the Holy Trinity."
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="rounded-2xl bg-parchment-50 px-5 py-7">
+            <SacredPrayer text={morningPrayer} />
+          </div>
+          <button
+            type="button"
+            onClick={() => completeItem('Morning Prayer')}
+            className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Complete Prayer
+          </button>
+        </RhythmModal>
+      );
+    }
+
+    if (activeModal === 'formation') {
+      return (
+        <RhythmModal
+          title="Faith Formation"
+          subtitle="Why Catholics begin prayer with the Sign of the Cross"
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="rounded-2xl bg-parchment-50 p-5 text-leather-900">
+            <p className="leading-relaxed">
+              Catholics begin prayer with the Sign of the Cross because prayer
+              begins in God: Father, Son, and Holy Spirit. The sign reminds us
+              that we belong to Christ, that he saved us by the Cross, and that
+              even a simple prayer is an act of faith.
             </p>
-          )}
-        </div>
+            <p className="mt-4 leading-relaxed">
+              It is not a magic gesture. It is a small profession of the heart:
+              God is near, Christ is Lord, and I am placing this moment in his
+              care.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => completeItem('Faith Formation')}
+            className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Complete Formation
+          </button>
+        </RhythmModal>
       );
     }
 
-    if (item === 'Faith Formation') {
+    if (activeModal === 'devotion') {
       return (
-        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
-          <p>
-            Today, learn one truth and live it simply: God gives grace so we can
-            love him and our neighbor. Ask for one concrete act of faith,
-            hope, or charity.
-          </p>
-        </div>
+        <RhythmModal
+          title="Daily Devotion"
+          subtitle="A small Catholic devotion for today."
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="rounded-2xl bg-parchment-50 p-5">
+            <h3 className="font-display text-2xl font-semibold text-leather-900">
+              {devotion.title}
+            </h3>
+            <p className="mt-3 text-base leading-relaxed text-leather-900">
+              {devotion.body}
+            </p>
+            {devotion.linkTo && devotion.linkLabel && (
+              <button
+                type="button"
+                onClick={() => navigate(devotion.linkTo ?? '/prayer')}
+                className="mt-5 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-leather-700 transition active:scale-[0.99]"
+              >
+                {devotion.linkLabel}
+              </button>
+            )}
+          </div>
+          <button
+            type="button"
+            onClick={() => completeItem('Daily Devotion')}
+            className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Complete Devotion
+          </button>
+        </RhythmModal>
       );
     }
 
-    if (item === 'Daily Devotion') {
+    if (activeModal === 'personal') {
       return (
-        <div className="mt-4 rounded-xl bg-parchment-50 p-4">
-          <h3 className="font-display text-xl font-semibold text-leather-900">
-            {devotion.title}
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-leather-900">
-            {devotion.body}
-          </p>
-          {devotion.linkTo && devotion.linkLabel && (
-            <button
-              type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-                navigate(devotion.linkTo ?? '/prayer');
-              }}
-              className="mt-4 w-full rounded-xl bg-leather-600 py-3 text-sm font-semibold text-white transition active:scale-[0.99]"
-            >
-              {devotion.linkLabel}
-            </button>
-          )}
-        </div>
+        <RhythmModal
+          title="Personal Prayer"
+          subtitle="Bring the people and needs of your day before God."
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="grid gap-3 text-sm text-leather-900">
+            {[
+              ['Those closest to me', 'Family, friends, and loved ones.'],
+              ['Those who guide me', 'Teachers, pastors, mentors, and helpers.'],
+              [
+                'Those who lead and carry responsibility',
+                'Leaders in the Church, home, work, and public life.',
+              ],
+              [
+                'Those who are weak, sick, lonely, or suffering',
+                'Anyone who needs the mercy and comfort of Christ.',
+              ],
+              ['My own needs', 'Ask with humility, trust, and openness to God.'],
+            ].map(([label, body]) => (
+              <div key={label} className="rounded-2xl bg-parchment-50 px-4 py-3">
+                <p className="font-semibold text-leather-700">{label}</p>
+                <p className="mt-1 leading-relaxed text-stone-600">{body}</p>
+              </div>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => completeItem(PERSONAL_PRAYER_ITEM)}
+            className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Complete Prayer
+          </button>
+        </RhythmModal>
       );
     }
 
-    if (item === 'Five Finger Prayer') {
+    if (activeModal === 'seeing') {
       return (
-        <div className="mt-4 grid gap-2 text-sm text-leather-900">
-          {[
-            ['Thumb', 'Pray for those closest to you.'],
-            ['Pointer', 'Pray for those who teach, guide, and lead.'],
-            ['Middle', 'Pray for leaders and those with responsibility.'],
-            ['Ring', 'Pray for the weak, sick, lonely, and burdened.'],
-            ['Pinky', 'Pray for yourself with humility and trust.'],
-          ].map(([label, body]) => (
-            <div key={label} className="rounded-xl bg-parchment-50 px-4 py-3">
-              <span className="font-semibold text-leather-700">{label}: </span>
-              {body}
-            </div>
-          ))}
-        </div>
+        <RhythmModal
+          title="Seeing God Today"
+          subtitle="A gentle review of grace in ordinary life."
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="rounded-2xl bg-parchment-50 p-4">
+            {[
+              ['noticedGod', 'Where did I notice God today?'],
+              ['personBeforeMe', 'Who did God place before me today?'],
+              ['graceToRemember', 'What grace do I want to remember?'],
+            ].map(([field, label]) => (
+              <label key={field} className="mb-4 block text-sm text-leather-900">
+                <span className="font-semibold">{label}</span>
+                <textarea
+                  value={seeingGod[field as keyof SeeingGodReflection]}
+                  onChange={(event) =>
+                    onSeeingGodChange(
+                      field as keyof SeeingGodReflection,
+                      event.target.value
+                    )
+                  }
+                  className={inputClass}
+                />
+              </label>
+            ))}
+          </div>
+          <button
+            type="button"
+            onClick={() => completeItem('Seeing God Today')}
+            className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Complete Reflection
+          </button>
+        </RhythmModal>
       );
     }
 
-    if (item === 'Seeing God Today') {
+    if (activeModal === 'evening') {
       return (
-        <div className="mt-4 rounded-xl bg-parchment-50 p-4">
-          {[
-            ['noticedGod', 'Where did I notice God today?'],
-            ['personBeforeMe', 'Who did God place before me today?'],
-            ['graceToRemember', 'What grace do I want to remember?'],
-          ].map(([field, label]) => (
-            <label key={field} className="mb-4 block text-sm text-leather-900">
-              <span className="font-semibold">{label}</span>
-              <textarea
-                value={seeingGod[field as keyof SeeingGodReflection]}
-                onClick={(event) => event.stopPropagation()}
-                onChange={(event) =>
-                  onSeeingGodChange(
-                    field as keyof SeeingGodReflection,
-                    event.target.value
-                  )
-                }
-                className={inputClass}
-              />
-            </label>
-          ))}
-        </div>
+        <RhythmModal
+          title="Evening Prayer"
+          subtitle="Give thanks, review the day, repent, trust, and rest."
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="rounded-2xl bg-parchment-50 px-5 py-7">
+            <SacredPrayer text={eveningPrayer} />
+          </div>
+          <button
+            type="button"
+            onClick={() => completeItem('Evening Prayer')}
+            className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Complete Prayer
+          </button>
+        </RhythmModal>
       );
     }
 
-    if (item === 'Evening Prayer') {
+    if (activeModal === 'complete') {
       return (
-        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
-          {eveningPrayer}
-        </div>
+        <RhythmModal
+          title="Today's rhythm is complete."
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="rounded-2xl bg-parchment-50 px-5 py-7 text-center">
+            <p className="font-display text-3xl font-semibold leading-tight text-leather-900">
+              You walked with God today.
+            </p>
+            <p className="mt-4 font-display text-2xl font-semibold text-leather-600">
+              Thanks be to God.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setActiveModal(null)}
+            className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Amen
+          </button>
+        </RhythmModal>
       );
     }
 
     return null;
-  };
+  })();
 
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-6">
+      {modal}
       <button
         onClick={onBack}
         className="mb-4 rounded-xl border border-parchment-200 bg-white/80 px-4 py-2 text-sm font-semibold text-leather-600 shadow-[0_10px_28px_rgba(74,55,40,0.07)] transition active:scale-[0.99]"
@@ -498,37 +678,53 @@ function FaithJourneyDetail({
           const done = effectiveItems.includes(item);
           const autoDone = autoItems.includes(item);
           return (
-            <div
+            <button
               key={item}
-              className={`${sacredButtonCardClassName} w-full text-left`}
+              type="button"
+              onClick={() => openItem(item)}
+              className={`${sacredButtonCardClassName} flex w-full items-center gap-3 text-left`}
             >
-              <button
-                type="button"
-                disabled={autoDone}
-                onClick={() => onToggleItem(item)}
-                className="flex w-full items-center gap-3 text-left disabled:active:scale-100"
-              >
-                <CheckDot done={done} />
-                <span className="min-w-0 flex-1">
-                  <span
-                    className={`block font-semibold ${
-                      done ? 'text-stone-400 line-through' : 'text-leather-900'
-                    }`}
-                  >
-                    {item}
-                  </span>
-                  {autoDone && (
-                    <span className="mt-1 block text-xs font-medium text-sage-500">
-                      Completed from Scripture Journey
-                    </span>
-                  )}
+              <CheckDot done={done} />
+              <span className="min-w-0 flex-1">
+                <span
+                  className={`block font-semibold ${
+                    done ? 'text-stone-400 line-through' : 'text-leather-900'
+                  }`}
+                >
+                  {item}
                 </span>
-              </button>
-              {renderItemContent(item, autoDone)}
-            </div>
+                {item === SCRIPTURE_READING_ITEM && (
+                  <span className="mt-1 block text-xs text-stone-500">
+                    Open today&apos;s Scripture Journey reading
+                  </span>
+                )}
+                {item === DIVE_DEEPER_ITEM && (
+                  <span className="mt-1 block text-xs text-stone-500">
+                    Open today&apos;s Dive Deeper reflection
+                  </span>
+                )}
+                {autoDone && (
+                  <span className="mt-1 block text-xs font-medium text-sage-500">
+                    Completed from Scripture Journey
+                  </span>
+                )}
+              </span>
+            </button>
           );
         })}
       </div>
+
+      <button
+        type="button"
+        onClick={completeRhythm}
+        className={`mt-5 w-full rounded-xl py-3 font-semibold transition active:scale-[0.99] ${
+          allComplete
+            ? 'bg-gold text-leather-900 shadow-[0_12px_24px_rgba(212,169,106,0.18)]'
+            : 'border border-parchment-200 bg-white text-leather-600'
+        }`}
+      >
+        Complete Today&apos;s Rhythm
+      </button>
     </div>
   );
 }

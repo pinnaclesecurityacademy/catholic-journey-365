@@ -28,6 +28,7 @@ const OrderOfMass = lazy(() => import('./pages/OrderOfMass'));
 const Bible = lazy(() => import('./pages/Bible'));
 const ScriptureReading = lazy(() => import('./pages/ScriptureReading'));
 const Landing = lazy(() => import('./pages/Landing'));
+const Paywall = lazy(() => import('./pages/Paywall'));
 
 function Splash() {
   return (
@@ -105,6 +106,42 @@ function JourneySetupFrame() {
   );
 }
 
+function AccountGateFrame({ children }: { children: ReactNode }) {
+  return (
+    <BrowserRouter basename="/app">
+      <div className="min-h-screen bg-parchment-100">{children}</div>
+    </BrowserRouter>
+  );
+}
+
+function AccountDeactivated() {
+  const { signOut } = useAccount();
+
+  return (
+    <main className="min-h-screen bg-parchment-100 px-5 py-8">
+      <div className="mx-auto max-w-md rounded-[1.75rem] border border-parchment-200 bg-white/90 p-6 text-center shadow-[0_24px_56px_rgba(74,55,40,0.12)]">
+        <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 bg-parchment-50 text-2xl font-semibold text-gold">
+          +
+        </div>
+        <h1 className="font-display text-3xl font-bold text-leather-900">
+          Account deactivated
+        </h1>
+        <p className="mt-3 text-sm leading-relaxed text-stone-600">
+          This account has been deactivated. Please contact support if you
+          would like help reactivating Catholic Journey 365.
+        </p>
+        <button
+          type="button"
+          onClick={signOut}
+          className="mt-6 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-stone-500 transition active:scale-[0.99]"
+        >
+          Sign out
+        </button>
+      </div>
+    </main>
+  );
+}
+
 function PrivateApp() {
   return (
     <AppFrame>
@@ -151,8 +188,18 @@ function AuthGateLoading() {
 }
 
 function AppShell() {
-  const { loading, accountLoading, user, profile, completionId, journeyId, claim } =
-    useAccount();
+  const {
+    loading,
+    accountLoading,
+    billingLoading,
+    user,
+    profile,
+    accountStatus,
+    hasBillingAccess,
+    completionId,
+    journeyId,
+    claim,
+  } = useAccount();
 
   // A first-time user starts fresh on their own progress namespace, then
   // chooses or joins a journey. No legacy import step is shown publicly.
@@ -164,7 +211,25 @@ function AppShell() {
 
   if (loading) return <AuthGateLoading />;
   if (!user) return <AuthScreen />;
-  if (accountLoading || !profile || !completionId) return <LoadingAppFrame />;
+  if (accountLoading || billingLoading || !profile || !completionId) {
+    return <LoadingAppFrame />;
+  }
+  if (accountStatus === 'deactivated') {
+    return (
+      <AccountGateFrame>
+        <AccountDeactivated />
+      </AccountGateFrame>
+    );
+  }
+  if (!hasBillingAccess) {
+    return (
+      <AccountGateFrame>
+        <Suspense fallback={<Splash />}>
+          <Paywall />
+        </Suspense>
+      </AccountGateFrame>
+    );
+  }
   if (!journeyId) return <JourneySetupFrame />;
 
   return <PrivateApp />;

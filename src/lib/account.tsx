@@ -9,6 +9,14 @@ import {
 } from 'react';
 import type { User } from '@supabase/supabase-js';
 import { supabase } from './supabase';
+import {
+  AccountStatus,
+  SubscriptionPlan,
+  SubscriptionStatus,
+  hasSubscriptionAccess,
+  openCustomerPortal,
+  startCheckout,
+} from './billing';
 
 /** A journey member as shown in the UI. completion_id is their progress namespace. */
 export interface Member {
@@ -28,8 +36,12 @@ type LoadGuard = () => boolean;
 interface AccountValue {
   loading: boolean;
   accountLoading: boolean;
+  billingLoading: boolean;
   user: User | null;
   profile: Profile | null;
+  accountStatus: AccountStatus;
+  subscription: SubscriptionStatus | null;
+  hasBillingAccess: boolean;
   completionId: string | null;
   journeyId: string | null;
   journeyName: string | null;
@@ -44,6 +56,9 @@ interface AccountValue {
   signIn: (email: string, password: string) => Promise<{ error?: string }>;
   resetPassword: (email: string) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
+  startSubscription: (plan: SubscriptionPlan) => Promise<{ error?: string }>;
+  manageSubscription: () => Promise<{ error?: string }>;
+  deactivateAccount: () => Promise<{ error?: string }>;
   claim: (namespace: string) => Promise<void>;
   updateDisplayName: (name: string) => Promise<void>;
   createJourney: (name: string) => Promise<{ error?: string }>;
@@ -66,8 +81,13 @@ function randomCode(): string {
 export function AccountProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [accountLoading, setAccountLoading] = useState(false);
+  const [billingLoading, setBillingLoading] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
+  const [accountStatus, setAccountStatus] = useState<AccountStatus>('active');
+  const [subscription, setSubscription] = useState<SubscriptionStatus | null>(
+    null
+  );
   const [journeyId, setJourneyId] = useState<string | null>(null);
   const [journeyName, setJourneyName] = useState<string | null>(null);
   const [inviteCode, setInviteCode] = useState<string | null>(null);
@@ -139,13 +159,19 @@ export function AccountProvider({ children }: { children: ReactNode }) {
 
       if (!u) {
         setProfile(null);
+        setAccountStatus('active');
+        setSubscription(null);
         clearJourney();
         setAccountLoading(false);
+        setBillingLoading(false);
         return;
       }
 
       setAccountLoading(true);
+      setBillingLoading(true);
       setProfile(null);
+      setAccountStatus('active');
+      setSubscription(null);
       clearJourney();
 
       try {
@@ -157,11 +183,35 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         if (!shouldApply()) return;
 
         setProfile((prof as Profile) ?? null);
+
+        const { data: statusRecord } = await supabase
+          .from('account_statuses')
+          .select('status')
+          .eq('user_id', u.id)
+          .maybeSingle();
+        if (!shouldApply()) return;
+        setAccountStatus(
+          statusRecord?.status === 'deactivated' ? 'deactivated' : 'active'
+        );
+
+        const { data: sub } = await supabase
+          .from('billing_subscriptions')
+          .select(
+            'user_id, status, plan, trial_ends_at, current_period_end, stripe_customer_id, stripe_subscription_id'
+          )
+          .eq('user_id', u.id)
+          .maybeSingle();
+        if (!shouldApply()) return;
+        setSubscription((sub as SubscriptionStatus) ?? null);
+
         if (prof && (prof as Profile).completion_id) {
           await loadJourney(u.id, shouldApply);
         }
       } finally {
-        if (shouldApply()) setAccountLoading(false);
+        if (shouldApply()) {
+          setAccountLoading(false);
+          setBillingLoading(false);
+        }
       }
     },
     [clearJourney, loadJourney]
@@ -230,8 +280,27 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   const signOut = async () => {
     await supabase.auth.signOut();
     setProfile(null);
+    setAccountStatus('active');
+    setSubscription(null);
     setJourneyId(null);
     setMembers([]);
+  };
+
+  const startSubscription = async (plan: SubscriptionPlan) => {
+    return startCheckout(plan);
+  };
+
+  const manageSubscription = async () => {
+    return openCustomerPortal();
+  };
+
+  const deactivateAccount = async () => {
+    if (!user) return { error: 'Not signed in' };
+    const { error } = await supabase.rpc('deactivate_my_account');
+    if (error) return { error: error.message };
+    setAccountStatus('deactivated');
+    await signOut();
+    return {};
   };
 
   const claim = async (namespace: string) => {
@@ -353,8 +422,12 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       value={{
         loading,
         accountLoading,
+        billingLoading,
         user,
         profile,
+        accountStatus,
+        subscription,
+        hasBillingAccess: hasSubscriptionAccess(subscription),
         completionId: profile?.completion_id ?? null,
         journeyId,
         journeyName,
@@ -365,6 +438,9 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         signIn,
         resetPassword,
         signOut,
+        startSubscription,
+        manageSubscription,
+        deactivateAccount,
         claim,
         updateDisplayName,
         createJourney,

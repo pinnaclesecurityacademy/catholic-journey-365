@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAccount } from '../lib/account';
+import { planLabel, statusLabel } from '../lib/billing';
 import { usePWAUpdate } from '../lib/pwaUpdates';
 
 export default function Profile() {
@@ -10,10 +11,13 @@ export default function Profile() {
     journeyName,
     inviteCode,
     members,
+    subscription,
     updateDisplayName,
     updateJourneyName,
     joinJourney,
     removeMember,
+    manageSubscription,
+    deactivateAccount,
     signOut,
   } = useAccount();
   const { status, updateReady, checkForUpdates, updateNow } = usePWAUpdate();
@@ -34,6 +38,11 @@ export default function Profile() {
   const [joinError, setJoinError] = useState<string | null>(null);
 
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [billingMessage, setBillingMessage] = useState<string | null>(null);
+  const [billingLoading, setBillingLoading] = useState(false);
+  const [confirmDeactivate, setConfirmDeactivate] = useState(false);
+  const [deactivating, setDeactivating] = useState(false);
+  const [deactivateError, setDeactivateError] = useState<string | null>(null);
 
   const sectionTitle =
     'mb-3 px-1 text-xs font-semibold uppercase tracking-[0.24em] text-gold';
@@ -45,6 +54,8 @@ export default function Profile() {
     'w-full rounded-xl bg-leather-600 py-2.5 font-semibold text-white disabled:opacity-50 active:scale-[0.99] transition';
   const subtleButtonClass =
     'w-full rounded-xl border border-parchment-200 bg-white py-2.5 font-semibold text-stone-500 active:scale-[0.99] transition';
+  const dangerButtonClass =
+    'w-full rounded-xl border border-red-200 bg-red-50 py-2.5 font-semibold text-red-700 active:scale-[0.99] transition disabled:opacity-50';
 
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
@@ -112,6 +123,28 @@ export default function Profile() {
     }
   };
 
+  const openBillingPortal = async () => {
+    setBillingMessage(null);
+    setBillingLoading(true);
+    try {
+      const result = await manageSubscription();
+      if (result.error) setBillingMessage(result.error);
+    } finally {
+      setBillingLoading(false);
+    }
+  };
+
+  const confirmAccountDeactivation = async () => {
+    setDeactivateError(null);
+    setDeactivating(true);
+    try {
+      const result = await deactivateAccount();
+      if (result.error) setDeactivateError(result.error);
+    } finally {
+      setDeactivating(false);
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto px-5 pt-8 pb-8">
       <header className="mb-6">
@@ -154,12 +187,47 @@ export default function Profile() {
         >
           {savingName ? 'Saving...' : savedName ? 'Saved' : 'Save name'}
         </button>
+      </section>
 
-        <div className="mt-5 border-t border-parchment-200 pt-4">
-          <button onClick={signOut} className={subtleButtonClass}>
-            Sign out
-          </button>
+      <p className={sectionTitle}>Billing Status</p>
+      <section className={`${cardClass} mb-6`}>
+        <div className="grid grid-cols-1 gap-3">
+          <div className="rounded-xl bg-parchment-50 px-4 py-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
+              Current plan
+            </p>
+            <p className="mt-1 font-display text-xl font-semibold text-leather-900">
+              {planLabel(subscription?.plan)}
+            </p>
+          </div>
+          <div className="rounded-xl bg-parchment-50 px-4 py-3">
+            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
+              Status
+            </p>
+            <p className="mt-1 font-semibold text-leather-700">
+              {statusLabel(subscription?.status)}
+            </p>
+          </div>
         </div>
+
+        {subscription?.trial_ends_at && subscription.status === 'trialing' && (
+          <p className="mt-3 text-sm text-stone-500">
+            Trial ends{' '}
+            {new Date(subscription.trial_ends_at).toLocaleDateString()}.
+          </p>
+        )}
+        {subscription?.current_period_end && subscription.status !== 'trialing' && (
+          <p className="mt-3 text-sm text-stone-500">
+            Current period ends{' '}
+            {new Date(subscription.current_period_end).toLocaleDateString()}.
+          </p>
+        )}
+
+        {billingMessage && (
+          <p className="mt-3 rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-sm text-stone-600">
+            {billingMessage}
+          </p>
+        )}
       </section>
 
       <p className={sectionTitle}>Shared Journey</p>
@@ -355,6 +423,72 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
           </button>
         )}
       </section>
+
+      <p className={sectionTitle}>Account</p>
+      <section className={`${cardClass} mb-5`}>
+        <div className="space-y-3">
+          <button
+            onClick={openBillingPortal}
+            disabled={billingLoading}
+            className={primaryButtonClass}
+          >
+            {billingLoading ? 'Opening...' : 'Manage subscription'}
+          </button>
+          <button
+            onClick={() => {
+              setDeactivateError(null);
+              setConfirmDeactivate(true);
+            }}
+            className={dangerButtonClass}
+          >
+            Deactivate account
+          </button>
+          <button onClick={signOut} className={subtleButtonClass}>
+            Sign out
+          </button>
+        </div>
+      </section>
+
+      {confirmDeactivate && (
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-leather-900/35 px-4 py-6 sm:items-center">
+          <div className="w-full max-w-md rounded-[1.5rem] border border-parchment-200 bg-white p-5 shadow-[0_24px_64px_rgba(28,25,23,0.24)]">
+            <h2 className="font-display text-2xl font-bold text-leather-900">
+              Deactivate account?
+            </h2>
+            <div className="mt-3 space-y-2 text-sm leading-relaxed text-stone-600">
+              <p>This will disable access to the account.</p>
+              <p>
+                It does not automatically cancel an active paid subscription
+                unless Stripe cancellation is also completed.
+              </p>
+              <p>To stop payments, use Manage subscription first.</p>
+            </div>
+
+            {deactivateError && (
+              <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                {deactivateError}
+              </p>
+            )}
+
+            <div className="mt-5 space-y-3">
+              <button
+                onClick={confirmAccountDeactivation}
+                disabled={deactivating}
+                className={dangerButtonClass}
+              >
+                {deactivating ? 'Deactivating...' : 'Deactivate my account'}
+              </button>
+              <button
+                onClick={() => setConfirmDeactivate(false)}
+                disabled={deactivating}
+                className={subtleButtonClass}
+              >
+                Keep my account
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

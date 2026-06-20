@@ -5,15 +5,7 @@ import { TOTAL_DAYS } from '../config/journey';
 import { getAllCompletions } from '../lib/completions';
 import { useAccount } from '../lib/account';
 import { CompletionRecord } from '../lib/supabase';
-import {
-  DIVE_DEEPER_ITEM,
-  FAITH_JOURNEY_ITEMS,
-  SCRIPTURE_READING_ITEM,
-  mergeFaithJourneyChecks,
-  readFaithJourneyChecks,
-} from '../lib/faithJourney';
-import { SacredCard, SacredProgress } from '../components/SacredCard';
-import JourneyTimeline from '../components/JourneyTimeline';
+import { SacredCard } from '../components/SacredCard';
 
 function isComplete(
   records: CompletionRecord[],
@@ -22,20 +14,6 @@ function isComplete(
 ): boolean {
   return records.some(
     (r) => r.day_number === dayNumber && r.user_id === userId && r.completed
-  );
-}
-
-function wasCompletedToday(record: CompletionRecord, userId: string): boolean {
-  if (!record.completed || record.user_id !== userId || !record.completed_at) {
-    return false;
-  }
-
-  const completedAt = new Date(record.completed_at);
-  const today = new Date();
-  return (
-    completedAt.getFullYear() === today.getFullYear() &&
-    completedAt.getMonth() === today.getMonth() &&
-    completedAt.getDate() === today.getDate()
   );
 }
 
@@ -73,9 +51,6 @@ export default function Home() {
   const { profile, completionId, members } = useAccount();
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
   const [heroImageSrc, setHeroImageSrc] = useState(getHeroImageSrc);
-  const [faithCheckedItems, setFaithCheckedItems] = useState<string[]>(
-    readFaithJourneyChecks
-  );
 
   useEffect(() => {
     getAllCompletions()
@@ -90,14 +65,6 @@ export default function Home() {
     return () => window.clearInterval(timer);
   }, []);
 
-  useEffect(() => {
-    const syncFaithProgress = () => {
-      setFaithCheckedItems(readFaithJourneyChecks());
-    };
-    window.addEventListener('focus', syncFaithProgress);
-    return () => window.removeEventListener('focus', syncFaithProgress);
-  }, []);
-
   const uid = completionId ?? '';
   const nextDay =
     readingPlan.find((d) => !isComplete(completions, d.day_number, uid))
@@ -109,19 +76,6 @@ export default function Home() {
     isComplete(completions, d.day_number, uid)
   ).length;
   const progressPct = Math.round((completedCount / TOTAL_DAYS) * 100);
-  const scriptureCompletedToday = completions.some((record) =>
-    wasCompletedToday(record, uid)
-  );
-  const autoFaithItems = scriptureCompletedToday
-    ? [SCRIPTURE_READING_ITEM]
-    : [];
-  const effectiveFaithItems = mergeFaithJourneyChecks(
-    faithCheckedItems,
-    autoFaithItems
-  );
-  const faithProgressPct = Math.round(
-    (effectiveFaithItems.length / FAITH_JOURNEY_ITEMS.length) * 100
-  );
   const todayRosary = ROSARY_BY_DAY[new Date().getDay()];
 
   return (
@@ -139,145 +93,66 @@ export default function Home() {
           <p className="text-sm font-medium tracking-wide text-parchment-100/90">
             Peace be with you, {profile?.display_name}
           </p>
-          <h1 className="mt-1 font-display text-3xl font-bold leading-tight">
-            Catholic Journey 365
-          </h1>
-          <p className="mt-2 max-w-xs text-sm leading-relaxed text-parchment-100/85">
-            Walk with Christ every day. Grow in faith. Live His love.
-          </p>
-          <div className="mt-6 inline-flex items-center gap-3 rounded-2xl border border-white/20 bg-white/12 px-4 py-3 backdrop-blur-sm">
-            <span className="text-xs uppercase tracking-widest text-gold">
-              Current Journey Day
-            </span>
-            <span className="font-display text-xl font-bold text-parchment-50">
-              Day {day.day_number} of {TOTAL_DAYS}
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-4 grid grid-cols-2 gap-3">
-        <div className="rounded-2xl border border-parchment-200 bg-white/90 p-4 shadow-[0_12px_32px_rgba(74,55,40,0.08)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">
-            Scripture Journey
-          </p>
-          <h2 className="mt-1 font-display text-xl font-bold leading-tight text-leather-900">
-            365 Days through Scripture
-          </h2>
-          <p className="mt-2 text-xs font-medium text-stone-500">
-            Day {day.day_number} of {TOTAL_DAYS}
-          </p>
-          <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-parchment-200">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
-              style={{ width: `${progressPct}%` }}
-            />
-          </div>
-          <button
-            type="button"
-            onClick={() => navigate('/journey/scripture')}
-            className="mt-4 w-full rounded-xl bg-leather-600 py-2.5 text-sm font-semibold text-white transition active:scale-[0.99]"
-          >
-            Continue
-          </button>
-        </div>
-
-        <div className="rounded-2xl border border-parchment-200 bg-white/90 p-4 shadow-[0_12px_32px_rgba(74,55,40,0.08)]">
-          <p className="text-xs font-semibold uppercase tracking-[0.16em] text-gold">
+          <p className="text-xs uppercase tracking-widest text-gold">
             Faith Journey
           </p>
-          <h2 className="mt-1 font-display text-xl font-bold leading-tight text-leather-900">
-            Daily Formation for Life
-          </h2>
-          <p className="mt-2 text-xs font-medium text-stone-500">
-            {effectiveFaithItems.length}/{FAITH_JOURNEY_ITEMS.length} today
+          <h1 className="mt-1 font-display text-3xl font-bold leading-tight">
+            Today&rsquo;s Faith Journey
+          </h1>
+          <p className="mt-2 max-w-xs text-sm leading-relaxed text-parchment-100/85">
+            Begin with prayer, walk with Scripture, and end the day with God.
           </p>
-          <div className="mt-3 h-2.5 overflow-hidden rounded-full bg-parchment-200">
-            <div
-              className="h-full rounded-full bg-gradient-to-r from-sage-500 to-gold"
-              style={{ width: `${faithProgressPct}%` }}
-            />
-          </div>
           <button
             type="button"
             onClick={() => navigate('/journey/faith')}
-            className="mt-4 w-full rounded-xl bg-leather-600 py-2.5 text-sm font-semibold text-white transition active:scale-[0.99]"
+            className="mt-6 w-full rounded-xl bg-gold py-3 font-semibold text-leather-900 shadow-[0_12px_24px_rgba(212,169,106,0.24)] transition active:scale-[0.99]"
           >
-            Continue
+            Continue Faith Journey
           </button>
         </div>
       </section>
 
-      <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
-        <p className="text-xs uppercase tracking-widest text-gold">
-          Today's Scripture
-        </p>
-        <div className="mt-2 flex items-start justify-between gap-3">
-          <div>
-            <h2 className="font-display text-2xl font-bold text-leather-900">
-              Day {day.day_number}
-            </h2>
-            <p className="mt-1 text-sm text-stone-500">{day.period}</p>
+      <button
+        onClick={() => navigate(`/day/${day.day_number}`)}
+        className="mb-4 block w-full overflow-hidden rounded-[1.75rem] border border-parchment-200 bg-white/90 text-left shadow-[0_16px_40px_rgba(74,55,40,0.1)] transition active:scale-[0.99]"
+      >
+        <div className="p-5">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-gold">
+                Scripture Journey
+              </p>
+              <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+                Day {day.day_number} of {TOTAL_DAYS}
+              </h2>
+              <p className="mt-1 text-sm text-stone-500">{day.period}</p>
+            </div>
+            <span className="shrink-0 rounded-full bg-parchment-100 px-3 py-1 text-xs font-semibold text-leather-600">
+              {doneToday ? 'Completed' : 'Awaiting'}
+            </span>
           </div>
-          <span className="shrink-0 rounded-full bg-parchment-100 px-3 py-1 text-xs font-semibold text-leather-600">
-            {doneToday ? 'Completed' : 'Awaiting'}
-          </span>
-        </div>
-        <ul className="mt-4 space-y-1 text-sm font-medium text-leather-900">
-          <li>{day.reading_one}</li>
-          {day.reading_two && <li>{day.reading_two}</li>}
-          {day.psalm_proverb && <li>{day.psalm_proverb}</li>}
-        </ul>
-        <button
-          onClick={() => navigate(`/day/${day.day_number}`)}
-          className="mt-4 w-full rounded-xl bg-gold py-3 font-semibold text-leather-900 shadow-[0_12px_24px_rgba(212,169,106,0.18)] transition active:scale-[0.99]"
-        >
-          Open Today's Reading
-        </button>
-      </SacredCard>
-
-      <SacredCard className="mb-4 bg-white/80">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
-          Faith Checklist
-        </p>
-        <div className="mt-3 grid gap-2">
-          {[SCRIPTURE_READING_ITEM, DIVE_DEEPER_ITEM].map((item) => {
-            const done = effectiveFaithItems.includes(item);
-            return (
+          <ul className="mt-4 space-y-1 text-sm font-medium text-leather-900">
+            <li>{day.reading_one}</li>
+            {day.reading_two && <li>{day.reading_two}</li>}
+            {day.psalm_proverb && <li>{day.psalm_proverb}</li>}
+          </ul>
+          <div className="mt-4">
+            <div className="mb-1 flex justify-between text-xs text-stone-500">
+              <span>{completedCount}/{TOTAL_DAYS}</span>
+              <span>{progressPct}%</span>
+            </div>
+            <div className="h-3 w-full overflow-hidden rounded-full bg-parchment-200">
               <div
-                key={item}
-                className="flex items-center justify-between rounded-xl bg-parchment-50 px-4 py-3 text-sm font-semibold text-leather-900"
-              >
-                <span>{item}</span>
-                <span
-                  className={`flex h-6 w-6 items-center justify-center rounded-full text-xs ${
-                    done
-                      ? 'bg-sage-500 text-white'
-                      : 'border-2 border-parchment-200 text-stone-400'
-                  }`}
-                >
-                  {done ? '\u2713' : ''}
-                </span>
-              </div>
-            );
-          })}
+                className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
+                style={{ width: `${progressPct}%` }}
+              />
+            </div>
+          </div>
+          <div className="mt-4 rounded-xl bg-leather-600 py-3 text-center font-semibold text-white">
+            Continue Reading
+          </div>
         </div>
-      </SacredCard>
-
-      <div className="mb-4">
-        <SacredProgress
-          label="My Progress"
-          value={`${completedCount}/${TOTAL_DAYS}`}
-          percent={progressPct}
-        />
-      </div>
-
-      <JourneyTimeline
-        currentDay={day.day_number}
-        totalDays={TOTAL_DAYS}
-        period={day.period}
-        progressPercent={progressPct}
-      />
+      </button>
 
       <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
         <TodayCardArtwork

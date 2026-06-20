@@ -16,6 +16,7 @@ import {
   SacredCard,
   sacredButtonCardClassName,
 } from '../components/SacredCard';
+import JourneyTimeline from '../components/JourneyTimeline';
 
 function isComplete(
   records: CompletionRecord[],
@@ -604,6 +605,13 @@ export default function Journey() {
           </div>
         </div>
       </button>
+
+      <JourneyTimeline
+        currentDay={currentDay}
+        totalDays={TOTAL_DAYS}
+        period={currentPeriod.name}
+        progressPercent={progressPct}
+      />
 
       <header className="mb-4 px-1">
         <h2 className="font-display text-2xl font-bold text-leather-900">

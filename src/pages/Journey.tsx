@@ -6,10 +6,17 @@ import { getAllCompletions } from '../lib/completions';
 import { useAccount, Member } from '../lib/account';
 import { CompletionRecord, ReadingDay } from '../lib/supabase';
 import {
+  DIVE_DEEPER_ITEM,
   FAITH_JOURNEY_ITEMS,
   SCRIPTURE_READING_ITEM,
+  SeeingGodReflection,
+  getRotatingDevotion,
+  getRotatingEveningPrayer,
+  getRotatingMorningPrayer,
   mergeFaithJourneyChecks,
+  readSeeingGodReflection,
   readFaithJourneyChecks,
+  writeSeeingGodReflection,
   writeFaithJourneyChecks,
 } from '../lib/faithJourney';
 import {
@@ -304,17 +311,164 @@ function JourneyHub({
 function FaithJourneyDetail({
   checkedItems,
   autoItems,
+  currentDay,
+  seeingGod,
   onToggleItem,
+  onSeeingGodChange,
   onBack,
 }: {
   checkedItems: string[];
   autoItems: string[];
+  currentDay: number;
+  seeingGod: SeeingGodReflection;
   onToggleItem: (item: string) => void;
+  onSeeingGodChange: (field: keyof SeeingGodReflection, value: string) => void;
   onBack: () => void;
 }) {
+  const navigate = useNavigate();
   const effectiveItems = mergeFaithJourneyChecks(checkedItems, autoItems);
   const completed = effectiveItems.length;
   const progress = Math.round((completed / FAITH_JOURNEY_ITEMS.length) * 100);
+  const morningPrayer = getRotatingMorningPrayer(currentDay);
+  const eveningPrayer = getRotatingEveningPrayer(currentDay);
+  const devotion = getRotatingDevotion(currentDay);
+  const inputClass =
+    'mt-2 min-h-24 w-full rounded-xl border border-parchment-200 bg-white px-4 py-3 text-sm leading-relaxed text-leather-900 outline-none focus:border-leather-400';
+
+  const renderItemContent = (item: string, autoDone: boolean) => {
+    if (item === 'Morning Prayer') {
+      return (
+        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
+          {morningPrayer}
+        </div>
+      );
+    }
+
+    if (item === SCRIPTURE_READING_ITEM) {
+      return (
+        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
+          <p>
+            Let Scripture shape the day. Read slowly, listen for one word or
+            phrase, and ask how Christ is calling you to respond.
+          </p>
+          {autoDone && (
+            <p className="mt-3 font-semibold text-sage-500">
+              Completed from today&apos;s Scripture Journey.
+            </p>
+          )}
+        </div>
+      );
+    }
+
+    if (item === DIVE_DEEPER_ITEM) {
+      return (
+        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
+          <p>
+            Return to today&apos;s Scripture and look for the history, promise,
+            and connection to Christ. Carry one insight into prayer.
+          </p>
+          {autoDone && (
+            <p className="mt-3 font-semibold text-sage-500">
+              Completed from today&apos;s Dive Deeper reflection.
+            </p>
+          )}
+        </div>
+      );
+    }
+
+    if (item === 'Faith Formation') {
+      return (
+        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
+          <p>
+            Today, learn one truth and live it simply: God gives grace so we can
+            love him and our neighbor. Ask for one concrete act of faith,
+            hope, or charity.
+          </p>
+        </div>
+      );
+    }
+
+    if (item === 'Daily Devotion') {
+      return (
+        <div className="mt-4 rounded-xl bg-parchment-50 p-4">
+          <h3 className="font-display text-xl font-semibold text-leather-900">
+            {devotion.title}
+          </h3>
+          <p className="mt-2 text-sm leading-relaxed text-leather-900">
+            {devotion.body}
+          </p>
+          {devotion.linkTo && devotion.linkLabel && (
+            <button
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                navigate(devotion.linkTo ?? '/prayer');
+              }}
+              className="mt-4 w-full rounded-xl bg-leather-600 py-3 text-sm font-semibold text-white transition active:scale-[0.99]"
+            >
+              {devotion.linkLabel}
+            </button>
+          )}
+        </div>
+      );
+    }
+
+    if (item === 'Five Finger Prayer') {
+      return (
+        <div className="mt-4 grid gap-2 text-sm text-leather-900">
+          {[
+            ['Thumb', 'Pray for those closest to you.'],
+            ['Pointer', 'Pray for those who teach, guide, and lead.'],
+            ['Middle', 'Pray for leaders and those with responsibility.'],
+            ['Ring', 'Pray for the weak, sick, lonely, and burdened.'],
+            ['Pinky', 'Pray for yourself with humility and trust.'],
+          ].map(([label, body]) => (
+            <div key={label} className="rounded-xl bg-parchment-50 px-4 py-3">
+              <span className="font-semibold text-leather-700">{label}: </span>
+              {body}
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    if (item === 'Seeing God Today') {
+      return (
+        <div className="mt-4 rounded-xl bg-parchment-50 p-4">
+          {[
+            ['noticedGod', 'Where did I notice God today?'],
+            ['personBeforeMe', 'Who did God place before me today?'],
+            ['graceToRemember', 'What grace do I want to remember?'],
+          ].map(([field, label]) => (
+            <label key={field} className="mb-4 block text-sm text-leather-900">
+              <span className="font-semibold">{label}</span>
+              <textarea
+                value={seeingGod[field as keyof SeeingGodReflection]}
+                onClick={(event) => event.stopPropagation()}
+                onChange={(event) =>
+                  onSeeingGodChange(
+                    field as keyof SeeingGodReflection,
+                    event.target.value
+                  )
+                }
+                className={inputClass}
+              />
+            </label>
+          ))}
+        </div>
+      );
+    }
+
+    if (item === 'Evening Prayer') {
+      return (
+        <div className="mt-4 rounded-xl bg-parchment-50 p-4 text-sm leading-relaxed text-leather-900">
+          {eveningPrayer}
+        </div>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-6">
@@ -354,28 +508,34 @@ function FaithJourneyDetail({
           const done = effectiveItems.includes(item);
           const autoDone = autoItems.includes(item);
           return (
-            <button
+            <div
               key={item}
-              disabled={autoDone}
-              onClick={() => onToggleItem(item)}
-              className={`${sacredButtonCardClassName} flex w-full items-center gap-3 text-left disabled:active:scale-100`}
+              className={`${sacredButtonCardClassName} w-full text-left`}
             >
-              <CheckDot done={done} />
-              <span className="min-w-0 flex-1">
-                <span
-                  className={`block font-semibold ${
-                    done ? 'text-stone-400 line-through' : 'text-leather-900'
-                  }`}
-                >
-                  {item}
-                </span>
-                {autoDone && (
-                  <span className="mt-1 block text-xs font-medium text-sage-500">
-                    Completed from Scripture Journey
+              <button
+                type="button"
+                disabled={autoDone}
+                onClick={() => onToggleItem(item)}
+                className="flex w-full items-center gap-3 text-left disabled:active:scale-100"
+              >
+                <CheckDot done={done} />
+                <span className="min-w-0 flex-1">
+                  <span
+                    className={`block font-semibold ${
+                      done ? 'text-stone-400 line-through' : 'text-leather-900'
+                    }`}
+                  >
+                    {item}
                   </span>
-                )}
-              </span>
-            </button>
+                  {autoDone && (
+                    <span className="mt-1 block text-xs font-medium text-sage-500">
+                      Completed from Scripture Journey
+                    </span>
+                  )}
+                </span>
+              </button>
+              {renderItemContent(item, autoDone)}
+            </div>
           );
         })}
       </div>
@@ -391,6 +551,9 @@ export default function Journey() {
   const [selected, setSelected] = useState<Period | null>(null);
   const [faithCheckedItems, setFaithCheckedItems] = useState<string[]>(
     readFaithJourneyChecks
+  );
+  const [seeingGod, setSeeingGod] = useState<SeeingGodReflection>(
+    readSeeingGodReflection
   );
   const pageRef = useRef<HTMLDivElement | null>(null);
 
@@ -472,12 +635,26 @@ export default function Journey() {
     });
   };
 
+  const updateSeeingGod = (
+    field: keyof SeeingGodReflection,
+    value: string
+  ) => {
+    setSeeingGod((current) => {
+      const next = { ...current, [field]: value };
+      writeSeeingGodReflection(next);
+      return next;
+    });
+  };
+
   if (location.pathname === '/journey/faith') {
     return (
       <FaithJourneyDetail
         checkedItems={faithCheckedItems}
         autoItems={autoFaithItems}
+        currentDay={currentDay}
+        seeingGod={seeingGod}
         onToggleItem={toggleFaithItem}
+        onSeeingGodChange={updateSeeingGod}
         onBack={() => navigate('/journey')}
       />
     );

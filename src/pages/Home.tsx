@@ -114,41 +114,51 @@ export default function Home() {
 
       <button
         onClick={() => navigate(`/day/${day.day_number}`)}
-        className="mb-4 block w-full overflow-hidden rounded-[1.75rem] border border-parchment-200 bg-white/90 text-left shadow-[0_16px_40px_rgba(74,55,40,0.1)] transition active:scale-[0.99]"
+        className="relative mb-4 block w-full overflow-hidden rounded-[1.75rem] bg-leather-900 text-left text-white shadow-[0_16px_40px_rgba(74,55,40,0.16)] transition active:scale-[0.99]"
       >
-        <div className="p-5">
+        <img
+          src="/images/journey/christ-connections.webp"
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-leather-900/35 via-leather-900/72 to-leather-900/95" />
+        <div className="relative p-5">
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs uppercase tracking-widest text-gold">
                 Scripture Journey
               </p>
-              <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+              <h2 className="mt-1 font-display text-2xl font-bold text-parchment-50">
                 Day {day.day_number} of {TOTAL_DAYS}
               </h2>
-              <p className="mt-1 text-sm text-stone-500">{day.period}</p>
+              <p className="mt-1 text-sm text-parchment-100/80">
+                {day.period}
+              </p>
             </div>
-            <span className="shrink-0 rounded-full bg-parchment-100 px-3 py-1 text-xs font-semibold text-leather-600">
+            <span className="shrink-0 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-parchment-50">
               {doneToday ? 'Completed' : 'Awaiting'}
             </span>
           </div>
-          <ul className="mt-4 space-y-1 text-sm font-medium text-leather-900">
+          <ul className="mt-4 space-y-1 text-sm font-medium text-parchment-50">
             <li>{day.reading_one}</li>
             {day.reading_two && <li>{day.reading_two}</li>}
             {day.psalm_proverb && <li>{day.psalm_proverb}</li>}
           </ul>
           <div className="mt-4">
-            <div className="mb-1 flex justify-between text-xs text-stone-500">
+            <div className="mb-1 flex justify-between text-xs text-parchment-100/75">
               <span>{completedCount}/{TOTAL_DAYS}</span>
               <span>{progressPct}%</span>
             </div>
-            <div className="h-3 w-full overflow-hidden rounded-full bg-parchment-200">
+            <div className="h-3 w-full overflow-hidden rounded-full bg-parchment-100/25">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
+                className="h-full rounded-full bg-gradient-to-r from-gold to-parchment-100"
                 style={{ width: `${progressPct}%` }}
               />
             </div>
           </div>
-          <div className="mt-4 rounded-xl bg-leather-600 py-3 text-center font-semibold text-white">
+          <div className="mt-4 rounded-xl bg-gold py-3 text-center font-semibold text-leather-900">
             Continue Reading
           </div>
         </div>

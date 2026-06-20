@@ -5,6 +5,10 @@ import { TOTAL_DAYS } from '../config/journey';
 import { getAllCompletions } from '../lib/completions';
 import { useAccount } from '../lib/account';
 import { CompletionRecord } from '../lib/supabase';
+import {
+  FAITH_JOURNEY_ITEMS,
+  readFaithJourneyChecks,
+} from '../lib/faithJourney';
 import { SacredCard, SacredProgress } from '../components/SacredCard';
 import JourneyTimeline from '../components/JourneyTimeline';
 
@@ -52,6 +56,10 @@ export default function Home() {
   const { profile, completionId, members } = useAccount();
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
   const [heroImageSrc, setHeroImageSrc] = useState(getHeroImageSrc);
+  const [journeyOpen, setJourneyOpen] = useState(false);
+  const [faithCheckedItems, setFaithCheckedItems] = useState<string[]>(
+    readFaithJourneyChecks
+  );
 
   useEffect(() => {
     getAllCompletions()
@@ -64,6 +72,14 @@ export default function Home() {
     updateHero();
     const timer = window.setInterval(updateHero, 60000);
     return () => window.clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const syncFaithProgress = () => {
+      setFaithCheckedItems(readFaithJourneyChecks());
+    };
+    window.addEventListener('focus', syncFaithProgress);
+    return () => window.removeEventListener('focus', syncFaithProgress);
   }, []);
 
   const uid = completionId ?? '';
@@ -80,6 +96,9 @@ export default function Home() {
     isComplete(completions, d.day_number, uid)
   ).length;
   const progressPct = Math.round((completedCount / TOTAL_DAYS) * 100);
+  const faithProgressPct = Math.round(
+    (faithCheckedItems.length / FAITH_JOURNEY_ITEMS.length) * 100
+  );
 
   const todayRosary = ROSARY_BY_DAY[new Date().getDay()];
 
@@ -153,6 +172,68 @@ export default function Home() {
             </button>
           </div>
         </div>
+      </section>
+
+      <section className="mb-4 rounded-2xl border border-parchment-200 bg-white/90 shadow-[0_12px_32px_rgba(74,55,40,0.08)]">
+        <button
+          type="button"
+          onClick={() => setJourneyOpen((open) => !open)}
+          className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left transition active:scale-[0.99]"
+        >
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+              Continue your Journey
+            </p>
+            <p className="mt-1 text-sm font-medium text-leather-900">
+              Scripture {progressPct}% complete, Faith {faithProgressPct}% today
+            </p>
+          </div>
+          <span className="shrink-0 rounded-full border border-parchment-200 bg-parchment-50 px-3 py-1 text-xs font-semibold text-stone-500">
+            {journeyOpen ? 'Close' : 'Open'}
+          </span>
+        </button>
+
+        {journeyOpen && (
+          <div className="border-t border-parchment-200 px-4 pb-4 pt-3">
+            <div className="grid gap-3">
+              <button
+                type="button"
+                onClick={() => navigate('/journey/scripture')}
+                className="rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-left transition active:scale-[0.99]"
+              >
+                <div className="flex items-center justify-between text-sm font-semibold text-leather-900">
+                  <span>Scripture Journey</span>
+                  <span>{completedCount}/{TOTAL_DAYS}</span>
+                </div>
+                <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-parchment-200">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
+                    style={{ width: `${progressPct}%` }}
+                  />
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => navigate('/journey/faith')}
+                className="rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-left transition active:scale-[0.99]"
+              >
+                <div className="flex items-center justify-between text-sm font-semibold text-leather-900">
+                  <span>Faith Journey</span>
+                  <span>
+                    {faithCheckedItems.length}/{FAITH_JOURNEY_ITEMS.length}
+                  </span>
+                </div>
+                <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-parchment-200">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-sage-500 to-gold"
+                    style={{ width: `${faithProgressPct}%` }}
+                  />
+                </div>
+              </button>
+            </div>
+          </div>
+        )}
       </section>
 
       <div className="mb-4">

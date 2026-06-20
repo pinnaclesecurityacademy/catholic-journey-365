@@ -76,6 +76,8 @@ function PrivateRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/journey" element={<Journey />} />
+        <Route path="/journey/scripture" element={<Journey />} />
+        <Route path="/journey/faith" element={<Journey />} />
         <Route path="/day/:dayNumber" element={<DayDetail />} />
         <Route path="/day/:dayNumber/deeper" element={<DiveDeeper />} />
         <Route path="/saint" element={<SaintOfDay />} />

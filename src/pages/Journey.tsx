@@ -6,6 +6,11 @@ import { getAllCompletions } from '../lib/completions';
 import { useAccount, Member } from '../lib/account';
 import { CompletionRecord, ReadingDay } from '../lib/supabase';
 import {
+  FAITH_JOURNEY_ITEMS,
+  readFaithJourneyChecks,
+  writeFaithJourneyChecks,
+} from '../lib/faithJourney';
+import {
   SacredCard,
   sacredButtonCardClassName,
 } from '../components/SacredCard';
@@ -39,6 +44,20 @@ function Dot({ done }: { done: boolean }) {
         done
           ? 'border border-gold bg-gold text-leather-900'
           : 'border border-stone-300 text-stone-400'
+      }`}
+    >
+      {done ? '\u2713' : ''}
+    </span>
+  );
+}
+
+function CheckDot({ done }: { done: boolean }) {
+  return (
+    <span
+      className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold ${
+        done
+          ? 'bg-sage-500 text-white'
+          : 'border-2 border-parchment-200 bg-white text-stone-400'
       }`}
     >
       {done ? '\u2713' : ''}
@@ -137,12 +156,235 @@ function buildPeriods(): Period[] {
   return periods;
 }
 
+function JourneyHub({
+  scriptureDay,
+  scriptureProgress,
+  faithDone,
+  faithTotal,
+  onOpenScripture,
+  onOpenFaith,
+}: {
+  scriptureDay: number;
+  scriptureProgress: number;
+  faithDone: number;
+  faithTotal: number;
+  onOpenScripture: () => void;
+  onOpenFaith: () => void;
+}) {
+  const faithProgress = Math.round((faithDone / faithTotal) * 100);
+
+  return (
+    <div className="mx-auto max-w-md px-4 pt-5 pb-6">
+      <header className="mb-5 px-1">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+          Catholic Journey 365
+        </p>
+        <h1 className="mt-1 font-display text-3xl font-bold text-leather-900">
+          Journey
+        </h1>
+        <p className="mt-2 text-sm leading-relaxed text-stone-500">
+          Choose a path for prayer, Scripture, and formation.
+        </p>
+      </header>
+
+      <div className="space-y-4">
+        <button
+          onClick={onOpenScripture}
+          className="relative block w-full overflow-hidden rounded-[1.75rem] bg-leather-900 text-left text-white shadow-[0_24px_56px_rgba(28,25,23,0.22)] transition active:scale-[0.99]"
+        >
+          <img
+            src="/images/journey/christ-connections.webp"
+            alt=""
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-leather-900/25 via-leather-900/65 to-leather-900/95" />
+          <div className="relative px-5 pb-5 pt-24">
+            <p className="text-xs uppercase tracking-widest text-gold">
+              Scripture Journey
+            </p>
+            <h2 className="mt-1 font-display text-3xl font-bold leading-tight">
+              365 days
+            </h2>
+            <p className="mt-2 text-sm text-parchment-100/85">
+              Continue the Bible Timeline with readings, Dive Deeper, progress,
+              and your shared journey.
+            </p>
+            <div className="mt-4 rounded-2xl border border-white/20 bg-white/12 p-4 backdrop-blur-sm">
+              <div className="flex items-center justify-between text-sm font-semibold">
+                <span>Day {scriptureDay} of {TOTAL_DAYS}</span>
+                <span>{scriptureProgress}%</span>
+              </div>
+              <div className="mt-3 h-3 overflow-hidden rounded-full bg-parchment-100/25">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-gold to-parchment-100"
+                  style={{ width: `${scriptureProgress}%` }}
+                />
+              </div>
+            </div>
+          </div>
+        </button>
+
+        <button
+          onClick={onOpenFaith}
+          className={`${sacredButtonCardClassName} w-full text-left bg-gradient-to-br from-white to-parchment-50`}
+        >
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                Faith Journey
+              </p>
+              <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+                Daily Formation
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-stone-500">
+                A simple V1 rhythm for prayer, Scripture, devotion, and seeing
+                God in the day.
+              </p>
+            </div>
+            <span className="rounded-full bg-leather-600 px-3 py-1 text-xs font-semibold text-white">
+              New
+            </span>
+          </div>
+          <div className="mt-4">
+            <div className="mb-1 flex justify-between text-xs text-stone-500">
+              <span>{faithDone}/{faithTotal} today</span>
+              <span>{faithProgress}%</span>
+            </div>
+            <div className="h-3 w-full overflow-hidden rounded-full bg-parchment-200">
+              <div
+                className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
+                style={{ width: `${faithProgress}%` }}
+              />
+            </div>
+          </div>
+        </button>
+
+        <SacredCard className="bg-white/75 opacity-80">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
+                Rosary Journey
+              </p>
+              <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+                90 Days with Mary
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-stone-500">
+                Coming soon as a guided path of Marian prayer that points to
+                Christ.
+              </p>
+            </div>
+            <span className="rounded-full border border-parchment-200 bg-parchment-50 px-3 py-1 text-xs font-semibold text-stone-500">
+              Coming soon
+            </span>
+          </div>
+        </SacredCard>
+
+        <SacredCard className="bg-white/75 opacity-80">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
+            Future Journeys
+          </p>
+          <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+            Coming soon
+          </h2>
+          <div className="mt-4 grid gap-2">
+            {['Lent Journey', 'Early Church Journey', 'Sacramental Journey'].map(
+              (title) => (
+                <div
+                  key={title}
+                  className="rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-sm font-semibold text-leather-700"
+                >
+                  {title}
+                </div>
+              )
+            )}
+          </div>
+        </SacredCard>
+      </div>
+    </div>
+  );
+}
+
+function FaithJourneyDetail({
+  checkedItems,
+  onToggleItem,
+  onBack,
+}: {
+  checkedItems: string[];
+  onToggleItem: (item: string) => void;
+  onBack: () => void;
+}) {
+  const completed = checkedItems.length;
+  const progress = Math.round((completed / FAITH_JOURNEY_ITEMS.length) * 100);
+
+  return (
+    <div className="mx-auto max-w-md px-4 pt-5 pb-6">
+      <button
+        onClick={onBack}
+        className="mb-4 rounded-xl border border-parchment-200 bg-white/80 px-4 py-2 text-sm font-semibold text-leather-600 shadow-[0_10px_28px_rgba(74,55,40,0.07)] transition active:scale-[0.99]"
+      >
+        &larr; Journey Hub
+      </button>
+
+      <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+          Faith Journey
+        </p>
+        <h1 className="mt-1 font-display text-3xl font-bold text-leather-900">
+          Today's Formation
+        </h1>
+        <p className="mt-2 text-sm leading-relaxed text-stone-500">
+          A simple daily rhythm for prayer, Scripture, formation, and reflection.
+        </p>
+        <div className="mt-5">
+          <div className="mb-1 flex justify-between text-xs text-stone-500">
+            <span>{completed}/{FAITH_JOURNEY_ITEMS.length} complete</span>
+            <span>{progress}%</span>
+          </div>
+          <div className="h-3 w-full overflow-hidden rounded-full bg-parchment-200">
+            <div
+              className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+        </div>
+      </SacredCard>
+
+      <div className="space-y-3">
+        {FAITH_JOURNEY_ITEMS.map((item) => {
+          const done = checkedItems.includes(item);
+          return (
+            <button
+              key={item}
+              onClick={() => onToggleItem(item)}
+              className={`${sacredButtonCardClassName} flex w-full items-center gap-3 text-left`}
+            >
+              <CheckDot done={done} />
+              <span
+                className={`font-semibold ${
+                  done ? 'text-stone-400 line-through' : 'text-leather-900'
+                }`}
+              >
+                {item}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export default function Journey() {
   const navigate = useNavigate();
   const location = useLocation();
   const { members } = useAccount();
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
   const [selected, setSelected] = useState<Period | null>(null);
+  const [faithCheckedItems, setFaithCheckedItems] = useState<string[]>(
+    readFaithJourneyChecks
+  );
   const pageRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -198,6 +440,44 @@ export default function Journey() {
   const currentPeriodPct = Math.round(
     (currentPeriodDone / currentPeriod.days.length) * 100
   );
+
+  const completedCount = readingPlan.filter((d) =>
+    groupComplete(completions, d.day_number, members)
+  ).length;
+  const progressPct = Math.round((completedCount / TOTAL_DAYS) * 100);
+
+  const toggleFaithItem = (item: string) => {
+    setFaithCheckedItems((current) => {
+      const next = current.includes(item)
+        ? current.filter((value) => value !== item)
+        : [...current, item];
+      writeFaithJourneyChecks(next);
+      return next;
+    });
+  };
+
+  if (location.pathname === '/journey/faith') {
+    return (
+      <FaithJourneyDetail
+        checkedItems={faithCheckedItems}
+        onToggleItem={toggleFaithItem}
+        onBack={() => navigate('/journey')}
+      />
+    );
+  }
+
+  if (location.pathname !== '/journey/scripture') {
+    return (
+      <JourneyHub
+        scriptureDay={currentDay}
+        scriptureProgress={progressPct}
+        faithDone={faithCheckedItems.length}
+        faithTotal={FAITH_JOURNEY_ITEMS.length}
+        onOpenScripture={() => navigate('/journey/scripture')}
+        onOpenFaith={() => navigate('/journey/faith')}
+      />
+    );
+  }
 
   // ---- Period detail view (days within one period) ----
   if (selected) {

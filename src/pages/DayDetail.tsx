@@ -73,7 +73,7 @@ export default function DayDetail() {
       <div className="max-w-md mx-auto px-5 pt-10 text-center">
         <p className="text-stone-500">That day could not be found.</p>
         <button
-          onClick={() => navigate('/journey')}
+          onClick={() => navigate('/journey/scripture')}
           className="mt-4 text-leather-600 font-medium"
         >
           Back to Journey

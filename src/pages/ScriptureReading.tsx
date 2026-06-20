@@ -127,7 +127,7 @@ export default function ScriptureReading() {
             Dive Deeper →
           </button>
           <button
-            onClick={() => navigate('/journey')}
+            onClick={() => navigate('/journey/scripture')}
             className="w-full rounded-xl bg-white border border-parchment-200 py-3 font-semibold text-leather-600 active:scale-[0.99] transition"
           >
             Return to Journey

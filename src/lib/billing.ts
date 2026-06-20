@@ -44,19 +44,16 @@ function isFutureDate(value: string | null | undefined) {
 }
 
 export function hasSubscriptionAccess(
-  subscription: SubscriptionStatus | null
+  subscription: SubscriptionStatus | null,
+  currentUserId: string | null | undefined
 ) {
   if (!subscription) return false;
-  if (subscription.status === 'trialing' || subscription.status === 'active') {
-    return true;
-  }
-  if (
-    subscription.status === 'canceled' &&
+  if (!currentUserId || subscription.user_id !== currentUserId) return false;
+  if (subscription.status !== 'trialing' && subscription.status !== 'active') return false;
+  return (
+    subscription.current_period_end === null ||
     isFutureDate(subscription.current_period_end)
-  ) {
-    return true;
-  }
-  return false;
+  );
 }
 
 export async function startCheckout(plan: SubscriptionPlan) {

@@ -427,7 +427,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         profile,
         accountStatus,
         subscription,
-        hasBillingAccess: hasSubscriptionAccess(subscription),
+        hasBillingAccess: hasSubscriptionAccess(subscription, user?.id),
         completionId: profile?.completion_id ?? null,
         journeyId,
         journeyName,

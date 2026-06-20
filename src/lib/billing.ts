@@ -47,13 +47,32 @@ export function hasSubscriptionAccess(
   subscription: SubscriptionStatus | null,
   currentUserId: string | null | undefined
 ) {
-  if (!subscription) return false;
-  if (!currentUserId || subscription.user_id !== currentUserId) return false;
-  if (subscription.status !== 'trialing' && subscription.status !== 'active') return false;
-  return (
-    subscription.current_period_end === null ||
-    isFutureDate(subscription.current_period_end)
-  );
+  let hasAccess = false;
+
+  if (!subscription) {
+    hasAccess = false;
+  } else if (!currentUserId || subscription.user_id !== currentUserId) {
+    hasAccess = false;
+  } else if (
+    subscription.status !== 'trialing' &&
+    subscription.status !== 'active'
+  ) {
+    hasAccess = false;
+  } else {
+    hasAccess = (
+      subscription.current_period_end === null ||
+      isFutureDate(subscription.current_period_end)
+    );
+  }
+
+  console.log('[billing] subscription access check', {
+    currentUserId,
+    status: subscription?.status ?? null,
+    current_period_end: subscription?.current_period_end ?? null,
+    finalHasAccess: hasAccess,
+  });
+
+  return hasAccess;
 }
 
 export async function startCheckout(plan: SubscriptionPlan) {

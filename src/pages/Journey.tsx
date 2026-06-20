@@ -183,6 +183,41 @@ function buildPeriods(): Period[] {
   return periods;
 }
 
+function JourneyHubIcon({ type }: { type: 'scripture' | 'rhythm' | 'marian' }) {
+  const paths = {
+    scripture: (
+      <>
+        <path d="M6.5 5.5h7a4 4 0 0 1 4 4v9h-7a4 4 0 0 1-4-4z" />
+        <path d="M10 9h4M10 12h4" />
+      </>
+    ),
+    rhythm: (
+      <>
+        <circle cx="12" cy="12" r="3.5" />
+        <path d="M12 3.5v2M12 18.5v2M4.5 12h2M17.5 12h2M6.7 6.7l1.4 1.4M15.9 15.9l1.4 1.4M17.3 6.7l-1.4 1.4M8.1 15.9l-1.4 1.4" />
+      </>
+    ),
+    marian: (
+      <>
+        <path d="M12 4.5c2.8 2.4 4.2 5 4.2 7.8 0 3.1-1.8 5.7-4.2 7.2-2.4-1.5-4.2-4.1-4.2-7.2 0-2.8 1.4-5.4 4.2-7.8z" />
+        <path d="M9.2 12.5h5.6M12 9.7v5.6" />
+      </>
+    ),
+  };
+
+  return (
+    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gold/35 bg-parchment-50 text-leather-600">
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="h-5 w-5 fill-none stroke-current stroke-[1.8]"
+      >
+        {paths[type]}
+      </svg>
+    </span>
+  );
+}
+
 function JourneyHub({
   scriptureDay,
   scriptureProgress,
@@ -200,70 +235,71 @@ function JourneyHub({
 }) {
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-6">
-      <header className="mb-5 px-1">
+      <header className="mb-5 rounded-[1.75rem] border border-parchment-200 bg-gradient-to-br from-white to-parchment-50 px-5 py-6 shadow-[0_18px_42px_rgba(74,55,40,0.09)]">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
           Catholic Journey 365
         </p>
-        <h1 className="mt-1 font-display text-3xl font-bold text-leather-900">
-          Journey
+        <h1 className="mt-2 font-display text-4xl font-bold leading-tight text-leather-900">
+          Your Journey
         </h1>
-        <p className="mt-2 text-sm leading-relaxed text-stone-500">
-          Continue Scripture first, with prayer and formation nearby.
+        <p className="mt-3 font-display text-xl font-semibold leading-snug text-leather-700">
+          Walk with Christ one day at a time.
+        </p>
+        <p className="mt-3 text-sm leading-relaxed text-stone-500">
+          Track your progress through Scripture, prayer, and Catholic formation.
         </p>
       </header>
 
       <div className="space-y-4">
         <button
           onClick={onOpenScripture}
-          className="relative block w-full overflow-hidden rounded-[1.75rem] bg-leather-900 text-left text-white shadow-[0_24px_56px_rgba(28,25,23,0.22)] transition active:scale-[0.99]"
+          className="block w-full rounded-[1.5rem] border border-parchment-200 bg-white p-5 text-left shadow-[0_14px_34px_rgba(74,55,40,0.08)] transition active:scale-[0.99]"
         >
-          <img
-            src="/images/journey/christ-connections.webp"
-            alt=""
-            loading="eager"
-            decoding="async"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-leather-900/25 via-leather-900/65 to-leather-900/95" />
-          <div className="relative px-5 pb-5 pt-24">
-            <p className="text-xs uppercase tracking-widest text-gold">
-              Scripture Journey
-            </p>
-            <h2 className="mt-1 font-display text-3xl font-bold leading-tight">
-              Scripture Journey
-            </h2>
-            <p className="mt-2 text-sm text-parchment-100/85">
-              Continue the 365 day walk through Scripture with readings, Dive
-              Deeper, progress, and your shared journey.
-            </p>
-            <div className="mt-4 rounded-2xl border border-white/20 bg-white/12 p-4 backdrop-blur-sm">
-              <div className="flex items-center justify-between text-sm font-semibold">
-                <span>Day {scriptureDay} of {TOTAL_DAYS}</span>
-                <span>{scriptureProgress}%</span>
-              </div>
-              <div className="mt-3 h-3 overflow-hidden rounded-full bg-parchment-100/25">
-                <div
-                  className="h-full rounded-full bg-gradient-to-r from-gold to-parchment-100"
-                  style={{ width: `${scriptureProgress}%` }}
-                />
+          <div className="flex items-start gap-4">
+            <JourneyHubIcon type="scripture" />
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                Active Journey
+              </p>
+              <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+                Scripture Journey
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-stone-500">
+                Continue the 365 day walk through Scripture with readings, Dive
+                Deeper, progress, and your shared journey.
+              </p>
+              <div className="mt-4">
+                <div className="mb-1 flex items-center justify-between text-xs font-semibold text-stone-500">
+                  <span>Day {scriptureDay} of {TOTAL_DAYS}</span>
+                  <span>{scriptureProgress}%</span>
+                </div>
+                <div className="h-3 overflow-hidden rounded-full bg-parchment-200">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-leather-600 to-gold"
+                    style={{ width: `${scriptureProgress}%` }}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </button>
 
-        <SacredCard className="bg-gradient-to-br from-white to-parchment-50">
+        <SacredCard className="bg-gradient-to-br from-white to-parchment-50 p-5">
           <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-                Today&apos;s Rhythm
-              </p>
-              <h2 className="mt-1 font-display text-xl font-bold text-leather-900">
-                Prayer and Reflection
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-stone-500">
-                Add morning prayer, formation, and evening reflection when you
-                are ready.
-              </p>
+            <div className="flex min-w-0 gap-4">
+              <JourneyHubIcon type="rhythm" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+                  Today&apos;s Rhythm
+                </p>
+                <h2 className="mt-1 font-display text-xl font-bold text-leather-900">
+                  Prayer and Reflection
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-stone-500">
+                  Add morning prayer, formation, and evening reflection when you
+                  are ready.
+                </p>
+              </div>
             </div>
             <span className="rounded-full border border-parchment-200 bg-white px-3 py-1 text-xs font-semibold text-leather-600">
               {faithDone}/{faithTotal}
@@ -278,18 +314,21 @@ function JourneyHub({
           </button>
         </SacredCard>
 
-        <SacredCard className="bg-white/75 opacity-80">
+        <SacredCard className="bg-white/75 p-5 opacity-85">
           <div className="flex items-start justify-between gap-3">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
-                Rosary Journey
-              </p>
-              <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
-                90 Days with Mary
-              </h2>
-              <p className="mt-2 text-sm leading-relaxed text-stone-500">
-                Coming Soon
-              </p>
+            <div className="flex min-w-0 gap-4">
+              <JourneyHubIcon type="marian" />
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-400">
+                  Marian Journey
+                </p>
+                <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+                  90 Days with Mary
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-stone-500">
+                  Coming Soon
+                </p>
+              </div>
             </div>
             <span className="rounded-full border border-parchment-200 bg-parchment-50 px-3 py-1 text-xs font-semibold text-stone-500">
               Coming Soon

@@ -55,6 +55,7 @@ interface AccountValue {
   ) => Promise<{ error?: string }>;
   signIn: (email: string, password: string) => Promise<{ error?: string }>;
   resetPassword: (email: string) => Promise<{ error?: string }>;
+  updatePassword: (password: string) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
   startSubscription: (plan: SubscriptionPlan) => Promise<{ error?: string }>;
   manageSubscription: () => Promise<{ error?: string }>;
@@ -242,7 +243,15 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   }, [loadAll]);
 
   const signUp = async (name: string, email: string, password: string) => {
-    const { data, error } = await supabase.auth.signUp({ email, password });
+    const emailRedirectTo =
+      typeof window !== 'undefined'
+        ? `${window.location.origin}/app/login`
+        : undefined;
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: { emailRedirectTo },
+    });
     if (error) return { error: error.message };
     const uid = data.user?.id;
     if (uid) {
@@ -268,7 +277,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   const resetPassword = async (email: string) => {
     const redirectTo =
       typeof window !== 'undefined'
-        ? `${window.location.origin}/app`
+        ? `${window.location.origin}/app/reset-password`
         : undefined;
     const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
       redirectTo,
@@ -300,6 +309,12 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     if (error) return { error: error.message };
     setAccountStatus('deactivated');
     await signOut();
+    return {};
+  };
+
+  const updatePassword = async (password: string) => {
+    const { error } = await supabase.auth.updateUser({ password });
+    if (error) return { error: error.message };
     return {};
   };
 
@@ -439,6 +454,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         signUp,
         signIn,
         resetPassword,
+        updatePassword,
         signOut,
         startSubscription,
         manageSubscription,

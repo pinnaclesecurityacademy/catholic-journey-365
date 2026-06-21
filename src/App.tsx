@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense, type ReactNode } from 'react';
+import { useEffect, lazy, Suspense, useState, type ReactNode } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import AppErrorBoundary from './components/AppErrorBoundary';
@@ -30,6 +30,9 @@ const ScriptureReading = lazy(() => import('./pages/ScriptureReading'));
 const Landing = lazy(() => import('./pages/Landing'));
 const Paywall = lazy(() => import('./pages/Paywall'));
 const LegalPage = lazy(() => import('./pages/LegalPage'));
+const ResetPassword = lazy(() => import('./pages/ResetPassword'));
+
+const INTRO_STORAGE_KEY = 'cj365_intro_complete_v1';
 
 function Splash() {
   const hour = new Date().getHours();
@@ -207,6 +210,117 @@ function AuthGateLoading() {
   );
 }
 
+function AuthRecoveryScreen() {
+  const { signOut } = useAccount();
+
+  return (
+    <main className="min-h-screen bg-parchment-100 flex items-center justify-center px-6">
+      <div className="w-full max-w-sm rounded-2xl border border-parchment-200 bg-white p-6 text-center shadow-[0_18px_42px_rgba(74,55,40,0.08)]">
+        <h1 className="font-display text-3xl font-bold text-leather-900">
+          Journey setup needs a restart
+        </h1>
+        <p className="mt-3 text-sm leading-relaxed text-stone-600">
+          Catholic Journey 365 could not finish loading your session. Please
+          try again or return to the login screen.
+        </p>
+        <div className="mt-5 space-y-3">
+          <button
+            type="button"
+            onClick={() => window.location.reload()}
+            className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Try again
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              window.location.href = '/app/login';
+            }}
+            className="w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-leather-600 transition active:scale-[0.99]"
+          >
+            Return to login
+          </button>
+          <button
+            type="button"
+            onClick={async () => {
+              await signOut();
+              window.location.href = '/app/login';
+            }}
+            className="w-full rounded-xl border border-parchment-200 bg-parchment-50 py-3 font-semibold text-stone-500 transition active:scale-[0.99]"
+          >
+            Sign out and restart
+          </button>
+        </div>
+      </div>
+    </main>
+  );
+}
+
+function IntroScreens({ onComplete }: { onComplete: () => void }) {
+  const [index, setIndex] = useState(0);
+  const pages = [
+    {
+      title: 'Begin the Journey',
+      body: 'Scripture, prayer, and formation one day at a time.',
+    },
+    {
+      title: 'Understand the Faith',
+      body:
+        'See how Catholic teaching, prayer, and tradition connect to Scripture and to Jesus.',
+    },
+    {
+      title: 'Walk With Christ Daily',
+      body: 'Build a rhythm of prayer, Scripture, reflection, and faith.',
+    },
+  ];
+  const page = pages[index];
+
+  const next = () => {
+    if (index < pages.length - 1) {
+      setIndex(index + 1);
+      return;
+    }
+    try {
+      window.localStorage.setItem(INTRO_STORAGE_KEY, '1');
+    } catch {
+      // localStorage may be unavailable; continue into the app.
+    }
+    onComplete();
+  };
+
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-leather-900 via-leather-700 to-parchment-200 flex items-center justify-center px-6">
+      <div className="w-full max-w-sm rounded-[1.75rem] border border-gold/25 bg-parchment-50/95 p-7 text-center shadow-[0_24px_70px_rgba(28,25,23,0.26)]">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 bg-white shadow-[0_12px_28px_rgba(74,55,40,0.12)]">
+          <img
+            src="/logo192.png"
+            alt=""
+            width="34"
+            height="34"
+            className="h-9 w-9"
+          />
+        </div>
+        <p className="mt-5 text-xs font-semibold uppercase tracking-widest text-gold">
+          {index + 1} of {pages.length}
+        </p>
+        <h1 className="mt-3 font-display text-4xl font-bold leading-tight text-leather-900">
+          {page.title}
+        </h1>
+        <p className="mt-4 text-base leading-relaxed text-leather-700">
+          {page.body}
+        </p>
+        <button
+          type="button"
+          onClick={next}
+          className="mt-7 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+        >
+          {index === pages.length - 1 ? 'Continue' : 'Next'}
+        </button>
+      </div>
+    </main>
+  );
+}
+
 function AppShell() {
   const {
     loading,
@@ -220,6 +334,19 @@ function AppShell() {
     journeyId,
     claim,
   } = useAccount();
+  const [loadingTimedOut, setLoadingTimedOut] = useState(false);
+  const [introComplete, setIntroComplete] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    try {
+      return window.localStorage.getItem(INTRO_STORAGE_KEY) === '1';
+    } catch {
+      return true;
+    }
+  });
+  const path =
+    typeof window === 'undefined' ? '/app' : window.location.pathname;
+  const isResetPassword = path === '/app/reset-password';
+  const isLoginPath = path === '/app/login';
 
   // A first-time user starts fresh on their own progress namespace, then
   // chooses or joins a journey. No legacy import step is shown publicly.
@@ -229,8 +356,37 @@ function AppShell() {
     }
   }, [user, profile, completionId, claim]);
 
+  useEffect(() => {
+    const waiting =
+      loading ||
+      Boolean(
+        user && (accountLoading || billingLoading || !profile || !completionId)
+      );
+    if (!waiting) {
+      setLoadingTimedOut(false);
+      return;
+    }
+    const timer = window.setTimeout(() => setLoadingTimedOut(true), 12000);
+    return () => window.clearTimeout(timer);
+  }, [accountLoading, billingLoading, completionId, loading, profile, user]);
+
+  if (loadingTimedOut) return <AuthRecoveryScreen />;
   if (loading) return <AuthGateLoading />;
-  if (!user) return <AuthScreen />;
+  if (isResetPassword) {
+    return (
+      <AccountGateFrame>
+        <Suspense fallback={<Splash />}>
+          <ResetPassword />
+        </Suspense>
+      </AccountGateFrame>
+    );
+  }
+  if (!user) {
+    if (!introComplete && !isLoginPath) {
+      return <IntroScreens onComplete={() => setIntroComplete(true)} />;
+    }
+    return <AuthScreen initialMode={isLoginPath ? 'login' : 'signup'} />;
+  }
   if (accountLoading || billingLoading || !profile || !completionId) {
     return <LoadingAppFrame />;
   }

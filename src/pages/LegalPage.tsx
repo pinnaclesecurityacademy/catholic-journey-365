@@ -5,7 +5,7 @@ type LegalSection = {
   body: string;
 };
 
-const contactEmail = 'support@catholicjourney365.com';
+const contactEmail = 'PASTE_NEW_EMAIL_HERE';
 
 const legalContent: Record<
   LegalPageKind,
@@ -49,7 +49,7 @@ const legalContent: Record<
       },
       {
         title: 'Contact',
-        body: `For privacy questions or data requests, contact ${contactEmail}. This contact email is a placeholder until the production support address is finalised.`,
+        body: `For privacy questions or data requests, contact ${contactEmail}.`,
       },
     ],
   },
@@ -86,7 +86,7 @@ const legalContent: Record<
       },
       {
         title: 'Contact',
-        body: `For questions about these terms, contact ${contactEmail}. This contact email is a placeholder until the production support address is finalised.`,
+        body: `For questions about these terms, contact ${contactEmail}.`,
       },
     ],
   },
@@ -113,7 +113,7 @@ const legalContent: Record<
       },
       {
         title: 'Email',
-        body: `Contact ${contactEmail}. This contact email is a placeholder until the production support address is finalised.`,
+        body: `Contact ${contactEmail}.`,
       },
     ],
   },

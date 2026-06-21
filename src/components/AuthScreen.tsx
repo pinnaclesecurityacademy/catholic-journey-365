@@ -3,9 +3,9 @@ import { useAccount } from '../lib/account';
 
 type Mode = 'login' | 'signup' | 'forgot';
 
-export default function AuthScreen() {
+export default function AuthScreen({ initialMode = 'signup' }: { initialMode?: Mode }) {
   const { signIn, signUp, resetPassword } = useAccount();
-  const [mode, setMode] = useState<Mode>('signup');
+  const [mode, setMode] = useState<Mode>(initialMode);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

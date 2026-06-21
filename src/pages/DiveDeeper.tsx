@@ -1,7 +1,10 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getReadingDay } from '../data/readingPlan';
 import { diveDeeperParagraphs } from '../data/diveDeeper';
+import { getCompletions, markComplete } from '../lib/completions';
+import { useAccount } from '../lib/account';
+import { CompletionRecord } from '../lib/supabase';
 
 // Dedicated Dive Deeper page (route: /day/:dayNumber/deeper).
 // Displays the existing flowing Catholic reflection for the day. Content comes
@@ -15,11 +18,26 @@ export default function DiveDeeper() {
   const navigate = useNavigate();
   const dayNum = Number(dayNumber);
   const day = getReadingDay(dayNum);
+  const { completionId } = useAccount();
+  const uid = completionId ?? '';
+  const [completions, setCompletions] = useState<CompletionRecord[]>([]);
+  const [saving, setSaving] = useState(false);
+
+  const refresh = useCallback(() => {
+    if (!dayNum) return;
+    getCompletions(dayNum)
+      .then(setCompletions)
+      .catch(() => setCompletions([]));
+  }, [dayNum]);
 
   // Land at the top when opening the reflection.
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [dayNum]);
+
+  useEffect(() => {
+    refresh();
+  }, [refresh]);
 
   if (!day) {
     return (
@@ -36,6 +54,19 @@ export default function DiveDeeper() {
   }
 
   const paragraphs = diveDeeperParagraphs(day.day_number);
+  const completed = completions.some(
+    (r) => r.day_number === day.day_number && r.user_id === uid && r.completed
+  );
+
+  const completeDiveDeeper = async () => {
+    setSaving(true);
+    try {
+      await markComplete(uid, day.day_number);
+      refresh();
+    } finally {
+      setSaving(false);
+    }
+  };
 
   return (
     <div className="max-w-md mx-auto px-5 pt-6 pb-12">
@@ -69,6 +100,23 @@ export default function DiveDeeper() {
           </p>
         ))}
       </article>
+
+      <div className="mt-5">
+        {completed ? (
+          <div className="w-full rounded-xl border border-gold/30 bg-parchment-50 py-3 text-center font-semibold text-leather-700">
+            &#10003; Dive Deeper Completed
+          </div>
+        ) : (
+          <button
+            type="button"
+            disabled={saving || !uid}
+            onClick={completeDiveDeeper}
+            className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99] disabled:opacity-50"
+          >
+            {saving ? 'Saving...' : 'Complete Dive Deeper'}
+          </button>
+        )}
+      </div>
 
       {/* Future-ready: audio reflection, biblical artwork, and maps will live
           here below the reflection. Intentionally not implemented yet. */}

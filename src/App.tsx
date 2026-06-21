@@ -29,6 +29,7 @@ const Bible = lazy(() => import('./pages/Bible'));
 const ScriptureReading = lazy(() => import('./pages/ScriptureReading'));
 const Landing = lazy(() => import('./pages/Landing'));
 const Paywall = lazy(() => import('./pages/Paywall'));
+const LegalPage = lazy(() => import('./pages/LegalPage'));
 
 function Splash() {
   const hour = new Date().getHours();
@@ -68,7 +69,10 @@ function Splash() {
 function AppFrame({ children }: { children: ReactNode }) {
   return (
     <BrowserRouter basename="/app">
-      <div className="min-h-screen bg-parchment-100" style={{ paddingBottom: 80 }}>
+      <div
+        className="min-h-screen bg-parchment-100"
+        style={{ paddingBottom: 'calc(80px + env(safe-area-inset-bottom))' }}
+      >
         {children}
         <BottomNav />
       </div>
@@ -174,7 +178,7 @@ function PWAUpdateBanner() {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-24 z-50 px-4">
+    <div className="fixed inset-x-0 bottom-[calc(6rem+env(safe-area-inset-bottom))] z-50 px-4">
       <div className="mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-gold/40 bg-white px-4 py-3 shadow-[0_16px_36px_rgba(74,55,40,0.16)]">
         <p className="flex-1 text-sm font-medium text-leather-900">
           A new Catholic Journey 365 update is ready.
@@ -261,13 +265,28 @@ function isAppPath() {
   return path === '/app' || path.startsWith('/app/');
 }
 
+function PublicPage() {
+  if (typeof window === 'undefined') return <Landing />;
+
+  switch (window.location.pathname) {
+    case '/privacy':
+      return <LegalPage page="privacy" />;
+    case '/terms':
+      return <LegalPage page="terms" />;
+    case '/support':
+      return <LegalPage page="support" />;
+    default:
+      return <Landing />;
+  }
+}
+
 export default function App() {
   return (
     <AccountProvider>
       <PWAUpdateProvider>
         <AppErrorBoundary>
           <Suspense fallback={<AuthGateLoading />}>
-            {isAppPath() ? <AppShell /> : <Landing />}
+            {isAppPath() ? <AppShell /> : <PublicPage />}
           </Suspense>
         </AppErrorBoundary>
         <PWAUpdateBanner />

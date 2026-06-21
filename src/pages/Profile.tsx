@@ -388,6 +388,30 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
         )}
       </section>
 
+      <p className={sectionTitle}>Legal & Support</p>
+      <section className={`${cardClass} mb-6`}>
+        <div className="space-y-3">
+          <a
+            href="/privacy"
+            className="block rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 font-semibold text-leather-900 active:scale-[0.99] transition"
+          >
+            Privacy Policy
+          </a>
+          <a
+            href="/terms"
+            className="block rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 font-semibold text-leather-900 active:scale-[0.99] transition"
+          >
+            Terms of Use
+          </a>
+          <a
+            href="/support"
+            className="block rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 font-semibold text-leather-900 active:scale-[0.99] transition"
+          >
+            Contact Support
+          </a>
+        </div>
+      </section>
+
       <p className={sectionTitle}>App Updates</p>
       <section className={`${cardClass} mb-5`}>
         <div className="mb-4">
@@ -445,8 +469,8 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
       </section>
 
       {accountModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-end justify-center bg-leather-900/35 px-4 py-6 sm:items-center">
-          <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-[1.5rem] border border-parchment-200 bg-white p-5 shadow-[0_24px_64px_rgba(28,25,23,0.24)]">
+        <div className="fixed inset-0 z-50 flex items-end justify-center bg-leather-900/35 px-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-6 sm:items-center sm:py-6">
+          <div className="max-h-[calc(100dvh-3rem-env(safe-area-inset-bottom))] w-full max-w-md overflow-y-auto overscroll-contain rounded-[1.5rem] border border-parchment-200 bg-white p-5 shadow-[0_24px_64px_rgba(28,25,23,0.24)]">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">

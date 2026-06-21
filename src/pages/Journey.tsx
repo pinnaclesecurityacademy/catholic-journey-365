@@ -362,8 +362,8 @@ function RhythmModal({
   onClose: () => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-leather-900/45 px-4 pb-4 pt-10 backdrop-blur-sm">
-      <section className="max-h-[88vh] w-full max-w-md overflow-y-auto rounded-[1.75rem] border border-gold/25 bg-white shadow-[0_24px_70px_rgba(28,25,23,0.32)]">
+    <div className="fixed inset-0 z-50 flex items-end justify-center bg-leather-900/45 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-10 backdrop-blur-sm">
+      <section className="max-h-[calc(100dvh-3.5rem-env(safe-area-inset-bottom))] w-full max-w-md overflow-y-auto overscroll-contain rounded-[1.75rem] border border-gold/25 bg-white shadow-[0_24px_70px_rgba(28,25,23,0.32)]">
         <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-parchment-200 bg-white/95 px-5 py-4 backdrop-blur">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">

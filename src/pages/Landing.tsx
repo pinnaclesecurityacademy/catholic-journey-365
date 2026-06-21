@@ -484,6 +484,25 @@ export default function Landing() {
           </div>
         </section>
       </main>
+
+      <footer className="border-t border-amber-100/70 px-5 py-8 sm:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-4 text-sm text-leather-900/70 sm:flex-row sm:items-center sm:justify-between">
+          <a href="#top" className="font-display text-lg font-semibold text-leather-900">
+            Catholic Journey 365
+          </a>
+          <div className="flex flex-wrap gap-4">
+            <a className="font-semibold transition hover:text-leather-900" href="/privacy">
+              Privacy
+            </a>
+            <a className="font-semibold transition hover:text-leather-900" href="/terms">
+              Terms
+            </a>
+            <a className="font-semibold transition hover:text-leather-900" href="/support">
+              Support
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

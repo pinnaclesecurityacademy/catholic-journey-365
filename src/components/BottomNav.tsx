@@ -95,12 +95,12 @@ function PersonIcon({ active }: { active: boolean }) {
 
 export default function BottomNav() {
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `flex flex-col items-center justify-center gap-1 flex-1 py-3 text-xs font-medium ${
+    `flex flex-col items-center justify-center gap-1 flex-1 pb-3 pt-3 text-xs font-medium ${
       isActive ? 'text-leather-600' : 'text-stone-400'
     }`;
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-20 bg-parchment-100 border-t border-parchment-200">
+    <nav className="fixed bottom-0 inset-x-0 z-20 bg-parchment-100 border-t border-parchment-200 pb-[env(safe-area-inset-bottom)]">
       <div className="max-w-md mx-auto flex">
         <NavLink to="/" className={linkClass} end>
           {({ isActive }) => (

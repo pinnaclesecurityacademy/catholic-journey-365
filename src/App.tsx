@@ -31,20 +31,34 @@ const Landing = lazy(() => import('./pages/Landing'));
 const Paywall = lazy(() => import('./pages/Paywall'));
 
 function Splash() {
+  const hour = new Date().getHours();
+  const prayerLine =
+    hour < 12
+      ? 'Lord, guide my steps today.'
+      : hour < 18
+      ? 'Walk with Christ today.'
+      : 'Rest in His peace.';
+
   return (
-    <div className="min-h-screen bg-parchment-100 flex items-center justify-center px-6">
-      <div className="w-full max-w-sm rounded-[1.75rem] border border-parchment-200 bg-white/85 p-7 text-center shadow-[0_24px_56px_rgba(74,55,40,0.12)]">
-        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 bg-parchment-50 text-2xl font-semibold text-gold">
-          +
+    <div className="min-h-screen bg-gradient-to-br from-leather-900 via-leather-700 to-parchment-200 flex items-center justify-center px-6">
+      <div className="w-full max-w-sm rounded-[1.75rem] border border-gold/25 bg-parchment-50/95 p-7 text-center shadow-[0_24px_70px_rgba(28,25,23,0.26)]">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-gold/50 bg-white shadow-[0_12px_28px_rgba(74,55,40,0.12)]">
+          <img
+            src="/logo192.png"
+            alt=""
+            width="34"
+            height="34"
+            className="h-9 w-9"
+          />
         </div>
         <h1 className="mt-5 font-display text-3xl font-bold text-leather-900">
           Catholic Journey 365
         </h1>
+        <p className="mt-3 font-display text-xl font-semibold text-leather-700">
+          {prayerLine}
+        </p>
         <p className="mt-2 text-sm font-medium text-leather-600">
           Preparing your journey...
-        </p>
-        <p className="mt-4 text-sm italic text-stone-500">
-          Peace be with you.
         </p>
       </div>
     </div>
@@ -163,13 +177,13 @@ function PWAUpdateBanner() {
     <div className="fixed inset-x-0 bottom-24 z-50 px-4">
       <div className="mx-auto flex max-w-md items-center gap-3 rounded-2xl border border-gold/40 bg-white px-4 py-3 shadow-[0_16px_36px_rgba(74,55,40,0.16)]">
         <p className="flex-1 text-sm font-medium text-leather-900">
-          A new version of Catholic Journey 365 is ready.
+          A new Catholic Journey 365 update is ready.
         </p>
         <button
           onClick={updateNow}
           className="shrink-0 rounded-xl bg-leather-600 px-3 py-2 text-sm font-semibold text-white active:scale-[0.99] transition"
         >
-          Update now
+          Update App
         </button>
       </div>
     </div>

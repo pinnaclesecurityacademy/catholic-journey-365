@@ -37,9 +37,11 @@ const TESTAMENT_LABEL: Record<Testament, string> = {
 
 function InfoButton({
   label,
+  children = 'Learn More',
   onClick,
 }: {
   label: string;
+  children?: string;
   onClick: () => void;
 }) {
   return (
@@ -47,9 +49,9 @@ function InfoButton({
       type="button"
       aria-label={label}
       onClick={onClick}
-      className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-parchment-200 bg-parchment-50 text-xs font-semibold text-stone-400"
+      className="inline-flex min-h-9 items-center justify-center rounded-full border border-gold/35 bg-parchment-50 px-3 text-xs font-semibold text-leather-600 shadow-[0_8px_18px_rgba(74,55,40,0.08)] transition active:scale-[0.98]"
     >
-      i
+      {children}
     </button>
   );
 }
@@ -221,7 +223,9 @@ export default function Bible() {
             <InfoButton
               label={`About ${book?.name ?? 'this book'}`}
               onClick={() => setInfoIntro(bookIntro)}
-            />
+            >
+              About this section
+            </InfoButton>
           )}
         </div>
         {view === 'home' && (
@@ -253,7 +257,9 @@ export default function Bible() {
                         <InfoButton
                           label={`About ${c.name}`}
                           onClick={() => openSectionInfo(c)}
-                        />
+                        >
+                          Learn More
+                        </InfoButton>
                       )}
                     </div>
                     <div className="divide-y divide-parchment-200">

@@ -17,7 +17,6 @@ export default function Profile() {
     joinJourney,
     removeMember,
     manageSubscription,
-    deactivateAccount,
     signOut,
   } = useAccount();
   const { status, updateReady, checkForUpdates, updateNow } = usePWAUpdate();
@@ -40,8 +39,9 @@ export default function Profile() {
   const [aboutOpen, setAboutOpen] = useState(false);
   const [billingMessage, setBillingMessage] = useState<string | null>(null);
   const [billingLoading, setBillingLoading] = useState(false);
-  const [confirmDeactivate, setConfirmDeactivate] = useState(false);
-  const [deactivating, setDeactivating] = useState(false);
+  const [accountModalOpen, setAccountModalOpen] = useState(false);
+  const [deactivateStep, setDeactivateStep] = useState<1 | 2>(1);
+  const [deactivateReason, setDeactivateReason] = useState('');
   const [deactivateError, setDeactivateError] = useState<string | null>(null);
 
   const sectionTitle =
@@ -134,15 +134,17 @@ export default function Profile() {
     }
   };
 
-  const confirmAccountDeactivation = async () => {
+  const beginDeactivateFlow = () => {
     setDeactivateError(null);
-    setDeactivating(true);
-    try {
-      const result = await deactivateAccount();
-      if (result.error) setDeactivateError(result.error);
-    } finally {
-      setDeactivating(false);
-    }
+    setDeactivateReason('');
+    setDeactivateStep(1);
+  };
+
+  const showDeactivateUnavailable = () => {
+    // TODO: Implement secure server-side account deletion with Supabase Admin API before enabling this action.
+    setDeactivateError(
+      'Account deactivation is not available yet. Please contact support if you need your account removed.'
+    );
   };
 
   return (
@@ -428,20 +430,13 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
       <section className={`${cardClass} mb-5`}>
         <div className="space-y-3">
           <button
-            onClick={openBillingPortal}
-            disabled={billingLoading}
+            onClick={() => {
+              setAccountModalOpen(true);
+              beginDeactivateFlow();
+            }}
             className={primaryButtonClass}
           >
-            {billingLoading ? 'Opening...' : 'Manage subscription'}
-          </button>
-          <button
-            onClick={() => {
-              setDeactivateError(null);
-              setConfirmDeactivate(true);
-            }}
-            className={dangerButtonClass}
-          >
-            Deactivate account
+            Manage Account
           </button>
           <button onClick={signOut} className={subtleButtonClass}>
             Sign out
@@ -449,43 +444,121 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
         </div>
       </section>
 
-      {confirmDeactivate && (
+      {accountModalOpen && (
         <div className="fixed inset-0 z-50 flex items-end justify-center bg-leather-900/35 px-4 py-6 sm:items-center">
-          <div className="w-full max-w-md rounded-[1.5rem] border border-parchment-200 bg-white p-5 shadow-[0_24px_64px_rgba(28,25,23,0.24)]">
-            <h2 className="font-display text-2xl font-bold text-leather-900">
-              Deactivate account?
-            </h2>
-            <div className="mt-3 space-y-2 text-sm leading-relaxed text-stone-600">
-              <p>This will disable access to the account.</p>
-              <p>
-                It does not automatically cancel an active paid subscription
-                unless Stripe cancellation is also completed.
-              </p>
-              <p>To stop payments, use Manage subscription first.</p>
+          <div className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-[1.5rem] border border-parchment-200 bg-white p-5 shadow-[0_24px_64px_rgba(28,25,23,0.24)]">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+                  Account
+                </p>
+                <h2 className="mt-1 font-display text-2xl font-bold text-leather-900">
+                  Manage Account
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setAccountModalOpen(false)}
+                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-parchment-200 bg-parchment-50 text-sm font-semibold text-leather-600"
+                aria-label="Close account management"
+              >
+                x
+              </button>
             </div>
 
+            <section className="mt-5 rounded-2xl border border-parchment-200 bg-parchment-50 p-4">
+              <h3 className="font-display text-xl font-semibold text-leather-900">
+                Subscription
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                Update your payment method, manage billing, or cancel your
+                subscription in the secure Stripe Customer Portal.
+              </p>
+              <button
+                onClick={openBillingPortal}
+                disabled={billingLoading}
+                className={`${primaryButtonClass} mt-4`}
+              >
+                {billingLoading ? 'Opening...' : 'Manage Subscription'}
+              </button>
+            </section>
+
+            <section className="mt-5 rounded-2xl border border-parchment-200 bg-white p-4">
+              <h3 className="font-display text-xl font-semibold text-leather-900">
+                Account
+              </h3>
+              {deactivateStep === 1 ? (
+                <>
+                  <p className="mt-2 text-sm leading-relaxed text-stone-600">
+                    Why are you leaving?
+                  </p>
+                  <div className="mt-4 space-y-2">
+                    {[
+                      'Taking a break',
+                      'Too expensive',
+                      'Missing features',
+                      'Technical issue',
+                      'Other',
+                    ].map((reason) => (
+                      <button
+                        key={reason}
+                        type="button"
+                        onClick={() => {
+                          setDeactivateReason(reason);
+                          setDeactivateStep(2);
+                          setDeactivateError(null);
+                        }}
+                        className={`w-full rounded-xl border px-4 py-3 text-left text-sm font-semibold transition active:scale-[0.99] ${
+                          deactivateReason === reason
+                            ? 'border-gold bg-parchment-50 text-leather-900'
+                            : 'border-parchment-200 bg-white text-stone-600'
+                        }`}
+                      >
+                        {reason}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <h4 className="mt-3 font-display text-xl font-semibold text-leather-900">
+                    Are you sure you want to deactivate your account?
+                  </h4>
+                  <div className="mt-3 space-y-2 text-sm leading-relaxed text-stone-600">
+                    <p>
+                      Please cancel your subscription first through Manage
+                      Subscription if you no longer want to be billed.
+                    </p>
+                    <p>
+                      Account deletion is permanent and may remove your journey
+                      data.
+                    </p>
+                  </div>
+                  <div className="mt-5 space-y-3">
+                    <button
+                      type="button"
+                      onClick={() => setAccountModalOpen(false)}
+                      className={subtleButtonClass}
+                    >
+                      Keep My Journey
+                    </button>
+                    <button
+                      type="button"
+                      onClick={showDeactivateUnavailable}
+                      className={dangerButtonClass}
+                    >
+                      Deactivate Account
+                    </button>
+                  </div>
+                </>
+              )}
+            </section>
+
             {deactivateError && (
-              <p className="mt-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+              <p className="mt-4 rounded-xl border border-gold/30 bg-parchment-50 px-4 py-3 text-sm leading-relaxed text-leather-700">
                 {deactivateError}
               </p>
             )}
-
-            <div className="mt-5 space-y-3">
-              <button
-                onClick={confirmAccountDeactivation}
-                disabled={deactivating}
-                className={dangerButtonClass}
-              >
-                {deactivating ? 'Deactivating...' : 'Deactivate my account'}
-              </button>
-              <button
-                onClick={() => setConfirmDeactivate(false)}
-                disabled={deactivating}
-                className={subtleButtonClass}
-              >
-                Keep my account
-              </button>
-            </div>
           </div>
         </div>
       )}

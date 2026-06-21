@@ -51,11 +51,20 @@ export default function AuthScreen() {
       <div className="min-h-screen bg-parchment-100 flex items-center justify-center px-6">
         <div className="w-full max-w-sm text-center">
           <h1 className="font-display text-3xl font-bold text-leather-900">
-            Almost there
+            Your journey is almost ready.
           </h1>
-          <div className="mt-6 rounded-2xl bg-white border border-parchment-200 p-6">
+          <div className="mt-6 rounded-2xl bg-white border border-parchment-200 p-6 text-left shadow-[0_18px_42px_rgba(74,55,40,0.08)]">
             <p className="text-leather-900 leading-relaxed">
-              Check your email to confirm your account.
+              We have sent a confirmation email to your inbox.
+            </p>
+            <p className="mt-3 text-leather-900 leading-relaxed">
+              Please confirm your email address to begin Catholic Journey 365.
+            </p>
+            <p className="mt-4 rounded-xl bg-parchment-50 px-4 py-3 text-sm leading-relaxed text-stone-600">
+              Can&apos;t find the email? Please check your Spam or Junk folder.
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-stone-600">
+              Your confirmation email will come from Catholic Journey 365.
             </p>
           </div>
           <button

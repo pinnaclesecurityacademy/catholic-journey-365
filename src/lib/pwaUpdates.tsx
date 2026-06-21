@@ -121,8 +121,35 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
       currentRegistration.update().catch(() => undefined);
     });
 
+    const checkCurrentRegistration = () => {
+      if (document.visibilityState !== 'visible') {
+        return;
+      }
+
+      navigator.serviceWorker
+        .getRegistration()
+        .then((currentRegistration) => {
+          if (cancelled || !currentRegistration) {
+            return;
+          }
+
+          if (currentRegistration.waiting && navigator.serviceWorker.controller) {
+            markReady(currentRegistration);
+            return;
+          }
+
+          currentRegistration.update().catch(() => undefined);
+        })
+        .catch(() => undefined);
+    };
+
+    document.addEventListener('visibilitychange', checkCurrentRegistration);
+    window.addEventListener('focus', checkCurrentRegistration);
+
     return () => {
       cancelled = true;
+      document.removeEventListener('visibilitychange', checkCurrentRegistration);
+      window.removeEventListener('focus', checkCurrentRegistration);
     };
   }, [markReady]);
 

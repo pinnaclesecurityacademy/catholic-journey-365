@@ -5,7 +5,7 @@ type LegalSection = {
   body: string;
 };
 
-const contactEmail = 'PASTE_NEW_EMAIL_HERE';
+const contactEmail = 'catholicjourney365@gmail.com';
 
 const legalContent: Record<
   LegalPageKind,

@@ -102,8 +102,14 @@ export default function Fasting() {
       </div>
 
       <section className="relative mb-4 overflow-hidden rounded-[1.75rem] bg-leather-950 text-white shadow-[0_22px_50px_rgba(74,55,40,0.2)]">
-        <div className="absolute inset-0 bg-gradient-to-br from-leather-950 via-leather-900 to-leather-800" />
-        <div className="relative p-5 pt-10">
+        <img
+          src="/images/hero/church-home.webp"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-leather-950/95 via-leather-950/85 to-leather-900/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-leather-950/95 to-transparent" />
+        <div className="relative p-5 pt-16">
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
             Fasting
           </p>

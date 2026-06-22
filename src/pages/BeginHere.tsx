@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SacredCard, SacredProgress } from '../components/SacredCard';
+import { ReaderFontControl } from '../components/ReaderFontControl';
+import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { useAccount } from '../lib/account';
 
 type BeginHereStep = {
@@ -145,10 +147,16 @@ export default function BeginHere() {
   );
   const [selectedStep, setSelectedStep] = useState(0);
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+  const { size: readerSize, setSize: setReaderSize } = useReaderFont();
 
   useEffect(() => {
     setCompletedSteps(loadCompletedSteps(storageKey));
   }, [storageKey]);
+
+  // When the active step changes, scroll back to the top of the page.
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [selectedStep]);
 
   useEffect(() => {
     window.localStorage.setItem(storageKey, JSON.stringify(completedSteps));
@@ -219,13 +227,16 @@ export default function BeginHere() {
       </div>
 
       <SacredCard className="mb-4 bg-gradient-to-br from-white to-parchment-50">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
-          Step {selectedStep + 1} of {BEGIN_HERE_STEPS.length}
-        </p>
+        <div className="flex items-start justify-between gap-3">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
+            Step {selectedStep + 1} of {BEGIN_HERE_STEPS.length}
+          </p>
+          <ReaderFontControl size={readerSize} setSize={setReaderSize} />
+        </div>
         <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-leather-900">
           {current.title}
         </h2>
-        <p className="mt-3 text-sm leading-relaxed text-stone-600">
+        <p className={`mt-3 text-sm leading-relaxed text-stone-600 ${readerFontClass(readerSize)}`}>
           {current.reflection}
         </p>
 
@@ -233,7 +244,7 @@ export default function BeginHere() {
           <h3 className="text-sm font-semibold text-leather-900">
             Think About
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">
+          <p className={`mt-2 text-sm leading-relaxed text-stone-600 ${readerFontClass(readerSize)}`}>
             {current.thinkAbout}
           </p>
         </div>
@@ -242,13 +253,13 @@ export default function BeginHere() {
           <h3 className="text-sm font-semibold text-leather-900">
             Take a Step Today
           </h3>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">
+          <p className={`mt-2 text-sm leading-relaxed text-stone-600 ${readerFontClass(readerSize)}`}>
             {current.takeStep}
           </p>
           <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
             A Prayer
           </p>
-          <p className="mt-2 whitespace-pre-line text-sm italic leading-relaxed text-stone-600">
+          <p className={`mt-2 whitespace-pre-line text-sm italic leading-relaxed text-stone-600 ${readerFontClass(readerSize)}`}>
             {current.prayer}
           </p>
         </div>

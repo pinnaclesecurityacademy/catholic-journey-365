@@ -710,61 +710,93 @@ function FaithJourneyDetail({
           onClose={() => setActiveModal(null)}
         >
           <div className="rounded-2xl bg-parchment-50 p-4">
-            <div className="mb-4">
-              <span className="text-sm font-semibold text-leather-900">
-                Where did you notice God today?
-              </span>
-              <div className="mt-2 flex flex-wrap gap-2">
-                {[
-                  'Another person',
-                  'Creation',
-                  'Prayer',
-                  'Scripture',
-                  'A challenge',
-                  'I struggled to see Him today',
-                ].map((option) => {
-                  const selected = seeingGod.noticedWhere === option;
-                  return (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() =>
-                        onSeeingGodChange(
-                          'noticedWhere',
-                          selected ? '' : option
-                        )
-                      }
-                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition active:scale-[0.98] ${
-                        selected
-                          ? 'border-leather-600 bg-leather-600 text-white'
-                          : 'border-parchment-200 bg-white text-leather-700'
-                      }`}
-                    >
-                      {option}
-                    </button>
-                  );
-                })}
-              </div>
+            <span className="text-sm font-semibold text-leather-900">
+              Did you notice God today?
+            </span>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {['Yes', 'I struggled today'].map((option) => {
+                const selected = seeingGod.noticedGod === option;
+                return (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => onSeeingGodChange('noticedGod', option)}
+                    className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition active:scale-[0.98] ${
+                      selected
+                        ? 'border-leather-600 bg-leather-600 text-white'
+                        : 'border-parchment-200 bg-white text-leather-700'
+                    }`}
+                  >
+                    {option}
+                  </button>
+                );
+              })}
             </div>
-            {[
-              ['noticedGod', 'Where did I notice God today?'],
-              ['personBeforeMe', 'Who did God place before me today?'],
-              ['graceToRemember', 'What grace do I want to remember?'],
-            ].map(([field, label]) => (
-              <label key={field} className="mb-4 block text-sm text-leather-900">
-                <span className="font-semibold">{label}</span>
-                <textarea
-                  value={seeingGod[field as keyof SeeingGodReflection]}
-                  onChange={(event) =>
-                    onSeeingGodChange(
-                      field as keyof SeeingGodReflection,
-                      event.target.value
-                    )
-                  }
-                  className={inputClass}
-                />
-              </label>
-            ))}
+
+            {seeingGod.noticedGod === 'Yes' && (
+              <div className="mt-4 border-t border-parchment-200 pt-4">
+                <span className="text-sm font-semibold text-leather-900">
+                  Where did you notice Him?
+                </span>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {[
+                    'Another person',
+                    'Creation',
+                    'Prayer',
+                    'Scripture',
+                    'A moment of peace',
+                    'An act of love',
+                  ].map((option) => {
+                    const selected = seeingGod.noticedWhere === option;
+                    return (
+                      <button
+                        key={option}
+                        type="button"
+                        onClick={() =>
+                          onSeeingGodChange(
+                            'noticedWhere',
+                            selected ? '' : option
+                          )
+                        }
+                        className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition active:scale-[0.98] ${
+                          selected
+                            ? 'border-leather-600 bg-leather-600 text-white'
+                            : 'border-parchment-200 bg-white text-leather-700'
+                        }`}
+                      >
+                        {option}
+                      </button>
+                    );
+                  })}
+                </div>
+                <label className="mt-4 block text-sm text-leather-900">
+                  <span className="font-semibold">
+                    Write a few words if you would like.
+                  </span>
+                  <textarea
+                    value={seeingGod.graceToRemember}
+                    onChange={(event) =>
+                      onSeeingGodChange('graceToRemember', event.target.value)
+                    }
+                    className={inputClass}
+                  />
+                </label>
+              </div>
+            )}
+
+            {seeingGod.noticedGod === 'I struggled today' && (
+              <div className="mt-4 border-t border-parchment-200 pt-4 text-sm leading-relaxed text-leather-900">
+                <p>
+                  That's okay. God was still with you today. Sometimes we notice
+                  Him in creation, in people around us, in a quiet moment, or in
+                  the chance to love someone.
+                </p>
+                <p className="mt-3 italic text-leather-600">
+                  "Whatever you did for one of the least of these brothers and
+                  sisters of mine, you did for me." (Matthew 25:40)
+                </p>
+              </div>
+            )}
           </div>
           <button
             type="button"

@@ -584,13 +584,24 @@ function FaithJourneyDetail({
           onClose={() => setActiveModal(null)}
         >
           <div className="rounded-2xl bg-parchment-50 p-5">
-            <p className="text-base leading-relaxed text-leather-900">
-              Spend five quiet minutes with God. No words are needed. Simply be
-              present with Him.
+            <p className="text-base font-semibold leading-relaxed text-leather-900">
+              Not sure what to say to God? Start here.
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-leather-900">
+              Prayer is not only about finding the perfect words. Sometimes
+              prayer begins by simply being with God.
+            </p>
+            <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-stone-600">
+              {'Find a quiet place.\nTake a few slow breaths.\nPlace yourself in God’s presence.'}
             </p>
             <p className="mt-4 text-sm leading-relaxed text-stone-600">
-              Find a quiet place. Breathe. Place yourself in God&apos;s presence.
-              Listen.
+              You can simply say:
+            </p>
+            <p className="mt-1 text-base italic leading-relaxed text-leather-900">
+              &lsquo;Jesus, I am here.&rsquo;
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-stone-600">
+              Spend a few moments in silence.
             </p>
           </div>
           <button

@@ -2,10 +2,13 @@ import { useEffect } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { SacredCard } from '../components/SacredCard';
 import { getSacrament, sacraments } from '../data/sacramentsContent';
+import { useReaderFont, readerFontClass } from '../lib/readerFont';
+import { ReaderFontControl } from '../components/ReaderFontControl';
 
 export default function SacramentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { size, setSize } = useReaderFont();
   const sacrament = id ? getSacrament(id) : undefined;
 
   // Land at the top when opening a new sacrament.
@@ -21,14 +24,17 @@ export default function SacramentDetail() {
   const next = sacraments[index + 1];
 
   return (
-    <div className="mx-auto max-w-md px-4 pt-5 pb-6">
-      <button
-        type="button"
-        onClick={() => navigate('/sacraments')}
-        className="mb-4 text-sm font-semibold text-leather-600"
-      >
-        &larr; All Sacraments
-      </button>
+    <div className={`mx-auto max-w-md px-4 pt-5 pb-6 ${readerFontClass(size)}`}>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={() => navigate('/sacraments')}
+          className="text-sm font-semibold text-leather-600"
+        >
+          &larr; All Sacraments
+        </button>
+        <ReaderFontControl size={size} setSize={setSize} />
+      </div>
 
       <section className="relative mb-4 overflow-hidden rounded-[1.75rem] bg-leather-950 text-white shadow-[0_22px_50px_rgba(74,55,40,0.2)]">
         <img

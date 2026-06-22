@@ -12,6 +12,8 @@ import {
   readFaithJourneyChecks,
   writeFaithJourneyChecks,
 } from '../lib/faithJourney';
+import { useReaderFont, readerFontClass } from '../lib/readerFont';
+import { ReaderFontControl } from '../components/ReaderFontControl';
 
 // Saint of the Day experience (route: /saint).
 // Rendering is driven by the entry's `type`:
@@ -192,6 +194,7 @@ function ClosingIntercession({ saint }: { saint: Saint }) {
 export default function SaintOfDay() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { size, setSize } = useReaderFont();
   // When opened from the Saint Library a "MM-DD" key is provided; otherwise the
   // page shows today's saint exactly as before.
   const { key } = useParams<{ key: string }>();
@@ -223,13 +226,16 @@ export default function SaintOfDay() {
   };
 
   return (
-    <div className="max-w-md mx-auto px-5 pt-6 pb-12">
-      <button
-        onClick={() => navigate(-1)}
-        className="text-leather-600 font-medium mb-6"
-      >
-        ← Back
-      </button>
+    <div className={`max-w-md mx-auto px-5 pt-6 pb-12 ${readerFontClass(size)}`}>
+      <div className="mb-6 flex items-center justify-between gap-3">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-leather-600 font-medium"
+        >
+          ← Back
+        </button>
+        <ReaderFontControl size={size} setSize={setSize} />
+      </div>
 
       <header className="mb-6">
         <p className="text-xs uppercase tracking-widest text-stone-400">

@@ -29,6 +29,8 @@ import {
 } from '../components/SacredCard';
 import JourneyTimeline from '../components/JourneyTimeline';
 import { SacredPrayer } from '../components/SacredPrayer';
+import { useReaderFont, readerFontClass } from '../lib/readerFont';
+import { ReaderFontControl } from '../components/ReaderFontControl';
 
 function isComplete(
   records: CompletionRecord[],
@@ -428,6 +430,7 @@ function FaithJourneyDetail({
   onBack: () => void;
 }) {
   const navigate = useNavigate();
+  const { size: readerSize, setSize: setReaderSize } = useReaderFont();
   const [activeModal, setActiveModal] = useState<RhythmModalKind>(null);
   const effectiveItems = mergeFaithJourneyChecks(checkedItems, autoItems);
   const completed = effectiveItems.length;
@@ -513,7 +516,10 @@ function FaithJourneyDetail({
           subtitle="A short daily Catholic teaching"
           onClose={() => setActiveModal(null)}
         >
-          <div className="space-y-4 text-leather-900">
+          <div className={`space-y-4 text-leather-900 ${readerFontClass(readerSize)}`}>
+            <div className="flex justify-end">
+              <ReaderFontControl size={readerSize} setSize={setReaderSize} />
+            </div>
             <section className="rounded-2xl bg-parchment-50 p-5">
               <h3 className="font-display text-2xl font-semibold leading-tight">
                 {formationLesson.title}

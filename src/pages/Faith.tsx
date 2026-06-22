@@ -87,9 +87,9 @@ function FaithHeroCard({ card }: { card: FaithCard }) {
         decoding="async"
         className={`absolute inset-0 h-full w-full object-cover opacity-[0.76] saturate-[0.92] transition duration-500 group-active:scale-[1.01] ${card.imagePosition ?? 'object-center'}`}
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-leather-950 via-leather-950/86 to-leather-900/34" />
-      <div className="absolute inset-0 bg-gradient-to-t from-leather-950 via-leather-950/38 to-transparent" />
-      <div className="absolute inset-0 shadow-[inset_0_0_92px_rgba(17,12,8,0.9)]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-leather-950 via-leather-950/92 to-leather-900/55" />
+      <div className="absolute inset-0 bg-gradient-to-t from-leather-950 via-leather-950/60 to-leather-950/15" />
+      <div className="absolute inset-0 shadow-[inset_0_0_110px_rgba(17,12,8,0.95)]" />
       <div className="relative flex min-h-[286px] flex-col justify-between p-5 sm:min-h-[300px]">
         <div className="flex items-start justify-between gap-4">
           <div className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/45 bg-parchment-50/10 text-lg font-semibold text-gold shadow-[0_8px_18px_rgba(0,0,0,0.18)] backdrop-blur-sm">

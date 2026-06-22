@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BibleReader } from '../components/BibleReader';
+import { useReaderFont, readerFontClass } from '../lib/readerFont';
+import { ReaderFontControl } from '../components/ReaderFontControl';
 import {
   BibleCategory,
   getBook,
@@ -131,6 +133,7 @@ function FormationInfoModal({
 
 export default function Bible() {
   const navigate = useNavigate();
+  const { size, setSize } = useReaderFont();
 
   const [view, setView] = useState<View>('home');
   const [bookId, setBookId] = useState<string>('');
@@ -201,13 +204,16 @@ export default function Bible() {
   }
 
   return (
-    <div className="mx-auto max-w-md px-4 pt-5 pb-12">
-      <button
-        onClick={goBack}
-        className="mb-5 rounded-xl border border-parchment-200 bg-white/80 px-4 py-2 text-sm font-semibold text-leather-600 shadow-[0_10px_28px_rgba(74,55,40,0.07)] transition active:scale-[0.99]"
-      >
-        &larr; Back
-      </button>
+    <div className={`mx-auto max-w-md px-4 pt-5 pb-12 ${readerFontClass(size)}`}>
+      <div className="mb-5 flex items-center justify-between gap-3">
+        <button
+          onClick={goBack}
+          className="rounded-xl border border-parchment-200 bg-white/80 px-4 py-2 text-sm font-semibold text-leather-600 shadow-[0_10px_28px_rgba(74,55,40,0.07)] transition active:scale-[0.99]"
+        >
+          &larr; Back
+        </button>
+        <ReaderFontControl size={size} setSize={setSize} />
+      </div>
 
       <header className="mb-6 px-1">
         {view !== 'home' && (

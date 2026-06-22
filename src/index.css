@@ -12,3 +12,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Reader text size preference. Only scales long-form body text (paragraphs and
+   list items); prayer text (.font-display) is excluded so it keeps its style. */
+.reader-lg :is(p, li):not(.font-display) {
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.reader-xl :is(p, li):not(.font-display) {
+  font-size: 1.22rem;
+  line-height: 1.85;
+}

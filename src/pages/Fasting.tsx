@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SacredCard, SacredProgress } from '../components/SacredCard';
 import { useAccount } from '../lib/account';
+import { useReaderFont, readerFontClass } from '../lib/readerFont';
+import { ReaderFontControl } from '../components/ReaderFontControl';
 
 type FastingStep = {
   title: string;
@@ -49,6 +51,7 @@ function loadCompletedSteps(storageKey: string) {
 
 export default function Fasting() {
   const navigate = useNavigate();
+  const { size, setSize } = useReaderFont();
   const { completionId } = useAccount();
   const storageKey = useMemo(
     () => `fasting-progress:${completionId ?? 'local'}`,
@@ -86,14 +89,17 @@ export default function Fasting() {
   }
 
   return (
-    <div className="mx-auto max-w-md px-4 pt-5 pb-6">
-      <button
-        type="button"
-        onClick={() => navigate('/faith')}
-        className="mb-4 text-sm font-semibold text-leather-600"
-      >
-        &larr; Back to Faith
-      </button>
+    <div className={`mx-auto max-w-md px-4 pt-5 pb-6 ${readerFontClass(size)}`}>
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <button
+          type="button"
+          onClick={() => navigate('/faith')}
+          className="text-sm font-semibold text-leather-600"
+        >
+          &larr; Back to Faith
+        </button>
+        <ReaderFontControl size={size} setSize={setSize} />
+      </div>
 
       <section className="relative mb-4 overflow-hidden rounded-[1.75rem] bg-leather-950 text-white shadow-[0_22px_50px_rgba(74,55,40,0.2)]">
         <div className="absolute inset-0 bg-gradient-to-br from-leather-950 via-leather-900 to-leather-800" />

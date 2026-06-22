@@ -8,6 +8,8 @@ import {
   MassCard,
 } from '../data/massContent';
 import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
+import { useReaderFont, readerFontClass } from '../lib/readerFont';
+import { ReaderFontControl } from '../components/ReaderFontControl';
 import { scrollToContentStart } from '../lib/scroll';
 
 // Introduction to the Mass. A beginner-friendly guide reached from the Faith
@@ -53,6 +55,7 @@ type View =
 
 export default function OrderOfMass() {
   const navigate = useNavigate();
+  const { size, setSize } = useReaderFont();
   const [view, setView] = useState<View>({ kind: 'welcome' });
   const [openSub, setOpenSub] = useState<number | null>(null);
   const contentStartRef = useRef<HTMLDivElement>(null);
@@ -73,13 +76,18 @@ export default function OrderOfMass() {
   }, [openSub]);
 
   const Shell = ({ children }: { children: React.ReactNode }) => (
-    <div className="max-w-md mx-auto px-5 pt-6 min-h-screen flex flex-col">
-      <button
-        onClick={() => navigate('/faith')}
-        className="text-leather-600 font-medium mb-4 self-start"
-      >
-        ← Faith
-      </button>
+    <div
+      className={`max-w-md mx-auto px-5 pt-6 min-h-screen flex flex-col ${readerFontClass(size)}`}
+    >
+      <div className="mb-4 flex items-center justify-between gap-3">
+        <button
+          onClick={() => navigate('/faith')}
+          className="text-leather-600 font-medium"
+        >
+          ← Faith
+        </button>
+        <ReaderFontControl size={size} setSize={setSize} />
+      </div>
       <div ref={contentStartRef} className="flex-1">
         {children}
       </div>

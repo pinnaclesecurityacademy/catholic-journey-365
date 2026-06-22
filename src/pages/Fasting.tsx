@@ -101,18 +101,20 @@ export default function Fasting() {
         <ReaderFontControl size={size} setSize={setSize} />
       </div>
 
-      <section className="mb-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-          Fasting
-        </p>
-        <h1 className="mt-2 font-display text-3xl font-bold leading-tight text-leather-900">
-          Make room for God through fasting
-        </h1>
-        <p className="mt-3 text-sm font-medium leading-relaxed text-stone-600">
-          Prayer, fasting, and almsgiving have shaped Christian life since the
-          beginning. Learn what fasting is and how to live it with love.
-        </p>
-      </section>
+      {selectedStep !== 0 && (
+        <section className="mb-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+            Fasting
+          </p>
+          <h1 className="mt-2 font-display text-3xl font-bold leading-tight text-leather-900">
+            Make room for God through fasting
+          </h1>
+          <p className="mt-3 text-sm font-medium leading-relaxed text-stone-600">
+            Prayer, fasting, and almsgiving have shaped Christian life since the
+            beginning. Learn what fasting is and how to live it with love.
+          </p>
+        </section>
+      )}
 
       <div className="mb-4">
         <SacredProgress

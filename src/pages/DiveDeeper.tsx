@@ -2,9 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getReadingDay } from '../data/readingPlan';
 import { diveDeeperParagraphs } from '../data/diveDeeper';
-import { getCompletions, markComplete } from '../lib/completions';
-import { useAccount } from '../lib/account';
-import { CompletionRecord } from '../lib/supabase';
+import {
+  DIVE_DEEPER_ITEM,
+  readFaithJourneyChecks,
+  writeFaithJourneyChecks,
+} from '../lib/faithJourney';
 
 // Dedicated Dive Deeper page (route: /day/:dayNumber/deeper).
 // Displays the existing flowing Catholic reflection for the day. Content comes
@@ -18,17 +20,12 @@ export default function DiveDeeper() {
   const navigate = useNavigate();
   const dayNum = Number(dayNumber);
   const day = getReadingDay(dayNum);
-  const { completionId } = useAccount();
-  const uid = completionId ?? '';
-  const [completions, setCompletions] = useState<CompletionRecord[]>([]);
+  const [completed, setCompleted] = useState(false);
   const [saving, setSaving] = useState(false);
 
   const refresh = useCallback(() => {
-    if (!dayNum) return;
-    getCompletions(dayNum)
-      .then(setCompletions)
-      .catch(() => setCompletions([]));
-  }, [dayNum]);
+    setCompleted(readFaithJourneyChecks().includes(DIVE_DEEPER_ITEM));
+  }, []);
 
   // Land at the top when opening the reflection.
   useEffect(() => {
@@ -54,14 +51,14 @@ export default function DiveDeeper() {
   }
 
   const paragraphs = diveDeeperParagraphs(day.day_number);
-  const completed = completions.some(
-    (r) => r.day_number === day.day_number && r.user_id === uid && r.completed
-  );
 
-  const completeDiveDeeper = async () => {
+  const completeDiveDeeper = () => {
     setSaving(true);
     try {
-      await markComplete(uid, day.day_number);
+      const checks = readFaithJourneyChecks();
+      if (!checks.includes(DIVE_DEEPER_ITEM)) {
+        writeFaithJourneyChecks([...checks, DIVE_DEEPER_ITEM]);
+      }
       refresh();
     } finally {
       setSaving(false);
@@ -109,7 +106,7 @@ export default function DiveDeeper() {
         ) : (
           <button
             type="button"
-            disabled={saving || !uid}
+            disabled={saving}
             onClick={completeDiveDeeper}
             className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99] disabled:opacity-50"
           >

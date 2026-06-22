@@ -677,7 +677,7 @@ function FaithJourneyDetail({
           <button
             type="button"
             onClick={() => {
-              navigate('/saint');
+              navigate('/saint', { state: { source: 'today' } });
             }}
             className="mt-4 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-leather-600 transition active:scale-[0.99]"
           >

@@ -1,5 +1,5 @@
-import { useEffect, ReactNode } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState, ReactNode } from 'react';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import {
   getSaintOfDay,
   getSaintByKey,
@@ -7,6 +7,11 @@ import {
   Saint,
 } from '../data/saints';
 import { SacredPrayer } from '../components/SacredPrayer';
+import {
+  SAINT_OF_DAY_ITEM,
+  readFaithJourneyChecks,
+  writeFaithJourneyChecks,
+} from '../lib/faithJourney';
 
 // Saint of the Day experience (route: /saint).
 // Rendering is driven by the entry's `type`:
@@ -186,15 +191,36 @@ function ClosingIntercession({ saint }: { saint: Saint }) {
 
 export default function SaintOfDay() {
   const navigate = useNavigate();
+  const location = useLocation();
   // When opened from the Saint Library a "MM-DD" key is provided; otherwise the
   // page shows today's saint exactly as before.
   const { key } = useParams<{ key: string }>();
   const fromLibrary = Boolean(key);
   const saint = key ? getSaintByKey(key) : getSaintOfDay();
 
+  // Only show Today's Formation controls when opened from there (not the Library).
+  const fromToday =
+    !fromLibrary &&
+    (location.state as { source?: string } | null)?.source === 'today';
+  const [completed, setCompleted] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [key]);
+
+  useEffect(() => {
+    if (fromToday) {
+      setCompleted(readFaithJourneyChecks().includes(SAINT_OF_DAY_ITEM));
+    }
+  }, [fromToday]);
+
+  const completeSaint = () => {
+    const checks = readFaithJourneyChecks();
+    if (!checks.includes(SAINT_OF_DAY_ITEM)) {
+      writeFaithJourneyChecks([...checks, SAINT_OF_DAY_ITEM]);
+    }
+    setCompleted(true);
+  };
 
   return (
     <div className="max-w-md mx-auto px-5 pt-6 pb-12">
@@ -249,6 +275,32 @@ export default function SaintOfDay() {
 
       {/* Closing intercession, by type (saint / marian only) */}
       {saint && <ClosingIntercession saint={saint} />}
+
+      {/* Today's Formation controls, only when opened from Today */}
+      {fromToday && (
+        <div className="mt-8 space-y-3">
+          {completed ? (
+            <div className="w-full rounded-xl border border-gold/30 bg-parchment-50 py-3 text-center font-semibold text-leather-700">
+              &#10003; Saint of the Day Completed
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={completeSaint}
+              className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+            >
+              Complete Saint of the Day
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={() => navigate('/journey/faith')}
+            className="w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-leather-600 transition active:scale-[0.99]"
+          >
+            Back to Today
+          </button>
+        </div>
+      )}
     </div>
   );
 }

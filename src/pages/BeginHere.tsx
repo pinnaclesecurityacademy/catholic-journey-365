@@ -193,29 +193,20 @@ export default function BeginHere() {
         &larr; Back to Faith
       </button>
 
-      <section className="relative mb-4 overflow-hidden rounded-[1.75rem] bg-leather-950 text-white shadow-[0_22px_50px_rgba(74,55,40,0.2)]">
-        <img
-          src="/images/landing/pilgrimage-path.png"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover object-[66%_center] opacity-[0.74]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-leather-950/98 via-leather-950/78 to-leather-900/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-leather-950/96 to-transparent" />
-        <div className="relative p-5 pt-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-            Begin Here
-          </p>
-          <h1 className="mt-2 font-display text-3xl font-bold leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
-            Come and know Jesus, one step at a time
-          </h1>
-          <p className="mt-3 text-sm font-medium leading-relaxed text-parchment-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-            Whether you are a returning Catholic, new to the faith, or simply
-            exploring, you are welcome here. The heart of it all is knowing
-            Jesus. Go at your own pace, and if you miss a day, that is okay.
-            Just begin again. Step by step, you are building a daily rhythm of
-            faith.
-          </p>
-        </div>
+      <section className="mb-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+          Begin Here
+        </p>
+        <h1 className="mt-2 font-display text-3xl font-bold leading-tight text-leather-900">
+          Come and know Jesus, one step at a time
+        </h1>
+        <p className="mt-3 text-sm font-medium leading-relaxed text-stone-600">
+          Whether you are a returning Catholic, new to the faith, or simply
+          exploring, you are welcome here. The heart of it all is knowing
+          Jesus. Go at your own pace, and if you miss a day, that is okay.
+          Just begin again. Step by step, you are building a daily rhythm of
+          faith.
+        </p>
       </section>
 
       <div className="mb-4">

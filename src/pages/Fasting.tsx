@@ -101,26 +101,17 @@ export default function Fasting() {
         <ReaderFontControl size={size} setSize={setSize} />
       </div>
 
-      <section className="relative mb-4 overflow-hidden rounded-[1.75rem] bg-leather-950 text-white shadow-[0_22px_50px_rgba(74,55,40,0.2)]">
-        <img
-          src="/images/hero/church-home.webp"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-br from-leather-950/95 via-leather-950/85 to-leather-900/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-leather-950/95 to-transparent" />
-        <div className="relative p-5 pt-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-            Fasting
-          </p>
-          <h1 className="mt-2 font-display text-3xl font-bold leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
-            Make room for God through fasting
-          </h1>
-          <p className="mt-3 text-sm font-medium leading-relaxed text-parchment-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-            Prayer, fasting, and almsgiving have shaped Christian life since the
-            beginning. Learn what fasting is and how to live it with love.
-          </p>
-        </div>
+      <section className="mb-4">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+          Fasting
+        </p>
+        <h1 className="mt-2 font-display text-3xl font-bold leading-tight text-leather-900">
+          Make room for God through fasting
+        </h1>
+        <p className="mt-3 text-sm font-medium leading-relaxed text-stone-600">
+          Prayer, fasting, and almsgiving have shaped Christian life since the
+          beginning. Learn what fasting is and how to live it with love.
+        </p>
       </section>
 
       <div className="mb-4">

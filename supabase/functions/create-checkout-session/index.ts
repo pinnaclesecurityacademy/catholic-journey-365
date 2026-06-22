@@ -61,6 +61,8 @@ Deno.serve(async (req) => {
       apiVersion: '2026-02-25.clover',
     });
 
+    const checkoutSuccessUrl = withCheckoutSession(successUrl);
+
     const session = await stripe.checkout.sessions.create({
       mode: 'subscription',
       customer: existing?.stripe_customer_id || undefined,
@@ -72,7 +74,7 @@ Deno.serve(async (req) => {
         metadata: { user_id: user.id, plan },
       },
       metadata: { user_id: user.id, plan },
-      success_url: successUrl,
+      success_url: checkoutSuccessUrl,
       cancel_url: cancelUrl,
       allow_promotion_codes: true,
     });
@@ -88,4 +90,9 @@ function json(body: unknown, status = 200) {
     status,
     headers: { ...corsHeaders, 'Content-Type': 'application/json' },
   });
+}
+
+function withCheckoutSession(url: string) {
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}checkout=success&checkout_session_id={CHECKOUT_SESSION_ID}`;
 }

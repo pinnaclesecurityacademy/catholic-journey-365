@@ -3,15 +3,11 @@ import { supabase } from './supabase';
 export type SubscriptionPlan = 'monthly' | 'yearly';
 
 export interface SubscriptionStatus {
-  id: string;
   user_id: string;
   status: string;
-  price_id: string | null;
   plan?: SubscriptionPlan | null;
   trial_ends_at?: string | null;
-  current_period_start: string | null;
   current_period_end: string | null;
-  cancel_at_period_end: boolean | null;
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
   created_at: string | null;

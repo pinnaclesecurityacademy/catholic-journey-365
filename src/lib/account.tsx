@@ -87,6 +87,21 @@ function defaultDisplayName(u: User) {
   return emailName || 'Friend';
 }
 
+function getCheckoutSessionId() {
+  if (typeof window === 'undefined') return null;
+  const url = new URL(window.location.href);
+  return url.searchParams.get('checkout_session_id');
+}
+
+function clearCheckoutParams() {
+  if (typeof window === 'undefined') return;
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has('checkout_session_id')) return;
+  url.searchParams.delete('checkout');
+  url.searchParams.delete('checkout_session_id');
+  window.history.replaceState({}, document.title, `${url.pathname}${url.search}`);
+}
+
 export function AccountProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [accountLoading, setAccountLoading] = useState(false);
@@ -222,7 +237,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         const { data: sub } = await supabase
           .from('billing_subscriptions')
           .select(
-            'id, user_id, stripe_customer_id, stripe_subscription_id, status, price_id, current_period_start, current_period_end, cancel_at_period_end, created_at, updated_at'
+            'user_id, stripe_customer_id, stripe_subscription_id, status, plan, trial_ends_at, current_period_end, created_at, updated_at'
           )
           .eq('user_id', u.id)
           .maybeSingle();
@@ -257,6 +272,15 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         if (!active) return;
         setUser(u);
         setLoading(false);
+        const checkoutSessionId = getCheckoutSessionId();
+        if (u && checkoutSessionId) {
+          await supabase.functions
+            .invoke('sync-checkout-session', {
+              body: { sessionId: checkoutSessionId },
+            })
+            .catch(() => undefined);
+          clearCheckoutParams();
+        }
         void loadAll(u);
       })
       .catch(() => {

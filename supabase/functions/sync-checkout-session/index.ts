@@ -14,7 +14,8 @@ Deno.serve(async (req) => {
   try {
     const stripeSecretKey = Deno.env.get('STRIPE_SECRET_KEY');
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
-    const supabaseServiceRoleKey = Deno.env.get('SERVICE_ROLE_KEY');
+    const supabaseServiceRoleKey =
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || Deno.env.get('SERVICE_ROLE_KEY');
 
     if (!stripeSecretKey || !supabaseUrl || !supabaseServiceRoleKey) {
       return json({ error: 'Stripe sync is not configured.' }, 500);
@@ -28,13 +29,12 @@ Deno.serve(async (req) => {
       return json({ error: 'Invalid checkout session.' }, 400);
     }
 
-    const supabase = createClient(supabaseUrl, supabaseServiceRoleKey, {
-      global: { headers: { Authorization: authHeader } },
-    });
+    const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+    const token = authHeader.replace(/^Bearer\s+/i, '');
     const {
       data: { user },
       error: userError,
-    } = await supabase.auth.getUser();
+    } = await supabase.auth.getUser(token);
 
     if (userError || !user) return json({ error: 'Not signed in.' }, 401);
 
@@ -71,7 +71,7 @@ async function upsertSubscription(
   const item = subscription.items.data[0];
   const plan = subscription.metadata?.plan === 'yearly' ? 'yearly' : 'monthly';
 
-  await supabase.from('billing_subscriptions').upsert(
+  const { error: subscriptionError } = await supabase.from('billing_subscriptions').upsert(
     {
       user_id: userId,
       status: subscription.status,
@@ -84,6 +84,18 @@ async function upsertSubscription(
     },
     { onConflict: 'user_id' }
   );
+  if (subscriptionError) throw subscriptionError;
+
+  const { error: statusError } = await supabase.from('account_statuses').upsert(
+    {
+      user_id: userId,
+      status: 'active',
+      deactivated_at: null,
+      updated_at: new Date().toISOString(),
+    },
+    { onConflict: 'user_id' }
+  );
+  if (statusError) throw statusError;
 }
 
 function toIso(value: number | null | undefined) {

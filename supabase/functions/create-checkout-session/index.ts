@@ -14,7 +14,8 @@ Deno.serve(async (req) => {
   try {
     const stripeSecretKey = Deno.env.get('STRIPE_SECRET_KEY');
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
-    const supabaseServiceRoleKey = Deno.env.get('SERVICE_ROLE_KEY');
+    const supabaseServiceRoleKey =
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || Deno.env.get('SERVICE_ROLE_KEY');
     const monthlyPriceId = Deno.env.get('STRIPE_MONTHLY_PRICE_ID');
     const yearlyPriceId = Deno.env.get('STRIPE_YEARLY_PRICE_ID');
     const successUrl = Deno.env.get('STRIPE_SUCCESS_URL');
@@ -39,13 +40,12 @@ Deno.serve(async (req) => {
     const plan = body.plan === 'yearly' ? 'yearly' : 'monthly';
     const price = plan === 'yearly' ? yearlyPriceId : monthlyPriceId;
 
-    const supabase = createClient(supabaseUrl, supabaseServiceRoleKey, {
-      global: { headers: { Authorization: authHeader } },
-    });
+    const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
+    const token = authHeader.replace(/^Bearer\s+/i, '');
     const {
       data: { user },
       error: userError,
-    } = await supabase.auth.getUser();
+    } = await supabase.auth.getUser(token);
 
     if (userError || !user?.email) {
       return json({ error: 'Not signed in.' }, 401);

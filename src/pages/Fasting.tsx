@@ -70,7 +70,7 @@ export default function Fasting() {
 
   // When the active step changes, scroll back to the top of the page.
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [selectedStep]);
 
   const current = FASTING_STEPS[selectedStep];

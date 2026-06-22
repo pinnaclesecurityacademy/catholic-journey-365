@@ -155,7 +155,7 @@ export default function BeginHere() {
 
   // When the active step changes, scroll back to the top of the page.
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }, [selectedStep]);
 
   useEffect(() => {

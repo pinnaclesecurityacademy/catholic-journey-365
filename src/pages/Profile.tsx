@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAccount } from '../lib/account';
 import { planLabel, statusLabel } from '../lib/billing';
 import { usePWAUpdate } from '../lib/pwaUpdates';
+import { InstallApp } from '../components/InstallApp';
 
 export default function Profile() {
   const {
@@ -154,6 +155,8 @@ export default function Profile() {
           Profile
         </h1>
       </header>
+
+      <InstallApp />
 
       <p className={sectionTitle}>My Profile</p>
       <section className={`${cardClass} mb-6`}>

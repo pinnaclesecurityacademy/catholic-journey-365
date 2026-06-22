@@ -159,6 +159,178 @@ export function getRotatingDevotion(dayNumber: number) {
   return DEVOTION_CARDS[(dayNumber - 1) % DEVOTION_CARDS.length];
 }
 
+export type FormationLesson = {
+  title: string;
+  introduction: string;
+  sections: { title: string; body: string }[];
+  scriptureConnection: string;
+  catholicPractice: string;
+  reflection: string;
+};
+
+// Starter daily Faith Formation lessons. This is the structure for a future
+// daily formation journey; more lessons can be added over time. The Faith tab
+// remains the full learning library.
+export const FORMATION_LESSONS: FormationLesson[] = [
+  {
+    title: 'Why Catholics Begin with the Sign of the Cross',
+    introduction:
+      'The Sign of the Cross is one of the simplest Catholic prayers. It is also one of the richest. Before we say many words, we place ourselves before God, remember Christ, and begin with faith.',
+    sections: [
+      {
+        title: 'We begin with God as Trinity',
+        body: 'When Catholics say, "In the name of the Father, and of the Son, and of the Holy Spirit," we are not just starting a prayer. We are naming the God who has loved us first. Christian prayer begins in the life of the Trinity, not in our own effort.',
+      },
+      {
+        title: 'We remember the Cross of Christ',
+        body: 'Tracing the Cross over the body reminds us that Jesus saved us through his death and Resurrection. The Cross is not a decoration. It is the sign of the love that entered suffering, conquered sin, and opened the way to new life.',
+      },
+      {
+        title: 'We offer our whole self',
+        body: 'The gesture touches the head, heart, and shoulders. It quietly says that our mind, our love, our strength, and our actions belong to God. Even before a longer prayer begins, the body is already praying.',
+      },
+    ],
+    scriptureConnection:
+      'Jesus tells his disciples to baptize "in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19). Saint Paul also reminds us that Christ crucified is the power and wisdom of God (1 Corinthians 1:23-24). The Sign of the Cross holds both truths together.',
+    catholicPractice:
+      'When you make the Sign of the Cross, try making it slowly. Let the words mean what they say. You are beginning in God, remembering Jesus, and asking the Holy Spirit to help you pray with your whole life.',
+    reflection:
+      'When I make the Sign of the Cross today, what part of my life do I most need to place under the love and mercy of Christ?',
+  },
+  {
+    title: 'What Is Prayer?',
+    introduction:
+      'Before prayer is a skill, it is a relationship. Prayer is simply lifting our mind and heart to God, the way we naturally open up to someone we love and trust.',
+    sections: [
+      {
+        title: 'Prayer is conversation with God',
+        body: 'We can speak to God in our own words, use prayers He has given us like the Our Father, ponder Scripture slowly, or simply rest quietly in His presence. There is more than one way to pray because prayer is a living relationship.',
+      },
+      {
+        title: 'Faithfulness, not feelings',
+        body: 'Sometimes prayer feels rich and sometimes it feels dry. Many saints lived long seasons where God felt distant, and they kept praying anyway. God is near even when we feel nothing. What matters is showing up honestly, again and again.',
+      },
+    ],
+    scriptureConnection:
+      'When the disciples asked, "Lord, teach us to pray," Jesus gave them the Our Father (Luke 11:1-4). Saint Paul urges us to "pray without ceasing" (1 Thessalonians 5:17).',
+    catholicPractice:
+      'Pray one Our Father slowly today. If your mind wanders, gently begin again without discouragement.',
+    reflection:
+      'What makes prayer hard for me right now, and where is God inviting me to simply begin?',
+  },
+  {
+    title: 'What Is the Eucharist?',
+    introduction:
+      'The Eucharist is at the very heart of the Catholic faith. The Church calls it the source and summit of the Christian life, because everything flows from Christ and everything leads back to Him.',
+    sections: [
+      {
+        title: 'The gift of the Last Supper',
+        body: 'At the Last Supper, Jesus took bread and said, "This is my body," and took the cup and said, "This is my blood," telling the Apostles, "Do this in remembrance of me." Catholics believe that at every Mass these same words make Christ truly present.',
+      },
+      {
+        title: 'Truly present, not only a symbol',
+        body: 'In John 6, Jesus called Himself the Bread of Life and said His flesh is true food. Catholics believe He is truly present, Body, Blood, Soul, and Divinity. This is why the Eucharist is received with such reverence.',
+      },
+    ],
+    scriptureConnection:
+      'On the road to Emmaus the disciples recognised the risen Jesus "in the breaking of the bread" (Luke 24:35).',
+    catholicPractice:
+      'Spend one quiet minute today thanking Jesus for staying close to His Church in the Eucharist. If you cannot receive Communion, make a Spiritual Communion, asking Him into your heart.',
+    reflection:
+      'What does it mean to me that Jesus wants to be this close to His people?',
+  },
+  {
+    title: 'Why Catholics Honour the Saints',
+    introduction:
+      'This is often the most misunderstood part of the Catholic faith. Catholics worship God alone. We do not worship Mary or the saints. We honour them, which is something different.',
+    sections: [
+      {
+        title: 'One family in Christ',
+        body: 'The saints are Christians who have run the race before us and now live fully with God. Because death does not cut a Christian off from Christ or from us, we can ask the saints to pray with us, just as we ask friends here to pray for us.',
+      },
+      {
+        title: 'They always point to Jesus',
+        body: 'Asking the saints to pray for us never replaces Jesus. Catholics go directly to Him every day. At Cana, Mary\'s words were about her Son: "Do whatever he tells you" (John 2:5). That is what the saints always do.',
+      },
+    ],
+    scriptureConnection:
+      'We are "surrounded by so great a cloud of witnesses" (Hebrews 12:1), the whole family of God gathered around the one Lord, Jesus Christ.',
+    catholicPractice:
+      'Ask Mary or a saint you know about to pray for you today, then turn your heart directly to Jesus.',
+    reflection:
+      'Does asking the saints to pray for me feel comforting, confusing, or unfamiliar, and why?',
+  },
+  {
+    title: 'What Happens at Mass?',
+    introduction:
+      'The Mass can feel like everyone knows a rhythm you have not learned yet. That is normal. The Mass is really one journey with a clear shape.',
+    sections: [
+      {
+        title: 'The Liturgy of the Word',
+        body: 'We gather, ask for God\'s mercy, and listen to readings from Scripture, standing for the Gospel out of reverence because we are hearing the words and deeds of Jesus. The homily helps us understand and live what we have heard.',
+      },
+      {
+        title: 'The Liturgy of the Eucharist',
+        body: 'Bread and wine are offered, and in the consecration the priest, acting in the person of Christ, speaks Jesus\' own words from the Last Supper. Catholics believe Christ becomes truly present, and we are then sent out to carry Him into daily life.',
+      },
+    ],
+    scriptureConnection:
+      'The first Christians "devoted themselves to the apostles\' teaching and fellowship, to the breaking of bread and the prayers" (Acts 2:42).',
+    catholicPractice:
+      'Next time you are at Mass, notice when people stand, sit, and kneel. The body prays along with the heart.',
+    reflection:
+      'Which part of the Mass do I most want to understand better?',
+  },
+  {
+    title: 'Why Scripture Matters',
+    introduction:
+      'Scripture is the Word of God, given to us through the Church which prayed, preserved, and discerned which writings are inspired. In it, God speaks to us still.',
+    sections: [
+      {
+        title: 'God speaks to us',
+        body: 'Reading Scripture is not only studying an ancient text. It is listening to a living God who wants to meet us. The Church reads it at every Mass and invites us to make it part of daily prayer.',
+      },
+      {
+        title: 'Word and Church together',
+        body: 'Christ gave us both His Word and a living Church to help us understand and live it together, so that we are not left to figure everything out alone.',
+      },
+    ],
+    scriptureConnection:
+      '"All Scripture is inspired by God and profitable for teaching" (2 Timothy 3:16). Saint Jerome wrote that ignorance of Scripture is ignorance of Christ.',
+    catholicPractice:
+      'Read a short Gospel passage slowly today, such as Luke 15:1-7, and let one line speak to you.',
+    reflection:
+      'Where is God inviting me to listen to His Word more closely this week?',
+  },
+  {
+    title: 'Why Fasting Matters',
+    introduction:
+      'Fasting is the deliberate giving up of food, or other good things, for a time, to turn our hearts more fully toward God. With prayer and almsgiving, it is one of the three great practices Jesus assumes His followers will live.',
+    sections: [
+      {
+        title: 'Making room for God',
+        body: 'By going without, we make room. The small hunger we feel becomes a reminder to pray and to depend on God. Fasting humbles us and loosens the grip our desires can have on us.',
+      },
+      {
+        title: 'Joined to prayer and charity',
+        body: 'Fasting on its own can become mere willpower. Joined to prayer it becomes a conversation with God, and what we give up can become what we give away to those in need.',
+      },
+    ],
+    scriptureConnection:
+      'Jesus fasted forty days in the desert and overcame temptation, saying, "Man shall not live by bread alone, but by every word that comes from the mouth of God" (Matthew 4:4).',
+    catholicPractice:
+      'Choose one small thing to give up today, a snack, a comfort, or some screen time, and offer that small hunger to God in prayer.',
+    reflection:
+      'What is one good thing I could set aside today to make more room for God?',
+  },
+];
+
+export function getRotatingFormationLesson(dayNumber: number): FormationLesson {
+  const index = ((dayNumber - 1) % FORMATION_LESSONS.length + FORMATION_LESSONS.length) %
+    FORMATION_LESSONS.length;
+  return FORMATION_LESSONS[index];
+}
+
 export function seeingGodStorageKey(date = new Date()) {
   return `cj365-seeing-god-${todayKey(date)}`;
 }

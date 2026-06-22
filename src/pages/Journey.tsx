@@ -15,6 +15,7 @@ import {
   SeeingGodReflection,
   getRotatingDevotion,
   getRotatingEveningPrayer,
+  getRotatingFormationLesson,
   getRotatingMorningPrayer,
   mergeFaithJourneyChecks,
   readSeeingGodReflection,
@@ -409,37 +410,6 @@ function PrayerPreparation() {
     </div>
   );
 }
-
-const SIGN_OF_CROSS_LESSON = {
-  title: 'Why Catholics Begin with the Sign of the Cross',
-  introduction:
-    'The Sign of the Cross is one of the simplest Catholic prayers. It is also one of the richest. Before we say many words, we place ourselves before God, remember Christ, and begin with faith.',
-  sections: [
-    {
-      title: 'We begin with God as Trinity',
-      body: 'When Catholics say, "In the name of the Father, and of the Son, and of the Holy Spirit," we are not just starting a prayer. We are naming the God who has loved us first. Christian prayer begins in the life of the Trinity, not in our own effort.',
-    },
-    {
-      title: 'We remember the Cross of Christ',
-      body: 'Tracing the Cross over the body reminds us that Jesus saved us through his death and Resurrection. The Cross is not a decoration. It is the sign of the love that entered suffering, conquered sin, and opened the way to new life.',
-    },
-    {
-      title: 'We offer our whole self',
-      body: 'The gesture touches the head, heart, and shoulders. It quietly says that our mind, our love, our strength, and our actions belong to God. Even before a longer prayer begins, the body is already praying.',
-    },
-    {
-      title: 'We learn to pray with the Church',
-      body: 'Catholics make this sign at Mass, before personal prayer, before meals, and in moments of need. It joins our private prayer to the prayer of the whole Church and helps us remember that faith is lived with others.',
-    },
-  ],
-  scriptureConnection:
-    'Jesus tells his disciples to baptize "in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19). Saint Paul also reminds us that Christ crucified is the power and wisdom of God (1 Corinthians 1:23-24). The Sign of the Cross holds both truths together.',
-  catholicPractice:
-    'When you make the Sign of the Cross, try making it slowly. Let the words mean what they say. You are beginning in God, remembering Jesus, and asking the Holy Spirit to help you pray with your whole life.',
-  reflection:
-    'When I make the Sign of the Cross today, what part of my life do I most need to place under the love and mercy of Christ?',
-};
-
 function FaithJourneyDetail({
   checkedItems,
   autoItems,
@@ -465,6 +435,7 @@ function FaithJourneyDetail({
   const morningPrayer = getRotatingMorningPrayer(currentDay);
   const eveningPrayer = getRotatingEveningPrayer(currentDay);
   const devotion = getRotatingDevotion(currentDay);
+  const formationLesson = getRotatingFormationLesson(currentDay);
   const allComplete = completed >= FAITH_JOURNEY_ITEMS.length;
   const inputClass =
     'mt-2 min-h-24 w-full rounded-xl border border-parchment-200 bg-white px-4 py-3 text-sm leading-relaxed text-leather-900 outline-none focus:border-leather-400';
@@ -539,20 +510,20 @@ function FaithJourneyDetail({
       return (
         <RhythmModal
           title="Faith Formation"
-          subtitle="Why Catholics begin prayer with the Sign of the Cross"
+          subtitle="A short daily Catholic teaching"
           onClose={() => setActiveModal(null)}
         >
           <div className="space-y-4 text-leather-900">
             <section className="rounded-2xl bg-parchment-50 p-5">
               <h3 className="font-display text-2xl font-semibold leading-tight">
-                {SIGN_OF_CROSS_LESSON.title}
+                {formationLesson.title}
               </h3>
               <p className="mt-3 leading-relaxed text-stone-700">
-                {SIGN_OF_CROSS_LESSON.introduction}
+                {formationLesson.introduction}
               </p>
             </section>
 
-            {SIGN_OF_CROSS_LESSON.sections.map((section) => (
+            {formationLesson.sections.map((section) => (
               <section key={section.title} className="rounded-2xl bg-white border border-parchment-200 p-5">
                 <h4 className="font-display text-xl font-semibold text-leather-900">
                   {section.title}
@@ -568,7 +539,7 @@ function FaithJourneyDetail({
                 Scripture Connection
               </p>
               <p className="mt-2 leading-relaxed text-stone-700">
-                {SIGN_OF_CROSS_LESSON.scriptureConnection}
+                {formationLesson.scriptureConnection}
               </p>
             </section>
 
@@ -577,7 +548,7 @@ function FaithJourneyDetail({
                 Catholic Practice
               </p>
               <p className="mt-2 leading-relaxed text-stone-700">
-                {SIGN_OF_CROSS_LESSON.catholicPractice}
+                {formationLesson.catholicPractice}
               </p>
             </section>
 
@@ -586,7 +557,7 @@ function FaithJourneyDetail({
                 Reflection Question
               </p>
               <p className="mt-2 font-display text-xl leading-snug text-leather-900">
-                {SIGN_OF_CROSS_LESSON.reflection}
+                {formationLesson.reflection}
               </p>
             </section>
           </div>

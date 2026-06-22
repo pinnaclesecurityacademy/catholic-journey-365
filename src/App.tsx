@@ -463,13 +463,6 @@ function AppShell() {
     return () => window.clearTimeout(timer);
   }, [accountLoading, billingLoading, completionId, loading, profile, user]);
 
-  if (loadingTimedOut) return <AuthRecoveryScreen />;
-  if (isAuthCallback || hasCallbackParams) return <AuthCallback />;
-  if (isLoginPath) return <AuthScreen initialMode="login" />;
-  if (isIntroPath) {
-    return <IntroScreens onComplete={() => window.location.replace('/app/login')} />;
-  }
-  if (loading) return <AuthGateLoading />;
   if (isResetPassword) {
     return (
       <AccountGateFrame>
@@ -479,6 +472,13 @@ function AppShell() {
       </AccountGateFrame>
     );
   }
+  if (loadingTimedOut) return <AuthRecoveryScreen />;
+  if (isAuthCallback || hasCallbackParams) return <AuthCallback />;
+  if (isLoginPath) return <AuthScreen initialMode="login" />;
+  if (isIntroPath) {
+    return <IntroScreens onComplete={() => window.location.replace('/app/login')} />;
+  }
+  if (loading) return <AuthGateLoading />;
   if (!user) return <RedirectToLogin />;
   if (accountLoading || billingLoading) {
     return <LoadingAppFrame />;

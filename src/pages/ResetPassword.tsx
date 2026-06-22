@@ -1,5 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useAccount } from '../lib/account';
+import { supabase } from '../lib/supabase';
 
 function hasRecoveryParams() {
   if (typeof window === 'undefined') return false;
@@ -13,13 +14,85 @@ function hasRecoveryParams() {
 }
 
 export default function ResetPassword() {
-  const { user, updatePassword, signOut } = useAccount();
+  const { loading, user, updatePassword, signOut } = useAccount();
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [busy, setBusy] = useState(false);
+  const [linkChecking, setLinkChecking] = useState(true);
+  const [linkError, setLinkError] = useState<string | null>(null);
+  const [sessionReady, setSessionReady] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const arrivedFromResetEmail = useMemo(hasRecoveryParams, []);
+
+  useEffect(() => {
+    let active = true;
+
+    const checkRecoverySession = async () => {
+      const url = new URL(window.location.href);
+      const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+
+      if (
+        url.searchParams.has('error') ||
+        url.searchParams.has('error_code') ||
+        hash.has('error') ||
+        hash.has('error_code')
+      ) {
+        if (!active) return;
+        setLinkError('This reset link is invalid or expired.');
+        setLinkChecking(false);
+        return;
+      }
+
+      const code = url.searchParams.get('code');
+      if (code) {
+        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
+        if (!active) return;
+        if (exchangeError) {
+          setLinkError('This reset link is invalid or expired.');
+        } else {
+          setSessionReady(true);
+          window.history.replaceState({}, document.title, '/app/reset-password');
+        }
+        setLinkChecking(false);
+        return;
+      }
+
+      const accessToken = hash.get('access_token');
+      const refreshToken = hash.get('refresh_token');
+      if (accessToken && refreshToken) {
+        const { error: sessionError } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        });
+        if (!active) return;
+        if (sessionError) {
+          setLinkError('This reset link is invalid or expired.');
+        } else {
+          setSessionReady(true);
+          window.history.replaceState({}, document.title, '/app/reset-password');
+        }
+        setLinkChecking(false);
+        return;
+      }
+
+      const { data } = await supabase.auth.getSession();
+      if (!active) return;
+      setSessionReady(Boolean(data.session));
+      if (window.location.hash) {
+        window.history.replaceState({}, document.title, '/app/reset-password');
+      }
+      setLinkChecking(false);
+    };
+
+    void checkRecoverySession();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const goToLogin = async () => {
     await signOut();
@@ -28,8 +101,12 @@ export default function ResetPassword() {
 
   const submit = async () => {
     setError(null);
-    if (password.length < 6) {
-      setError('Please enter a password with at least 6 characters.');
+    if (!password) {
+      setError('Password is required.');
+      return;
+    }
+    if (password.length < 8) {
+      setError('Please enter a password with at least 8 characters.');
       return;
     }
     if (password !== confirmPassword) {
@@ -46,7 +123,24 @@ export default function ResetPassword() {
     }
   };
 
-  if (!user) {
+  const canUpdatePassword = Boolean(user) || sessionReady;
+
+  if (loading || linkChecking) {
+    return (
+      <main className="min-h-screen bg-parchment-100 flex items-center justify-center px-6">
+        <div className="w-full max-w-sm rounded-2xl border border-parchment-200 bg-white p-6 text-center shadow-[0_18px_42px_rgba(74,55,40,0.08)]">
+          <h1 className="font-display text-3xl font-bold text-leather-900">
+            Checking reset link
+          </h1>
+          <p className="mt-3 text-sm leading-relaxed text-stone-600">
+            Please wait while we prepare your password reset.
+          </p>
+        </div>
+      </main>
+    );
+  }
+
+  if (linkError || !canUpdatePassword) {
     return (
       <main className="min-h-screen bg-parchment-100 flex items-center justify-center px-6">
         <div className="w-full max-w-sm rounded-2xl border border-parchment-200 bg-white p-6 text-center shadow-[0_18px_42px_rgba(74,55,40,0.08)]">
@@ -112,22 +206,42 @@ export default function ResetPassword() {
         <div className="rounded-2xl border border-parchment-200 bg-white p-6">
           <label className="block text-sm font-semibold text-leather-900">
             New password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-leather-900 outline-none focus:border-leather-400"
-            />
+            <span className="mt-1 flex rounded-xl border border-parchment-200 bg-parchment-50 focus-within:border-leather-400">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full rounded-l-xl bg-transparent px-4 py-3 text-leather-900 outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((value) => !value)}
+                className="px-4 text-sm font-medium text-leather-600"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </span>
           </label>
           <label className="mt-3 block text-sm font-semibold text-leather-900">
             Confirm new password
-            <input
-              type="password"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && submit()}
-              className="mt-1 w-full rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-leather-900 outline-none focus:border-leather-400"
-            />
+            <span className="mt-1 flex rounded-xl border border-parchment-200 bg-parchment-50 focus-within:border-leather-400">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && submit()}
+                className="w-full rounded-l-xl bg-transparent px-4 py-3 text-leather-900 outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword((value) => !value)}
+                className="px-4 text-sm font-medium text-leather-600"
+                aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+              >
+                {showConfirmPassword ? 'Hide' : 'Show'}
+              </button>
+            </span>
           </label>
           {error && <p className="mt-3 text-sm text-red-600">{error}</p>}
           <button

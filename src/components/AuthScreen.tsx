@@ -9,6 +9,7 @@ export default function AuthScreen({ initialMode = 'signup' }: { initialMode?: M
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [confirmSent, setConfirmSent] = useState(false);
@@ -26,6 +27,14 @@ export default function AuthScreen({ initialMode = 'signup' }: { initialMode?: M
 
   const submit = async () => {
     setError(null);
+    if (mode !== 'forgot' && !password) {
+      setError('Password is required.');
+      return;
+    }
+    if (mode === 'signup' && password.length < 8) {
+      setError('Please enter a password with at least 8 characters.');
+      return;
+    }
     setBusy(true);
     try {
       if (mode === 'signup') {
@@ -125,14 +134,24 @@ export default function AuthScreen({ initialMode = 'signup' }: { initialMode?: M
           {mode !== 'forgot' && (
             <label className="block text-sm font-semibold text-leather-900">
               Password
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && submit()}
-                placeholder="••••••••"
-                className={inputClass}
-              />
+              <span className="mt-1 flex rounded-xl border border-parchment-200 bg-parchment-50 focus-within:border-leather-400">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onKeyDown={(e) => e.key === 'Enter' && submit()}
+                  placeholder="••••••••"
+                  className="w-full rounded-l-xl bg-transparent px-4 py-3 text-leather-900 outline-none"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((value) => !value)}
+                  className="px-4 text-sm font-medium text-leather-600"
+                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                >
+                  {showPassword ? 'Hide' : 'Show'}
+                </button>
+              </span>
             </label>
           )}
 

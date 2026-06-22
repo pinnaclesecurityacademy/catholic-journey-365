@@ -80,6 +80,13 @@ function randomCode(): string {
   return `CJ365-${s}`;
 }
 
+function defaultDisplayName(u: User) {
+  const name = u.user_metadata?.name || u.user_metadata?.display_name;
+  if (typeof name === 'string' && name.trim()) return name.trim();
+  const emailName = u.email?.split('@')[0];
+  return emailName || 'Friend';
+}
+
 export function AccountProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [accountLoading, setAccountLoading] = useState(false);
@@ -177,14 +184,30 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       clearJourney();
 
       try {
-        const { data: prof } = await supabase
+        const { data: prof, error: profileError } = await supabase
           .from('profiles')
           .select('id, display_name, completion_id')
           .eq('id', u.id)
           .maybeSingle();
         if (!shouldApply()) return;
 
-        setProfile((prof as Profile) ?? null);
+        let nextProfile = (prof as Profile | null) ?? null;
+        if (!nextProfile && !profileError) {
+          const fallbackProfile = {
+            id: u.id,
+            display_name: defaultDisplayName(u),
+            completion_id: u.id,
+          };
+          const { data: createdProfile } = await supabase
+            .from('profiles')
+            .upsert(fallbackProfile, { onConflict: 'id' })
+            .select('id, display_name, completion_id')
+            .maybeSingle();
+          if (!shouldApply()) return;
+          nextProfile = (createdProfile as Profile | null) ?? fallbackProfile;
+        }
+
+        setProfile(nextProfile);
 
         const { data: statusRecord } = await supabase
           .from('account_statuses')
@@ -206,8 +229,14 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         if (!shouldApply()) return;
         setSubscription((sub as SubscriptionStatus) ?? null);
 
-        if (prof && (prof as Profile).completion_id) {
+        if (nextProfile?.completion_id) {
           await loadJourney(u.id, shouldApply);
+        }
+      } catch {
+        if (shouldApply()) {
+          setProfile(null);
+          setSubscription(null);
+          clearJourney();
         }
       } finally {
         if (shouldApply()) {

@@ -454,11 +454,7 @@ function AppShell() {
   }, [user, profile, completionId, claim]);
 
   useEffect(() => {
-    const waiting =
-      loading ||
-      Boolean(
-        user && (accountLoading || billingLoading || !profile || !completionId)
-      );
+    const waiting = loading || Boolean(user && (accountLoading || billingLoading));
     if (!waiting) {
       setLoadingTimedOut(false);
       return;
@@ -484,7 +480,7 @@ function AppShell() {
     );
   }
   if (!user) return <RedirectToLogin />;
-  if (accountLoading || billingLoading || !profile || !completionId) {
+  if (accountLoading || billingLoading) {
     return <LoadingAppFrame />;
   }
   if (accountStatus === 'deactivated') {
@@ -502,6 +498,9 @@ function AppShell() {
         </Suspense>
       </AccountGateFrame>
     );
+  }
+  if (!profile || !completionId) {
+    return <LoadingAppFrame />;
   }
   if (!journeyId) return <JourneySetupFrame />;
 

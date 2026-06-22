@@ -76,22 +76,34 @@ export async function startCheckout(plan: SubscriptionPlan) {
 
 export async function openCustomerPortal() {
   const { data, error } = await supabase.functions.invoke(
-    'create-customer-portal'
+    'create-portal-session'
   );
 
+  // Supabase wraps non-2xx responses in a FunctionsHttpError, hiding the
+  // function's JSON body. Read the response to surface the friendly message.
   if (error) {
+    let message: string | null = null;
+    const context = (error as { context?: Response }).context;
+    if (context && typeof context.json === 'function') {
+      try {
+        const body = await context.json();
+        message = (body as { error?: string } | null)?.error ?? null;
+      } catch {
+        message = null;
+      }
+    }
     return {
       error:
+        message ||
         error.message ||
-        'Subscription management is not configured yet. Please add the Stripe customer portal function and environment variables.',
+        'We could not find an active subscription for this account.',
     };
   }
 
   const url = (data as { url?: string } | null)?.url;
   if (!url) {
     return {
-      error:
-        'Subscription management is not configured yet. The portal function did not return a URL.',
+      error: 'We could not find an active subscription for this account.',
     };
   }
 

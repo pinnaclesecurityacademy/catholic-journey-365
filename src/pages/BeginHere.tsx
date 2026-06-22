@@ -198,11 +198,14 @@ export default function BeginHere() {
             Begin Here
           </p>
           <h1 className="mt-2 font-display text-3xl font-bold leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]">
-            Take the first steps into the Catholic faith
+            Come and know Jesus, one step at a time
           </h1>
           <p className="mt-3 text-sm font-medium leading-relaxed text-parchment-100 drop-shadow-[0_2px_8px_rgba(0,0,0,0.7)]">
-            For Catholics, returning Catholics, new Catholics, and anyone
-            trying to understand where to begin.
+            Whether you are a returning Catholic, new to the faith, or simply
+            exploring, you are welcome here. The heart of it all is knowing
+            Jesus. Go at your own pace, and if you miss a day, that is okay.
+            Just begin again. Step by step, you are building a daily rhythm of
+            faith.
           </p>
         </div>
       </section>

@@ -20,6 +20,7 @@ const SaintLibrary = lazy(() => import('./pages/SaintLibrary'));
 const Profile = lazy(() => import('./pages/Profile'));
 const Faith = lazy(() => import('./pages/Faith'));
 const BeginHere = lazy(() => import('./pages/BeginHere'));
+const Fasting = lazy(() => import('./pages/Fasting'));
 const Sacraments = lazy(() => import('./pages/Sacraments'));
 const SacramentDetail = lazy(() => import('./pages/SacramentDetail'));
 const Prayer = lazy(() => import('./pages/Prayer'));
@@ -116,6 +117,7 @@ function PrivateRoutes() {
         <Route path="/saints" element={<SaintLibrary />} />
         <Route path="/faith" element={<Faith />} />
         <Route path="/faith/begin" element={<BeginHere />} />
+        <Route path="/faith/fasting" element={<Fasting />} />
         <Route path="/sacraments" element={<Sacraments />} />
         <Route path="/sacraments/:id" element={<SacramentDetail />} />
         <Route path="/prayer" element={<Prayer />} />

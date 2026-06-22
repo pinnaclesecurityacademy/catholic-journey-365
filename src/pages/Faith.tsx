@@ -57,6 +57,15 @@ const FAITH_CARDS: FaithCard[] = [
     to: '/saints',
   },
   {
+    title: 'Fasting',
+    description:
+      'Discover what fasting is, its roots in Scripture, and how to make room for God.',
+    cta: 'Learn to Fast',
+    imageSrc: '/images/faith/prayer.webp',
+    imagePosition: 'object-[center_40%]',
+    to: '/faith/fasting',
+  },
+  {
     title: 'Sacraments',
     description:
       'Discover the encounters with God at the heart of Catholic life.',

@@ -351,6 +351,7 @@ type RhythmModalKind =
   | 'seeing'
   | 'saint'
   | 'evening'
+  | 'unfinished'
   | 'complete'
   | null;
 
@@ -470,17 +471,16 @@ function FaithJourneyDetail({
 
   const completeRhythm = () => {
     if (!allComplete) {
-      const ok = window.confirm(
-        'Some parts of today\'s rhythm are still open. Complete it anyway?'
-      );
-      if (!ok) return;
+      // Do not auto-complete unfinished steps. Let the user choose to keep
+      // going or close the day while leaving missed steps incomplete.
+      setActiveModal('unfinished');
+      return;
     }
+    setActiveModal('complete');
+  };
 
-    for (const item of FAITH_JOURNEY_ITEMS) {
-      if (!effectiveItems.includes(item) && !autoItems.includes(item)) {
-        onToggleItem(item);
-      }
-    }
+  // End the day without marking any unfinished steps complete.
+  const endTodayAnyway = () => {
     setActiveModal('complete');
   };
 
@@ -794,6 +794,36 @@ function FaithJourneyDetail({
             className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
           >
             Complete Prayer
+          </button>
+        </RhythmModal>
+      );
+    }
+
+    if (activeModal === 'unfinished') {
+      return (
+        <RhythmModal
+          title="You still have unfinished steps."
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="rounded-2xl bg-parchment-50 px-5 py-7 text-center">
+            <p className="leading-relaxed text-stone-700">
+              You can keep going, or end today and return to these steps whenever
+              you are ready. Nothing is locked.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setActiveModal(null)}
+            className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Continue Journey
+          </button>
+          <button
+            type="button"
+            onClick={endTodayAnyway}
+            className="mt-3 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-leather-600 transition active:scale-[0.99]"
+          >
+            End Today Anyway
           </button>
         </RhythmModal>
       );

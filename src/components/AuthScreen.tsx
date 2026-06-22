@@ -39,6 +39,7 @@ export default function AuthScreen({ initialMode = 'signup' }: { initialMode?: M
       } else {
         const res = await signIn(email, password);
         if (res.error) setError(res.error);
+        else window.location.replace('/app');
       }
     } finally {
       setBusy(false);

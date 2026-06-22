@@ -203,6 +203,33 @@ function AuthCallback() {
   return <AuthGateLoading />;
 }
 
+async function clearAuthAndGoToLogin() {
+  try {
+    await supabase.auth.signOut();
+  } catch {
+    // Continue to the login screen even if the remote sign-out fails.
+  }
+
+  try {
+    for (let i = window.localStorage.length - 1; i >= 0; i--) {
+      const key = window.localStorage.key(i);
+      if (key?.startsWith('sb-') && key.includes('auth-token')) {
+        window.localStorage.removeItem(key);
+      }
+    }
+    for (let i = window.sessionStorage.length - 1; i >= 0; i--) {
+      const key = window.sessionStorage.key(i);
+      if (key?.startsWith('sb-') && key.includes('auth-token')) {
+        window.sessionStorage.removeItem(key);
+      }
+    }
+  } catch {
+    // Storage may be unavailable; the route change still gets the user unstuck.
+  }
+
+  window.location.replace('/app/login');
+}
+
 function RedirectToLogin() {
   useEffect(() => {
     window.location.replace('/app/login');
@@ -293,8 +320,6 @@ function AuthGateLoading() {
 }
 
 function AuthRecoveryScreen() {
-  const { signOut } = useAccount();
-
   return (
     <main className="min-h-screen bg-parchment-100 flex items-center justify-center px-6">
       <div className="w-full max-w-sm rounded-2xl border border-parchment-200 bg-white p-6 text-center shadow-[0_18px_42px_rgba(74,55,40,0.08)]">
@@ -315,19 +340,14 @@ function AuthRecoveryScreen() {
           </button>
           <button
             type="button"
-            onClick={() => {
-              window.location.href = '/app/login';
-            }}
+            onClick={clearAuthAndGoToLogin}
             className="w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-leather-600 transition active:scale-[0.99]"
           >
             Return to login
           </button>
           <button
             type="button"
-            onClick={async () => {
-              await signOut();
-              window.location.href = '/app/login';
-            }}
+            onClick={clearAuthAndGoToLogin}
             className="w-full rounded-xl border border-parchment-200 bg-parchment-50 py-3 font-semibold text-stone-500 transition active:scale-[0.99]"
           >
             Sign out and restart
@@ -417,18 +437,11 @@ function AppShell() {
     claim,
   } = useAccount();
   const [loadingTimedOut, setLoadingTimedOut] = useState(false);
-  const [introComplete, setIntroComplete] = useState(() => {
-    if (typeof window === 'undefined') return true;
-    try {
-      return window.localStorage.getItem(INTRO_STORAGE_KEY) === '1';
-    } catch {
-      return true;
-    }
-  });
   const path =
     typeof window === 'undefined' ? '/app' : window.location.pathname;
   const isResetPassword = path === '/app/reset-password';
   const isAuthCallback = path === '/app/auth/callback';
+  const isIntroPath = path === '/app/intro';
   const isLoginPath = path === '/app/login';
   const hasCallbackParams = hasAuthCallbackParams();
 
@@ -456,6 +469,10 @@ function AppShell() {
 
   if (loadingTimedOut) return <AuthRecoveryScreen />;
   if (isAuthCallback || hasCallbackParams) return <AuthCallback />;
+  if (isLoginPath) return <AuthScreen initialMode="login" />;
+  if (isIntroPath) {
+    return <IntroScreens onComplete={() => window.location.replace('/app/login')} />;
+  }
   if (loading) return <AuthGateLoading />;
   if (isResetPassword) {
     return (
@@ -466,13 +483,7 @@ function AppShell() {
       </AccountGateFrame>
     );
   }
-  if (!user) {
-    if (!isLoginPath) return <RedirectToLogin />;
-    if (!introComplete && !isLoginPath) {
-      return <IntroScreens onComplete={() => setIntroComplete(true)} />;
-    }
-    return <AuthScreen initialMode={isLoginPath ? 'login' : 'signup'} />;
-  }
+  if (!user) return <RedirectToLogin />;
   if (accountLoading || billingLoading || !profile || !completionId) {
     return <LoadingAppFrame />;
   }

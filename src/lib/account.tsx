@@ -274,12 +274,20 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         setLoading(false);
         const checkoutSessionId = getCheckoutSessionId();
         if (u && checkoutSessionId) {
-          await supabase.functions
-            .invoke('sync-checkout-session', {
+          const { data: syncData, error: syncError } =
+            await supabase.functions.invoke('sync-checkout-session', {
               body: { sessionId: checkoutSessionId },
-            })
-            .catch(() => undefined);
-          clearCheckoutParams();
+            });
+          if (syncError || !(syncData as { synced?: boolean } | null)?.synced) {
+            console.error('Stripe checkout sync failed', {
+              user_id: u.id,
+              checkout_session_id: checkoutSessionId,
+              error: syncError?.message,
+              data: syncData,
+            });
+          } else {
+            clearCheckoutParams();
+          }
         }
         void loadAll(u);
       })

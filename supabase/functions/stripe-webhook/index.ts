@@ -9,6 +9,12 @@ Deno.serve(async (req) => {
     Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || Deno.env.get('SERVICE_ROLE_KEY');
 
   if (!stripeSecretKey || !webhookSecret || !supabaseUrl || !supabaseServiceRoleKey) {
+    console.error('stripe-webhook missing configuration', {
+      has_stripe_key: Boolean(stripeSecretKey),
+      has_webhook_secret: Boolean(webhookSecret),
+      has_supabase_url: Boolean(supabaseUrl),
+      has_service_role_key: Boolean(supabaseServiceRoleKey),
+    });
     return new Response('Stripe webhook is not configured.', { status: 500 });
   }
 
@@ -41,7 +47,14 @@ Deno.serve(async (req) => {
     const subscriptionId =
       typeof session.subscription === 'string' ? session.subscription : null;
 
-    if (userId && session.customer && subscriptionId) {
+    if (!userId || !session.customer || !subscriptionId) {
+      console.error('checkout.session.completed missing sync data', {
+        session_id: session.id,
+        user_id: userId,
+        has_customer: Boolean(session.customer),
+        subscription_id: subscriptionId,
+      });
+    } else {
       const subscription = await stripe.subscriptions.retrieve(subscriptionId);
       await upsertSubscription(supabase, userId, session.customer.toString(), subscription);
     }
@@ -57,7 +70,14 @@ Deno.serve(async (req) => {
     const customerId =
       typeof subscription.customer === 'string' ? subscription.customer : null;
 
-    if (userId && customerId) {
+    if (!userId || !customerId) {
+      console.error('subscription event missing sync data', {
+        event_type: event.type,
+        subscription_id: subscription.id,
+        user_id: userId,
+        customer_id: customerId,
+      });
+    } else {
       await upsertSubscription(supabase, userId, customerId, subscription);
     }
   }
@@ -89,20 +109,42 @@ async function upsertSubscription(
     },
     { onConflict: 'user_id' }
   );
-  if (subscriptionError) throw subscriptionError;
+  if (subscriptionError) {
+    console.error('billing_subscriptions upsert failed', {
+      user_id: userId,
+      subscription_id: subscription.id,
+      status: subscription.status,
+      error: subscriptionError.message,
+    });
+    throw subscriptionError;
+  }
+
+  const accessStatus = getAccessStatus(subscription.status);
+  if (!accessStatus) return;
 
   const { error: statusError } = await supabase.from('account_statuses').upsert(
     {
       user_id: userId,
-      status: 'active',
+      status: accessStatus,
       deactivated_at: null,
       updated_at: new Date().toISOString(),
     },
     { onConflict: 'user_id' }
   );
-  if (statusError) throw statusError;
+  if (statusError) {
+    console.error('account_statuses upsert failed', {
+      user_id: userId,
+      status: accessStatus,
+      error: statusError.message,
+    });
+    throw statusError;
+  }
 }
 
 function toIso(value: number | null | undefined) {
   return value ? new Date(value * 1000).toISOString() : null;
+}
+
+function getAccessStatus(status: string) {
+  return status === 'trialing' || status === 'active' ? status : null;
 }

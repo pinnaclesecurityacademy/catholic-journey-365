@@ -18,15 +18,19 @@ Deno.serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') || Deno.env.get('SERVICE_ROLE_KEY');
 
     if (!stripeSecretKey || !supabaseUrl || !supabaseServiceRoleKey) {
-      return json({ error: 'Stripe sync is not configured.' }, 500);
+      return fail('Stripe sync is not configured.', 500, {
+        has_stripe_key: Boolean(stripeSecretKey),
+        has_supabase_url: Boolean(supabaseUrl),
+        has_service_role_key: Boolean(supabaseServiceRoleKey),
+      });
     }
 
     const authHeader = req.headers.get('Authorization');
-    if (!authHeader) return json({ error: 'Not signed in.' }, 401);
+    if (!authHeader) return fail('Not signed in.', 401);
 
     const { sessionId } = await req.json().catch(() => ({ sessionId: null }));
     if (typeof sessionId !== 'string' || !sessionId.startsWith('cs_')) {
-      return json({ error: 'Invalid checkout session.' }, 400);
+      return fail('Invalid checkout session.', 400, { sessionId });
     }
 
     const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
@@ -36,7 +40,11 @@ Deno.serve(async (req) => {
       error: userError,
     } = await supabase.auth.getUser(token);
 
-    if (userError || !user) return json({ error: 'Not signed in.' }, 401);
+    if (userError || !user) {
+      return fail('Not signed in.', 401, {
+        auth_error: userError?.message,
+      });
+    }
 
     const stripe = new Stripe(stripeSecretKey, {
       apiVersion: '2026-02-25.clover',
@@ -46,19 +54,44 @@ Deno.serve(async (req) => {
     const subscriptionId =
       typeof session.subscription === 'string' ? session.subscription : null;
 
-    if (userId !== user.id || !session.customer || !subscriptionId) {
-      return json({ error: 'Checkout session does not match this account.' }, 403);
+    if (!userId) {
+      return fail('Stripe checkout session is missing user_id.', 400, {
+        session_id: session.id,
+      });
+    }
+
+    if (userId !== user.id) {
+      return fail('Checkout session does not match this account.', 403, {
+        session_user_id: userId,
+        auth_user_id: user.id,
+      });
+    }
+
+    if (!session.customer) {
+      return fail('Stripe checkout session is missing customer.', 400, {
+        session_id: session.id,
+        user_id: user.id,
+      });
+    }
+
+    if (!subscriptionId) {
+      return fail('Stripe checkout session is missing subscription.', 400, {
+        session_id: session.id,
+        user_id: user.id,
+      });
     }
 
     const subscription = await stripe.subscriptions.retrieve(subscriptionId);
     await upsertSubscription(supabase, user.id, session.customer.toString(), subscription);
 
-    return json({ ok: true, status: subscription.status });
+    return json({
+      synced: true,
+      status: subscription.status,
+      user_id: user.id,
+      subscription_id: subscription.id,
+    });
   } catch (error) {
-    return json(
-      { error: error instanceof Error ? error.message : 'Checkout sync failed.' },
-      500
-    );
+    return fail(error instanceof Error ? error.message : 'Checkout sync failed.', 500);
   }
 });
 
@@ -84,22 +117,49 @@ async function upsertSubscription(
     },
     { onConflict: 'user_id' }
   );
-  if (subscriptionError) throw subscriptionError;
+  if (subscriptionError) {
+    console.error('billing_subscriptions upsert failed', {
+      user_id: userId,
+      subscription_id: subscription.id,
+      status: subscription.status,
+      error: subscriptionError.message,
+    });
+    throw subscriptionError;
+  }
+
+  const accessStatus = getAccessStatus(subscription.status);
+  if (!accessStatus) return;
 
   const { error: statusError } = await supabase.from('account_statuses').upsert(
     {
       user_id: userId,
-      status: 'active',
+      status: accessStatus,
       deactivated_at: null,
       updated_at: new Date().toISOString(),
     },
     { onConflict: 'user_id' }
   );
-  if (statusError) throw statusError;
+  if (statusError) {
+    console.error('account_statuses upsert failed', {
+      user_id: userId,
+      status: accessStatus,
+      error: statusError.message,
+    });
+    throw statusError;
+  }
 }
 
 function toIso(value: number | null | undefined) {
   return value ? new Date(value * 1000).toISOString() : null;
+}
+
+function getAccessStatus(status: string) {
+  return status === 'trialing' || status === 'active' ? status : null;
+}
+
+function fail(message: string, status = 500, details?: unknown) {
+  console.error('sync-checkout-session failed', { message, details });
+  return json({ synced: false, error: message, details }, status);
 }
 
 function json(body: unknown, status = 200) {

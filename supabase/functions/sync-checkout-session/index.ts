@@ -1,4 +1,4 @@
-import Stripe from 'https://esm.sh/stripe@18.0.0?target=deno';
+import Stripe from 'npm:stripe@18.0.0';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.108.1';
 
 const corsHeaders = {
@@ -48,6 +48,7 @@ Deno.serve(async (req) => {
 
     const stripe = new Stripe(stripeSecretKey, {
       apiVersion: '2026-02-25.clover',
+      httpClient: Stripe.createFetchHttpClient(),
     });
     const session = await stripe.checkout.sessions.retrieve(sessionId);
     const userId = session.client_reference_id || session.metadata?.user_id;

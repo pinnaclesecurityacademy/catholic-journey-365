@@ -1,4 +1,4 @@
-import Stripe from 'https://esm.sh/stripe@18.0.0?target=deno';
+import Stripe from 'npm:stripe@18.0.0';
 import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.108.1';
 
 Deno.serve(async (req) => {
@@ -23,7 +23,9 @@ Deno.serve(async (req) => {
 
   const stripe = new Stripe(stripeSecretKey, {
     apiVersion: '2026-02-25.clover',
+    httpClient: Stripe.createFetchHttpClient(),
   });
+  const cryptoProvider = Stripe.createSubtleCryptoProvider();
   const body = await req.text();
 
   let event: Stripe.Event;
@@ -31,7 +33,9 @@ Deno.serve(async (req) => {
     event = await stripe.webhooks.constructEventAsync(
       body,
       signature,
-      webhookSecret
+      webhookSecret,
+      undefined,
+      cryptoProvider
     );
   } catch (error) {
     return new Response(error instanceof Error ? error.message : 'Invalid signature.', {

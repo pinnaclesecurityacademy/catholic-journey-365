@@ -68,6 +68,11 @@ export default function Fasting() {
     window.localStorage.setItem(storageKey, JSON.stringify(completedSteps));
   }, [completedSteps, storageKey]);
 
+  // When the active step changes, scroll back to the top of the page.
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [selectedStep]);
+
   const current = FASTING_STEPS[selectedStep];
   const completedCount = completedSteps.length;
   const progressPercent = Math.round(

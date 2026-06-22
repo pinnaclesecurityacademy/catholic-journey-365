@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense, useState, type ReactNode } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import AppErrorBoundary from './components/AppErrorBoundary';
 import AuthScreen from './components/AuthScreen';
@@ -71,9 +71,20 @@ function Splash() {
   );
 }
 
+// On every route change, reset the window to the top so pages never open
+// mid-scroll. Lives inside the Router so it can observe navigation.
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [pathname]);
+  return null;
+}
+
 function AppFrame({ children }: { children: ReactNode }) {
   return (
     <BrowserRouter basename="/app">
+      <ScrollToTop />
       <div
         className="min-h-screen bg-parchment-100"
         style={{ paddingBottom: 'calc(80px + env(safe-area-inset-bottom))' }}

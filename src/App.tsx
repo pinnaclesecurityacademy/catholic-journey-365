@@ -183,6 +183,10 @@ function AuthCallback() {
         await supabase.auth.getSession();
       }
 
+      if (next === '/app/login') {
+        await supabase.auth.signOut();
+      }
+
       window.history.replaceState({}, document.title, next);
       window.location.replace(next);
     };
@@ -196,6 +200,14 @@ function AuthCallback() {
   }, []);
 
   if (timedOut) return <AuthRecoveryScreen />;
+  return <AuthGateLoading />;
+}
+
+function RedirectToLogin() {
+  useEffect(() => {
+    window.location.replace('/app/login');
+  }, []);
+
   return <AuthGateLoading />;
 }
 
@@ -418,6 +430,7 @@ function AppShell() {
   const isResetPassword = path === '/app/reset-password';
   const isAuthCallback = path === '/app/auth/callback';
   const isLoginPath = path === '/app/login';
+  const hasCallbackParams = hasAuthCallbackParams();
 
   // A first-time user starts fresh on their own progress namespace, then
   // chooses or joins a journey. No legacy import step is shown publicly.
@@ -437,12 +450,12 @@ function AppShell() {
       setLoadingTimedOut(false);
       return;
     }
-    const timer = window.setTimeout(() => setLoadingTimedOut(true), 12000);
+    const timer = window.setTimeout(() => setLoadingTimedOut(true), 10000);
     return () => window.clearTimeout(timer);
   }, [accountLoading, billingLoading, completionId, loading, profile, user]);
 
   if (loadingTimedOut) return <AuthRecoveryScreen />;
-  if (isAuthCallback) return <AuthCallback />;
+  if (isAuthCallback || hasCallbackParams) return <AuthCallback />;
   if (loading) return <AuthGateLoading />;
   if (isResetPassword) {
     return (
@@ -454,6 +467,7 @@ function AppShell() {
     );
   }
   if (!user) {
+    if (!isLoginPath) return <RedirectToLogin />;
     if (!introComplete && !isLoginPath) {
       return <IntroScreens onComplete={() => setIntroComplete(true)} />;
     }

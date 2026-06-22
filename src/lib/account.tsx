@@ -252,7 +252,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   }, [loadAll]);
 
   const signUp = async (name: string, email: string, password: string) => {
-    const emailRedirectTo = `${PRODUCTION_URL}/app/auth/callback?next=/app/login`;
+    const emailRedirectTo = `${PRODUCTION_URL}/app/login`;
     const { data, error } = await supabase.auth.signUp({
       email,
       password,

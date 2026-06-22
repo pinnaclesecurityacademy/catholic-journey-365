@@ -8,6 +8,7 @@ import { useAccount, Member } from '../lib/account';
 import { CompletionRecord, ReadingDay } from '../lib/supabase';
 import {
   DIVE_DEEPER_ITEM,
+  SAINT_OF_DAY_ITEM,
   FAITH_JOURNEY_ITEMS,
   PERSONAL_PRAYER_ITEM,
   SCRIPTURE_READING_ITEM,
@@ -346,6 +347,7 @@ type RhythmModalKind =
   | 'devotion'
   | 'personal'
   | 'seeing'
+  | 'saint'
   | 'evening'
   | 'complete'
   | null;
@@ -489,6 +491,7 @@ function FaithJourneyDetail({
     if (item === 'Faith Formation') setActiveModal('formation');
     if (item === 'Daily Devotion') setActiveModal('devotion');
     if (item === PERSONAL_PRAYER_ITEM) setActiveModal('personal');
+    if (item === SAINT_OF_DAY_ITEM) setActiveModal('saint');
     if (item === 'Seeing God Today') setActiveModal('seeing');
     if (item === 'Evening Prayer') setActiveModal('evening');
   };
@@ -671,6 +674,55 @@ function FaithJourneyDetail({
       );
     }
 
+    if (activeModal === 'saint') {
+      return (
+        <RhythmModal
+          title="Saint of the Day"
+          subtitle="What is a Saint?"
+          onClose={() => setActiveModal(null)}
+        >
+          <div className="space-y-3 rounded-2xl bg-parchment-50 p-5 text-sm leading-relaxed text-stone-700">
+            <p>
+              A saint is a person who lived a holy life and is now fully alive
+              with God in heaven. God is the one who makes saints; holiness is
+              his gift, not our achievement.
+            </p>
+            <p>
+              The Church does not create saints. She recognises those in whom
+              God&apos;s grace has clearly shone, holding them up as examples
+              and friends for us.
+            </p>
+            <p>
+              Worship belongs to God alone. We do not worship the saints. We
+              honour them and ask them, as our brothers and sisters in Christ,
+              to pray with us and for us, just as we ask friends on earth to
+              pray for us.
+            </p>
+            <p>
+              And this calling is for everyone. God calls each of us to
+              sainthood, to become holy right where we are.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => {
+              navigate('/saint');
+            }}
+            className="mt-4 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-leather-600 transition active:scale-[0.99]"
+          >
+            Meet Today&apos;s Saint
+          </button>
+          <button
+            type="button"
+            onClick={() => completeItem(SAINT_OF_DAY_ITEM)}
+            className="mt-3 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+          >
+            Mark Complete
+          </button>
+        </RhythmModal>
+      );
+    }
+
     if (activeModal === 'seeing') {
       return (
         <RhythmModal
@@ -679,6 +731,42 @@ function FaithJourneyDetail({
           onClose={() => setActiveModal(null)}
         >
           <div className="rounded-2xl bg-parchment-50 p-4">
+            <div className="mb-4">
+              <span className="text-sm font-semibold text-leather-900">
+                Where did you notice God today?
+              </span>
+              <div className="mt-2 flex flex-wrap gap-2">
+                {[
+                  'Another person',
+                  'Creation',
+                  'Prayer',
+                  'Scripture',
+                  'A challenge',
+                  'I struggled to see Him today',
+                ].map((option) => {
+                  const selected = seeingGod.noticedWhere === option;
+                  return (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() =>
+                        onSeeingGodChange(
+                          'noticedWhere',
+                          selected ? '' : option
+                        )
+                      }
+                      className={`rounded-full border px-3 py-1.5 text-xs font-semibold transition active:scale-[0.98] ${
+                        selected
+                          ? 'border-leather-600 bg-leather-600 text-white'
+                          : 'border-parchment-200 bg-white text-leather-700'
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
             {[
               ['noticedGod', 'Where did I notice God today?'],
               ['personBeforeMe', 'Who did God place before me today?'],

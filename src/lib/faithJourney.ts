@@ -2,6 +2,7 @@ export const FAITH_JOURNEY_ITEMS = [
   'Morning Prayer',
   'Scripture Reading',
   'Dive Deeper',
+  'Saint of the Day',
   'Faith Formation',
   'Daily Devotion',
   'Personal Prayer',
@@ -11,6 +12,7 @@ export const FAITH_JOURNEY_ITEMS = [
 
 export const SCRIPTURE_READING_ITEM = 'Scripture Reading';
 export const DIVE_DEEPER_ITEM = 'Dive Deeper';
+export const SAINT_OF_DAY_ITEM = 'Saint of the Day';
 export const PERSONAL_PRAYER_ITEM = 'Personal Prayer';
 
 export type DevotionCard = {
@@ -21,6 +23,7 @@ export type DevotionCard = {
 };
 
 export type SeeingGodReflection = {
+  noticedWhere: string;
   noticedGod: string;
   personBeforeMe: string;
   graceToRemember: string;
@@ -162,13 +165,20 @@ export function seeingGodStorageKey(date = new Date()) {
 
 export function readSeeingGodReflection(date = new Date()): SeeingGodReflection {
   if (typeof window === 'undefined') {
-    return { noticedGod: '', personBeforeMe: '', graceToRemember: '' };
+    return {
+      noticedWhere: '',
+      noticedGod: '',
+      personBeforeMe: '',
+      graceToRemember: '',
+    };
   }
 
   try {
     const raw = window.localStorage.getItem(seeingGodStorageKey(date));
     const parsed = raw ? JSON.parse(raw) : {};
     return {
+      noticedWhere:
+        typeof parsed.noticedWhere === 'string' ? parsed.noticedWhere : '',
       noticedGod: typeof parsed.noticedGod === 'string' ? parsed.noticedGod : '',
       personBeforeMe:
         typeof parsed.personBeforeMe === 'string' ? parsed.personBeforeMe : '',
@@ -178,7 +188,12 @@ export function readSeeingGodReflection(date = new Date()): SeeingGodReflection 
           : '',
     };
   } catch {
-    return { noticedGod: '', personBeforeMe: '', graceToRemember: '' };
+    return {
+      noticedWhere: '',
+      noticedGod: '',
+      personBeforeMe: '',
+      graceToRemember: '',
+    };
   }
 }
 

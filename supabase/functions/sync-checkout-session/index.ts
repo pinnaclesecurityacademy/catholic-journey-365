@@ -102,13 +102,14 @@ async function upsertSubscription(
   subscription: Stripe.Subscription
 ) {
   const item = subscription.items.data[0];
-  const plan = subscription.metadata?.plan === 'yearly' ? 'yearly' : 'monthly';
 
   const { error: subscriptionError } = await supabase.from('billing_subscriptions').upsert(
     {
       user_id: userId,
       status: subscription.status,
-      plan,
+      price_id: item?.price.id ?? null,
+      current_period_start: toIso(item?.current_period_start),
+      cancel_at_period_end: subscription.cancel_at_period_end,
       trial_ends_at: toIso(subscription.trial_end),
       current_period_end: toIso(item?.current_period_end),
       stripe_customer_id: customerId,
@@ -135,6 +136,8 @@ async function upsertSubscription(
       user_id: userId,
       status: accessStatus,
       deactivated_at: null,
+      deactivated_by: null,
+      deactivation_reason: null,
       updated_at: new Date().toISOString(),
     },
     { onConflict: 'user_id' }

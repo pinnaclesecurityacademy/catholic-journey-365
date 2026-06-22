@@ -3,7 +3,7 @@
 // be shown to visitors while the authenticated experience stays under /app.
 
 function goToApp() {
-  window.location.href = '/app';
+  window.location.href = '/app/login';
 }
 
 function GoldRule({ className = '' }: { className?: string }) {

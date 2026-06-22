@@ -70,6 +70,7 @@ interface AccountValue {
 }
 
 const AccountContext = createContext<AccountValue>({} as AccountValue);
+const PRODUCTION_URL = 'https://catholicjourney365.com';
 
 function randomCode(): string {
   const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
@@ -220,13 +221,21 @@ export function AccountProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let active = true;
-    supabase.auth.getSession().then(async ({ data }) => {
-      const u = data.session?.user ?? null;
-      if (!active) return;
-      setUser(u);
-      setLoading(false);
-      void loadAll(u);
-    });
+    supabase.auth
+      .getSession()
+      .then(async ({ data }) => {
+        const u = data.session?.user ?? null;
+        if (!active) return;
+        setUser(u);
+        setLoading(false);
+        void loadAll(u);
+      })
+      .catch(() => {
+        if (!active) return;
+        setUser(null);
+        setLoading(false);
+        void loadAll(null);
+      });
 
     const { data: sub } = supabase.auth.onAuthStateChange(async (_e, session) => {
       const u = session?.user ?? null;
@@ -243,10 +252,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   }, [loadAll]);
 
   const signUp = async (name: string, email: string, password: string) => {
-    const emailRedirectTo =
-      typeof window !== 'undefined'
-        ? `${window.location.origin}/app/login`
-        : undefined;
+    const emailRedirectTo = `${PRODUCTION_URL}/app/auth/callback?next=/app/login`;
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -275,10 +281,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   // Send a Supabase password-reset email. The link returns the user to the app
   // where Supabase establishes a recovery session.
   const resetPassword = async (email: string) => {
-    const redirectTo =
-      typeof window !== 'undefined'
-        ? `${window.location.origin}/app/reset-password`
-        : undefined;
+    const redirectTo = `${PRODUCTION_URL}/app/reset-password`;
     const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
       redirectTo,
     });

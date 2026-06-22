@@ -6,6 +6,7 @@ import AuthScreen from './components/AuthScreen';
 import JourneySetup from './components/JourneySetup';
 import { AccountProvider, useAccount } from './lib/account';
 import { PWAUpdateProvider, usePWAUpdate } from './lib/pwaUpdates';
+import { supabase } from './lib/supabase';
 
 // Route-based code splitting: each page (and the large data it imports) loads
 // in its own chunk on demand instead of inflating the initial bundle. Landing
@@ -84,6 +85,15 @@ function AppFrame({ children }: { children: ReactNode }) {
 }
 
 function LoadingAppFrame() {
+  const [timedOut, setTimedOut] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setTimedOut(true), 10000);
+    return () => window.clearTimeout(timer);
+  }, []);
+
+  if (timedOut) return <AuthRecoveryScreen />;
+
   return (
     <AppFrame>
       <Splash />
@@ -127,6 +137,66 @@ function JourneySetupFrame() {
       <JourneySetup />
     </BrowserRouter>
   );
+}
+
+function hasAuthCallbackParams() {
+  if (typeof window === 'undefined') return false;
+  const url = new URL(window.location.href);
+  const hash = new URLSearchParams(window.location.hash.replace(/^#/, ''));
+  return (
+    url.searchParams.has('code') ||
+    url.searchParams.has('error') ||
+    url.searchParams.has('error_code') ||
+    hash.has('access_token') ||
+    hash.has('refresh_token') ||
+    hash.has('error') ||
+    hash.has('error_code')
+  );
+}
+
+function getCallbackNextPath() {
+  if (typeof window === 'undefined') return '/app/login';
+  const next = new URL(window.location.href).searchParams.get('next');
+  return next && next.startsWith('/app') ? next : '/app/login';
+}
+
+function AuthCallback() {
+  const [timedOut, setTimedOut] = useState(false);
+
+  useEffect(() => {
+    const timeout = window.setTimeout(() => setTimedOut(true), 10000);
+
+    const finish = async () => {
+      const url = new URL(window.location.href);
+      const next = getCallbackNextPath();
+
+      if (url.searchParams.has('error') || url.hash.includes('error=')) {
+        window.history.replaceState({}, document.title, '/app/login');
+        window.location.replace('/app/login');
+        return;
+      }
+
+      const code = url.searchParams.get('code');
+      if (code) {
+        await supabase.auth.exchangeCodeForSession(code);
+      } else {
+        await supabase.auth.getSession();
+      }
+
+      window.history.replaceState({}, document.title, next);
+      window.location.replace(next);
+    };
+
+    finish().catch(() => {
+      window.history.replaceState({}, document.title, '/app/login');
+      window.location.replace('/app/login');
+    });
+
+    return () => window.clearTimeout(timeout);
+  }, []);
+
+  if (timedOut) return <AuthRecoveryScreen />;
+  return <AuthGateLoading />;
 }
 
 function AccountGateFrame({ children }: { children: ReactNode }) {
@@ -346,6 +416,7 @@ function AppShell() {
   const path =
     typeof window === 'undefined' ? '/app' : window.location.pathname;
   const isResetPassword = path === '/app/reset-password';
+  const isAuthCallback = path === '/app/auth/callback';
   const isLoginPath = path === '/app/login';
 
   // A first-time user starts fresh on their own progress namespace, then
@@ -371,6 +442,7 @@ function AppShell() {
   }, [accountLoading, billingLoading, completionId, loading, profile, user]);
 
   if (loadingTimedOut) return <AuthRecoveryScreen />;
+  if (isAuthCallback) return <AuthCallback />;
   if (loading) return <AuthGateLoading />;
   if (isResetPassword) {
     return (
@@ -423,6 +495,10 @@ function isAppPath() {
 
 function PublicPage() {
   if (typeof window === 'undefined') return <Landing />;
+
+  if (hasAuthCallbackParams()) {
+    return <AuthCallback />;
+  }
 
   switch (window.location.pathname) {
     case '/privacy':

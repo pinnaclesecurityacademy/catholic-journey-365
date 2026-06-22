@@ -4,8 +4,8 @@ export const FAITH_JOURNEY_ITEMS = [
   'Dive Deeper',
   'Saint of the Day',
   'Faith Formation',
-  'Daily Devotion',
   'Personal Prayer',
+  'Silent Prayer',
   'Seeing God Today',
   'Evening Prayer',
 ];

@@ -13,7 +13,6 @@ import {
   PERSONAL_PRAYER_ITEM,
   SCRIPTURE_READING_ITEM,
   SeeingGodReflection,
-  getRotatingDevotion,
   getRotatingEveningPrayer,
   getRotatingFormationLesson,
   getRotatingMorningPrayer,
@@ -347,7 +346,7 @@ function JourneyHub({
 type RhythmModalKind =
   | 'morning'
   | 'formation'
-  | 'devotion'
+  | 'silent'
   | 'personal'
   | 'seeing'
   | 'saint'
@@ -437,7 +436,6 @@ function FaithJourneyDetail({
   const progress = Math.round((completed / FAITH_JOURNEY_ITEMS.length) * 100);
   const morningPrayer = getRotatingMorningPrayer(currentDay);
   const eveningPrayer = getRotatingEveningPrayer(currentDay);
-  const devotion = getRotatingDevotion(currentDay);
   const formationLesson = getRotatingFormationLesson(currentDay);
   const allComplete = completed >= FAITH_JOURNEY_ITEMS.length;
   const inputClass =
@@ -463,7 +461,7 @@ function FaithJourneyDetail({
 
     if (item === 'Morning Prayer') setActiveModal('morning');
     if (item === 'Faith Formation') setActiveModal('formation');
-    if (item === 'Daily Devotion') setActiveModal('devotion');
+    if (item === 'Silent Prayer') setActiveModal('silent');
     if (item === PERSONAL_PRAYER_ITEM) setActiveModal('personal');
     if (item === SAINT_OF_DAY_ITEM) setActiveModal('saint');
     if (item === 'Seeing God Today') setActiveModal('seeing');
@@ -578,36 +576,29 @@ function FaithJourneyDetail({
       );
     }
 
-    if (activeModal === 'devotion') {
+    if (activeModal === 'silent') {
       return (
         <RhythmModal
-          title="Daily Devotion"
-          subtitle="A small Catholic devotion for today."
+          title="Silent Prayer"
+          subtitle="A few quiet minutes with God."
           onClose={() => setActiveModal(null)}
         >
           <div className="rounded-2xl bg-parchment-50 p-5">
-            <h3 className="font-display text-2xl font-semibold text-leather-900">
-              {devotion.title}
-            </h3>
-            <p className="mt-3 text-base leading-relaxed text-leather-900">
-              {devotion.body}
+            <p className="text-base leading-relaxed text-leather-900">
+              Spend five quiet minutes with God. No words are needed. Simply be
+              present with Him.
             </p>
-            {devotion.linkTo && devotion.linkLabel && (
-              <button
-                type="button"
-                onClick={() => navigate(devotion.linkTo ?? '/prayer')}
-                className="mt-5 w-full rounded-xl border border-parchment-200 bg-white py-3 font-semibold text-leather-700 transition active:scale-[0.99]"
-              >
-                {devotion.linkLabel}
-              </button>
-            )}
+            <p className="mt-4 text-sm leading-relaxed text-stone-600">
+              Find a quiet place. Breathe. Place yourself in God&apos;s presence.
+              Listen.
+            </p>
           </div>
           <button
             type="button"
-            onClick={() => completeItem('Daily Devotion')}
+            onClick={() => completeItem('Silent Prayer')}
             className="mt-5 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
           >
-            Complete Devotion
+            Complete Silent Prayer
           </button>
         </RhythmModal>
       );

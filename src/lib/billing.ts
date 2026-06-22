@@ -30,8 +30,9 @@ export function planLabel(plan: SubscriptionPlan | null | undefined) {
 
 export function statusLabel(status: string | null | undefined) {
   if (!status) return 'No active subscription';
-  if (status === 'trialing') return 'Trial active';
-  if (status === 'active') return 'Active';
+  if (status === 'trialing') return 'Free trial active';
+  if (status === 'active') return 'Subscription active';
+  if (status === 'free') return 'Free account';
   if (status === 'past_due') return 'Payment needs attention';
   if (status === 'canceled') return 'Canceled';
   if (status === 'incomplete') return 'Checkout not completed';

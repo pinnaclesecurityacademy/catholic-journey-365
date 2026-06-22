@@ -161,9 +161,9 @@ export default function Profile() {
           <h2 className="font-display text-xl font-semibold text-leather-900">
             Account
           </h2>
-          {user?.email && (
-            <p className="mt-1 text-sm text-stone-500">{user.email}</p>
-          )}
+          <p className="mt-1 text-sm text-stone-500">
+            {profile?.display_name || 'Pilgrim'}
+          </p>
         </div>
 
         <label className="text-xs font-semibold uppercase tracking-wider text-stone-400">
@@ -199,7 +199,9 @@ export default function Profile() {
               Current plan
             </p>
             <p className="mt-1 font-display text-xl font-semibold text-leather-900">
-              {planLabel(subscription?.plan)}
+              {subscription?.plan
+                ? planLabel(subscription.plan)
+                : statusLabel(subscription?.status)}
             </p>
           </div>
           <div className="rounded-xl bg-parchment-50 px-4 py-3">
@@ -505,6 +507,9 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
               >
                 {billingLoading ? 'Opening...' : 'Manage Subscription'}
               </button>
+              <p className="mt-2 text-xs leading-relaxed text-stone-500">
+                Update, cancel, or manage your plan securely through Stripe.
+              </p>
             </section>
 
             <section className="mt-5 rounded-2xl border border-parchment-200 bg-white p-4">

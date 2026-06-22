@@ -39,24 +39,13 @@ export function statusLabel(status: string | null | undefined) {
   return status.replace(/_/g, ' ');
 }
 
-function isFutureDate(value: string | null | undefined) {
-  if (!value) return false;
-  const time = new Date(value).getTime();
-  return Number.isFinite(time) && time > Date.now();
-}
-
 export function hasSubscriptionAccess(
   subscription: SubscriptionStatus | null,
   currentUserId: string | null | undefined
 ) {
   if (!subscription) return false;
   if (!currentUserId || subscription.user_id !== currentUserId) return false;
-  if (subscription.status !== 'trialing' && subscription.status !== 'active')
-    return false;
-  return (
-    subscription.current_period_end === null ||
-    isFutureDate(subscription.current_period_end)
-  );
+  return ['free', 'trialing', 'active'].includes(subscription.status);
 }
 
 export async function startCheckout(plan: SubscriptionPlan) {

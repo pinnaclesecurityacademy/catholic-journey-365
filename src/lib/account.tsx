@@ -234,15 +234,15 @@ export function AccountProvider({ children }: { children: ReactNode }) {
           statusRecord?.status === 'deactivated' ? 'deactivated' : 'active'
         );
 
-        const { data: sub } = await supabase
-          .from('billing_subscriptions')
+        const { data: access } = await supabase
+          .from('user_access')
           .select(
-            'user_id, stripe_customer_id, stripe_subscription_id, status, plan, trial_ends_at, current_period_end, created_at, updated_at'
+            'user_id, stripe_customer_id, stripe_subscription_id, status, current_period_end, updated_at'
           )
           .eq('user_id', u.id)
           .maybeSingle();
         if (!shouldApply()) return;
-        setSubscription((sub as SubscriptionStatus) ?? null);
+        setSubscription((access as SubscriptionStatus) ?? null);
 
         if (nextProfile?.completion_id) {
           await loadJourney(u.id, shouldApply);

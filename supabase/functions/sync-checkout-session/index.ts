@@ -103,15 +103,12 @@ async function upsertSubscription(
   subscription: Stripe.Subscription
 ) {
   const item = subscription.items.data[0];
+  const accessStatus = getAccessStatus(subscription.status);
 
-  const { error: subscriptionError } = await supabase.from('billing_subscriptions').upsert(
+  const { error: accessError } = await supabase.from('user_access').upsert(
     {
       user_id: userId,
-      status: subscription.status,
-      price_id: item?.price.id ?? null,
-      current_period_start: toIso(item?.current_period_start),
-      cancel_at_period_end: subscription.cancel_at_period_end,
-      trial_ends_at: toIso(subscription.trial_end),
+      status: accessStatus,
       current_period_end: toIso(item?.current_period_end),
       stripe_customer_id: customerId,
       stripe_subscription_id: subscription.id,
@@ -119,38 +116,23 @@ async function upsertSubscription(
     },
     { onConflict: 'user_id' }
   );
-  if (subscriptionError) {
-    console.error('billing_subscriptions upsert failed', {
+  if (accessError) {
+    console.error('user_access upsert failed', {
       user_id: userId,
+      stripe_customer_id: customerId,
       subscription_id: subscription.id,
-      status: subscription.status,
-      error: subscriptionError.message,
+      status: accessStatus,
+      error: accessError.message,
     });
-    throw subscriptionError;
+    throw accessError;
   }
 
-  const accessStatus = getAccessStatus(subscription.status);
-  if (!accessStatus) return;
-
-  const { error: statusError } = await supabase.from('account_statuses').upsert(
-    {
-      user_id: userId,
-      status: accessStatus,
-      deactivated_at: null,
-      deactivated_by: null,
-      deactivation_reason: null,
-      updated_at: new Date().toISOString(),
-    },
-    { onConflict: 'user_id' }
-  );
-  if (statusError) {
-    console.error('account_statuses upsert failed', {
-      user_id: userId,
-      status: accessStatus,
-      error: statusError.message,
-    });
-    throw statusError;
-  }
+  console.log('user_access upserted', {
+    user_id: userId,
+    stripe_customer_id: customerId,
+    stripe_subscription_id: subscription.id,
+    status: accessStatus,
+  });
 }
 
 function toIso(value: number | null | undefined) {
@@ -158,7 +140,10 @@ function toIso(value: number | null | undefined) {
 }
 
 function getAccessStatus(status: string) {
-  return status === 'trialing' || status === 'active' ? status : null;
+  if (status === 'trialing' || status === 'active' || status === 'canceled') {
+    return status;
+  }
+  return 'none';
 }
 
 function fail(message: string, status = 500, details?: unknown) {

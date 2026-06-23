@@ -184,7 +184,7 @@ export default function BeginHere() {
   }
 
   return (
-    <div className="mx-auto max-w-md px-4 pt-5 pb-6">
+    <div className={`mx-auto max-w-md px-4 pt-5 pb-6 ${readerFontClass(readerSize)}`}>
       <button
         type="button"
         onClick={() => navigate('/faith')}
@@ -227,7 +227,7 @@ export default function BeginHere() {
         <h2 className="mt-2 font-display text-2xl font-bold leading-tight text-leather-900">
           {current.title}
         </h2>
-        <p className={`mt-3 text-sm leading-relaxed text-stone-600 ${readerFontClass(readerSize)}`}>
+        <p className="mt-3 text-sm leading-relaxed text-stone-600">
           {current.reflection}
         </p>
 
@@ -235,7 +235,7 @@ export default function BeginHere() {
           <h3 className="text-sm font-semibold text-leather-900">
             Think About
           </h3>
-          <p className={`mt-2 text-sm leading-relaxed text-stone-600 ${readerFontClass(readerSize)}`}>
+          <p className="mt-2 text-sm leading-relaxed text-stone-600">
             {current.thinkAbout}
           </p>
         </div>
@@ -244,13 +244,13 @@ export default function BeginHere() {
           <h3 className="text-sm font-semibold text-leather-900">
             Take a Step Today
           </h3>
-          <p className={`mt-2 text-sm leading-relaxed text-stone-600 ${readerFontClass(readerSize)}`}>
+          <p className="mt-2 text-sm leading-relaxed text-stone-600">
             {current.takeStep}
           </p>
           <p className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
             A Prayer
           </p>
-          <p className={`mt-2 whitespace-pre-line text-sm italic leading-relaxed text-stone-600 ${readerFontClass(readerSize)}`}>
+          <p className="mt-2 whitespace-pre-line text-sm italic leading-relaxed text-stone-600">
             {current.prayer}
           </p>
         </div>

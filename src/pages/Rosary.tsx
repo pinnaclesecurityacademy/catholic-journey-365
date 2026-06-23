@@ -80,11 +80,11 @@ type RosaryHapticStep = 'hailMary' | 'ourFather' | 'chain';
 // Fails silently when the Vibration API is unavailable.
 function triggerRosaryHaptic(stepType: RosaryHapticStep) {
   if (stepType === 'ourFather') {
-    vibrate(45); // larger bead, stronger pulse
+    vibrate(90); // larger bead, stronger pulse
   } else if (stepType === 'hailMary') {
-    vibrate(20); // small bead, light pulse
+    vibrate(50); // small bead, light pulse
   } else {
-    vibrate([25, 40, 25]); // Glory Be / Fatima / decade completion
+    vibrate([80, 60, 80]); // Glory Be / Fatima / decade completion
   }
 }
 
@@ -767,24 +767,30 @@ export default function Rosary() {
             {guidedIndex >= guidedItems.length - 1 ? 'Finish Rosary' : 'Next Bead'}
           </button>
         </div>
-        {/* TEMPORARY: vibration support test button. Remove after testing. */}
-        <button
-          type="button"
-          className={secondaryBtn + ' mb-3'}
-          onClick={() => {
-            const supported =
-              typeof navigator !== 'undefined' &&
-              typeof navigator.vibrate === 'function';
-            if (supported) navigator.vibrate([25, 40, 25]);
-            window.alert(
-              supported
-                ? 'Vibration API supported — you should have felt a pulse.'
-                : 'Vibration API NOT supported on this device/browser (e.g. iOS).'
-            );
-          }}
-        >
-          Test vibration
-        </button>
+        {/* TEMPORARY: vibration test buttons. Remove after testing. */}
+        <div className="mb-3 space-y-2">
+          <button
+            type="button"
+            className={secondaryBtn}
+            onClick={() => vibrate(100)}
+          >
+            Test light vibration
+          </button>
+          <button
+            type="button"
+            className={secondaryBtn}
+            onClick={() => vibrate([80, 60, 80])}
+          >
+            Test double vibration
+          </button>
+          <button
+            type="button"
+            className={secondaryBtn}
+            onClick={() => vibrate([120, 80, 120])}
+          >
+            Test strong vibration
+          </button>
+        </div>
 
         <button className={secondaryBtn + ' mb-6'} onClick={() => setStep('complete')}>
           Finish Rosary

@@ -74,24 +74,23 @@ function vibrate(pattern: number | number[]) {
   }
 }
 
-type RosaryHapticStep = 'hailMary' | 'ourFather' | 'chain';
+type RosaryHapticStep = 'normal' | 'ourFather' | 'decade';
 
 // Subtle haptic cue keyed to the kind of bead the user is moving to.
 // Fails silently when the Vibration API is unavailable.
 function triggerRosaryHaptic(stepType: RosaryHapticStep) {
   if (stepType === 'ourFather') {
     vibrate(90); // larger bead, stronger pulse
-  } else if (stepType === 'hailMary') {
-    vibrate(50); // small bead, light pulse
+  } else if (stepType === 'decade') {
+    vibrate([120, 80, 120]); // decade change / completion
   } else {
-    vibrate([80, 60, 80]); // Glory Be / Fatima / decade completion
+    vibrate(50); // normal bead movement
   }
 }
 
 function hapticStepForItem(item: GuidedRosaryItem): RosaryHapticStep {
   if (item.title === 'Our Father') return 'ourFather';
-  if (item.title === 'Hail Mary') return 'hailMary';
-  return 'chain';
+  return 'normal';
 }
 
 const mysteryArtwork: Record<string, string> = {
@@ -613,21 +612,37 @@ export default function Rosary() {
         currentItem.phase === 'Mystery' && currentItem.title === 'Fatima Prayer';
 
       if (guidedIndex >= guidedItems.length - 1) {
-        triggerRosaryHaptic('chain');
+        triggerRosaryHaptic('decade');
         setStep('complete');
         return;
       }
 
       const nextItem = guidedItems[guidedIndex + 1];
       triggerRosaryHaptic(
-        decadeCompleted ? 'chain' : hapticStepForItem(nextItem)
+        decadeCompleted ? 'decade' : hapticStepForItem(nextItem)
       );
 
       setGuidedIndex((index) => index + 1);
     };
 
+    // Tap anywhere on the prayer screen to advance, so the Rosary can be prayed
+    // with eyes closed. Taps on interactive controls are ignored so buttons,
+    // links, beads, and the prayer toggle keep their own behaviour.
+    const handleScreenTap = (event: React.MouseEvent<HTMLDivElement>) => {
+      const target = event.target as HTMLElement;
+      if (
+        target.closest(
+          'button, a, input, select, textarea, label, [role="button"]'
+        )
+      ) {
+        return;
+      }
+      goToNextBead();
+    };
+
     return (
       <Shell>
+        <div onClick={handleScreenTap}>
         <header className="mb-5">
           <p className="text-xs uppercase tracking-widest text-stone-400">
             Guided Rosary
@@ -795,6 +810,7 @@ export default function Rosary() {
         <button className={secondaryBtn + ' mb-6'} onClick={() => setStep('complete')}>
           Finish Rosary
         </button>
+        </div>
       </Shell>
     );
   }

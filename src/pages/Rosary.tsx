@@ -47,6 +47,33 @@ type GuidedRosaryItem = {
   scripture?: string;
 };
 
+// Standard daily rhythm of the Rosary mysteries (0 = Sunday … 6 = Saturday).
+const TODAYS_MYSTERY_BY_DAY = [
+  'glorious', // Sunday
+  'joyful', // Monday
+  'sorrowful', // Tuesday
+  'glorious', // Wednesday
+  'luminous', // Thursday
+  'sorrowful', // Friday
+  'joyful', // Saturday
+];
+
+function getTodaysMysteryId(date = new Date()): string {
+  return TODAYS_MYSTERY_BY_DAY[date.getDay()];
+}
+
+// Gentle haptic feedback to mirror the feel of moving through real beads.
+// Silently does nothing where the Vibration API is unavailable (e.g. iOS).
+function vibrate(pattern: number | number[]) {
+  if (typeof navigator !== 'undefined' && typeof navigator.vibrate === 'function') {
+    try {
+      navigator.vibrate(pattern);
+    } catch {
+      /* ignore unsupported */
+    }
+  }
+}
+
 const mysteryArtwork: Record<string, string> = {
   'The Annunciation': '/images/rosary/joyful-annunciation.webp',
   'The Visitation': '/images/rosary/joyful-visitation.webp',
@@ -312,7 +339,7 @@ export default function Rosary() {
       : beadsRef.current ?? contentStartRef.current;
 
     target?.scrollIntoView({
-      behavior: 'auto',
+      behavior: 'smooth',
       block: 'start',
       inline: 'nearest',
     });
@@ -466,6 +493,29 @@ export default function Rosary() {
             Choose the Mysteries
           </h1>
         </header>
+        {(() => {
+          const todayId = getTodaysMysteryId();
+          const todayGroup = getMysteryGroup(todayId);
+          if (!todayGroup) return null;
+          return (
+            <button
+              onClick={() => {
+                setSelectedMystery(todayId);
+                setDecade(1);
+                setGuidedIndex(0);
+                setStep('guided');
+              }}
+              className="mb-4 w-full rounded-xl border border-gold/50 bg-gradient-to-br from-parchment-50 to-parchment-100 p-4 text-left shadow-[0_12px_28px_rgba(74,55,40,0.1)] active:scale-[0.99] transition"
+            >
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                Today's Mysteries
+              </p>
+              <h2 className="mt-1 font-display text-lg font-semibold text-leather-900">
+                {todayGroup.title}
+              </h2>
+            </button>
+          );
+        })()}
         <div className="space-y-3">
           {mysteryGroups.map((g) => (
             <button
@@ -531,14 +581,33 @@ export default function Rosary() {
       }
     };
 
+    // Haptic strength reflects the kind of bead being prayed.
+    const hapticForItem = (item: GuidedRosaryItem) => {
+      if (item.title === 'Our Father') return 40; // larger bead, stronger
+      if (item.title === 'Hail Mary') return 15; // small bead, gentle
+      return 25; // chain prayers (Glory Be, Fatima, opening/closing)
+    };
+
     const goToPreviousBead = () => {
       setGuidedIndex((index) => Math.max(0, index - 1));
     };
 
     const goToNextBead = () => {
+      // A decade is completed when leaving the Fatima Prayer of a mystery.
+      const decadeCompleted =
+        currentItem.phase === 'Mystery' && currentItem.title === 'Fatima Prayer';
+
       if (guidedIndex >= guidedItems.length - 1) {
+        vibrate([20, 40, 20]);
         setStep('complete');
         return;
+      }
+
+      const nextItem = guidedItems[guidedIndex + 1];
+      if (decadeCompleted) {
+        vibrate([20, 40, 20]); // soft pattern marks a finished decade
+      } else if (nextItem) {
+        vibrate(hapticForItem(nextItem));
       }
 
       setGuidedIndex((index) => index + 1);
@@ -646,7 +715,7 @@ export default function Rosary() {
                   onClick={() => jumpToBead(beadNumber)}
                   aria-label={beadLabel}
                   aria-current={isCurrent ? 'step' : undefined}
-                  className={`flex items-center justify-center border transition ${
+                  className={`flex items-center justify-center border transition-all duration-300 ease-out ${
                     isCurrent
                       ? 'scale-125 border-leather-700 bg-leather-600 text-white shadow-[0_0_0_4px_rgba(212,169,106,0.2)]'
                       : isCompleted

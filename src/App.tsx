@@ -86,7 +86,7 @@ function AppFrame({ children }: { children: ReactNode }) {
     <BrowserRouter basename="/app">
       <ScrollToTop />
       <div
-        className="min-h-screen bg-parchment-100"
+        className="mx-auto min-h-screen max-w-md border-x border-parchment-200 bg-parchment-100"
         style={{ paddingBottom: 'calc(80px + env(safe-area-inset-bottom))' }}
       >
         {children}

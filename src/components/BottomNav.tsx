@@ -100,8 +100,8 @@ export default function BottomNav() {
     }`;
 
   return (
-    <nav className="fixed bottom-0 inset-x-0 z-20 bg-parchment-100 border-t border-parchment-200 pb-[env(safe-area-inset-bottom)]">
-      <div className="max-w-md mx-auto flex">
+    <nav className="fixed bottom-0 inset-x-0 z-20">
+      <div className="max-w-md mx-auto flex border-x border-t border-parchment-200 bg-parchment-100 pb-[env(safe-area-inset-bottom)]">
         <NavLink to="/" className={linkClass} end>
           {({ isActive }) => (
             <>

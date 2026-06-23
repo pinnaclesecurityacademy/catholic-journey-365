@@ -767,6 +767,25 @@ export default function Rosary() {
             {guidedIndex >= guidedItems.length - 1 ? 'Finish Rosary' : 'Next Bead'}
           </button>
         </div>
+        {/* TEMPORARY: vibration support test button. Remove after testing. */}
+        <button
+          type="button"
+          className={secondaryBtn + ' mb-3'}
+          onClick={() => {
+            const supported =
+              typeof navigator !== 'undefined' &&
+              typeof navigator.vibrate === 'function';
+            if (supported) navigator.vibrate([25, 40, 25]);
+            window.alert(
+              supported
+                ? 'Vibration API supported — you should have felt a pulse.'
+                : 'Vibration API NOT supported on this device/browser (e.g. iOS).'
+            );
+          }}
+        >
+          Test vibration
+        </button>
+
         <button className={secondaryBtn + ' mb-6'} onClick={() => setStep('complete')}>
           Finish Rosary
         </button>

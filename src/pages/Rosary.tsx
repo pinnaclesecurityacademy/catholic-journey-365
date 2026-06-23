@@ -74,6 +74,26 @@ function vibrate(pattern: number | number[]) {
   }
 }
 
+type RosaryHapticStep = 'hailMary' | 'ourFather' | 'chain';
+
+// Subtle haptic cue keyed to the kind of bead the user is moving to.
+// Fails silently when the Vibration API is unavailable.
+function triggerRosaryHaptic(stepType: RosaryHapticStep) {
+  if (stepType === 'ourFather') {
+    vibrate(45); // larger bead, stronger pulse
+  } else if (stepType === 'hailMary') {
+    vibrate(20); // small bead, light pulse
+  } else {
+    vibrate([25, 40, 25]); // Glory Be / Fatima / decade completion
+  }
+}
+
+function hapticStepForItem(item: GuidedRosaryItem): RosaryHapticStep {
+  if (item.title === 'Our Father') return 'ourFather';
+  if (item.title === 'Hail Mary') return 'hailMary';
+  return 'chain';
+}
+
 const mysteryArtwork: Record<string, string> = {
   'The Annunciation': '/images/rosary/joyful-annunciation.webp',
   'The Visitation': '/images/rosary/joyful-visitation.webp',
@@ -581,14 +601,9 @@ export default function Rosary() {
       }
     };
 
-    // Haptic strength reflects the kind of bead being prayed.
-    const hapticForItem = (item: GuidedRosaryItem) => {
-      if (item.title === 'Our Father') return 40; // larger bead, stronger
-      if (item.title === 'Hail Mary') return 15; // small bead, gentle
-      return 25; // chain prayers (Glory Be, Fatima, opening/closing)
-    };
-
     const goToPreviousBead = () => {
+      if (guidedIndex === 0) return;
+      triggerRosaryHaptic(hapticStepForItem(guidedItems[guidedIndex - 1]));
       setGuidedIndex((index) => Math.max(0, index - 1));
     };
 
@@ -598,17 +613,15 @@ export default function Rosary() {
         currentItem.phase === 'Mystery' && currentItem.title === 'Fatima Prayer';
 
       if (guidedIndex >= guidedItems.length - 1) {
-        vibrate([20, 40, 20]);
+        triggerRosaryHaptic('chain');
         setStep('complete');
         return;
       }
 
       const nextItem = guidedItems[guidedIndex + 1];
-      if (decadeCompleted) {
-        vibrate([20, 40, 20]); // soft pattern marks a finished decade
-      } else if (nextItem) {
-        vibrate(hapticForItem(nextItem));
-      }
+      triggerRosaryHaptic(
+        decadeCompleted ? 'chain' : hapticStepForItem(nextItem)
+      );
 
       setGuidedIndex((index) => index + 1);
     };

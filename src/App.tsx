@@ -106,11 +106,10 @@ function LoadingAppFrame() {
 
   if (timedOut) return <AuthRecoveryScreen />;
 
-  return (
-    <AppFrame>
-      <Splash />
-    </AppFrame>
-  );
+  // Show the same premium splash used everywhere else during startup, without
+  // the app frame or bottom navigation, so loading never visibly switches
+  // between different screens.
+  return <Splash />;
 }
 
 function PrivateRoutes() {
@@ -319,17 +318,11 @@ function PWAUpdateBanner() {
   );
 }
 
+// Every startup loading state renders the one premium splash so the launch
+// experience never flickers between different screens. Kept as a named wrapper
+// because several auth/redirect gates reference it.
 function AuthGateLoading() {
-  return (
-    <div className="min-h-screen bg-parchment-100 flex items-center justify-center px-6">
-      <div className="text-center">
-        <h1 className="font-display text-3xl font-bold text-leather-900">
-          Catholic Journey 365
-        </h1>
-        <p className="mt-2 text-leather-600">Peace be with you.</p>
-      </div>
-    </div>
-  );
+  return <Splash />;
 }
 
 function AuthRecoveryScreen() {
@@ -554,7 +547,7 @@ export default function App() {
     <AccountProvider>
       <PWAUpdateProvider>
         <AppErrorBoundary>
-          <Suspense fallback={<AuthGateLoading />}>
+          <Suspense fallback={<Splash />}>
             {isAppPath() ? <AppShell /> : <PublicPage />}
           </Suspense>
         </AppErrorBoundary>

@@ -5,6 +5,8 @@ import { getReadingDay } from '../data/readingPlan';
 import { getBook, getReadingSteps, loadChapter, BibleChapter } from '../data/bible';
 import { markComplete } from '../lib/completions';
 import { useAccount } from '../lib/account';
+import { useReaderFont, readerFontClass } from '../lib/readerFont';
+import { ReaderFontControl } from '../components/ReaderFontControl';
 
 // Scripture reading flow (route: /bible/reading/:day).
 //
@@ -31,6 +33,7 @@ export default function ScriptureReading() {
   const steps = journeyDay ? getReadingSteps(journeyDay) : [];
 
   const { completionId } = useAccount();
+  const { size, setSize } = useReaderFont();
 
   const [stepIndex, setStepIndex] = useState(0);
   const [chapter, setChapter] = useState<BibleChapter | null>(null);
@@ -148,13 +151,16 @@ export default function ScriptureReading() {
   }
 
   return (
-    <div className="max-w-md mx-auto px-5 pt-6 pb-12">
-      <button
-        onClick={() => navigate(-1)}
-        className="text-leather-600 font-medium mb-6"
-      >
-        ← Back
-      </button>
+    <div className={`max-w-md mx-auto px-5 pt-6 pb-12 ${readerFontClass(size)}`}>
+      <div className="mb-6 flex items-center justify-between gap-3">
+        <button
+          onClick={() => navigate(-1)}
+          className="text-leather-600 font-medium"
+        >
+          ← Back
+        </button>
+        <ReaderFontControl size={size} setSize={setSize} />
+      </div>
 
       <header className="mb-6">
         <p className="text-xs uppercase tracking-widest text-stone-400">

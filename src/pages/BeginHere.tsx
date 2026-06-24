@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SacredCard, SacredProgress } from '../components/SacredCard';
 import { ReaderFontControl } from '../components/ReaderFontControl';
+import { BackButton } from '../components/BackButton';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { useAccount } from '../lib/account';
 
@@ -185,13 +186,9 @@ export default function BeginHere() {
 
   return (
     <div className={`mx-auto max-w-md px-4 pt-5 pb-6 ${readerFontClass(readerSize)}`}>
-      <button
-        type="button"
-        onClick={() => navigate('/faith')}
-        className="mb-4 text-sm font-semibold text-leather-600"
-      >
-        &larr; Back to Faith
-      </button>
+      <div className="mb-4">
+        <BackButton fallback="/faith" />
+      </div>
 
       <section className="mb-4">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-gold">

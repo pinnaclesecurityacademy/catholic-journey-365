@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { BackButton } from '../components/BackButton';
 import { getAllSaints, SaintType } from '../data/saints';
 
 // Saint Library (route: /saints).
@@ -53,12 +54,9 @@ export default function SaintLibrary() {
 
   return (
     <div className="max-w-md mx-auto px-5 pt-6 pb-12">
-      <button
-        onClick={() => navigate(-1)}
-        className="text-leather-600 font-medium mb-6"
-      >
-        ← Back
-      </button>
+      <div className="mb-6">
+        <BackButton fallback="/faith" />
+      </div>
 
       <header className="mb-6">
         <p className="text-xs uppercase tracking-widest text-stone-400">

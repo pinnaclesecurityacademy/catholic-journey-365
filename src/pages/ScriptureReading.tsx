@@ -7,6 +7,7 @@ import { markComplete } from '../lib/completions';
 import { useAccount } from '../lib/account';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
+import { BackButton } from '../components/BackButton';
 
 // Scripture reading flow (route: /bible/reading/:day).
 //
@@ -94,12 +95,9 @@ export default function ScriptureReading() {
   if (!journeyDay || steps.length === 0) {
     return (
       <div className="max-w-md mx-auto px-5 pt-6 pb-12">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-leather-600 font-medium mb-6"
-        >
-          ← Back
-        </button>
+        <div className="mb-6">
+          <BackButton fallback="/journey/scripture" />
+        </div>
         <section className="rounded-2xl bg-white border border-parchment-200 p-5">
           <p className="text-leather-900 leading-relaxed">
             This reading could not be found.
@@ -153,12 +151,7 @@ export default function ScriptureReading() {
   return (
     <div className={`max-w-md mx-auto px-5 pt-6 pb-12 ${readerFontClass(size)}`}>
       <div className="mb-6 flex items-center justify-between gap-3">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-leather-600 font-medium"
-        >
-          ← Back
-        </button>
+        <BackButton fallback="/journey/scripture" />
         <ReaderFontControl size={size} setSize={setSize} />
       </div>
 

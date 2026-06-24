@@ -5,6 +5,7 @@ import { getCompletions, markComplete, markIncomplete } from '../lib/completions
 import { useAccount } from '../lib/account';
 import { CompletionRecord } from '../lib/supabase';
 import { SacredCard } from '../components/SacredCard';
+import { BackButton } from '../components/BackButton';
 
 function isComplete(
   records: CompletionRecord[],
@@ -102,12 +103,9 @@ export default function DayDetail() {
 
   return (
     <div ref={pageRef} className="max-w-md mx-auto px-5 pt-6">
-      <button
-        onClick={() => navigate(-1)}
-        className="text-leather-600 font-medium mb-4"
-      >
-        ← Back
-      </button>
+      <div className="mb-4">
+        <BackButton fallback="/journey/scripture" />
+      </div>
 
       <header className="mb-6">
         <p className="text-xs uppercase tracking-widest text-stone-400">

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import type { Prayer } from '../data/prayers';
 import { SacredPrayer, SacredPrayerLabel } from './SacredPrayer';
 import { scrollToContentStart } from '../lib/scroll';
+import { BackButton } from './BackButton';
 
 // A reusable novena experience: an intro page, then nine days presented one at
 // a time (About → Begin Novena → Day 1 … Day 9 → Finish Novena). Built to work
@@ -40,12 +41,9 @@ export default function NovenaFlow({ prayer }: { prayer: Prayer }) {
   if (index === -1) {
     return (
       <div className="max-w-md mx-auto px-5 pt-6 pb-12">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-leather-600 font-medium mb-6"
-        >
-          ← Back
-        </button>
+        <div className="mb-6">
+          <BackButton fallback="/prayer" />
+        </div>
 
         <header ref={contentStartRef} className="mb-8 text-center">
           <h1 className="font-display text-4xl font-bold text-leather-900 leading-tight">

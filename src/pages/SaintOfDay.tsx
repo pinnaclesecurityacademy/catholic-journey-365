@@ -14,6 +14,7 @@ import {
 } from '../lib/faithJourney';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
+import { BackButton } from '../components/BackButton';
 
 // Saint of the Day experience (route: /saint).
 // Rendering is driven by the entry's `type`:
@@ -228,12 +229,7 @@ export default function SaintOfDay() {
   return (
     <div className={`max-w-md mx-auto px-5 pt-6 pb-12 ${readerFontClass(size)}`}>
       <div className="mb-6 flex items-center justify-between gap-3">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-leather-600 font-medium"
-        >
-          ← Back
-        </button>
+        <BackButton fallback="/faith" />
         <ReaderFontControl size={size} setSize={setSize} />
       </div>
 

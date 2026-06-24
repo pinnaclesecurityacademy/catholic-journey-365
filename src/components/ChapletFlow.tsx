@@ -5,6 +5,7 @@ import type { Prayer } from '../data/prayers';
 import { rosaryOpeningVerse, decadePrayerVerse } from '../data/rosaryContent';
 import { SacredPrayer, SacredPrayerLabel } from './SacredPrayer';
 import { scrollToContentStart } from '../lib/scroll';
+import { BackButton } from './BackButton';
 
 type ChapletStep = 'about' | 'guided' | 'complete';
 
@@ -163,13 +164,9 @@ export default function ChapletFlow({ prayer }: { prayer: Prayer }) {
 
   const Shell = ({ children }: { children: ReactNode }) => (
     <div className="max-w-md mx-auto px-5 pt-6 pb-12">
-      <button
-        type="button"
-        onClick={() => navigate(-1)}
-        className="text-leather-600 font-medium mb-6"
-      >
-        Back
-      </button>
+      <div className="mb-6">
+        <BackButton fallback="/prayer" />
+      </div>
       <div ref={contentStartRef}>{children}</div>
     </div>
   );

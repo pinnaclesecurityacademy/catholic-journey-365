@@ -4,6 +4,7 @@ import { SacredCard } from '../components/SacredCard';
 import { getSacrament, sacraments } from '../data/sacramentsContent';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
+import { BackButton } from '../components/BackButton';
 
 export default function SacramentDetail() {
   const { id } = useParams();
@@ -26,13 +27,7 @@ export default function SacramentDetail() {
   return (
     <div className={`mx-auto max-w-md px-4 pt-5 pb-6 ${readerFontClass(size)}`}>
       <div className="mb-4 flex items-center justify-between gap-3">
-        <button
-          type="button"
-          onClick={() => navigate('/sacraments')}
-          className="text-sm font-semibold text-leather-600"
-        >
-          &larr; All Sacraments
-        </button>
+        <BackButton fallback="/sacraments" />
         <ReaderFontControl size={size} setSize={setSize} />
       </div>
 

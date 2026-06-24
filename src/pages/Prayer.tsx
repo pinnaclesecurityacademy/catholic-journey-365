@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { prayerCategories, PrayerCategory } from '../data/prayers';
 import { scrollToContentStart } from '../lib/scroll';
+import { BackButton } from '../components/BackButton';
 
 // Top-level prayer-library categories. Each maps to one or more underlying data
 // categories (whose ids and routing are unchanged), so prayers are grouped for
@@ -193,6 +194,9 @@ export default function Prayer() {
   // Category home view (cards only).
   return (
     <div className="max-w-md mx-auto px-5 pt-8">
+      <div className="mb-4">
+        <BackButton fallback="/faith" />
+      </div>
       <header ref={contentStartRef} className="mb-6">
         <h1 className="font-display text-3xl font-bold text-leather-900">
           Prayer

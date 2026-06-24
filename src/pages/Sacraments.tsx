@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { SacredCard } from '../components/SacredCard';
+import { BackButton } from '../components/BackButton';
 import {
   sacraments,
   sacramentsIntro,
@@ -13,13 +14,9 @@ export default function Sacraments() {
 
   return (
     <div className="mx-auto max-w-md px-4 pt-5 pb-6">
-      <button
-        type="button"
-        onClick={() => navigate('/faith')}
-        className="mb-4 text-sm font-semibold text-leather-600"
-      >
-        &larr; Back to Faith
-      </button>
+      <div className="mb-4">
+        <BackButton fallback="/faith" />
+      </div>
 
       <section className="relative mb-4 overflow-hidden rounded-[1.75rem] bg-leather-950 text-white shadow-[0_22px_50px_rgba(74,55,40,0.2)]">
         <img

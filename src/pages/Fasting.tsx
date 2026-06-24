@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SacredCard, SacredProgress } from '../components/SacredCard';
+import { BackButton } from '../components/BackButton';
 import { useAccount } from '../lib/account';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
@@ -50,7 +50,6 @@ function loadCompletedSteps(storageKey: string) {
 }
 
 export default function Fasting() {
-  const navigate = useNavigate();
   const { size, setSize } = useReaderFont();
   const { completionId } = useAccount();
   const storageKey = useMemo(
@@ -96,13 +95,7 @@ export default function Fasting() {
   return (
     <div className={`mx-auto max-w-md px-4 pt-5 pb-6 ${readerFontClass(size)}`}>
       <div className="mb-4 flex items-center justify-between gap-3">
-        <button
-          type="button"
-          onClick={() => navigate('/faith')}
-          className="text-sm font-semibold text-leather-600"
-        >
-          &larr; Back to Faith
-        </button>
+        <BackButton fallback="/faith" />
         <ReaderFontControl size={size} setSize={setSize} />
       </div>
 

@@ -5,6 +5,7 @@ import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
 import NovenaFlow from '../components/NovenaFlow';
 import ChapletFlow from '../components/ChapletFlow';
 import { scrollToContentStart } from '../lib/scroll';
+import { BackButton } from '../components/BackButton';
 
 const stationArtwork: Record<string, string> = {
   'station-1': '/images/stations/station-01-jesus-condemned.webp',
@@ -136,12 +137,9 @@ export default function PrayerDetail() {
 
   return (
     <div className="max-w-md mx-auto px-5 pt-6 pb-12">
-      <button
-        onClick={() => navigate(-1)}
-        className="text-leather-600 font-medium mb-6"
-      >
-        ← Back
-      </button>
+      <div className="mb-6">
+        <BackButton fallback="/prayer" />
+      </div>
 
       {/* Title, centred, with a quiet ornamental divider */}
       <header ref={contentStartRef} className="mb-8 text-center">

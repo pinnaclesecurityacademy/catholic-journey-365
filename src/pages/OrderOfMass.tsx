@@ -10,6 +10,7 @@ import {
 import { SacredPrayer, SacredPrayerLabel } from '../components/SacredPrayer';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
+import { BackButton } from '../components/BackButton';
 import { scrollToContentStart } from '../lib/scroll';
 
 // Introduction to the Mass. A beginner-friendly guide reached from the Faith
@@ -80,12 +81,7 @@ export default function OrderOfMass() {
       className={`max-w-md mx-auto px-5 pt-6 min-h-screen flex flex-col ${readerFontClass(size)}`}
     >
       <div className="mb-4 flex items-center justify-between gap-3">
-        <button
-          onClick={() => navigate('/faith')}
-          className="text-leather-600 font-medium"
-        >
-          ← Faith
-        </button>
+        <BackButton fallback="/faith" />
         <ReaderFontControl size={size} setSize={setSize} />
       </div>
       <div ref={contentStartRef} className="flex-1">

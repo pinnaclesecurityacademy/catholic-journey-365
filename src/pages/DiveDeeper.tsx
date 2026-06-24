@@ -9,6 +9,7 @@ import {
 } from '../lib/faithJourney';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
+import { BackButton } from '../components/BackButton';
 
 // Dedicated Dive Deeper page (route: /day/:dayNumber/deeper).
 // Displays the existing flowing Catholic reflection for the day. Content comes
@@ -71,12 +72,7 @@ export default function DiveDeeper() {
   return (
     <div className={`max-w-md mx-auto px-5 pt-6 pb-12 ${readerFontClass(size)}`}>
       <div className="mb-6 flex items-center justify-between gap-3">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-leather-600 font-medium"
-        >
-          ← Back
-        </button>
+        <BackButton fallback="/journey/scripture" />
         <ReaderFontControl size={size} setSize={setSize} />
       </div>
 

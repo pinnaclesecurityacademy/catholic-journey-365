@@ -12,6 +12,7 @@ import {
 } from '../data/rosaryContent';
 import { SacredPrayer } from '../components/SacredPrayer';
 import { scrollToContentStart } from '../lib/scroll';
+import { BackButton } from '../components/BackButton';
 
 // Guided Rosary, Christ-centred meditation. Education + opening prayers + per-mystery content.
 type Step =
@@ -368,12 +369,9 @@ export default function Rosary() {
 
   const Shell = ({ children }: { children: React.ReactNode }) => (
     <div className="max-w-md mx-auto px-5 pt-6 min-h-screen flex flex-col">
-      <button
-        onClick={() => navigate('/prayer')}
-        className="text-leather-600 font-medium mb-4 self-start"
-      >
-        ← Prayer
-      </button>
+      <div className="mb-4 self-start">
+        <BackButton fallback="/prayer" />
+      </div>
       <div ref={contentStartRef} className="flex-1">
         {children}
       </div>

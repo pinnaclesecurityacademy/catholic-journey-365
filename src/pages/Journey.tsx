@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { readingPlan } from '../data/readingPlan';
+import { getDailyFormation } from '../data/dailyFormation';
 import { TOTAL_DAYS } from '../config/journey';
 import { getAllCompletions } from '../lib/completions';
 import { useAccount, Member } from '../lib/account';
@@ -14,7 +15,6 @@ import {
   SCRIPTURE_READING_ITEM,
   SeeingGodReflection,
   getRotatingEveningPrayer,
-  getRotatingFormationLesson,
   getRotatingMorningPrayer,
   mergeFaithJourneyChecks,
   readSeeingGodReflection,
@@ -437,7 +437,7 @@ function FaithJourneyDetail({
   const progress = Math.round((completed / FAITH_JOURNEY_ITEMS.length) * 100);
   const morningPrayer = getRotatingMorningPrayer(currentDay);
   const eveningPrayer = getRotatingEveningPrayer(currentDay);
-  const formationLesson = getRotatingFormationLesson(currentDay);
+  const formationLesson = getDailyFormation(currentDay);
   const allComplete = completed >= FAITH_JOURNEY_ITEMS.length;
   const inputClass =
     'mt-2 min-h-24 w-full rounded-xl border border-parchment-200 bg-white px-4 py-3 text-sm leading-relaxed text-leather-900 outline-none focus:border-leather-400';
@@ -519,41 +519,26 @@ function FaithJourneyDetail({
               <ReaderFontControl size={readerSize} setSize={setReaderSize} />
             </div>
             <section className="rounded-2xl bg-parchment-50 p-5">
-              <h3 className="font-display text-2xl font-semibold leading-tight">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
+                Day {formationLesson.day} | {formationLesson.category}
+              </p>
+              <h3 className="mt-2 font-display text-2xl font-semibold leading-tight">
                 {formationLesson.title}
               </h3>
               <p className="mt-3 leading-relaxed text-stone-700">
-                {formationLesson.introduction}
+                {formationLesson.summary}
               </p>
             </section>
 
-            {formationLesson.sections.map((section) => (
-              <section key={section.title} className="rounded-2xl bg-white border border-parchment-200 p-5">
-                <h4 className="font-display text-xl font-semibold text-leather-900">
-                  {section.title}
-                </h4>
-                <p className="mt-2 leading-relaxed text-stone-700">
-                  {section.body}
+            <section className="rounded-2xl bg-white border border-parchment-200 p-5">
+              {formationLesson.formationText.split('\n\n').map((paragraph, index) => (
+                <p
+                  key={index}
+                  className={`leading-relaxed text-stone-700 ${index > 0 ? 'mt-4' : ''}`}
+                >
+                  {paragraph}
                 </p>
-              </section>
-            ))}
-
-            <section className="rounded-2xl bg-parchment-50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-                Scripture Connection
-              </p>
-              <p className="mt-2 leading-relaxed text-stone-700">
-                {formationLesson.scriptureConnection}
-              </p>
-            </section>
-
-            <section className="rounded-2xl bg-parchment-50 p-5">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-                Catholic Practice
-              </p>
-              <p className="mt-2 leading-relaxed text-stone-700">
-                {formationLesson.catholicPractice}
-              </p>
+              ))}
             </section>
 
             <section className="rounded-2xl border border-gold/40 bg-parchment-100 p-5">

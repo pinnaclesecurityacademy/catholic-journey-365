@@ -84,6 +84,25 @@ function Intercession({ title, text }: { title: string; text: string }) {
   );
 }
 
+/** Born/Died row in the header. Hidden when no date info is available. */
+function SaintDates({ saint }: { saint: Saint }) {
+  const born = saint.birthDisplay;
+  const died = saint.deathDisplay;
+  if (!born && !died) return null;
+
+  // If both are explicitly unknown, show a single compact line.
+  if (born === 'unknown' && died === 'unknown') {
+    return <p className="text-sm text-leather-900 mt-1">Dates · unknown</p>;
+  }
+
+  return (
+    <div className="text-sm text-leather-900 mt-1 space-y-0.5">
+      {born && <p>Born · {born}</p>}
+      {died && <p>Died · {died}</p>}
+    </div>
+  );
+}
+
 /** Renders the type-specific body sections for an entry. */
 function EntryBody({ saint }: { saint: Saint }) {
   const sections: ReactNode[] = [];
@@ -245,6 +264,7 @@ export default function SaintOfDay() {
             <p className="text-sm text-leather-900 mt-2">
               Feast day · {saint.feastDay}
             </p>
+            <SaintDates saint={saint} />
           </>
         ) : (
           <h1 className="font-display text-4xl font-bold text-leather-600 leading-tight mt-1">

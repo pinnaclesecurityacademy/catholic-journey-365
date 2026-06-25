@@ -174,23 +174,28 @@ const NAV_LINKS = [
 const QUESTION_CARDS = [
   {
     q: 'Why do Catholics honour Mary?',
-    a: 'We honour her as the mother of Jesus, never as God. She always points us to her Son.',
+    a: 'Catholics do not worship Mary. Catholics honour her as the mother of Jesus and see her as someone who always points us closer to Him.',
+    footer: 'Continue the journey inside Catholic Journey 365.',
   },
   {
     q: 'Why do Catholics ask saints to pray?',
-    a: 'The saints are alive in Christ, and we ask them to pray for us just as we ask friends to.',
+    a: "Catholics believe the family of God includes those in Heaven. Asking saints for prayer is asking members of Christ's family to pray with us.",
+    footer: 'Discover the deeper meaning step by step.',
   },
   {
     q: 'Why confess sins to a priest?',
-    a: 'Christ gave the Church authority to forgive sins, and confession brings real healing and grace.',
+    a: 'Catholics believe Jesus gave the Church the ministry of reconciliation, where God offers forgiveness and healing through Confession.',
+    footer: 'Learn the biblical roots inside the journey.',
   },
   {
-    q: 'Why is the Mass different from other services?',
-    a: 'The Mass is the worship Christ gave us, where Scripture and the Eucharist meet in one prayer.',
+    q: 'Why is the Mass different?',
+    a: 'Catholics believe the Mass is more than a service. It is worship centred on Christ, Scripture, and the Eucharist.',
+    footer: 'Understand each part of the Mass in Catholic Journey 365.',
   },
   {
     q: 'Where did the Bible come from?',
-    a: 'The Church discerned and gathered the books of Scripture, guided by the Holy Spirit over time.',
+    a: 'The Bible did not appear as one complete book. The early Church preserved, prayed with, and recognised the books of Sacred Scripture.',
+    footer: 'Explore Scripture and salvation history through the journey.',
   },
 ];
 
@@ -284,6 +289,12 @@ const TESTIMONIALS = [
     journey: 'Returning Catholic',
     quote:
       'I was baptised Catholic as a child, but I spent most of my life away from the Church. When I started my own family, I felt called to come closer to God, but going back to Mass felt intimidating. I did not know when to sit, stand, kneel, or why Catholics did certain things. Catholic Journey 365 helped me understand the Mass, follow along, and discover the meaning behind what was happening. For the first time, I felt like I could truly participate.',
+  },
+  {
+    name: 'Michael',
+    journey: 'Lifelong Catholic',
+    quote:
+      'I have always gone to Mass because that is what my family did. It was part of my life, but I never really understood the meaning behind everything we believed and practised. Catholic Journey 365 helped me go deeper. It explained the reasons behind the faith, the Mass, Scripture, and Catholic traditions in a way I could finally understand. For the first time, I am not just going through the motions. I understand why I am Catholic.',
   },
 ];
 
@@ -445,9 +456,14 @@ export default function Landing() {
                       <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </summary>
-                  <p className="mt-3 border-t border-amber-300/40 pt-3 text-base leading-7 text-leather-900/75">
-                    {card.a}
-                  </p>
+                  <div className="mt-3 border-t border-amber-300/40 pt-3">
+                    <p className="text-base leading-7 text-leather-900/75">
+                      {card.a}
+                    </p>
+                    <p className="mt-3 text-sm font-semibold text-amber-700">
+                      {card.footer}
+                    </p>
+                  </div>
                 </details>
               ))}
               <div className="flex flex-col justify-center rounded-[1.6rem] border border-amber-200/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.7),transparent_40%),linear-gradient(135deg,#fff8e7,#e4c797)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.12)]">

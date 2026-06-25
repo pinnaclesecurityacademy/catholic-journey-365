@@ -434,11 +434,11 @@ export default function Landing() {
               </p>
             </div>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
+            <div className="mt-8 flex flex-wrap items-start gap-4 md:mt-10">
               {QUESTION_CARDS.map((card, i) => (
                 <details
                   key={card.q}
-                  className="group rounded-[1.6rem] border border-amber-100/70 bg-[linear-gradient(160deg,#fffaf0,#f6e9cf)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.1)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/80 hover:shadow-[0_28px_64px_rgba(92,64,39,0.18)] open:border-amber-300/80"
+                  className="group w-full self-start rounded-[1.6rem] border border-amber-100/70 bg-[linear-gradient(160deg,#fffaf0,#f6e9cf)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.1)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/80 hover:shadow-[0_28px_64px_rgba(92,64,39,0.18)] open:border-amber-300/80 sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]"
                 >
                   <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
                     <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-amber-300/70 bg-leather-900 font-display text-base font-semibold text-amber-200">
@@ -466,7 +466,7 @@ export default function Landing() {
                   </div>
                 </details>
               ))}
-              <div className="flex flex-col justify-center rounded-[1.6rem] border border-amber-200/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.7),transparent_40%),linear-gradient(135deg,#fff8e7,#e4c797)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.12)]">
+              <div className="flex w-full flex-col justify-center self-start rounded-[1.6rem] border border-amber-200/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.7),transparent_40%),linear-gradient(135deg,#fff8e7,#e4c797)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.12)] sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]">
                 <p className="text-lg font-semibold leading-7 text-leather-900/86">
                   Catholic Journey 365 helps you discover the answers step by
                   step.

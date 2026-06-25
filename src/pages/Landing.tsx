@@ -107,11 +107,26 @@ const NAV_LINKS = [
 ];
 
 const QUESTION_CARDS = [
-  'Why do Catholics honour Mary?',
-  'Why do Catholics ask saints to pray?',
-  'Why confess sins to a priest?',
-  'Why is the Mass different from other services?',
-  'Where did the Bible come from?',
+  {
+    q: 'Why do Catholics honour Mary?',
+    a: 'We honour her as the mother of Jesus, never as God. She always points us to her Son.',
+  },
+  {
+    q: 'Why do Catholics ask saints to pray?',
+    a: 'The saints are alive in Christ, and we ask them to pray for us just as we ask friends to.',
+  },
+  {
+    q: 'Why confess sins to a priest?',
+    a: 'Christ gave the Church authority to forgive sins, and confession brings real healing and grace.',
+  },
+  {
+    q: 'Why is the Mass different from other services?',
+    a: 'The Mass is the worship Christ gave us, where Scripture and the Eucharist meet in one prayer.',
+  },
+  {
+    q: 'Where did the Bible come from?',
+    a: 'The Church discerned and gathered the books of Scripture, guided by the Holy Spirit over time.',
+  },
 ];
 
 const PAIN_CARDS = [
@@ -145,9 +160,6 @@ const FEATURE_TILES = [
 const OTHER_APP_FEATURES = ['Prayers', 'Bible', 'Devotions', 'Content library'];
 
 const OUR_FEATURES = [
-  'Prayers',
-  'Bible',
-  'Devotions',
   'Daily formation path',
   'Scripture explained',
   'Mass explained',
@@ -226,7 +238,7 @@ export default function Landing() {
       <div className="fixed inset-0 -z-10 opacity-[0.18] [background-image:linear-gradient(90deg,rgba(83,54,31,0.09)_1px,transparent_1px),linear-gradient(rgba(83,54,31,0.08)_1px,transparent_1px)] [background-size:30px_30px]" />
 
       <nav className="fixed inset-x-0 top-0 z-30 border-b border-white/30 bg-[#fff4dc]/76 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+        <div className="mx-auto flex max-w-[1340px] items-center justify-between px-5 py-4 sm:px-8">
           <a href="#top" className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-200 bg-leather-900 text-amber-200 shadow-sm">
               <CrossMark className="h-4 w-4" />
@@ -275,7 +287,7 @@ export default function Landing() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(245,190,83,0.16),transparent_36%)]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#f5ead1] via-[#f5ead1]/12 to-transparent" />
 
-        <div className="relative mx-auto grid min-h-[80vh] max-w-7xl items-center gap-5 px-5 pb-10 pt-24 sm:px-8 md:min-h-[86vh] md:pb-12 lg:grid-cols-[1.08fr_0.72fr] lg:gap-8 lg:pb-14 lg:pt-24">
+        <div className="relative mx-auto grid min-h-[80vh] max-w-[1340px] items-center gap-5 px-5 pb-10 pt-24 sm:px-8 md:min-h-[86vh] md:pb-12 lg:grid-cols-[1.08fr_0.72fr] lg:gap-8 lg:pb-14 lg:pt-24">
           <div className="max-w-3xl text-center lg:text-left">
             <p className="text-xs font-bold uppercase tracking-[0.34em] text-amber-200">
               Catholic Journey 365
@@ -310,25 +322,41 @@ export default function Landing() {
       <main>
         {/* 2. Question hook */}
         <section className="relative px-5 pt-10 sm:px-8 md:pt-14">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-[1340px]">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
                 Have you ever wondered why?
               </h2>
+              <p className="mt-4 text-base font-semibold text-leather-900/65">
+                Tap any question to reveal the answer.
+              </p>
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
-              {QUESTION_CARDS.map((q) => (
-                <div
-                  key={q}
-                  className="flex items-center gap-3 rounded-[1.6rem] border border-white/54 bg-white/62 p-5 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur"
+              {QUESTION_CARDS.map((card) => (
+                <details
+                  key={card.q}
+                  className="group rounded-[1.6rem] border border-white/54 bg-white/62 p-5 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-amber-200/70 hover:shadow-[0_26px_60px_rgba(92,64,39,0.16)] open:bg-white/80"
                 >
-                  <CrossMark className="h-5 w-5 flex-none" />
-                  <p className="font-display text-xl font-semibold leading-snug text-leather-900">
-                    {q}
+                  <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
+                    <CrossMark className="h-5 w-5 flex-none" />
+                    <span className="font-display text-xl font-semibold leading-snug text-leather-900">
+                      {card.q}
+                    </span>
+                    <svg
+                      viewBox="0 0 20 20"
+                      className="ml-auto h-5 w-5 flex-none text-amber-600 transition-transform duration-300 group-open:rotate-180"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </summary>
+                  <p className="mt-3 border-t border-amber-200/40 pt-3 text-base leading-7 text-stone-600">
+                    {card.a}
                   </p>
-                </div>
+                </details>
               ))}
               <div className="flex flex-col justify-center rounded-[1.6rem] border border-amber-200/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.7),transparent_40%),linear-gradient(135deg,#fff8e7,#e4c797)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.12)]">
                 <p className="text-lg font-semibold leading-7 text-leather-900/86">
@@ -346,19 +374,23 @@ export default function Landing() {
 
         {/* 3. Pain */}
         <section className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-6xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <GoldRule className="mx-auto" />
+          <div className="mx-auto grid max-w-[1340px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+            <div>
+              <GoldRule />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
                 Faith should not feel impossible to begin.
               </h2>
+              <p className="mt-5 font-display text-xl font-semibold leading-8 text-leather-900/82 md:text-2xl md:leading-9">
+                You do not need another list of resources. You need a journey.
+              </p>
+              <BeginButton label="Start Where You Are" className="mt-6 w-full sm:w-auto" />
             </div>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
+            <div className="grid gap-4 sm:grid-cols-2">
               {PAIN_CARDS.map((card) => (
                 <div
                   key={card.title}
-                  className="rounded-[1.6rem] border border-white/54 bg-white/62 p-6 text-center shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur"
+                  className="rounded-[1.6rem] border border-white/54 bg-white/62 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_60px_rgba(92,64,39,0.16)]"
                 >
                   <h3 className="font-display text-2xl font-semibold text-leather-900">
                     {card.title}
@@ -369,19 +401,12 @@ export default function Landing() {
                 </div>
               ))}
             </div>
-
-            <div className="mx-auto mt-8 max-w-2xl text-center md:mt-10">
-              <p className="font-display text-2xl font-semibold leading-9 text-leather-900 md:text-3xl">
-                You do not need another list of resources. You need a journey.
-              </p>
-              <BeginButton label="Start Where You Are" className="mt-6 w-full sm:w-auto" />
-            </div>
           </div>
         </section>
 
         {/* 4. Daily product */}
         <section id="path" className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <div className="mx-auto grid max-w-[1340px] gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-12">
             <div className="flex justify-center">
               <div className="rounded-[2.5rem] border border-amber-200/30 bg-leather-900/10 p-4 shadow-[0_28px_72px_rgba(58,38,25,0.16)] backdrop-blur">
                 <PhoneMockup />
@@ -421,7 +446,7 @@ export default function Landing() {
 
         {/* 5. Depth / product proof */}
         <section id="features" className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-[1340px]">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -433,7 +458,7 @@ export default function Landing() {
               {FEATURE_TILES.map((tile) => (
                 <div
                   key={tile.title}
-                  className="rounded-[1.6rem] border border-white/54 bg-white/62 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur"
+                  className="rounded-[1.6rem] border border-white/54 bg-white/62 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-amber-200/70 hover:shadow-[0_28px_64px_rgba(92,64,39,0.18)]"
                 >
                   <CrossMark className="h-6 w-6" />
                   <h3 className="mt-3 font-display text-xl font-semibold text-leather-900">
@@ -454,7 +479,7 @@ export default function Landing() {
 
         {/* 6. Difference */}
         <section id="different" className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-6xl">
+          <div className="mx-auto max-w-[1340px]">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -463,12 +488,12 @@ export default function Landing() {
               </h2>
             </div>
 
-            <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-2 md:gap-5">
+            <div className="mt-8 grid items-stretch gap-4 md:mt-10 md:grid-cols-[0.8fr_1.2fr] md:gap-5">
               <div className="rounded-[2rem] border border-white/54 bg-white/55 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.08)] backdrop-blur sm:p-8">
                 <p className="text-xs font-bold uppercase tracking-[0.28em] text-stone-500">
                   Other Catholic apps
                 </p>
-                <ul className="mt-5 space-y-3">
+                <ul className="mt-5 grid gap-3 sm:grid-cols-2 md:grid-cols-1">
                   {OTHER_APP_FEATURES.map((f) => (
                     <li key={f} className="flex items-center gap-3">
                       <CheckIcon on />
@@ -482,7 +507,10 @@ export default function Landing() {
                 <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
                   Catholic Journey 365
                 </p>
-                <ul className="mt-5 space-y-3">
+                <p className="mt-2 text-base font-semibold text-leather-900/70">
+                  Everything in other apps, plus a guided path:
+                </p>
+                <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                   {OUR_FEATURES.map((f) => (
                     <li key={f} className="flex items-center gap-3">
                       <CheckIcon on />
@@ -560,7 +588,7 @@ export default function Landing() {
 
         {/* 8. Trust */}
         <section id="trust" className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-7">
+          <div className="mx-auto grid max-w-[1340px] gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10">
             <div className="rounded-[2rem] border border-white/54 bg-white/62 p-6 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-8">
               <GoldRule />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -640,7 +668,7 @@ export default function Landing() {
 
         {/* Testimonials */}
         <section className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-[1340px]">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -705,29 +733,37 @@ export default function Landing() {
 
         {/* 11. FAQ */}
         <section className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-3xl">
-              <GoldRule />
-              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
-                Questions before you begin.
-              </h2>
-            </div>
+          <div className="mx-auto max-w-3xl text-center">
+            <GoldRule className="mx-auto" />
+            <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
+              Questions before you begin.
+            </h2>
+          </div>
 
-            <div className="mt-6 grid gap-4 md:mt-8 md:grid-cols-2 md:gap-5">
-              {FAQ_ITEMS.map((item) => (
-                <div
-                  key={item.q}
-                  className="rounded-[1.6rem] border border-white/54 bg-white/62 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur"
-                >
-                  <h3 className="font-display text-2xl font-semibold text-leather-900">
+          <div className="mx-auto mt-6 max-w-3xl space-y-3 md:mt-8">
+            {FAQ_ITEMS.map((item) => (
+              <details
+                key={item.q}
+                className="group rounded-[1.4rem] border border-white/54 bg-white/62 px-5 py-4 shadow-[0_14px_40px_rgba(92,64,39,0.08)] backdrop-blur transition hover:border-amber-200/70 open:bg-white/80 sm:px-7 sm:py-5"
+              >
+                <summary className="flex cursor-pointer list-none items-center gap-4 [&::-webkit-details-marker]:hidden">
+                  <span className="font-display text-xl font-semibold leading-snug text-leather-900 sm:text-2xl">
                     {item.q}
-                  </h3>
-                  <p className="mt-3 text-base leading-7 text-stone-600 md:mt-4 md:text-lg md:leading-8">
-                    {item.a}
-                  </p>
-                </div>
-              ))}
-            </div>
+                  </span>
+                  <svg
+                    viewBox="0 0 20 20"
+                    className="ml-auto h-5 w-5 flex-none text-amber-600 transition-transform duration-300 group-open:rotate-180"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </summary>
+                <p className="mt-3 text-base leading-7 text-stone-600 md:text-lg md:leading-8">
+                  {item.a}
+                </p>
+              </details>
+            ))}
           </div>
         </section>
 

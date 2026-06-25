@@ -25,10 +25,10 @@ function CrossMark({ className = '' }: { className?: string }) {
   );
 }
 
-// Shared primary call to action. Used in every major section so a visitor can
-// begin from wherever they are on the page.
+// Shared primary call to action. Large, thumb friendly, and consistent so a
+// visitor can begin from wherever they are on the page.
 function BeginButton({
-  label = 'Start Your Journey Today',
+  label = 'Start Your 14 Day Journey',
   className = '',
 }: {
   label?: string;
@@ -67,58 +67,6 @@ function PhoneMockup() {
   );
 }
 
-const AUDIENCE_CHIPS = [
-  'Exploring Catholicism',
-  'Starting OCIA / RCIA',
-  'Returning to the Church',
-  'Wanting to understand your faith',
-  'Building a daily prayer life',
-];
-
-const DAILY_STEPS = [
-  {
-    title: 'Morning Prayer',
-    text: 'Begin the day by turning your heart to God.',
-  },
-  {
-    title: 'Scripture Journey',
-    text: 'One guided reading on a clear path through the Bible.',
-  },
-  {
-    title: 'Dive Deeper',
-    text: 'A short reflection that opens up what you just read.',
-  },
-  {
-    title: 'Faith Formation',
-    text: 'Learn one part of Catholic teaching at a time.',
-  },
-  {
-    title: 'Saint of the Day',
-    text: 'Meet a saint who walked the faith before you.',
-  },
-  {
-    title: 'Personal Prayer',
-    text: 'Quiet space to bring your own life to God.',
-  },
-  {
-    title: 'Evening Prayer',
-    text: 'Close the day with gratitude and rest in Him.',
-  },
-];
-
-const COMPARISON_ROWS: { need: string; others: boolean; ours: boolean }[] = [
-  { need: 'Daily prayers and devotions', others: true, ours: true },
-  { need: 'Rosary', others: true, ours: true },
-  { need: 'Bible access', others: true, ours: true },
-  { need: '365 day guided Scripture path', others: false, ours: true },
-  { need: 'Daily faith formation', others: false, ours: true },
-  { need: 'Mass explained step by step', others: false, ours: true },
-  { need: 'Sacraments explained', others: false, ours: true },
-  { need: 'Built for beginners and returning Catholics', others: false, ours: true },
-  { need: 'Helps you understand why Catholics believe', others: false, ours: true },
-  { need: 'Daily Catholic rhythm and checklist', others: false, ours: true },
-];
-
 function CheckIcon({ on }: { on: boolean }) {
   if (on) {
     return (
@@ -132,7 +80,7 @@ function CheckIcon({ on }: { on: boolean }) {
             strokeLinejoin="round"
           />
         </svg>
-        <span className="sr-only">yes</span>
+        <span className="sr-only">included</span>
       </span>
     );
   }
@@ -146,17 +94,107 @@ function CheckIcon({ on }: { on: boolean }) {
           strokeLinecap="round"
         />
       </svg>
-      <span className="sr-only">no</span>
+      <span className="sr-only">not included</span>
     </span>
   );
 }
 
 const NAV_LINKS = [
   { label: 'The path', href: '#path' },
+  { label: 'Features', href: '#features' },
   { label: 'Different', href: '#different' },
-  { label: 'Trust', href: '#trust' },
   { label: 'Pricing', href: '#pricing' },
 ];
+
+const QUESTION_CARDS = [
+  'Why do Catholics honour Mary?',
+  'Why do Catholics ask saints to pray?',
+  'Why confess sins to a priest?',
+  'Why is the Mass different from other services?',
+  'Where did the Bible come from?',
+];
+
+const PAIN_CARDS = [
+  { title: 'The Bible', text: 'Where do I even start?' },
+  { title: 'The Mass', text: 'Why do we do this?' },
+  { title: 'Prayer', text: 'Am I doing this right?' },
+  { title: 'Catholic teaching', text: 'Why do Catholics believe that?' },
+];
+
+const DAILY_STEPS = [
+  'Morning Prayer',
+  'Scripture Journey',
+  'Dive Deeper',
+  'Faith Formation',
+  'Saint of the Day',
+  'Reflection',
+  'Evening Prayer',
+];
+
+const FEATURE_TILES = [
+  { title: 'Bible Journey', text: 'Follow salvation history one day at a time.' },
+  { title: 'Dive Deeper', text: 'Understand what you read.' },
+  { title: 'Faith Formation', text: 'Learn Catholic teaching in simple language.' },
+  { title: 'Mass Guide', text: 'Understand every part of the Mass.' },
+  { title: 'Sacraments', text: 'Learn the gifts Christ gave His Church.' },
+  { title: 'Prayer Library', text: 'Build a real prayer life.' },
+  { title: 'Saints', text: 'Walk with those who followed Christ before us.' },
+  { title: 'Rosary', text: 'Pray with structure, mystery, and meaning.' },
+];
+
+const OTHER_APP_FEATURES = ['Prayers', 'Bible', 'Devotions', 'Content library'];
+
+const OUR_FEATURES = [
+  'Prayers',
+  'Bible',
+  'Devotions',
+  'Daily formation path',
+  'Scripture explained',
+  'Mass explained',
+  'Sacraments explained',
+  'Catholic questions answered',
+  'Beginner friendly progression',
+  'Daily habit building',
+];
+
+const PROGRESSION = [
+  { day: 'Day 1', text: 'Begin with one prayer, one reading, one step.' },
+  { day: 'Day 90', text: 'Understand more of Scripture, Mass, and Catholic teaching.' },
+  { day: 'Day 365', text: 'Build a daily Catholic life with confidence.' },
+];
+
+const TESTIMONIALS = [
+  {
+    name: 'Sally',
+    journey: 'Exploring Catholicism',
+    quote:
+      'My husband is Catholic, but I did not grow up in the Catholic Church. I had so many questions about the Mass, traditions, and why Catholics believe what they believe. Catholic Journey 365 helped me understand the faith step by step. It answered questions I was afraid to ask and helped me feel more comfortable walking into a Catholic church. Now I have started OCIA and continue learning more every day.',
+  },
+  {
+    name: 'Chris',
+    journey: 'Returning Catholic',
+    quote:
+      'I was baptised Catholic as a child, but I spent most of my life away from the Church. When I started my own family, I felt called to come closer to God, but going back to Mass felt intimidating. I did not know when to sit, stand, kneel, or why Catholics did certain things. Catholic Journey 365 helped me understand the Mass, follow along, and discover the meaning behind what was happening. For the first time, I felt like I could truly participate.',
+  },
+];
+
+function StarRating() {
+  return (
+    <div className="flex items-center gap-1" aria-label="Five out of five">
+      {Array.from({ length: 5 }).map((_, i) => (
+        <svg
+          key={i}
+          viewBox="0 0 20 20"
+          className="h-4 w-4 text-amber-500"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M10 1.5l2.47 5.18 5.7.62-4.25 3.86 1.16 5.62L10 13.9l-5.08 2.9 1.16-5.62L1.83 7.3l5.7-.62L10 1.5z" />
+        </svg>
+      ))}
+    </div>
+  );
+}
 
 const FAQ_ITEMS = [
   {
@@ -166,6 +204,10 @@ const FAQ_ITEMS = [
   {
     q: 'Is this only for Catholics?',
     a: 'No. It is for Catholics, returning Catholics, people exploring Catholicism, and people starting OCIA / RCIA.',
+  },
+  {
+    q: 'Is this useful for OCIA / RCIA?',
+    a: 'Yes. It supports your formation and helps you understand the faith, but it does not replace your parish programme.',
   },
   {
     q: 'What Bible translation is used?',
@@ -222,7 +264,7 @@ export default function Landing() {
       </nav>
 
       {/* 1. Hero */}
-      <header id="top" className="relative min-h-[78vh] overflow-hidden md:min-h-[82vh]">
+      <header id="top" className="relative min-h-[80vh] overflow-hidden md:min-h-[86vh]">
         <img
           src="/images/landing/jesus-welcome.png"
           alt="Christ welcoming people in warm sacred light"
@@ -233,35 +275,26 @@ export default function Landing() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(245,190,83,0.16),transparent_36%)]" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#f5ead1] via-[#f5ead1]/12 to-transparent" />
 
-        <div className="relative mx-auto grid min-h-[78vh] max-w-7xl items-center gap-5 px-5 pb-10 pt-24 sm:px-8 md:min-h-[82vh] md:pb-12 lg:grid-cols-[1.08fr_0.72fr] lg:gap-8 lg:pb-14 lg:pt-24">
+        <div className="relative mx-auto grid min-h-[80vh] max-w-7xl items-center gap-5 px-5 pb-10 pt-24 sm:px-8 md:min-h-[86vh] md:pb-12 lg:grid-cols-[1.08fr_0.72fr] lg:gap-8 lg:pb-14 lg:pt-24">
           <div className="max-w-3xl text-center lg:text-left">
             <p className="text-xs font-bold uppercase tracking-[0.34em] text-amber-200">
               Catholic Journey 365
             </p>
             <h1 className="mt-4 font-display text-5xl font-semibold leading-[0.98] text-parchment-50 drop-shadow-xl sm:text-6xl md:mt-5 lg:text-7xl">
-              You are Catholic. Now understand why.
+              Understand the Catholic faith.
+              <span className="block text-amber-300">One day at a time.</span>
             </h1>
 
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-parchment-100/90 [text-shadow:0_2px_14px_rgba(20,12,8,0.6)] sm:text-xl md:mt-6 lg:mx-0">
-              Catholic Journey 365 is a simple daily path through Scripture,
-              prayer, the Mass, and Catholic teaching.
+              Whether you are Catholic, returning after years away, starting
+              OCIA, or simply curious, Catholic Journey 365 guides you through
+              Scripture, prayer, the Mass, and the teachings of the Church.
             </p>
-
-            <div className="mt-6 flex flex-wrap justify-center gap-2 lg:justify-start">
-              {AUDIENCE_CHIPS.map((chip) => (
-                <span
-                  key={chip}
-                  className="rounded-full border border-amber-200/40 bg-leather-900/40 px-4 py-2 text-sm font-semibold text-parchment-100 backdrop-blur"
-                >
-                  {chip}
-                </span>
-              ))}
-            </div>
 
             <div className="mt-7 flex flex-col items-center gap-3 lg:items-start">
               <BeginButton className="w-full sm:w-auto" />
               <p className="text-sm font-semibold text-parchment-100/85 [text-shadow:0_2px_12px_rgba(20,12,8,0.6)]">
-                14 days free. Cancel anytime.
+                Full access. Cancel anytime.
               </p>
             </div>
           </div>
@@ -275,159 +308,196 @@ export default function Landing() {
       </header>
 
       <main>
-        {/* 2. Problem */}
-        <section className="relative px-5 pt-9 sm:px-8 md:pt-12">
-          <div className="mx-auto max-w-3xl rounded-[2rem] border border-amber-100 bg-[#fff8e7]/90 p-6 text-center shadow-[0_20px_54px_rgba(92,64,39,0.12)] backdrop-blur sm:p-8 md:p-10">
-            <GoldRule className="mx-auto" />
-            <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
-              Faith can feel overwhelming.
-            </h2>
-            <div className="mt-4 space-y-3 text-lg leading-8 text-leather-900/82 md:mt-5 md:text-xl md:leading-9">
-              <p>
-                The Bible is long. The Catechism is deep. The Mass can feel
-                unfamiliar. Catholic teaching can feel hard to understand when
-                nobody has walked you through it.
-              </p>
-              <p className="font-display text-2xl font-semibold leading-9 text-leather-900">
-                Most people do not need more random information. They need a
-                path.
-              </p>
-            </div>
-            <BeginButton label="Start Where You Are" className="mt-6 w-full sm:w-auto" />
-          </div>
-        </section>
-
-        {/* 3. Daily path */}
-        <section id="path" className="relative px-5 py-9 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-7xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <GoldRule className="mx-auto" />
-              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
-                A daily Catholic rhythm.
-              </h2>
-              <p className="mt-4 text-lg leading-8 text-leather-900/82 md:mt-5 md:text-xl md:leading-9">
-                Each day gives you one clear step so you can learn, pray,
-                reflect, and keep walking.
-              </p>
-            </div>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
-              {DAILY_STEPS.map((step, i) => (
-                <div
-                  key={step.title}
-                  className="flex items-start gap-4 rounded-[1.6rem] border border-white/54 bg-white/62 p-5 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur"
-                >
-                  <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-amber-200 bg-leather-900 font-display text-lg font-semibold text-amber-200">
-                    {i + 1}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-xl font-semibold text-leather-900">
-                      {step.title}
-                    </h3>
-                    <p className="mt-1 text-base leading-7 text-stone-600">
-                      {step.text}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex justify-center md:mt-10">
-              <BeginButton label="Begin Day 1" className="w-full sm:w-auto" />
-            </div>
-          </div>
-        </section>
-
-        {/* 4. Transformation */}
-        <section className="relative px-5 py-9 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.4rem] bg-[radial-gradient(circle_at_16%_0%,rgba(232,184,103,0.22),transparent_32%),linear-gradient(135deg,#20140e_0%,#3a2619_46%,#150d09_100%)] px-6 py-10 shadow-[0_36px_92px_rgba(36,22,15,0.34)] md:px-10 md:py-14">
-            <div className="mx-auto max-w-3xl text-center">
-              <CrossMark className="mx-auto text-amber-200" />
-              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-parchment-50 md:text-5xl">
-                Not just information. Formation.
-              </h2>
-            </div>
-
-            <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-3 md:gap-5">
-              {[
-                { day: 'Day 1', text: 'I do not know where to start.' },
-                { day: 'Day 90', text: 'I am beginning to understand my faith.' },
-                { day: 'Day 365', text: 'I am building a daily Catholic life.' },
-              ].map((stage) => (
-                <div
-                  key={stage.day}
-                  className="rounded-[1.8rem] border border-amber-200/24 bg-leather-900/40 p-6 text-center backdrop-blur"
-                >
-                  <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200">
-                    {stage.day}
-                  </p>
-                  <p className="mt-3 font-display text-2xl font-semibold leading-tight text-parchment-50">
-                    {stage.text}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 flex justify-center md:mt-10">
-              <BeginButton label="Start Today" className="w-full sm:w-auto" />
-            </div>
-          </div>
-        </section>
-
-        {/* 5. Difference */}
-        <section id="different" className="relative px-5 py-9 sm:px-8 md:py-16">
+        {/* 2. Question hook */}
+        <section className="relative px-5 pt-10 sm:px-8 md:pt-14">
           <div className="mx-auto max-w-6xl">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
-                What makes Catholic Journey 365 different?
+                Have you ever wondered why?
               </h2>
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/54 bg-white/62 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur md:mt-10">
-              <table className="w-full border-collapse text-left">
-                <thead>
-                  <tr className="border-b border-amber-200/50 bg-[#fff8e7]/70">
-                    <th className="px-4 py-4 text-sm font-bold text-leather-900 sm:px-6 md:text-base">
-                      What you need
-                    </th>
-                    <th className="px-2 py-4 text-center text-xs font-bold text-stone-500 sm:px-4 md:text-sm">
-                      Other Catholic Apps
-                    </th>
-                    <th className="px-2 py-4 text-center text-xs font-bold text-amber-700 sm:px-4 md:text-sm">
-                      Catholic Journey 365
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COMPARISON_ROWS.map((row, i) => (
-                    <tr
-                      key={row.need}
-                      className={i % 2 === 1 ? 'bg-white/30' : ''}
-                    >
-                      <td className="px-4 py-3.5 text-sm font-semibold leading-6 text-leather-900/90 sm:px-6 md:text-base">
-                        {row.need}
-                      </td>
-                      <td className="px-2 py-3.5 text-center sm:px-4">
-                        <div className="flex justify-center">
-                          <CheckIcon on={row.others} />
-                        </div>
-                      </td>
-                      <td className="px-2 py-3.5 text-center sm:px-4">
-                        <div className="flex justify-center">
-                          <CheckIcon on={row.ours} />
-                        </div>
-                      </td>
-                    </tr>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
+              {QUESTION_CARDS.map((q) => (
+                <div
+                  key={q}
+                  className="flex items-center gap-3 rounded-[1.6rem] border border-white/54 bg-white/62 p-5 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur"
+                >
+                  <CrossMark className="h-5 w-5 flex-none" />
+                  <p className="font-display text-xl font-semibold leading-snug text-leather-900">
+                    {q}
+                  </p>
+                </div>
+              ))}
+              <div className="flex flex-col justify-center rounded-[1.6rem] border border-amber-200/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.7),transparent_40%),linear-gradient(135deg,#fff8e7,#e4c797)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.12)]">
+                <p className="text-lg font-semibold leading-7 text-leather-900/86">
+                  Catholic Journey 365 helps you discover the answers step by
+                  step.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-8 flex justify-center md:mt-10">
+              <BeginButton label="Start Understanding Your Faith" className="w-full sm:w-auto" />
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Pain */}
+        <section className="relative px-5 py-10 sm:px-8 md:py-16">
+          <div className="mx-auto max-w-6xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <GoldRule className="mx-auto" />
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
+                Faith should not feel impossible to begin.
+              </h2>
+            </div>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
+              {PAIN_CARDS.map((card) => (
+                <div
+                  key={card.title}
+                  className="rounded-[1.6rem] border border-white/54 bg-white/62 p-6 text-center shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur"
+                >
+                  <h3 className="font-display text-2xl font-semibold text-leather-900">
+                    {card.title}
+                  </h3>
+                  <p className="mt-2 text-base italic leading-7 text-stone-600">
+                    {card.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mx-auto mt-8 max-w-2xl text-center md:mt-10">
+              <p className="font-display text-2xl font-semibold leading-9 text-leather-900 md:text-3xl">
+                You do not need another list of resources. You need a journey.
+              </p>
+              <BeginButton label="Start Where You Are" className="mt-6 w-full sm:w-auto" />
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Daily product */}
+        <section id="path" className="relative px-5 py-10 sm:px-8 md:py-16">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+            <div className="flex justify-center">
+              <div className="rounded-[2.5rem] border border-amber-200/30 bg-leather-900/10 p-4 shadow-[0_28px_72px_rgba(58,38,25,0.16)] backdrop-blur">
+                <PhoneMockup />
+              </div>
+            </div>
+
+            <div>
+              <GoldRule />
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
+                Your daily Catholic path.
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-leather-900/82 md:mt-5 md:text-xl md:leading-9">
+                One clear step each day. Pray, read, understand, reflect, and
+                keep walking.
+              </p>
+
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                {DAILY_STEPS.map((step, i) => (
+                  <div
+                    key={step}
+                    className="flex items-center gap-3 rounded-[1.4rem] border border-white/54 bg-white/62 p-4 shadow-[0_14px_40px_rgba(92,64,39,0.08)] backdrop-blur"
+                  >
+                    <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-amber-200 bg-leather-900 font-display text-base font-semibold text-amber-200">
+                      {i + 1}
+                    </span>
+                    <span className="font-display text-lg font-semibold text-leather-900">
+                      {step}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <BeginButton label="Try Day 1 Free" className="mt-7 w-full sm:w-auto" />
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Depth / product proof */}
+        <section id="features" className="relative px-5 py-10 sm:px-8 md:py-16">
+          <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <GoldRule className="mx-auto" />
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
+                Everything connected. One journey.
+              </h2>
+            </div>
+
+            <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
+              {FEATURE_TILES.map((tile) => (
+                <div
+                  key={tile.title}
+                  className="rounded-[1.6rem] border border-white/54 bg-white/62 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur"
+                >
+                  <CrossMark className="h-6 w-6" />
+                  <h3 className="mt-3 font-display text-xl font-semibold text-leather-900">
+                    {tile.title}
+                  </h3>
+                  <p className="mt-2 text-base leading-7 text-stone-600">
+                    {tile.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex justify-center md:mt-10">
+              <BeginButton label="Explore the Full Journey" className="w-full sm:w-auto" />
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Difference */}
+        <section id="different" className="relative px-5 py-10 sm:px-8 md:py-16">
+          <div className="mx-auto max-w-6xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <GoldRule className="mx-auto" />
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
+                Resources tell you where to look. A journey shows you where to
+                go.
+              </h2>
+            </div>
+
+            <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-2 md:gap-5">
+              <div className="rounded-[2rem] border border-white/54 bg-white/55 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.08)] backdrop-blur sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-stone-500">
+                  Other Catholic apps
+                </p>
+                <ul className="mt-5 space-y-3">
+                  {OTHER_APP_FEATURES.map((f) => (
+                    <li key={f} className="flex items-center gap-3">
+                      <CheckIcon on />
+                      <span className="text-lg leading-7 text-leather-900/80">{f}</span>
+                    </li>
                   ))}
-                </tbody>
-              </table>
+                </ul>
+              </div>
+
+              <div className="relative overflow-hidden rounded-[2rem] border border-amber-200/60 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.7),transparent_36%),linear-gradient(135deg,#fff8e7,#ecd2a3)] p-6 shadow-[0_28px_72px_rgba(92,64,39,0.16)] sm:p-8">
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
+                  Catholic Journey 365
+                </p>
+                <ul className="mt-5 space-y-3">
+                  {OUR_FEATURES.map((f) => (
+                    <li key={f} className="flex items-center gap-3">
+                      <CheckIcon on />
+                      <span className="text-lg font-semibold leading-7 text-leather-900">
+                        {f}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
             <p className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-leather-900/82 md:mt-8 md:text-xl md:leading-9">
-              Other Catholic apps are great tools. Catholic Journey 365 is
-              different. It gives you a path to understand the faith and live it
-              one day at a time.
+              Other Catholic apps can be great tools. Catholic Journey 365 is
+              different because it gives you a guided path through the faith.
             </p>
 
             <div className="mt-6 flex justify-center md:mt-8">
@@ -436,36 +506,84 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* 6. Trust */}
-        <section id="trust" className="relative px-5 py-9 sm:px-8 md:py-16">
+        {/* 7. Transformation */}
+        <section className="relative px-5 py-10 sm:px-8 md:py-16">
+          <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.4rem] bg-[radial-gradient(circle_at_16%_0%,rgba(232,184,103,0.22),transparent_32%),linear-gradient(135deg,#20140e_0%,#3a2619_46%,#150d09_100%)] px-6 py-10 shadow-[0_36px_92px_rgba(36,22,15,0.34)] md:px-10 md:py-14">
+            <div className="mx-auto max-w-3xl text-center">
+              <CrossMark className="mx-auto text-amber-200" />
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-parchment-50 md:text-5xl">
+                Imagine one year from today.
+              </h2>
+            </div>
+
+            <div className="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2 md:mt-10">
+              <div className="rounded-[1.8rem] border border-amber-200/24 bg-leather-900/40 p-6 backdrop-blur">
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200">
+                  Before
+                </p>
+                <p className="mt-3 font-display text-2xl font-semibold leading-tight text-parchment-50">
+                  I do not understand my faith.
+                </p>
+              </div>
+              <div className="rounded-[1.8rem] border border-amber-200/40 bg-amber-500/10 p-6 backdrop-blur">
+                <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200">
+                  After
+                </p>
+                <p className="mt-3 font-display text-2xl font-semibold leading-tight text-parchment-50">
+                  I know why I am Catholic, and I am learning to live it each
+                  day.
+                </p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-4 md:mt-8 md:grid-cols-3 md:gap-5">
+              {PROGRESSION.map((stage) => (
+                <div
+                  key={stage.day}
+                  className="rounded-[1.8rem] border border-amber-200/24 bg-leather-900/40 p-6 text-center backdrop-blur"
+                >
+                  <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-200">
+                    {stage.day}
+                  </p>
+                  <p className="mt-3 text-lg leading-7 text-parchment-100/90">
+                    {stage.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex justify-center md:mt-10">
+              <BeginButton label="Begin the Journey" className="w-full sm:w-auto" />
+            </div>
+          </div>
+        </section>
+
+        {/* 8. Trust */}
+        <section id="trust" className="relative px-5 py-10 sm:px-8 md:py-16">
           <div className="mx-auto grid max-w-7xl gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-7">
             <div className="rounded-[2rem] border border-white/54 bg-white/62 p-6 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-8">
               <GoldRule />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
-                Rooted in the Catholic faith.
+                Faithful. Simple. Built to lead you deeper.
               </h2>
-              <ul className="mt-5 space-y-3 md:mt-6">
-                {[
-                  'Built around Sacred Scripture',
-                  'Uses Catholic teaching and the Catechism',
-                  'Encourages parish life and the Sacraments',
-                  'Supports OCIA / RCIA but does not replace it',
-                  'Does not replace your priest, parish, or the Church',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <span className="mt-1 flex-none">
-                      <CheckIcon on />
-                    </span>
-                    <span className="text-lg leading-8 text-leather-900/86 md:text-xl">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-4 space-y-3 text-lg leading-8 text-leather-900/82 md:mt-5 md:text-xl md:leading-9">
+                <p>
+                  Catholic Journey 365 is built around Sacred Scripture, the
+                  Catechism, Catholic teaching, prayer, the Sacraments, and
+                  parish life.
+                </p>
+                <p>
+                  It does not replace the Church, your priest, the Sacraments, or
+                  OCIA / RCIA.
+                </p>
+                <p>
+                  It helps you take the next step toward Christ and His Church.
+                </p>
+              </div>
               <BeginButton label="Begin Today" className="mt-6 w-full sm:w-auto" />
             </div>
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-amber-100/50 shadow-[0_28px_72px_rgba(58,38,25,0.18)] min-h-[320px] md:min-h-[440px]">
+            <div className="relative overflow-hidden rounded-[2rem] border border-amber-100/50 shadow-[0_28px_72px_rgba(58,38,25,0.18)] min-h-[320px] md:min-h-[460px]">
               <img
                 src="/images/landing/first-communion.png"
                 alt="A child receiving First Holy Communion in a Catholic church"
@@ -477,8 +595,8 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* 7. Founder story (moved lower, shortened) */}
-        <section id="story" className="relative px-5 py-9 sm:px-8 md:py-16">
+        {/* 9. Founder */}
+        <section id="story" className="relative px-5 py-10 sm:px-8 md:py-16">
           <div className="mx-auto max-w-6xl overflow-hidden rounded-[2.4rem] bg-[radial-gradient(circle_at_16%_0%,rgba(232,184,103,0.22),transparent_32%),linear-gradient(135deg,#20140e_0%,#3a2619_46%,#150d09_100%)] p-3 shadow-[0_36px_92px_rgba(36,22,15,0.34)] sm:p-5">
             <div className="grid gap-5 md:grid-cols-[0.38fr_0.62fr] md:items-stretch">
               <div className="relative min-h-72 overflow-hidden rounded-[2rem] border border-amber-200/24">
@@ -491,7 +609,7 @@ export default function Landing() {
                 <div className="relative flex h-full min-h-72 flex-col justify-between gap-8 p-6 sm:p-7 md:gap-12 md:p-8">
                   <CrossMark className="text-amber-200" />
                   <p className="font-display text-2xl font-semibold leading-tight text-parchment-50 sm:text-3xl">
-                    I am building this as someone still on the journey.
+                    I am building this as someone still walking.
                   </p>
                 </div>
               </div>
@@ -501,7 +619,7 @@ export default function Landing() {
                   Founder note
                 </p>
                 <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:text-5xl">
-                  Built because I needed it too.
+                  Built by someone still on the journey.
                 </h2>
                 <div className="mt-4 space-y-3 text-lg leading-8 text-leather-900/86 md:mt-6 md:text-xl md:leading-9">
                   <p>
@@ -511,7 +629,7 @@ export default function Landing() {
                   </p>
                   <p>
                     I am not building this as someone who has arrived. I am
-                    building it as someone still on the journey.
+                    building it as someone still walking.
                   </p>
                 </div>
                 <BeginButton label="Walk the Journey" className="mt-6 w-full sm:w-auto" />
@@ -520,23 +638,73 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* 8. Pricing */}
-        <section id="pricing" className="relative px-5 py-9 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-3xl rounded-[2rem] border border-amber-100/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.78),transparent_34%),linear-gradient(135deg,#fff8e7,#e4c797)] p-6 text-center shadow-[0_28px_72px_rgba(92,64,39,0.14)] sm:p-8 md:p-10">
-            <GoldRule className="mx-auto" />
-            <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
-              Try the full journey.
-            </h2>
-            <p className="mt-4 text-lg leading-8 text-leather-900/86 md:mt-5 md:text-xl md:leading-9">
-              Start free for 14 days. If it helps, continue for $5.99 monthly or
-              $49.99 yearly. Cancel anytime.
+        {/* Testimonials */}
+        <section className="relative px-5 py-10 sm:px-8 md:py-16">
+          <div className="mx-auto max-w-7xl">
+            <div className="mx-auto max-w-3xl text-center">
+              <GoldRule className="mx-auto" />
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
+                Real journeys. Real questions. One step at a time.
+              </h2>
+              <p className="mt-4 text-lg leading-8 text-leather-900/82 md:mt-5 md:text-xl">
+                Everyone begins somewhere.
+              </p>
+            </div>
+
+            <div className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:mt-10">
+              {TESTIMONIALS.map((t) => (
+                <figure
+                  key={t.name}
+                  className="flex w-[85%] flex-none snap-center flex-col rounded-[2rem] border border-amber-100/70 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.7),transparent_38%),linear-gradient(135deg,#fff8e7,#f1ddb4)] p-6 shadow-[0_24px_62px_rgba(92,64,39,0.14)] sm:w-[480px] sm:p-8"
+                >
+                  <StarRating />
+                  <blockquote className="relative mt-5 flex-1">
+                    <span
+                      aria-hidden="true"
+                      className="pointer-events-none absolute -left-1 -top-6 font-display text-6xl leading-none text-amber-400/45"
+                    >
+                      &ldquo;
+                    </span>
+                    <p className="relative text-lg leading-8 text-leather-900/86">
+                      {t.quote}
+                    </p>
+                  </blockquote>
+                  <figcaption className="mt-6 border-t border-amber-200/50 pt-5">
+                    <p className="font-display text-xl font-semibold text-leather-900">
+                      {t.name}
+                    </p>
+                    <p className="mt-0.5 text-sm font-semibold uppercase tracking-[0.18em] text-amber-700">
+                      {t.journey}
+                    </p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+
+            <p className="mt-2 text-center text-sm font-semibold text-leather-900/55">
+              Swipe to read more
             </p>
-            <BeginButton className="mt-6 w-full sm:w-auto" />
           </div>
         </section>
 
-        {/* 9. FAQ */}
-        <section className="relative px-5 py-9 sm:px-8 md:py-16">
+        {/* 10. Pricing */}
+        <section id="pricing" className="relative px-5 py-10 sm:px-8 md:py-16">
+          <div className="mx-auto max-w-3xl rounded-[2rem] border border-amber-100/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.78),transparent_34%),linear-gradient(135deg,#fff8e7,#e4c797)] p-6 text-center shadow-[0_28px_72px_rgba(92,64,39,0.14)] sm:p-8 md:p-10">
+            <GoldRule className="mx-auto" />
+            <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
+              Try the full journey for 14 days.
+            </h2>
+            <p className="mt-4 text-lg leading-8 text-leather-900/86 md:mt-5 md:text-xl md:leading-9">
+              Start with full access. If it helps you grow closer to God,
+              continue for $5.99 monthly or $49.99 yearly. If not, cancel
+              anytime.
+            </p>
+            <BeginButton label="Start My 14 Day Journey" className="mt-6 w-full sm:w-auto" />
+          </div>
+        </section>
+
+        {/* 11. FAQ */}
+        <section className="relative px-5 py-10 sm:px-8 md:py-16">
           <div className="mx-auto max-w-6xl">
             <div className="max-w-3xl">
               <GoldRule />
@@ -563,20 +731,20 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* 10. Final CTA */}
+        {/* 12. Final CTA */}
         <section className="px-5 pb-12 pt-4 sm:px-8 md:pb-20 md:pt-6">
           <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.4rem] border border-white/50 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.95),transparent_35%),linear-gradient(135deg,rgba(255,247,227,0.94),rgba(230,199,145,0.78))] px-6 py-10 text-center shadow-[0_34px_86px_rgba(92,64,39,0.16)] md:py-16">
             <div className="absolute left-1/2 top-10 h-52 w-52 -translate-x-1/2 rounded-full bg-amber-300/20 blur-3xl" />
             <div className="relative mx-auto max-w-3xl">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-6xl">
-                Your faith journey does not have to wait.
+                Do not wait until you know everything to begin.
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-lg leading-8 text-leather-900/86 md:mt-6 md:text-xl md:leading-9">
-                Not perfectly. Not all at once. One prayer. One reading. One step
+                Begin, and learn as you walk. One prayer. One reading. One step
                 closer to God.
               </p>
-              <BeginButton className="mt-6 w-full sm:w-auto md:mt-8" />
+              <BeginButton label="Begin Your 14 Day Journey" className="mt-6 w-full sm:w-auto md:mt-8" />
             </div>
           </div>
         </section>

@@ -67,6 +67,71 @@ function PhoneMockup() {
   );
 }
 
+// A single phone frame. `screenshot` images are letterboxed (object-contain);
+// in-app artwork is filled (object-cover) so the supporting phones read as
+// real app screens.
+function PhoneFrame({
+  src,
+  alt,
+  screenshot = false,
+  className = '',
+}: {
+  src: string;
+  alt: string;
+  screenshot?: boolean;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`rounded-[2.2rem] border border-black/70 bg-gradient-to-b from-stone-950 via-black to-stone-900 p-1.5 shadow-[0_30px_70px_rgba(20,12,8,0.5)] ${className}`}
+    >
+      <div className="relative overflow-hidden rounded-[1.8rem] bg-[#f7f0df]">
+        <div className="relative" style={{ aspectRatio: '921 / 2048' }}>
+          <img
+            src={src}
+            alt={alt}
+            className={`absolute inset-0 h-full w-full object-center ${
+              screenshot ? 'object-contain' : 'object-cover'
+            }`}
+          />
+        </div>
+        <div className="absolute left-1/2 top-2 h-3.5 w-16 -translate-x-1/2 rounded-full bg-black/90" />
+      </div>
+    </div>
+  );
+}
+
+// Overlapping, fanned phone stack for the hero. Today screenshot in front,
+// supporting app screens fanned behind for premium SaaS depth.
+function HeroPhoneStack() {
+  return (
+    <div className="relative mx-auto h-[420px] w-[300px] sm:h-[500px] sm:w-[420px]">
+      <div className="absolute -inset-10 rounded-[4rem] bg-amber-300/20 blur-3xl" />
+      <PhoneFrame
+        src="/images/faith/rosary-devotions.webp"
+        alt="Rosary and devotions in the app"
+        className="absolute left-1/2 top-0 z-0 w-[150px] -translate-x-1/2 -rotate-2 opacity-90 sm:w-[200px]"
+      />
+      <PhoneFrame
+        src="/images/journey/creation.webp"
+        alt="Scripture Journey in the app"
+        className="absolute left-0 top-12 z-10 w-[160px] -rotate-[11deg] sm:w-[215px]"
+      />
+      <PhoneFrame
+        src="/images/faith/mass.webp"
+        alt="Mass Guide in the app"
+        className="absolute right-0 top-12 z-10 w-[160px] rotate-[11deg] sm:w-[215px]"
+      />
+      <PhoneFrame
+        src="/images/landing/app-today-real-screen.jpeg"
+        alt="Catholic Journey 365 Today screen"
+        screenshot
+        className="absolute left-1/2 top-8 z-20 w-[185px] -translate-x-1/2 sm:w-[250px]"
+      />
+    </div>
+  );
+}
+
 function CheckIcon({ on }: { on: boolean }) {
   if (on) {
     return (
@@ -147,14 +212,46 @@ const DAILY_STEPS = [
 ];
 
 const FEATURE_TILES = [
-  { title: 'Bible Journey', text: 'Follow salvation history one day at a time.' },
-  { title: 'Dive Deeper', text: 'Understand what you read.' },
-  { title: 'Faith Formation', text: 'Learn Catholic teaching in simple language.' },
-  { title: 'Mass Guide', text: 'Understand every part of the Mass.' },
-  { title: 'Sacraments', text: 'Learn the gifts Christ gave His Church.' },
-  { title: 'Prayer Library', text: 'Build a real prayer life.' },
-  { title: 'Saints', text: 'Walk with those who followed Christ before us.' },
-  { title: 'Rosary', text: 'Pray with structure, mystery, and meaning.' },
+  {
+    title: 'Bible Journey',
+    text: 'Follow salvation history one day at a time.',
+    img: '/images/journey/creation.webp',
+  },
+  {
+    title: 'Dive Deeper',
+    text: 'Understand what you read.',
+    img: '/images/journey/christ-connections.webp',
+  },
+  {
+    title: 'Faith Formation',
+    text: 'Learn Catholic teaching in simple language.',
+    img: '/images/faith/begin-here.webp',
+  },
+  {
+    title: 'Mass Guide',
+    text: 'Understand every part of the Mass.',
+    img: '/images/faith/mass.webp',
+  },
+  {
+    title: 'Sacraments',
+    text: 'Learn the gifts Christ gave His Church.',
+    img: '/images/faith/sacraments.webp',
+  },
+  {
+    title: 'Prayer Library',
+    text: 'Build a real prayer life.',
+    img: '/images/faith/prayer.webp',
+  },
+  {
+    title: 'Saints',
+    text: 'Walk with those who followed Christ before us.',
+    img: '/images/faith/saints.webp',
+  },
+  {
+    title: 'Rosary',
+    text: 'Pray with structure, mystery, and meaning.',
+    img: '/images/faith/rosary-devotions.webp',
+  },
 ];
 
 const OTHER_APP_FEATURES = ['Prayers', 'Bible', 'Devotions', 'Content library'];
@@ -238,7 +335,7 @@ export default function Landing() {
       <div className="fixed inset-0 -z-10 opacity-[0.18] [background-image:linear-gradient(90deg,rgba(83,54,31,0.09)_1px,transparent_1px),linear-gradient(rgba(83,54,31,0.08)_1px,transparent_1px)] [background-size:30px_30px]" />
 
       <nav className="fixed inset-x-0 top-0 z-30 border-b border-white/30 bg-[#fff4dc]/76 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-[1340px] items-center justify-between px-5 py-4 sm:px-8">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-5 py-4 sm:px-8">
           <a href="#top" className="flex items-center gap-3">
             <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-200 bg-leather-900 text-amber-200 shadow-sm">
               <CrossMark className="h-4 w-4" />
@@ -275,54 +372,47 @@ export default function Landing() {
         </div>
       </nav>
 
-      {/* 1. Hero */}
-      <header id="top" className="relative min-h-[80vh] overflow-hidden md:min-h-[86vh]">
-        <img
-          src="/images/landing/jesus-welcome.png"
-          alt="Christ welcoming people in warm sacred light"
-          className="absolute inset-0 h-full w-full object-cover opacity-90 saturate-[0.66]"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-leather-950/96 from-4% via-leather-900/72 via-44% to-transparent to-84%" />
-        <div className="absolute inset-0 bg-[radial-gradient(125%_125%_at_6%_44%,rgba(18,11,7,0.74),transparent_56%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(245,190,83,0.16),transparent_36%)]" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f5ead1] via-[#f5ead1]/12 to-transparent" />
-
-        <div className="relative mx-auto grid min-h-[80vh] max-w-[1340px] items-center gap-5 px-5 pb-10 pt-24 sm:px-8 md:min-h-[86vh] md:pb-12 lg:grid-cols-[1.08fr_0.72fr] lg:gap-8 lg:pb-14 lg:pt-24">
-          <div className="max-w-3xl text-center lg:text-left">
-            <p className="text-xs font-bold uppercase tracking-[0.34em] text-amber-200">
+      {/* 1. Hero - app focused, premium SaaS */}
+      <header
+        id="top"
+        className="relative overflow-hidden bg-[radial-gradient(circle_at_85%_18%,rgba(58,38,25,0.16),transparent_42%),linear-gradient(180deg,#fff7e4_0%,#f4e3bf_100%)]"
+      >
+        <div className="absolute right-0 top-0 h-full w-2/3 bg-[radial-gradient(circle_at_72%_38%,rgba(214,157,72,0.28),transparent_55%)]" />
+        <div className="relative mx-auto grid max-w-[1440px] items-center gap-10 px-5 pb-14 pt-28 sm:px-8 md:pb-16 md:pt-32 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12 lg:pb-20">
+          <div className="max-w-2xl text-center lg:text-left">
+            <p className="text-xs font-bold uppercase tracking-[0.34em] text-amber-700">
               Catholic Journey 365
             </p>
-            <h1 className="mt-4 font-display text-5xl font-semibold leading-[0.98] text-parchment-50 drop-shadow-xl sm:text-6xl md:mt-5 lg:text-7xl">
-              Understand the Catholic faith.
-              <span className="block text-amber-300">One day at a time.</span>
+            <h1 className="mt-4 font-display text-5xl font-semibold leading-[0.98] text-leather-900 sm:text-6xl md:mt-5 lg:text-7xl">
+              Understand your Catholic faith.
+              <span className="block text-amber-600">One day at a time.</span>
             </h1>
 
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-parchment-100/90 [text-shadow:0_2px_14px_rgba(20,12,8,0.6)] sm:text-xl md:mt-6 lg:mx-0">
-              Whether you are Catholic, returning after years away, starting
-              OCIA, or simply curious, Catholic Journey 365 guides you through
-              Scripture, prayer, the Mass, and the teachings of the Church.
+            <p className="mx-auto mt-5 max-w-xl text-lg leading-8 text-leather-900/80 sm:text-xl md:mt-6 lg:mx-0">
+              Scripture, prayer, the Mass, and Catholic teaching guided through
+              one simple daily journey.
             </p>
 
             <div className="mt-7 flex flex-col items-center gap-3 lg:items-start">
-              <BeginButton className="w-full sm:w-auto" />
-              <p className="text-sm font-semibold text-parchment-100/85 [text-shadow:0_2px_12px_rgba(20,12,8,0.6)]">
-                Full access. Cancel anytime.
+              <BeginButton label="Start Day 1 Free" className="w-full sm:w-auto" />
+              <p className="text-sm font-semibold text-leather-900/65">
+                14 days free. Begin where you are.
               </p>
             </div>
           </div>
 
-          <div className="hidden justify-end lg:flex">
-            <div className="rounded-[2.5rem] border border-amber-200/25 bg-leather-900/28 p-4 shadow-[0_28px_72px_rgba(0,0,0,0.26)] backdrop-blur">
-              <PhoneMockup />
-            </div>
+          <div className="flex justify-center lg:justify-end">
+            <HeroPhoneStack />
           </div>
         </div>
+
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#f5ead1] to-transparent" />
       </header>
 
       <main>
         {/* 2. Question hook */}
         <section className="relative px-5 pt-10 sm:px-8 md:pt-14">
-          <div className="mx-auto max-w-[1340px]">
+          <div className="mx-auto max-w-[1440px]">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -334,13 +424,15 @@ export default function Landing() {
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-3">
-              {QUESTION_CARDS.map((card) => (
+              {QUESTION_CARDS.map((card, i) => (
                 <details
                   key={card.q}
-                  className="group rounded-[1.6rem] border border-white/54 bg-white/62 p-5 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-amber-200/70 hover:shadow-[0_26px_60px_rgba(92,64,39,0.16)] open:bg-white/80"
+                  className="group rounded-[1.6rem] border border-amber-100/70 bg-[linear-gradient(160deg,#fffaf0,#f6e9cf)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.1)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/80 hover:shadow-[0_28px_64px_rgba(92,64,39,0.18)] open:border-amber-300/80"
                 >
                   <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
-                    <CrossMark className="h-5 w-5 flex-none" />
+                    <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-amber-300/70 bg-leather-900 font-display text-base font-semibold text-amber-200">
+                      {i + 1}
+                    </span>
                     <span className="font-display text-xl font-semibold leading-snug text-leather-900">
                       {card.q}
                     </span>
@@ -353,7 +445,7 @@ export default function Landing() {
                       <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                   </summary>
-                  <p className="mt-3 border-t border-amber-200/40 pt-3 text-base leading-7 text-stone-600">
+                  <p className="mt-3 border-t border-amber-300/40 pt-3 text-base leading-7 text-leather-900/75">
                     {card.a}
                   </p>
                 </details>
@@ -374,7 +466,7 @@ export default function Landing() {
 
         {/* 3. Pain */}
         <section className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto grid max-w-[1340px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
+          <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-12">
             <div>
               <GoldRule />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -404,21 +496,30 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* 4. Daily product */}
-        <section id="path" className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto grid max-w-[1340px] gap-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-12">
+        {/* 4. Daily product - dark church band */}
+        <section id="path" className="relative overflow-hidden px-5 py-14 sm:px-8 md:py-20">
+          <img
+            src="/images/hero/church-home.webp"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(135deg,#150d09_0%,#251710_50%,#0f0907_100%)] opacity-[0.93]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(245,190,83,0.16),transparent_40%)]" />
+
+          <div className="relative mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-14">
             <div className="flex justify-center">
-              <div className="rounded-[2.5rem] border border-amber-200/30 bg-leather-900/10 p-4 shadow-[0_28px_72px_rgba(58,38,25,0.16)] backdrop-blur">
+              <div className="rounded-[2.5rem] border border-amber-200/20 bg-black/20 p-4 shadow-[0_36px_88px_rgba(0,0,0,0.5)] backdrop-blur">
                 <PhoneMockup />
               </div>
             </div>
 
             <div>
               <GoldRule />
-              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-parchment-50 md:mt-6 md:text-5xl">
                 Your daily Catholic path.
               </h2>
-              <p className="mt-4 text-lg leading-8 text-leather-900/82 md:mt-5 md:text-xl md:leading-9">
+              <p className="mt-4 text-lg leading-8 text-parchment-100/85 md:mt-5 md:text-xl md:leading-9">
                 One clear step each day. Pray, read, understand, reflect, and
                 keep walking.
               </p>
@@ -427,12 +528,12 @@ export default function Landing() {
                 {DAILY_STEPS.map((step, i) => (
                   <div
                     key={step}
-                    className="flex items-center gap-3 rounded-[1.4rem] border border-white/54 bg-white/62 p-4 shadow-[0_14px_40px_rgba(92,64,39,0.08)] backdrop-blur"
+                    className="flex items-center gap-3 rounded-[1.4rem] border border-amber-200/20 bg-white/5 p-4 backdrop-blur transition hover:border-amber-200/40 hover:bg-white/10"
                   >
-                    <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-amber-200 bg-leather-900 font-display text-base font-semibold text-amber-200">
+                    <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-amber-300/60 bg-amber-500/15 font-display text-base font-semibold text-amber-200">
                       {i + 1}
                     </span>
-                    <span className="font-display text-lg font-semibold text-leather-900">
+                    <span className="font-display text-lg font-semibold text-parchment-50">
                       {step}
                     </span>
                   </div>
@@ -446,7 +547,7 @@ export default function Landing() {
 
         {/* 5. Depth / product proof */}
         <section id="features" className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-[1340px]">
+          <div className="mx-auto max-w-[1440px]">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -454,19 +555,34 @@ export default function Landing() {
               </h2>
             </div>
 
+            <p className="mx-auto mt-4 max-w-2xl text-center text-lg leading-8 text-leather-900/72 md:text-xl">
+              See the journey before you read about it. Every part of the app is
+              connected into one daily path.
+            </p>
+
             <div className="mt-8 grid gap-4 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
               {FEATURE_TILES.map((tile) => (
                 <div
                   key={tile.title}
-                  className="rounded-[1.6rem] border border-white/54 bg-white/62 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-amber-200/70 hover:shadow-[0_28px_64px_rgba(92,64,39,0.18)]"
+                  className="group overflow-hidden rounded-[1.6rem] border border-white/54 bg-white/62 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur transition duration-300 hover:-translate-y-1.5 hover:border-amber-200/70 hover:shadow-[0_28px_64px_rgba(92,64,39,0.18)]"
                 >
-                  <CrossMark className="h-6 w-6" />
-                  <h3 className="mt-3 font-display text-xl font-semibold text-leather-900">
-                    {tile.title}
-                  </h3>
-                  <p className="mt-2 text-base leading-7 text-stone-600">
-                    {tile.text}
-                  </p>
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <img
+                      src={tile.img}
+                      alt={tile.title}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-leather-950/55 via-transparent to-transparent" />
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-display text-xl font-semibold text-leather-900">
+                      {tile.title}
+                    </h3>
+                    <p className="mt-1.5 text-base leading-7 text-stone-600">
+                      {tile.text}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -479,7 +595,7 @@ export default function Landing() {
 
         {/* 6. Difference */}
         <section id="different" className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-[1340px]">
+          <div className="mx-auto max-w-[1440px]">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -588,7 +704,7 @@ export default function Landing() {
 
         {/* 8. Trust */}
         <section id="trust" className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto grid max-w-[1340px] gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10">
+          <div className="mx-auto grid max-w-[1440px] gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:gap-10">
             <div className="rounded-[2rem] border border-white/54 bg-white/62 p-6 shadow-[0_20px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-8">
               <GoldRule />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -668,7 +784,7 @@ export default function Landing() {
 
         {/* Testimonials */}
         <section className="relative px-5 py-10 sm:px-8 md:py-16">
-          <div className="mx-auto max-w-[1340px]">
+          <div className="mx-auto max-w-[1440px]">
             <div className="mx-auto max-w-3xl text-center">
               <GoldRule className="mx-auto" />
               <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
@@ -767,20 +883,27 @@ export default function Landing() {
           </div>
         </section>
 
-        {/* 12. Final CTA */}
+        {/* 12. Final spiritual CTA - Christ */}
         <section className="px-5 pb-12 pt-4 sm:px-8 md:pb-20 md:pt-6">
-          <div className="relative mx-auto max-w-6xl overflow-hidden rounded-[2.4rem] border border-white/50 bg-[radial-gradient(circle_at_50%_0%,rgba(255,255,255,0.95),transparent_35%),linear-gradient(135deg,rgba(255,247,227,0.94),rgba(230,199,145,0.78))] px-6 py-10 text-center shadow-[0_34px_86px_rgba(92,64,39,0.16)] md:py-16">
-            <div className="absolute left-1/2 top-10 h-52 w-52 -translate-x-1/2 rounded-full bg-amber-300/20 blur-3xl" />
-            <div className="relative mx-auto max-w-3xl">
-              <GoldRule className="mx-auto" />
-              <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-6xl">
-                Do not wait until you know everything to begin.
+          <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[2.6rem] border border-amber-200/30 shadow-[0_40px_96px_rgba(20,12,8,0.4)]">
+            <img
+              src="/images/landing/jesus-welcome.png"
+              alt="Christ welcoming people in warm sacred light"
+              className="absolute inset-0 h-full w-full object-cover object-center saturate-[0.78]"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,9,7,0.78)_0%,rgba(20,12,8,0.55)_45%,rgba(15,9,7,0.82)_100%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(245,190,83,0.2),transparent_45%)]" />
+
+            <div className="relative mx-auto max-w-3xl px-6 py-16 text-center md:py-24">
+              <CrossMark className="mx-auto text-amber-200" />
+              <h2 className="mt-5 font-display text-4xl font-semibold leading-tight text-parchment-50 drop-shadow-xl md:text-6xl">
+                Your journey toward Christ can begin today.
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-lg leading-8 text-leather-900/86 md:mt-6 md:text-xl md:leading-9">
+              <p className="mx-auto mt-4 max-w-xl text-lg leading-8 text-parchment-100/90 [text-shadow:0_2px_14px_rgba(20,12,8,0.6)] md:mt-6 md:text-xl">
                 Begin, and learn as you walk. One prayer. One reading. One step
                 closer to God.
               </p>
-              <BeginButton label="Begin Your 14 Day Journey" className="mt-6 w-full sm:w-auto md:mt-8" />
+              <BeginButton label="Start Day 1 Free" className="mt-7 w-full sm:w-auto md:mt-8" />
             </div>
           </div>
         </section>

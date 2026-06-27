@@ -167,9 +167,9 @@ function hasAuthCallbackParams() {
 }
 
 function getCallbackNextPath() {
-  if (typeof window === 'undefined') return '/app/login';
+  if (typeof window === 'undefined') return '/app';
   const next = new URL(window.location.href).searchParams.get('next');
-  return next && next.startsWith('/app') ? next : '/app/login';
+  return next && next.startsWith('/app') ? next : '/app';
 }
 
 function AuthCallback() {
@@ -193,10 +193,6 @@ function AuthCallback() {
         await supabase.auth.exchangeCodeForSession(code);
       } else {
         await supabase.auth.getSession();
-      }
-
-      if (next === '/app/login') {
-        await supabase.auth.signOut();
       }
 
       window.history.replaceState({}, document.title, next);
@@ -245,6 +241,14 @@ async function clearAuthAndGoToLogin() {
 function RedirectToLogin() {
   useEffect(() => {
     window.location.replace('/app/login');
+  }, []);
+
+  return <AuthGateLoading />;
+}
+
+function RedirectToApp() {
+  useEffect(() => {
+    window.location.replace('/app');
   }, []);
 
   return <AuthGateLoading />;
@@ -480,11 +484,13 @@ function AppShell() {
   }
   if (loadingTimedOut) return <AuthRecoveryScreen />;
   if (isAuthCallback || hasCallbackParams) return <AuthCallback />;
-  if (isLoginPath) return <AuthScreen initialMode="login" />;
+  if (loading) return <AuthGateLoading />;
+  if (isLoginPath) {
+    return user ? <RedirectToApp /> : <AuthScreen initialMode="login" />;
+  }
   if (isIntroPath) {
     return <IntroScreens onComplete={() => window.location.replace('/app/login')} />;
   }
-  if (loading) return <AuthGateLoading />;
   if (!user) return <RedirectToLogin />;
   if (accountLoading || billingLoading) {
     return <LoadingAppFrame />;

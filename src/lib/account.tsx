@@ -265,9 +265,11 @@ export function AccountProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     let active = true;
+    let sessionRestored = false;
     supabase.auth
       .getSession()
       .then(async ({ data }) => {
+        sessionRestored = true;
         const u = data.session?.user ?? null;
         if (!active) return;
         setUser(u);
@@ -292,13 +294,17 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         void loadAll(u);
       })
       .catch(() => {
+        sessionRestored = true;
         if (!active) return;
         setUser(null);
         setLoading(false);
         void loadAll(null);
       });
 
-    const { data: sub } = supabase.auth.onAuthStateChange(async (_e, session) => {
+    const { data: sub } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (!sessionRestored && event === 'INITIAL_SESSION') {
+        return;
+      }
       const u = session?.user ?? null;
       setUser(u);
       setLoading(false);

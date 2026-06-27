@@ -12,7 +12,44 @@ const supabaseAnonKey =
   (process.env.REACT_APP_SUPABASE_ANON_KEY as string) ||
   'public-anon-placeholder';
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const memoryStorage = new Map<string, string>();
+
+function getBrowserAuthStorage() {
+  return {
+    getItem(key: string) {
+      try {
+        return window.localStorage.getItem(key) ?? memoryStorage.get(key) ?? null;
+      } catch {
+        return memoryStorage.get(key) ?? null;
+      }
+    },
+    setItem(key: string, value: string) {
+      memoryStorage.set(key, value);
+      try {
+        window.localStorage.setItem(key, value);
+      } catch {
+        // Keep the in-memory copy for the current PWA launch if storage is blocked.
+      }
+    },
+    removeItem(key: string) {
+      memoryStorage.delete(key);
+      try {
+        window.localStorage.removeItem(key);
+      } catch {
+        // Storage may be unavailable in constrained browser modes.
+      }
+    },
+  };
+}
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: true,
+    autoRefreshToken: true,
+    detectSessionInUrl: true,
+    storage: getBrowserAuthStorage(),
+  },
+});
 
 /** A single day of the Bible in a Year reading plan. */
 export interface ReadingDay {

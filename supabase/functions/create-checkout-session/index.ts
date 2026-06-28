@@ -70,7 +70,6 @@ Deno.serve(async (req) => {
       client_reference_id: user.id,
       line_items: [{ price, quantity: 1 }],
       subscription_data: {
-        trial_period_days: 14,
         metadata: { user_id: user.id, plan },
       },
       metadata: { user_id: user.id, plan },

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useAccount } from '../lib/account';
 import { SubscriptionPlan } from '../lib/billing';
 
@@ -7,7 +8,7 @@ export default function Paywall() {
   const [loadingPlan, setLoadingPlan] = useState<SubscriptionPlan | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const startTrial = async (plan: SubscriptionPlan) => {
+  const startPlan = async (plan: SubscriptionPlan) => {
     setError(null);
     setLoadingPlan(plan);
     try {
@@ -27,15 +28,15 @@ export default function Paywall() {
           </div>
 
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-            Start your 14-day free trial
+            Premium access
           </p>
           <h1 className="font-display text-3xl font-bold leading-tight text-leather-900">
-            Continue your Catholic Journey
+            Continue the full journey
           </h1>
           <p className="mt-4 text-sm leading-relaxed text-stone-600">
-            Catholic Journey 365 is here to help you pray, read Scripture,
-            understand the faith, and take the next step with Christ and His
-            Church.
+            Bible in a Year remains free forever. Premium includes Daily
+            Formation, Saints, Dive Deeper, prayer features, the Rosary, and
+            the Mass guide after your 14-day account trial.
           </p>
 
           <div className="mt-6 space-y-3">
@@ -47,17 +48,17 @@ export default function Paywall() {
                 <p className="font-semibold text-leather-700">$5.99/month</p>
               </div>
               <p className="mt-1 text-sm text-stone-500">
-                Includes a 14-day free trial. Cancel anytime.
+                Monthly access to Premium features. Cancel anytime.
               </p>
               <button
                 type="button"
-                onClick={() => startTrial('monthly')}
+                onClick={() => startPlan('monthly')}
                 disabled={loadingPlan !== null}
                 className="mt-4 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99] disabled:opacity-50"
               >
                 {loadingPlan === 'monthly'
                   ? 'Opening checkout...'
-                  : 'Start monthly trial'}
+                  : 'Subscribe monthly'}
               </button>
             </div>
 
@@ -69,17 +70,17 @@ export default function Paywall() {
                 <p className="font-semibold text-leather-700">$49.99/year</p>
               </div>
               <p className="mt-1 text-sm text-stone-500">
-                Includes a 14-day free trial. Best value for the full journey.
+                Best value for a full year of Premium features.
               </p>
               <button
                 type="button"
-                onClick={() => startTrial('yearly')}
+                onClick={() => startPlan('yearly')}
                 disabled={loadingPlan !== null}
                 className="mt-4 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99] disabled:opacity-50"
               >
                 {loadingPlan === 'yearly'
                   ? 'Opening checkout...'
-                  : 'Start yearly trial'}
+                  : 'Subscribe yearly'}
               </button>
             </div>
           </div>
@@ -94,6 +95,13 @@ export default function Paywall() {
             The app helps you learn and pray, but it does not replace your
             parish, your priest, or the Sacraments.
           </p>
+
+          <Link
+            to="/bible"
+            className="mt-5 block w-full rounded-xl border border-parchment-200 bg-parchment-50 py-3 text-center font-semibold text-leather-700 transition active:scale-[0.99]"
+          >
+            Continue Bible in a Year
+          </Link>
 
           <button
             type="button"

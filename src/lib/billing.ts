@@ -1,6 +1,17 @@
 import { supabase } from './supabase';
 
 export type SubscriptionPlan = 'monthly' | 'yearly';
+export type PremiumAccessSource = 'trial' | 'subscription' | 'included';
+
+export const PREMIUM_TRIAL_DAYS = 14;
+
+export interface PremiumTrialStatus {
+  trialStart: string | null;
+  trialEnd: string | null;
+  trialActive: boolean;
+  trialExpired: boolean;
+  daysRemaining: number;
+}
 
 export interface SubscriptionStatus {
   user_id: string;
@@ -32,7 +43,7 @@ export function statusLabel(status: string | null | undefined) {
   if (!status) return 'No active subscription';
   if (status === 'trialing') return 'Free trial active';
   if (status === 'active') return 'Subscription active';
-  if (status === 'free') return 'Free account';
+  if (status === 'free') return 'Premium access';
   if (status === 'past_due') return 'Payment needs attention';
   if (status === 'canceled') return 'Canceled';
   if (status === 'incomplete') return 'Checkout not completed';
@@ -40,13 +51,94 @@ export function statusLabel(status: string | null | undefined) {
   return status.replace(/_/g, ' ');
 }
 
+export function getPremiumTrialStatus(
+  userCreatedAt: string | null | undefined,
+  now = new Date()
+): PremiumTrialStatus {
+  if (!userCreatedAt) {
+    return {
+      trialStart: null,
+      trialEnd: null,
+      trialActive: false,
+      trialExpired: false,
+      daysRemaining: 0,
+    };
+  }
+
+  const start = new Date(userCreatedAt);
+  if (Number.isNaN(start.getTime())) {
+    return {
+      trialStart: null,
+      trialEnd: null,
+      trialActive: false,
+      trialExpired: false,
+      daysRemaining: 0,
+    };
+  }
+
+  const trialEndTime =
+    start.getTime() + PREMIUM_TRIAL_DAYS * 24 * 60 * 60 * 1000;
+  const end = new Date(trialEndTime);
+  const remainingMs = trialEndTime - now.getTime();
+  const trialActive = remainingMs > 0;
+
+  return {
+    trialStart: start.toISOString(),
+    trialEnd: end.toISOString(),
+    trialActive,
+    trialExpired: !trialActive,
+    daysRemaining: trialActive
+      ? Math.max(1, Math.ceil(remainingMs / (24 * 60 * 60 * 1000)))
+      : 0,
+  };
+}
+
+export function getSubscriptionAccessSource(
+  subscription: SubscriptionStatus | null,
+  currentUserId: string | null | undefined
+): Exclude<PremiumAccessSource, 'trial'> | null {
+  if (!subscription) return null;
+  if (!currentUserId || subscription.user_id !== currentUserId) return null;
+  if (subscription.status === 'free') return 'included';
+  if (subscription.status === 'trialing' || subscription.status === 'active') {
+    return 'subscription';
+  }
+  return null;
+}
+
 export function hasSubscriptionAccess(
   subscription: SubscriptionStatus | null,
   currentUserId: string | null | undefined
 ) {
-  if (!subscription) return false;
-  if (!currentUserId || subscription.user_id !== currentUserId) return false;
-  return ['free', 'trialing', 'active'].includes(subscription.status);
+  return getSubscriptionAccessSource(subscription, currentUserId) !== null;
+}
+
+export function getPremiumAccessSource(
+  subscription: SubscriptionStatus | null,
+  currentUserId: string | null | undefined,
+  userCreatedAt: string | null | undefined,
+  now = new Date()
+): PremiumAccessSource | null {
+  const subscriptionSource = getSubscriptionAccessSource(
+    subscription,
+    currentUserId
+  );
+  if (subscriptionSource) return subscriptionSource;
+
+  const trial = getPremiumTrialStatus(userCreatedAt, now);
+  return trial.trialActive ? 'trial' : null;
+}
+
+export function hasPremiumAccess(
+  subscription: SubscriptionStatus | null,
+  currentUserId: string | null | undefined,
+  userCreatedAt: string | null | undefined,
+  now = new Date()
+) {
+  return (
+    getPremiumAccessSource(subscription, currentUserId, userCreatedAt, now) !==
+    null
+  );
 }
 
 export async function startCheckout(plan: SubscriptionPlan) {

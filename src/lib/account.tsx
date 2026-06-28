@@ -11,9 +11,12 @@ import type { User } from '@supabase/supabase-js';
 import { supabase } from './supabase';
 import {
   AccountStatus,
+  PremiumAccessSource,
+  PremiumTrialStatus,
   SubscriptionPlan,
   SubscriptionStatus,
-  hasSubscriptionAccess,
+  getPremiumAccessSource,
+  getPremiumTrialStatus,
   openCustomerPortal,
   startCheckout,
 } from './billing';
@@ -42,6 +45,9 @@ interface AccountValue {
   accountStatus: AccountStatus;
   subscription: SubscriptionStatus | null;
   hasBillingAccess: boolean;
+  hasPremiumAccess: boolean;
+  premiumAccessSource: PremiumAccessSource | null;
+  trialAccess: PremiumTrialStatus;
   completionId: string | null;
   journeyId: string | null;
   journeyName: string | null;
@@ -502,7 +508,14 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     await loadJourney(user.id);
   };
 
-  const hasBillingAccess = hasSubscriptionAccess(subscription, user?.id);
+  const trialAccess = getPremiumTrialStatus(user?.created_at);
+  const premiumAccessSource = getPremiumAccessSource(
+    subscription,
+    user?.id,
+    user?.created_at
+  );
+  const hasPremiumAccess = premiumAccessSource !== null;
+  const hasBillingAccess = hasPremiumAccess;
 
   return (
     <AccountContext.Provider
@@ -515,6 +528,9 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         accountStatus,
         subscription,
         hasBillingAccess,
+        hasPremiumAccess,
+        premiumAccessSource,
+        trialAccess,
         completionId: profile?.completion_id ?? null,
         journeyId,
         journeyName,

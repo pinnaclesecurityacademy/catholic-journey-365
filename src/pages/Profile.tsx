@@ -13,6 +13,8 @@ export default function Profile() {
     inviteCode,
     members,
     subscription,
+    premiumAccessSource,
+    trialAccess,
     updateDisplayName,
     updateJourneyName,
     joinJourney,
@@ -57,6 +59,33 @@ export default function Profile() {
     'w-full rounded-xl border border-parchment-200 bg-white py-2.5 font-semibold text-stone-500 active:scale-[0.99] transition';
   const dangerButtonClass =
     'w-full rounded-xl border border-red-200 bg-red-50 py-2.5 font-semibold text-red-700 active:scale-[0.99] transition disabled:opacity-50';
+  const trialEndDate = trialAccess.trialEnd
+    ? new Date(trialAccess.trialEnd).toLocaleDateString()
+    : null;
+  const accessPlanLabel = subscription?.plan
+    ? planLabel(subscription.plan)
+    : premiumAccessSource === 'trial'
+    ? 'Premium trial'
+    : premiumAccessSource === 'included'
+    ? 'Premium access'
+    : 'Bible in a Year';
+  const accessStatusLabel =
+    premiumAccessSource === 'trial'
+      ? `Premium trial active (${trialAccess.daysRemaining} ${
+          trialAccess.daysRemaining === 1 ? 'day' : 'days'
+        } left)`
+      : premiumAccessSource === 'included'
+      ? 'Premium access active'
+      : subscription?.status
+      ? statusLabel(subscription.status)
+      : trialAccess.trialExpired
+      ? 'Premium trial ended'
+      : statusLabel(subscription?.status);
+  const showStripeTrialEnd = Boolean(
+    subscription?.trial_ends_at &&
+      subscription.status === 'trialing' &&
+      premiumAccessSource !== 'trial'
+  );
 
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
@@ -202,9 +231,7 @@ export default function Profile() {
               Current plan
             </p>
             <p className="mt-1 font-display text-xl font-semibold text-leather-900">
-              {subscription?.plan
-                ? planLabel(subscription.plan)
-                : statusLabel(subscription?.status)}
+              {accessPlanLabel}
             </p>
           </div>
           <div className="rounded-xl bg-parchment-50 px-4 py-3">
@@ -212,12 +239,22 @@ export default function Profile() {
               Status
             </p>
             <p className="mt-1 font-semibold text-leather-700">
-              {statusLabel(subscription?.status)}
+              {accessStatusLabel}
             </p>
           </div>
         </div>
 
-        {subscription?.trial_ends_at && subscription.status === 'trialing' && (
+        {premiumAccessSource === 'trial' && trialEndDate && (
+          <p className="mt-3 text-sm text-stone-500">
+            Premium trial ends {trialEndDate}.
+          </p>
+        )}
+        {!premiumAccessSource && trialAccess.trialExpired && trialEndDate && (
+          <p className="mt-3 text-sm text-stone-500">
+            Premium trial ended {trialEndDate}. Bible in a Year remains free.
+          </p>
+        )}
+        {showStripeTrialEnd && subscription?.trial_ends_at && (
           <p className="mt-3 text-sm text-stone-500">
             Trial ends{' '}
             {new Date(subscription.trial_ends_at).toLocaleDateString()}.

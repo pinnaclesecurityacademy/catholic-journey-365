@@ -6,6 +6,7 @@ import { useAccount } from '../lib/account';
 import { CompletionRecord } from '../lib/supabase';
 import { SacredCard } from '../components/SacredCard';
 import { BackButton } from '../components/BackButton';
+import { useResumeScroll } from '../lib/resume';
 
 function isComplete(
   records: CompletionRecord[],
@@ -68,6 +69,8 @@ export default function DayDetail() {
   useEffect(() => {
     refresh();
   }, [refresh]);
+
+  useResumeScroll(`day-detail:${Number.isFinite(dayNum) ? dayNum : 'unknown'}`, Boolean(day));
 
   if (!day) {
     return (

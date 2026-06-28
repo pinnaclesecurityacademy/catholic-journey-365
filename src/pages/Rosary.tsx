@@ -13,6 +13,11 @@ import {
 import { SacredPrayer } from '../components/SacredPrayer';
 import { scrollToContentStart } from '../lib/scroll';
 import { BackButton } from '../components/BackButton';
+import {
+  readStoredResumeValue,
+  useResumeScroll,
+  writeResumeState,
+} from '../lib/resume';
 
 // Guided Rosary, Christ-centred meditation. Education + opening prayers + per-mystery content.
 type Step =
@@ -23,6 +28,24 @@ type Step =
   | 'guided'
   | 'finish'
   | 'complete';
+
+type RosaryResumeState = {
+  step: Step;
+  selectedMystery: string;
+  decade: number;
+  guidedIndex: number;
+};
+
+const ROSARY_RESUME_KEY = 'rosary';
+const ROSARY_STEPS: Step[] = [
+  'start',
+  'opening',
+  'mysteries',
+  'decades',
+  'guided',
+  'finish',
+  'complete',
+];
 
 type ExpandablePrayerCardProps = {
   title: string;
@@ -322,18 +345,114 @@ function buildGuidedRosaryItems(group: NonNullable<ReturnType<typeof getMysteryG
   return items;
 }
 
+function readRosaryResumeState(value: unknown): RosaryResumeState | null {
+  if (!value || typeof value !== 'object') return null;
+  const state = value as {
+    step?: unknown;
+    selectedMystery?: unknown;
+    decade?: unknown;
+    guidedIndex?: unknown;
+  };
+
+  const selectedMystery =
+    typeof state.selectedMystery === 'string' &&
+    getMysteryGroup(state.selectedMystery)
+      ? state.selectedMystery
+      : '';
+  let step = ROSARY_STEPS.includes(state.step as Step)
+    ? (state.step as Step)
+    : 'start';
+
+  if (
+    (step === 'guided' || step === 'decades' || step === 'finish') &&
+    !selectedMystery
+  ) {
+    step = 'mysteries';
+  }
+
+  const decade =
+    typeof state.decade === 'number' && Number.isInteger(state.decade)
+      ? Math.max(1, Math.min(5, state.decade))
+      : 1;
+  const group = selectedMystery ? getMysteryGroup(selectedMystery) : undefined;
+  const guidedItems = group ? buildGuidedRosaryItems(group) : [];
+  const maxGuidedIndex = Math.max(0, guidedItems.length - 1);
+  const guidedIndex =
+    typeof state.guidedIndex === 'number' && Number.isInteger(state.guidedIndex)
+      ? Math.max(0, Math.min(maxGuidedIndex, state.guidedIndex))
+      : 0;
+
+  return { step, selectedMystery, decade, guidedIndex };
+}
+
+function defaultRosaryResumeState(mystery?: string): RosaryResumeState {
+  return {
+    step: 'start',
+    selectedMystery: mystery && getMysteryGroup(mystery) ? mystery : '',
+    decade: 1,
+    guidedIndex: 0,
+  };
+}
+
+function getInitialRosaryResumeState(mystery?: string) {
+  const saved = readStoredResumeValue<RosaryResumeState>(
+    ROSARY_RESUME_KEY,
+    defaultRosaryResumeState(mystery),
+    readRosaryResumeState
+  );
+
+  if (!mystery || !getMysteryGroup(mystery)) return saved;
+  if (saved.selectedMystery === mystery) return saved;
+  return defaultRosaryResumeState(mystery);
+}
+
 export default function Rosary() {
   const { mystery } = useParams();
   const navigate = useNavigate();
 
-  const [step, setStep] = useState<Step>('start');
-  const [selectedMystery, setSelectedMystery] = useState<string>(mystery ?? '');
-  const [decade, setDecade] = useState(1);
-  const [guidedIndex, setGuidedIndex] = useState(0);
+  const [step, setStep] = useState<Step>(
+    () => getInitialRosaryResumeState(mystery).step
+  );
+  const [selectedMystery, setSelectedMystery] = useState<string>(
+    () => getInitialRosaryResumeState(mystery).selectedMystery
+  );
+  const [decade, setDecade] = useState(
+    () => getInitialRosaryResumeState(mystery).decade
+  );
+  const [guidedIndex, setGuidedIndex] = useState(
+    () => getInitialRosaryResumeState(mystery).guidedIndex
+  );
   const contentStartRef = useRef<HTMLDivElement>(null);
   const mysteryTopRef = useRef<HTMLDivElement>(null);
   const beadsRef = useRef<HTMLDivElement>(null);
   const previousGuidedItemRef = useRef<GuidedRosaryItem | null>(null);
+
+  useEffect(() => {
+    if (!mystery || !getMysteryGroup(mystery) || mystery === selectedMystery) {
+      return;
+    }
+
+    const next = getInitialRosaryResumeState(mystery);
+    setStep(next.step);
+    setSelectedMystery(next.selectedMystery);
+    setDecade(next.decade);
+    setGuidedIndex(next.guidedIndex);
+  }, [mystery, selectedMystery]);
+
+  useEffect(() => {
+    writeResumeState(ROSARY_RESUME_KEY, {
+      step,
+      selectedMystery,
+      decade,
+      guidedIndex,
+    });
+  }, [decade, guidedIndex, selectedMystery, step]);
+
+  useResumeScroll(
+    `rosary:${step}:${selectedMystery || 'none'}:${
+      step === 'guided' ? guidedIndex : decade
+    }`
+  );
 
   // Land at the top for guide sections, but keep guided bead movement anchored
   // around the mystery or bead tracker so prayer does not feel interrupted.

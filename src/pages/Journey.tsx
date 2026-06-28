@@ -30,6 +30,11 @@ import JourneyTimeline from '../components/JourneyTimeline';
 import { SacredPrayer } from '../components/SacredPrayer';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
+import {
+  readStoredResumeValue,
+  useResumeScroll,
+  writeResumeState,
+} from '../lib/resume';
 
 function isComplete(
   records: CompletionRecord[],
@@ -184,6 +189,19 @@ function buildPeriods(): Period[] {
       seen.slice(0, 3).join(' / ') + (seen.length > 3 ? ' ...' : '');
   }
   return periods;
+}
+
+const SCRIPTURE_JOURNEY_RESUME_KEY = 'scripture-journey';
+
+function readSelectedPeriodStart(value: unknown): number | null {
+  if (!value || typeof value !== 'object' || !('selectedStart' in value)) {
+    return null;
+  }
+
+  const selectedStart = (value as { selectedStart?: unknown }).selectedStart;
+  return typeof selectedStart === 'number' && Number.isInteger(selectedStart)
+    ? selectedStart
+    : null;
 }
 
 function JourneyHubIcon({ type }: { type: 'scripture' | 'rhythm' | 'marian' }) {
@@ -355,6 +373,30 @@ type RhythmModalKind =
   | 'complete'
   | null;
 
+const FAITH_RESUME_KEY = 'faith-journey';
+const RHYTHM_MODAL_KINDS: Exclude<RhythmModalKind, null>[] = [
+  'morning',
+  'formation',
+  'silent',
+  'personal',
+  'seeing',
+  'saint',
+  'evening',
+  'unfinished',
+  'complete',
+];
+
+function readFaithResumeModal(value: unknown): RhythmModalKind | null {
+  if (!value || typeof value !== 'object' || !('activeModal' in value)) {
+    return null;
+  }
+
+  const activeModal = (value as { activeModal?: unknown }).activeModal;
+  return RHYTHM_MODAL_KINDS.includes(activeModal as Exclude<RhythmModalKind, null>)
+    ? (activeModal as RhythmModalKind)
+    : null;
+}
+
 function RhythmModal({
   title,
   subtitle,
@@ -431,7 +473,13 @@ function FaithJourneyDetail({
 }) {
   const navigate = useNavigate();
   const { size: readerSize, setSize: setReaderSize } = useReaderFont();
-  const [activeModal, setActiveModal] = useState<RhythmModalKind>(null);
+  const [activeModal, setActiveModal] = useState<RhythmModalKind>(() =>
+    readStoredResumeValue<RhythmModalKind>(
+      FAITH_RESUME_KEY,
+      null,
+      readFaithResumeModal
+    )
+  );
   const effectiveItems = mergeFaithJourneyChecks(checkedItems, autoItems);
   const completed = effectiveItems.length;
   const progress = Math.round((completed / FAITH_JOURNEY_ITEMS.length) * 100);
@@ -441,6 +489,12 @@ function FaithJourneyDetail({
   const allComplete = completed >= FAITH_JOURNEY_ITEMS.length;
   const inputClass =
     'mt-2 min-h-24 w-full rounded-xl border border-parchment-200 bg-white px-4 py-3 text-sm leading-relaxed text-leather-900 outline-none focus:border-leather-400';
+
+  useEffect(() => {
+    writeResumeState(FAITH_RESUME_KEY, { activeModal });
+  }, [activeModal]);
+
+  useResumeScroll(`faith-journey:${activeModal ?? 'overview'}`);
 
   const completeItem = (item: string) => {
     if (!effectiveItems.includes(item) && !autoItems.includes(item)) {
@@ -968,8 +1022,16 @@ export default function Journey() {
   const navigate = useNavigate();
   const location = useLocation();
   const { completionId, members } = useAccount();
+  const periods = useMemo(buildPeriods, []);
   const [completions, setCompletions] = useState<CompletionRecord[]>([]);
-  const [selected, setSelected] = useState<Period | null>(null);
+  const [selected, setSelected] = useState<Period | null>(() => {
+    const selectedStart = readStoredResumeValue<number | null>(
+      SCRIPTURE_JOURNEY_RESUME_KEY,
+      null,
+      readSelectedPeriodStart
+    );
+    return periods.find((period) => period.start === selectedStart) ?? null;
+  });
   const [faithCheckedItems, setFaithCheckedItems] = useState<string[]>(
     readFaithJourneyChecks
   );
@@ -1015,8 +1077,6 @@ export default function Journey() {
     };
   }, [location.pathname, selected]);
 
-  const periods = useMemo(buildPeriods, []);
-
   // Current day = first day the group has not all completed (actual progress).
   const currentDay =
     readingPlan.find(
@@ -1043,6 +1103,16 @@ export default function Journey() {
   const effectiveFaithItems = mergeFaithJourneyChecks(
     faithCheckedItems,
     autoFaithItems
+  );
+
+  useEffect(() => {
+    writeResumeState(SCRIPTURE_JOURNEY_RESUME_KEY, {
+      selectedStart: selected?.start ?? null,
+    });
+  }, [selected]);
+
+  useResumeScroll(
+    `journey:${location.pathname}:${selected?.start ?? 'overview'}`
   );
 
   const toggleFaithItem = (item: string) => {

@@ -1,5 +1,5 @@
 import { useEffect, lazy, Suspense, useState, type ReactNode } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import AppErrorBoundary from './components/AppErrorBoundary';
 import AuthScreen from './components/AuthScreen';
@@ -7,6 +7,7 @@ import JourneySetup from './components/JourneySetup';
 import { AccountProvider, useAccount } from './lib/account';
 import { PWAUpdateProvider, usePWAUpdate } from './lib/pwaUpdates';
 import { supabase } from './lib/supabase';
+import { readResumePath, writeResumePath } from './lib/resume';
 
 // Route-based code splitting: each page (and the large data it imports) loads
 // in its own chunk on demand instead of inflating the initial bundle. Landing
@@ -81,6 +82,33 @@ function ScrollToTop() {
   return null;
 }
 
+function ResumeRouteManager() {
+  const location = useLocation();
+  const currentPath = `${location.pathname}${location.search}${location.hash}`;
+  const [pendingResume, setPendingResume] = useState<string | null>(() => {
+    if (typeof window === 'undefined') return null;
+    const path = window.location.pathname;
+    if (path !== '/app' && path !== '/app/') return null;
+    const savedPath = readResumePath();
+    return savedPath && savedPath !== '/' ? savedPath : null;
+  });
+
+  useEffect(() => {
+    if (pendingResume) {
+      if (currentPath === pendingResume) setPendingResume(null);
+      return;
+    }
+
+    writeResumePath(currentPath);
+  }, [currentPath, pendingResume]);
+
+  if (pendingResume && currentPath !== pendingResume) {
+    return <Navigate to={pendingResume} replace />;
+  }
+
+  return null;
+}
+
 function AppFrame({ children }: { children: ReactNode }) {
   return (
     <BrowserRouter basename="/app">
@@ -115,6 +143,7 @@ function LoadingAppFrame() {
 function PrivateRoutes() {
   return (
     <Suspense fallback={<Splash />}>
+      <ResumeRouteManager />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/journey" element={<Journey />} />

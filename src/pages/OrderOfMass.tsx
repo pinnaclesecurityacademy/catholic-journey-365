@@ -12,6 +12,11 @@ import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
 import { BackButton } from '../components/BackButton';
 import { scrollToContentStart } from '../lib/scroll';
+import {
+  readStoredResumeValue,
+  useResumeScroll,
+  writeResumeState,
+} from '../lib/resume';
 
 // Introduction to the Mass. A beginner-friendly guide reached from the Faith
 // hub. Flow: a welcome intro, a menu of the parts of the Mass, then one page
@@ -54,27 +59,106 @@ type View =
   | { kind: 'part'; index: number }
   | { kind: 'complete' };
 
+type MassResumeState = {
+  view: View;
+  openSub: number | null;
+};
+
+const MASS_RESUME_KEY = 'mass-guide';
+
+function readMassResumeState(value: unknown): MassResumeState | null {
+  if (!value || typeof value !== 'object') return null;
+  const state = value as {
+    view?: unknown;
+    openSub?: unknown;
+  };
+  const view = state.view as Partial<View> | undefined;
+  if (!view || typeof view.kind !== 'string') return null;
+
+  let nextView: View;
+  if (view.kind === 'welcome' || view.kind === 'menu' || view.kind === 'complete') {
+    nextView = { kind: view.kind };
+  } else if (
+    view.kind === 'part' &&
+    typeof view.index === 'number' &&
+    Number.isInteger(view.index) &&
+    view.index >= 0 &&
+    view.index < massSections.length
+  ) {
+    nextView = { kind: 'part', index: view.index };
+  } else {
+    return null;
+  }
+
+  let openSub: number | null = null;
+  if (
+    nextView.kind === 'part' &&
+    typeof state.openSub === 'number' &&
+    Number.isInteger(state.openSub)
+  ) {
+    const subtopicCount = groupSubtopics(massSections[nextView.index].cards).length;
+    if (state.openSub >= 0 && state.openSub < subtopicCount) {
+      openSub = state.openSub;
+    }
+  }
+
+  return { view: nextView, openSub };
+}
+
 export default function OrderOfMass() {
   const navigate = useNavigate();
   const { size, setSize } = useReaderFont();
-  const [view, setView] = useState<View>({ kind: 'welcome' });
-  const [openSub, setOpenSub] = useState<number | null>(null);
+  const [view, setView] = useState<View>(
+    () =>
+      readStoredResumeValue<MassResumeState>(
+        MASS_RESUME_KEY,
+        { view: { kind: 'welcome' }, openSub: null },
+        readMassResumeState
+      ).view
+  );
+  const [openSub, setOpenSub] = useState<number | null>(
+    () =>
+      readStoredResumeValue<MassResumeState>(
+        MASS_RESUME_KEY,
+        { view: { kind: 'welcome' }, openSub: null },
+        readMassResumeState
+      ).openSub
+  );
   const contentStartRef = useRef<HTMLDivElement>(null);
   const subtopicRefs = useRef<Record<number, HTMLElement | null>>({});
+  const previousViewRef = useRef<View>(view);
 
   const total = massSections.length;
 
   // Land at the top whenever the view changes, and close any open accordion
-  // when moving between parts.
+  // when moving between parts after the initial restored state has mounted.
   useEffect(() => {
     scrollToContentStart(contentStartRef.current);
-    setOpenSub(null);
+
+    const previousView = previousViewRef.current;
+    previousViewRef.current = view;
+    const samePart =
+      previousView.kind === 'part' &&
+      view.kind === 'part' &&
+      previousView.index === view.index;
+
+    if (!samePart && previousView !== view) {
+      setOpenSub(null);
+    }
   }, [view]);
 
   useEffect(() => {
     if (openSub === null) return;
     scrollToContentStart(subtopicRefs.current[openSub]);
   }, [openSub]);
+
+  useEffect(() => {
+    writeResumeState(MASS_RESUME_KEY, { view, openSub });
+  }, [openSub, view]);
+
+  useResumeScroll(
+    `mass:${view.kind}${view.kind === 'part' ? `:${view.index}:${openSub ?? 'closed'}` : ''}`
+  );
 
   const Shell = ({ children }: { children: React.ReactNode }) => (
     <div

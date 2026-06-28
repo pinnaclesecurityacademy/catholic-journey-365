@@ -10,6 +10,7 @@ import {
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
 import { BackButton } from '../components/BackButton';
+import { useResumeScroll } from '../lib/resume';
 
 // Dedicated Dive Deeper page (route: /day/:dayNumber/deeper).
 // Displays the existing flowing Catholic reflection for the day. Content comes
@@ -35,6 +36,8 @@ export default function DiveDeeper() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [dayNum]);
+
+  useResumeScroll(`dive-deeper:${Number.isFinite(dayNum) ? dayNum : 'unknown'}`, Boolean(day));
 
   useEffect(() => {
     refresh();

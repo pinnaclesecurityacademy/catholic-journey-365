@@ -8,6 +8,11 @@ import { useAccount } from '../lib/account';
 import { useReaderFont, readerFontClass } from '../lib/readerFont';
 import { ReaderFontControl } from '../components/ReaderFontControl';
 import { BackButton } from '../components/BackButton';
+import {
+  readStoredResumeValue,
+  useResumeScroll,
+  writeResumeState,
+} from '../lib/resume';
 
 // Scripture reading flow (route: /bible/reading/:day).
 //
@@ -25,6 +30,16 @@ function BibleFooter() {
   );
 }
 
+function readSavedStep(value: unknown, max: number) {
+  if (!value || typeof value !== 'object' || !('stepIndex' in value)) {
+    return null;
+  }
+
+  const stepIndex = (value as { stepIndex?: unknown }).stepIndex;
+  if (typeof stepIndex !== 'number' || !Number.isFinite(stepIndex)) return null;
+  return Math.max(0, Math.min(max, Math.floor(stepIndex)));
+}
+
 export default function ScriptureReading() {
   const navigate = useNavigate();
   const { day } = useParams();
@@ -35,8 +50,13 @@ export default function ScriptureReading() {
 
   const { completionId } = useAccount();
   const { size, setSize } = useReaderFont();
+  const resumeKey = `scripture-reading:${Number.isFinite(dayNum) ? dayNum : 'unknown'}`;
 
-  const [stepIndex, setStepIndex] = useState(0);
+  const [stepIndex, setStepIndex] = useState(() =>
+    readStoredResumeValue(resumeKey, 0, (value) =>
+      readSavedStep(value, steps.length)
+    )
+  );
   const [chapter, setChapter] = useState<BibleChapter | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -47,11 +67,21 @@ export default function ScriptureReading() {
   const isLast = stepIndex === steps.length - 1;
 
   useEffect(() => {
-    setStepIndex(0);
+    setStepIndex(
+      readStoredResumeValue(resumeKey, 0, (value) =>
+        readSavedStep(value, steps.length)
+      )
+    );
     setChapter(null);
     setLoading(true);
     setSaving(false);
-  }, [dayNum]);
+  }, [dayNum, resumeKey, steps.length]);
+
+  useEffect(() => {
+    writeResumeState(resumeKey, { stepIndex });
+  }, [resumeKey, stepIndex]);
+
+  useResumeScroll(`${resumeKey}:step:${stepIndex}`, !loading);
 
   // Lazily load only the current step's chapter.
   useEffect(() => {

@@ -678,12 +678,14 @@ function PublicPage() {
 }
 
 export default function App() {
+  const isAuthenticatedAppPath = isAppPath();
+
   return (
     <AccountProvider>
       <PWAUpdateProvider>
         <AppErrorBoundary>
-          <Suspense fallback={<Splash />}>
-            {isAppPath() ? <AppShell /> : <PublicPage />}
+          <Suspense fallback={isAuthenticatedAppPath ? <Splash /> : null}>
+            {isAuthenticatedAppPath ? <AppShell /> : <PublicPage />}
           </Suspense>
         </AppErrorBoundary>
         <PWAUpdateBanner />

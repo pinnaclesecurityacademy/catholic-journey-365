@@ -35,6 +35,8 @@ const Prayer = lazy(() => import('./pages/Prayer'));
 const PrayerDetail = lazy(() => import('./pages/PrayerDetail'));
 const Rosary = lazy(() => import('./pages/Rosary'));
 const OrderOfMass = lazy(() => import('./pages/OrderOfMass'));
+const Questions = lazy(() => import('./pages/Questions'));
+const QuestionArticle = lazy(() => import('./pages/QuestionArticle'));
 const Bible = lazy(() => import('./pages/Bible'));
 const ScriptureReading = lazy(() => import('./pages/ScriptureReading'));
 const Landing = lazy(() => import('./pages/Landing'));
@@ -243,6 +245,8 @@ function PrivateRoutes() {
         <Route path="/rosary" element={premium(<Rosary />)} />
         <Route path="/rosary/:mystery" element={premium(<Rosary />)} />
         <Route path="/mass" element={premium(<OrderOfMass />)} />
+        <Route path="/questions" element={<Questions />} />
+        <Route path="/questions/:slug" element={<QuestionArticle />} />
         <Route path="/bible" element={<Bible />} />
         <Route path="/bible/reading/:day" element={<ScriptureReading />} />
         <Route path="/profile" element={<Profile />} />
@@ -645,6 +649,20 @@ function PublicPage() {
 
   if (hasAuthCallbackParams()) {
     return <AuthCallback />;
+  }
+
+  if (
+    window.location.pathname === '/questions' ||
+    window.location.pathname.startsWith('/questions/')
+  ) {
+    return (
+      <BrowserRouter>
+        <Routes>
+          <Route path="/questions" element={<Questions />} />
+          <Route path="/questions/:slug" element={<QuestionArticle />} />
+        </Routes>
+      </BrowserRouter>
+    );
   }
 
   switch (window.location.pathname) {

@@ -1,6 +1,12 @@
+export type QuestionArticleQuote = {
+  text: string;
+  citation?: string;
+};
+
 export type QuestionArticleSection = {
   heading: string;
   paragraphs: string[];
+  quotes?: QuestionArticleQuote[];
 };
 
 export type RelatedQuestion = {

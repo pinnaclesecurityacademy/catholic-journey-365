@@ -163,6 +163,21 @@ export function QuestionArticleTemplate({ article }: { article: QuestionArticle 
                         {paragraph}
                       </p>
                     ))}
+                    {section.quotes?.map((quote) => (
+                      <blockquote
+                        key={`${quote.text}-${quote.citation ?? ''}`}
+                        className="rounded-[1.4rem] border border-amber-200/70 bg-[linear-gradient(135deg,#fff8e7,#f2dfb6)] p-5 shadow-[0_14px_36px_rgba(92,64,39,0.08)]"
+                      >
+                        <p className="font-display text-2xl font-semibold leading-snug text-leather-900">
+                          "{quote.text}"
+                        </p>
+                        {quote.citation && (
+                          <cite className="mt-3 block text-sm font-bold uppercase tracking-[0.16em] text-amber-700 not-italic">
+                            {quote.citation}
+                          </cite>
+                        )}
+                      </blockquote>
+                    ))}
                   </div>
                 </section>
                 {index + 1 === promotionAfterSection && <AppPromotion />}

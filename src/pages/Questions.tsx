@@ -92,12 +92,12 @@ const TOPICS: TopicCard[] = [
 ];
 
 const POPULAR_QUESTIONS = [
-  'Why do Catholics ask Mary to pray?',
-  'Why do Catholics confess to a priest?',
-  'What is the Eucharist?',
-  'Can Catholics read the Bible?',
-  'What is Purgatory?',
-  'Do I have to be Catholic to attend Mass?',
+  { title: 'Who Is Jesus Christ?', href: '/questions/who-is-jesus-christ' },
+  { title: 'Why do Catholics ask Mary to pray?', href: '/questions' },
+  { title: 'Why do Catholics confess to a priest?', href: '/questions' },
+  { title: 'What is the Eucharist?', href: '/questions' },
+  { title: 'Can Catholics read the Bible?', href: '/questions' },
+  { title: 'What is Purgatory?', href: '/questions' },
 ];
 
 function IconMark({ type, className = '' }: { type: IconName; className?: string }) {
@@ -418,11 +418,11 @@ export default function Questions() {
             <div className="grid gap-3 md:grid-cols-2">
               {POPULAR_QUESTIONS.map((question) => (
                 <a
-                  key={question}
-                  href="/questions"
+                  key={question.title}
+                  href={question.href}
                   className="group flex min-h-[5.25rem] items-center justify-between gap-5 rounded-[1.35rem] border border-amber-100 bg-white/80 px-5 py-4 text-leather-950 shadow-[0_12px_36px_rgba(92,64,39,0.08)] transition hover:-translate-y-0.5 hover:border-amber-300 hover:bg-white"
                 >
-                  <span className="text-base font-semibold leading-6">{question}</span>
+                  <span className="text-base font-semibold leading-6">{question.title}</span>
                   <Arrow />
                 </a>
               ))}

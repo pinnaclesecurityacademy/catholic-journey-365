@@ -11,6 +11,8 @@ export type RelatedQuestion = {
 export type QuestionArticle = {
   slug: string;
   title: string;
+  metaTitle?: string;
+  metaDescription?: string;
   description: string;
   category: string;
   readTime: string;

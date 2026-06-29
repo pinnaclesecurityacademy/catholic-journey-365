@@ -30,18 +30,18 @@ const DEFAULT_ARTICLE_PATH = '/questions/how-do-i-become-catholic';
 
 const FEATURED_QUESTIONS: FeaturedQuestion[] = [
   {
+    icon: 'spark',
+    title: 'Why Become Catholic?',
+    description:
+      'A warm look at Jesus, the Church, Scripture, history, and the journey of faith.',
+    href: '/questions/why-become-catholic',
+  },
+  {
     icon: 'compass',
     title: 'How do I become Catholic?',
     description:
       'A simple guide to inquiry, OCIA, the sacraments, and the next faithful step.',
     href: DEFAULT_ARTICLE_PATH,
-  },
-  {
-    icon: 'church',
-    title: 'What happens at Mass?',
-    description:
-      'Understand the shape of Catholic worship, from Scripture to the Eucharist.',
-    href: '/questions',
   },
   {
     icon: 'book',

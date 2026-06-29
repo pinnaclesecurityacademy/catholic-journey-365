@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import {
   PublicBeginButton,
@@ -89,6 +89,37 @@ export function QuestionArticleTemplate({ article }: { article: QuestionArticle 
     Math.max(article.appPromotionAfterSection ?? Math.ceil(article.sections.length / 2), 1),
     article.sections.length
   );
+
+  useEffect(() => {
+    const previousTitle = document.title;
+    const metaDescription =
+      document.querySelector<HTMLMetaElement>('meta[name="description"]');
+    const previousDescription = metaDescription?.getAttribute('content') ?? null;
+    const descriptionTag = metaDescription ?? document.createElement('meta');
+    const createdDescriptionTag = !metaDescription;
+
+    if (createdDescriptionTag) {
+      descriptionTag.setAttribute('name', 'description');
+      document.head.appendChild(descriptionTag);
+    }
+
+    document.title = article.metaTitle ?? `${article.title} | Catholic Journey 365`;
+    descriptionTag.setAttribute(
+      'content',
+      article.metaDescription ?? article.description
+    );
+
+    return () => {
+      document.title = previousTitle;
+      if (createdDescriptionTag) {
+        descriptionTag.remove();
+      } else if (previousDescription === null) {
+        descriptionTag.removeAttribute('content');
+      } else {
+        descriptionTag.setAttribute('content', previousDescription);
+      }
+    };
+  }, [article]);
 
   return (
     <PublicSiteLayout>

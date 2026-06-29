@@ -1,4 +1,11 @@
-import { useEffect, lazy, Suspense, useState, type ReactNode } from 'react';
+import {
+  useCallback,
+  useEffect,
+  lazy,
+  Suspense,
+  useState,
+  type ReactNode,
+} from 'react';
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import BottomNav from './components/BottomNav';
 import AppErrorBoundary from './components/AppErrorBoundary';
@@ -72,6 +79,20 @@ function Splash() {
   );
 }
 
+function isLaunchPath(path: string) {
+  return path === '/app' || path === '/app/';
+}
+
+function getLaunchResumePath(path: string) {
+  if (typeof window === 'undefined' || !isLaunchPath(path)) return null;
+  const savedPath = readResumePath();
+  return savedPath && savedPath !== '/' ? savedPath : null;
+}
+
+function AppRouteLoading() {
+  return <div className="min-h-screen bg-parchment-100" aria-hidden="true" />;
+}
+
 // On every route change, reset the window to the top so pages never open
 // mid-scroll. Lives inside the Router so it can observe navigation.
 function ScrollToTop() {
@@ -124,6 +145,39 @@ function AppFrame({ children }: { children: ReactNode }) {
   );
 }
 
+function ResumeLaunchRedirect({
+  to,
+  onNavigated,
+}: {
+  to: string;
+  onNavigated: () => void;
+}) {
+  const location = useLocation();
+  const currentPath = `${location.pathname}${location.search}${location.hash}`;
+
+  useEffect(() => {
+    if (currentPath === to) onNavigated();
+  }, [currentPath, onNavigated, to]);
+
+  if (currentPath === to) return null;
+  return <Navigate to={to} replace />;
+}
+
+function ResumeRedirectFrame({
+  to,
+  onNavigated,
+}: {
+  to: string;
+  onNavigated: () => void;
+}) {
+  return (
+    <AppFrame>
+      <ResumeLaunchRedirect to={to} onNavigated={onNavigated} />
+      <AppRouteLoading />
+    </AppFrame>
+  );
+}
+
 function LoadingAppFrame() {
   const [timedOut, setTimedOut] = useState(false);
 
@@ -134,10 +188,13 @@ function LoadingAppFrame() {
 
   if (timedOut) return <AuthRecoveryScreen />;
 
-  // Show the same premium splash used everywhere else during startup, without
-  // the app frame or bottom navigation, so loading never visibly switches
-  // between different screens.
-  return <Splash />;
+  // Once Supabase has restored a user, keep secondary account loading quiet so
+  // the launch flow can stay on the restored private route.
+  return (
+    <AppFrame>
+      <AppRouteLoading />
+    </AppFrame>
+  );
 }
 
 function PremiumRoute({ children }: { children: ReactNode }) {
@@ -149,7 +206,7 @@ function PrivateRoutes() {
   const premium = (page: ReactNode) => <PremiumRoute>{page}</PremiumRoute>;
 
   return (
-    <Suspense fallback={<Splash />}>
+    <Suspense fallback={<AppRouteLoading />}>
       <ResumeRouteManager />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -482,6 +539,10 @@ function AppShell() {
     claim,
   } = useAccount();
   const [loadingTimedOut, setLoadingTimedOut] = useState(false);
+  const [, refreshLaunchPath] = useState(0);
+  const handleResumeNavigation = useCallback(() => {
+    refreshLaunchPath((value) => value + 1);
+  }, []);
   const path =
     typeof window === 'undefined' ? '/app' : window.location.pathname;
   const isResetPassword = path === '/app/reset-password';
@@ -527,6 +588,17 @@ function AppShell() {
     return <IntroScreens onComplete={() => window.location.replace('/app/login')} />;
   }
   if (!user) return <RedirectToLogin />;
+  const launchResumePath = getLaunchResumePath(path);
+  const waitingForAccountState =
+    accountLoading || billingLoading || !profile || !completionId;
+  if (launchResumePath && waitingForAccountState) {
+    return (
+      <ResumeRedirectFrame
+        to={launchResumePath}
+        onNavigated={handleResumeNavigation}
+      />
+    );
+  }
   if (accountLoading || billingLoading) {
     return <LoadingAppFrame />;
   }

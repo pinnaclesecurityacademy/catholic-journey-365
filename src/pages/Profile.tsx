@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAccount } from '../lib/account';
-import { planLabel, promoAccessTypeLabel, statusLabel } from '../lib/billing';
+import { promoAccessTypeLabel } from '../lib/billing';
 import { usePWAUpdate } from '../lib/pwaUpdates';
 import { InstallApp } from '../components/InstallApp';
 
@@ -65,42 +65,49 @@ export default function Profile() {
     'w-full rounded-xl border border-parchment-200 bg-white py-2.5 font-semibold text-stone-500 active:scale-[0.99] transition';
   const dangerButtonClass =
     'w-full rounded-xl border border-red-200 bg-red-50 py-2.5 font-semibold text-red-700 active:scale-[0.99] transition disabled:opacity-50';
-  const trialEndDate = trialAccess.trialEnd
-    ? new Date(trialAccess.trialEnd).toLocaleDateString()
-    : null;
-  const promoLabel = promoAccessTypeLabel(promoAccess?.access_type);
-  const promoEndDate = promoAccess?.access_expires_at
-    ? new Date(promoAccess.access_expires_at).toLocaleDateString()
-    : null;
-  const accessPlanLabel = subscription?.plan
-    ? planLabel(subscription.plan)
+  const promoLabel =
+    promoAccess?.redeemed_code === 'BETA2026'
+      ? 'Beta'
+      : promoAccessTypeLabel(promoAccess?.access_type);
+  const promoDaysRemaining =
+    promoAccess?.access_expires_at
+      ? Math.max(
+          0,
+          Math.ceil(
+            (new Date(promoAccess.access_expires_at).getTime() - Date.now()) /
+              (24 * 60 * 60 * 1000)
+          )
+        )
+      : 0;
+  const currentPlanLabel = premiumAccessSource === 'subscription'
+    ? 'Premium'
     : premiumAccessSource === 'promo'
-    ? `${promoLabel} access`
+    ? `${promoLabel} Access`
     : premiumAccessSource === 'trial'
-    ? 'Premium trial'
+    ? 'Premium Trial'
     : premiumAccessSource === 'included'
-    ? 'Premium access'
+    ? 'Premium Access'
     : 'Bible in a Year';
-  const accessStatusLabel =
-    premiumAccessSource === 'promo'
-      ? `${promoLabel} promo active`
-      : premiumAccessSource === 'trial'
-      ? `Premium trial active (${trialAccess.daysRemaining} ${
-          trialAccess.daysRemaining === 1 ? 'day' : 'days'
-        } left)`
-      : premiumAccessSource === 'included'
-      ? 'Premium access active'
-      : subscription?.status
-      ? statusLabel(subscription.status)
-      : trialAccess.trialExpired
-      ? 'Premium trial ended'
-      : statusLabel(subscription?.status);
-  const showStripeTrialEnd = Boolean(
-    subscription?.trial_ends_at &&
-      subscription.status === 'trialing' &&
-      premiumAccessSource !== 'trial'
-  );
-
+  const accessDetailLabel = subscription?.current_period_end
+    ? 'Renews'
+    : 'Access';
+  const accessDetailValue = subscription?.current_period_end
+    ? new Date(subscription.current_period_end).toLocaleDateString()
+    : premiumAccessSource === 'promo' && promoAccess?.lifetime_access
+    ? 'Lifetime Included'
+    : premiumAccessSource === 'promo' && promoAccess?.access_expires_at
+    ? `${promoDaysRemaining} ${
+        promoDaysRemaining === 1 ? 'day' : 'days'
+      } remaining`
+    : premiumAccessSource === 'trial'
+    ? `${trialAccess.daysRemaining} ${
+        trialAccess.daysRemaining === 1 ? 'day' : 'days'
+      } remaining`
+    : premiumAccessSource === 'included'
+    ? 'Lifetime Included'
+    : trialAccess.trialExpired
+    ? 'Premium trial ended'
+    : 'Free Bible access';
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
     setSavingName(true);
@@ -255,58 +262,26 @@ export default function Profile() {
         </button>
       </section>
 
-      <p className={sectionTitle}>Billing Status</p>
+      <p className={sectionTitle}>Access</p>
       <section className={`${cardClass} mb-6`}>
         <div className="grid grid-cols-1 gap-3">
           <div className="rounded-xl bg-parchment-50 px-4 py-3">
             <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
-              Current plan
+              Current Plan
             </p>
             <p className="mt-1 font-display text-xl font-semibold text-leather-900">
-              {accessPlanLabel}
+              {currentPlanLabel}
             </p>
           </div>
           <div className="rounded-xl bg-parchment-50 px-4 py-3">
             <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
-              Status
+              {accessDetailLabel}
             </p>
             <p className="mt-1 font-semibold text-leather-700">
-              {accessStatusLabel}
+              {accessDetailValue}
             </p>
           </div>
         </div>
-
-        {premiumAccessSource === 'trial' && trialEndDate && (
-          <p className="mt-3 text-sm text-stone-500">
-            Premium trial ends {trialEndDate}.
-          </p>
-        )}
-        {!premiumAccessSource && trialAccess.trialExpired && trialEndDate && (
-          <p className="mt-3 text-sm text-stone-500">
-            Premium trial ended {trialEndDate}. Bible in a Year remains free.
-          </p>
-        )}
-        {showStripeTrialEnd && subscription?.trial_ends_at && (
-          <p className="mt-3 text-sm text-stone-500">
-            Trial ends{' '}
-            {new Date(subscription.trial_ends_at).toLocaleDateString()}.
-          </p>
-        )}
-        {premiumAccessSource === 'promo' && promoAccess && (
-          <p className="mt-3 text-sm text-stone-500">
-            {promoAccess.lifetime_access
-              ? `${promoLabel} promo grants lifetime access.`
-              : promoEndDate
-              ? `${promoLabel} promo access ends ${promoEndDate}.`
-              : `${promoLabel} promo access is active.`}
-          </p>
-        )}
-        {subscription?.current_period_end && subscription.status !== 'trialing' && (
-          <p className="mt-3 text-sm text-stone-500">
-            Current period ends{' '}
-            {new Date(subscription.current_period_end).toLocaleDateString()}.
-          </p>
-        )}
 
         {billingMessage && (
           <p className="mt-3 rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-sm text-stone-600">

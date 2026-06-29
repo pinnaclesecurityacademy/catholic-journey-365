@@ -167,6 +167,7 @@ function CheckIcon({ on }: { on: boolean }) {
 const NAV_LINKS = [
   { label: 'The path', href: '#path' },
   { label: 'Features', href: '#features' },
+  { label: 'Questions', href: '/questions' },
   { label: 'Different', href: '#different' },
   { label: 'Pricing', href: '#pricing' },
 ];
@@ -474,7 +475,13 @@ export default function Landing() {
               </div>
             </div>
 
-            <div className="mt-8 flex justify-center md:mt-10">
+            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row md:mt-10">
+              <a
+                href="/questions"
+                className="rounded-full border border-amber-500/50 bg-white/60 px-9 py-4 text-center text-base font-bold text-leather-900 shadow-[0_14px_34px_rgba(92,64,39,0.1)] transition hover:bg-white/80 active:scale-[0.99]"
+              >
+                Read Catholic Questions
+              </a>
               <BeginButton label="Start Understanding Your Faith" className="w-full sm:w-auto" />
             </div>
           </div>
@@ -939,6 +946,9 @@ export default function Landing() {
             </a>
             <a className="font-semibold transition hover:text-leather-900" href="/support">
               Support
+            </a>
+            <a className="font-semibold transition hover:text-leather-900" href="/questions">
+              Questions
             </a>
           </div>
         </div>

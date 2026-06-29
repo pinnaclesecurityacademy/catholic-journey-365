@@ -1,6 +1,7 @@
+import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PublicGoldRule, PublicSiteLayout } from '../components/PublicSiteLayout';
-import { questionArticles } from '../data/questions';
+import { questionArticles, type QuestionArticle } from '../data/questions';
 
 type IconName =
   | 'book'
@@ -11,94 +12,6 @@ type IconName =
   | 'spark'
   | 'sun'
   | 'water';
-
-type FeaturedQuestion = {
-  icon: IconName;
-  title: string;
-  description: string;
-  href: string;
-};
-
-type TopicCard = {
-  icon: IconName;
-  title: string;
-  count: string;
-  description: string;
-};
-
-const DEFAULT_ARTICLE_PATH = '/questions/how-do-i-become-catholic';
-
-const FEATURED_QUESTIONS: FeaturedQuestion[] = [
-  {
-    icon: 'spark',
-    title: 'Why Become Catholic?',
-    description:
-      'A warm look at Jesus, the Church, Scripture, history, and the journey of faith.',
-    href: '/questions/why-become-catholic',
-  },
-  {
-    icon: 'compass',
-    title: 'How do I become Catholic?',
-    description:
-      'A simple guide to inquiry, OCIA, the sacraments, and the next faithful step.',
-    href: DEFAULT_ARTICLE_PATH,
-  },
-  {
-    icon: 'book',
-    title: 'What Is the Church?',
-    description:
-      'Explore the Church as the family Christ founded to teach, sanctify, and guide.',
-    href: '/questions/what-is-the-church',
-  },
-];
-
-const TOPICS: TopicCard[] = [
-  {
-    icon: 'prayer',
-    title: 'Prayer',
-    count: '12 questions',
-    description: 'How Catholics pray, what prayer means, and where to begin.',
-  },
-  {
-    icon: 'church',
-    title: 'The Mass',
-    count: '10 questions',
-    description: 'The words, gestures, Scripture, and worship at the heart of Sunday.',
-  },
-  {
-    icon: 'water',
-    title: 'Sacraments',
-    count: '9 questions',
-    description: 'Baptism, Confession, Eucharist, marriage, and healing.',
-  },
-  {
-    icon: 'scroll',
-    title: 'Scripture',
-    count: '8 questions',
-    description: 'The Bible, Catholic interpretation, and salvation history.',
-  },
-  {
-    icon: 'spark',
-    title: 'Church Teaching',
-    count: '14 questions',
-    description: 'Clear explanations of doctrine, Tradition, and moral questions.',
-  },
-  {
-    icon: 'sun',
-    title: 'Life & Faith',
-    count: '11 questions',
-    description: 'Catholic life at home, at work, in doubt, and in daily decisions.',
-  },
-];
-
-const POPULAR_QUESTIONS = [
-  { title: 'Who Is Jesus Christ?', href: '/questions/who-is-jesus-christ' },
-  { title: 'Why do Catholics ask Mary to pray?', href: '/questions' },
-  { title: 'Why do Catholics confess to a priest?', href: '/questions' },
-  { title: 'What is the Eucharist?', href: '/questions' },
-  { title: 'Can Catholics read the Bible?', href: '/questions' },
-  { title: 'What is Purgatory?', href: '/questions' },
-];
 
 function IconMark({ type, className = '' }: { type: IconName; className?: string }) {
   const shared = {
@@ -181,85 +94,109 @@ function Arrow() {
   );
 }
 
-function PhoneMockup({
-  src,
-  alt,
-  className = '',
-}: {
-  src: string;
-  alt: string;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`rounded-[2.35rem] border border-black/70 bg-gradient-to-b from-stone-950 via-black to-stone-900 p-2 shadow-[0_30px_80px_rgba(20,12,8,0.38)] ${className}`}
-    >
-      <div className="relative overflow-hidden rounded-[1.9rem] bg-[#f7f0df]">
-        <div className="relative" style={{ aspectRatio: '921 / 2048' }}>
-          <img
-            src={src}
-            alt={alt}
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-contain object-center"
-          />
-        </div>
-        <div className="absolute left-1/2 top-2.5 h-3.5 w-16 -translate-x-1/2 rounded-full bg-black/90" />
-      </div>
-    </div>
-  );
-}
+type TopicFilter =
+  | 'All Questions'
+  | 'Becoming Catholic'
+  | 'The Mass'
+  | 'Prayer'
+  | 'Sacraments'
+  | 'Scripture'
+  | 'Church Teaching'
+  | 'Life & Faith'
+  | 'Returning Catholics';
 
-function StoreButton({ label }: { label: string }) {
-  return (
-    <a
-      href="/app/login"
-      className="group inline-flex w-full items-center justify-center gap-3 rounded-full border border-leather-900/12 bg-leather-950 px-6 py-4 text-white shadow-[0_18px_45px_rgba(20,12,8,0.22)] transition hover:-translate-y-0.5 hover:bg-leather-900 sm:w-auto"
-    >
-      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-amber-200">
-        <IconMark type="spark" />
-      </span>
-      <span className="text-sm font-bold">{label}</span>
-    </a>
-  );
+const TOPIC_FILTERS: TopicFilter[] = [
+  'All Questions',
+  'Becoming Catholic',
+  'The Mass',
+  'Prayer',
+  'Sacraments',
+  'Scripture',
+  'Church Teaching',
+  'Life & Faith',
+  'Returning Catholics',
+];
+
+const TOPIC_STATS: Record<TopicFilter, { count: number; icon: IconName }> = {
+  'All Questions': { count: 240, icon: 'spark' },
+  'Becoming Catholic': { count: 38, icon: 'compass' },
+  'The Mass': { count: 31, icon: 'church' },
+  Prayer: { count: 29, icon: 'prayer' },
+  Sacraments: { count: 34, icon: 'water' },
+  Scripture: { count: 27, icon: 'scroll' },
+  'Church Teaching': { count: 42, icon: 'book' },
+  'Life & Faith': { count: 24, icon: 'sun' },
+  'Returning Catholics': { count: 15, icon: 'spark' },
+};
+
+const ARTICLE_TOPIC_BY_SLUG: Record<string, TopicFilter> = {
+  'how-do-i-become-catholic': 'Becoming Catholic',
+  'why-become-catholic': 'Becoming Catholic',
+  'what-is-the-church': 'Church Teaching',
+  'who-is-jesus-christ': 'Church Teaching',
+};
+
+function getArticleTopic(article: QuestionArticle): TopicFilter {
+  return ARTICLE_TOPIC_BY_SLUG[article.slug] ?? 'Church Teaching';
 }
 
 export default function Questions() {
-  const becomeCatholicArticle =
-    questionArticles.find((article) => article.slug === 'how-do-i-become-catholic') ??
-    questionArticles[0];
-  const becomeCatholicPath = becomeCatholicArticle
-    ? `/questions/${becomeCatholicArticle.slug}`
-    : DEFAULT_ARTICLE_PATH;
-  const featuredQuestions = FEATURED_QUESTIONS.map((question) =>
-    question.title === 'How do I become Catholic?'
-      ? { ...question, href: becomeCatholicPath }
-      : question
+  const [activeTopic, setActiveTopic] = useState<TopicFilter>('All Questions');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const articleRows = useMemo(
+    () =>
+      questionArticles.map((article) => {
+        const topic = getArticleTopic(article);
+        return {
+          article,
+          href: `/questions/${article.slug}`,
+          icon: TOPIC_STATS[topic].icon,
+          topic,
+        };
+      }),
+    []
   );
+
+  const filteredArticles = useMemo(() => {
+    const query = searchTerm.trim().toLowerCase();
+
+    return articleRows.filter(({ article, topic }) => {
+      const matchesTopic =
+        activeTopic === 'All Questions' || topic === activeTopic;
+      const matchesSearch =
+        !query ||
+        article.title.toLowerCase().includes(query) ||
+        article.description.toLowerCase().includes(query) ||
+        topic.toLowerCase().includes(query);
+
+      return matchesTopic && matchesSearch;
+    });
+  }, [activeTopic, articleRows, searchTerm]);
+
+  const activeQuestionCount = TOPIC_STATS[activeTopic].count;
 
   return (
     <PublicSiteLayout>
-      <header className="relative overflow-hidden bg-[#fbf6ea] pt-24">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_18%,rgba(255,255,255,0.96),transparent_30%),radial-gradient(circle_at_80%_6%,rgba(212,165,93,0.24),transparent_34%),linear-gradient(180deg,#fffaf0_0%,#f5ead1_100%)]" />
-        <div className="relative mx-auto grid max-w-[1440px] gap-10 px-5 pb-14 pt-10 sm:px-8 md:pb-20 md:pt-16 lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,0.88fr)] lg:items-center">
-          <div className="max-w-3xl">
+      <header className="relative overflow-hidden border-b border-amber-100/70 bg-[#fbf6ea] pt-24">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(255,255,255,0.96),transparent_30%),radial-gradient(circle_at_88%_12%,rgba(212,165,93,0.18),transparent_28%),linear-gradient(180deg,#fffaf0_0%,#f5ead1_100%)]" />
+        <div className="relative mx-auto grid max-w-[1440px] gap-8 px-5 py-10 sm:px-8 md:py-14 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
+          <div className="max-w-4xl">
             <PublicGoldRule />
-            <p className="mt-6 text-xs font-bold uppercase tracking-[0.32em] text-amber-700">
-              Clear answers. Deeper faith.
-            </p>
-            <h1 className="mt-5 font-display text-6xl font-semibold leading-[0.94] text-leather-950 sm:text-7xl lg:text-8xl">
+            <h1 className="mt-5 font-display text-5xl font-semibold leading-none text-leather-950 sm:text-6xl">
               Catholic Questions
             </h1>
-            <p className="mt-6 max-w-2xl text-xl leading-9 text-leather-900/74">
-              Explore simple, faithful answers to the questions people ask most
-              about the Catholic faith.
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-leather-900/72">
+              Search a calm, faithful library of Catholic answers organized for
+              beginners, seekers, and returning Catholics.
             </p>
 
-            <div className="mt-9 max-w-2xl rounded-[2rem] border border-amber-100 bg-white/90 p-2 shadow-[0_28px_80px_rgba(92,64,39,0.14)] backdrop-blur">
+            <div className="mt-7 max-w-3xl rounded-[1.6rem] border border-amber-100 bg-white/92 p-2 shadow-[0_20px_60px_rgba(92,64,39,0.12)] backdrop-blur">
               <label htmlFor="question-search" className="sr-only">
                 Search Catholic Questions
               </label>
-              <div className="flex items-center gap-3 rounded-[1.55rem] border border-leather-900/6 bg-[#fffdf8] px-5 py-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-800">
+              <div className="flex items-center gap-3 rounded-[1.2rem] border border-leather-900/6 bg-[#fffdf8] px-5 py-3.5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 text-amber-800">
                   <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
                     <path
                       d="M10.7 18.1a7.4 7.4 0 1 1 0-14.8 7.4 7.4 0 0 1 0 14.8z"
@@ -277,192 +214,195 @@ export default function Questions() {
                 <input
                   id="question-search"
                   type="search"
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.target.value)}
                   placeholder="Search Catholic Questions..."
-                  className="min-w-0 flex-1 bg-transparent text-lg font-semibold text-leather-950 outline-none placeholder:text-leather-900/42"
+                  className="min-w-0 flex-1 bg-transparent text-base font-semibold text-leather-950 outline-none placeholder:text-leather-900/42 sm:text-lg"
                 />
+              </div>
+            </div>
+
+            <div className="-mx-5 mt-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0">
+              <div className="flex min-w-max gap-2">
+                {TOPIC_FILTERS.map((topic) => {
+                  const selected = activeTopic === topic;
+                  return (
+                    <button
+                      key={topic}
+                      type="button"
+                      onClick={() => setActiveTopic(topic)}
+                      aria-pressed={selected}
+                      className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
+                        selected
+                          ? 'border-leather-900 bg-leather-950 text-white shadow-[0_12px_30px_rgba(20,12,8,0.16)]'
+                          : 'border-amber-100 bg-white/72 text-leather-900/72 hover:border-amber-300 hover:bg-white'
+                      }`}
+                    >
+                      {topic}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          <div className="relative">
-            <div className="absolute -inset-6 rounded-[3rem] bg-amber-200/30 blur-3xl" />
-            <div className="relative overflow-hidden rounded-[2.6rem] border border-white/72 bg-white p-3 shadow-[0_34px_100px_rgba(60,43,28,0.22)]">
-              <div className="relative overflow-hidden rounded-[2rem] bg-leather-950">
-                <img
-                  src="/images/landing/catholic-questions-hero.webp"
-                  alt="A person sitting quietly in a Catholic church"
-                  className="h-[28rem] w-full object-cover object-center sm:h-[34rem] lg:h-[40rem]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-leather-950/42 via-transparent to-white/6" />
+          <div className="hidden lg:block">
+            <div className="overflow-hidden rounded-[1.8rem] border border-white/70 bg-white/72 p-3 shadow-[0_22px_70px_rgba(92,64,39,0.13)] backdrop-blur">
+              <img
+                src="/images/landing/catholic-questions-hero.webp"
+                alt="A person sitting quietly in a Catholic church"
+                className="h-40 w-full rounded-[1.25rem] object-cover object-center"
+              />
+              <div className="px-2 pb-2 pt-4">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-700">
+                  Knowledge Library
+                </p>
+                <p className="mt-2 font-display text-3xl font-semibold leading-none text-leather-950">
+                  240+ questions
+                </p>
+                <p className="mt-2 text-sm leading-6 text-leather-900/64">
+                  Organized by topic for quick, faithful answers.
+                </p>
               </div>
-            </div>
-            <div className="absolute bottom-6 left-6 right-6 rounded-[1.5rem] border border-white/40 bg-white/85 p-4 shadow-[0_18px_50px_rgba(20,12,8,0.16)] backdrop-blur-xl sm:left-8 sm:right-auto sm:max-w-xs">
-              <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
-                Knowledge Library
-              </p>
-              <p className="mt-2 font-display text-2xl font-semibold leading-tight text-leather-950">
-                Faithful answers for beginners, seekers, and returning Catholics.
-              </p>
             </div>
           </div>
         </div>
       </header>
 
-      <main>
-        <section className="px-5 py-14 sm:px-8 md:py-20">
-          <div className="mx-auto max-w-[1440px]">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <main className="px-5 py-8 sm:px-8 md:py-10">
+        <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[minmax(0,1fr)_19rem]">
+          <section>
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <PublicGoldRule />
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
-                  Featured Questions
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                  {activeTopic}
                 </p>
-                <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-leather-950 md:text-5xl">
-                  Start with the questions people ask first.
+                <h2 className="mt-1 font-display text-3xl font-semibold text-leather-950">
+                  Published answers
                 </h2>
               </div>
-              <p className="max-w-xl text-base leading-7 text-leather-900/66 md:text-lg md:leading-8">
-                Short, careful explanations designed for clarity, not noise.
+              <p className="text-sm font-semibold text-leather-900/58">
+                {activeQuestionCount}+ questions organized{' '}
+                {activeTopic === 'All Questions' ? 'across the library' : 'in this topic'}
               </p>
             </div>
 
-            <div className="mt-9 grid gap-5 lg:grid-cols-3">
-              {featuredQuestions.map((question) => (
-                <Link
-                  key={question.title}
-                  to={question.href}
-                  className="group flex min-h-[22rem] flex-col rounded-[2rem] border border-amber-100/80 bg-white/85 p-7 shadow-[0_22px_70px_rgba(92,64,39,0.1)] backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-amber-300 hover:shadow-[0_34px_90px_rgba(92,64,39,0.16)]"
-                >
-                  <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
-                    <IconMark type={question.icon} />
-                  </span>
-                  <span className="mt-8 block font-display text-3xl font-semibold leading-tight text-leather-950">
-                    {question.title}
-                  </span>
-                  <span className="mt-4 block flex-1 text-base leading-7 text-leather-900/66">
-                    {question.description}
-                  </span>
-                  <span className="mt-7 flex items-center justify-between border-t border-amber-100 pt-5">
-                    <span className="text-sm font-bold uppercase tracking-[0.16em] text-amber-700">
-                      Read answer
-                    </span>
-                    <Arrow />
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-5 py-14 sm:px-8 md:py-20">
-          <div className="mx-auto max-w-[1440px] rounded-[2.5rem] border border-white/70 bg-[#fff9ed]/75 p-5 shadow-[0_28px_90px_rgba(92,64,39,0.12)] backdrop-blur sm:p-8 md:p-10">
-            <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
-                  Browse by Topic
-                </p>
-                <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-leather-950 md:text-5xl">
-                  A library built around real questions.
-                </h2>
-              </div>
-              <p className="max-w-xl text-base leading-7 text-leather-900/66 md:text-lg md:leading-8">
-                Move through Catholic teaching by topic, with answers written
-                for ordinary people taking the next step.
-              </p>
-            </div>
-
-            <div className="mt-9 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {TOPICS.map((topic) => (
-                <a
-                  key={topic.title}
-                  href="/questions"
-                  className="group rounded-[1.7rem] border border-amber-100 bg-white/80 p-6 shadow-[0_16px_45px_rgba(92,64,39,0.08)] transition hover:-translate-y-0.5 hover:border-amber-300 hover:bg-white"
-                >
-                  <span className="flex items-start justify-between gap-4">
-                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-leather-950 text-amber-200">
-                      <IconMark type={topic.icon} />
-                    </span>
-                    <Arrow />
-                  </span>
-                  <span className="mt-6 block font-display text-3xl font-semibold text-leather-950">
-                    {topic.title}
-                  </span>
-                  <span className="mt-2 block text-sm font-bold uppercase tracking-[0.16em] text-amber-700">
-                    {topic.count}
-                  </span>
-                  <span className="mt-4 block text-base leading-7 text-leather-900/66">
-                    {topic.description}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-5 py-14 sm:px-8 md:py-20">
-          <div className="mx-auto grid max-w-[1440px] gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
-            <div className="max-w-xl">
-              <PublicGoldRule />
-              <p className="mt-5 text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
-                Popular Questions
-              </p>
-              <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-leather-950 md:text-5xl">
-                Clear answers without the noise.
-              </h2>
-              <p className="mt-5 text-lg leading-8 text-leather-900/66">
-                Common Catholic questions deserve careful answers that are
-                calm, faithful, and easy to return to.
-              </p>
-            </div>
-
-            <div className="grid gap-3 md:grid-cols-2">
-              {POPULAR_QUESTIONS.map((question) => (
-                <a
-                  key={question.title}
-                  href={question.href}
-                  className="group flex min-h-[5.25rem] items-center justify-between gap-5 rounded-[1.35rem] border border-amber-100 bg-white/80 px-5 py-4 text-leather-950 shadow-[0_12px_36px_rgba(92,64,39,0.08)] transition hover:-translate-y-0.5 hover:border-amber-300 hover:bg-white"
-                >
-                  <span className="text-base font-semibold leading-6">{question.title}</span>
-                  <Arrow />
-                </a>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-5 pb-16 pt-8 sm:px-8 md:pb-24 md:pt-12">
-          <div className="mx-auto overflow-hidden rounded-[2.8rem] border border-amber-100/60 bg-[radial-gradient(circle_at_12%_18%,rgba(255,255,255,0.86),transparent_30%),linear-gradient(135deg,#fff8e7,#e8c98f)] shadow-[0_40px_120px_rgba(92,64,39,0.18)]">
-            <div className="grid min-h-[34rem] gap-8 px-6 py-10 sm:px-8 md:p-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:p-16">
-              <div className="max-w-2xl">
-                <PublicGoldRule />
-                <h2 className="mt-6 font-display text-4xl font-semibold leading-tight text-leather-950 md:text-6xl">
-                  Keep learning. Keep walking the journey.
-                </h2>
-                <p className="mt-6 text-lg leading-8 text-leather-900/72 md:text-xl md:leading-9">
-                  Catholic Journey 365 helps you grow through daily Scripture,
-                  prayer, guided formation and simple explanations of the
-                  Catholic faith.
-                </p>
-                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                  <StoreButton label="Download on the App Store" />
-                  <StoreButton label="Get it on Google Play" />
+            <div className="overflow-hidden rounded-[1.7rem] border border-amber-100/80 bg-white/82 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+              {filteredArticles.length > 0 ? (
+                <div className="divide-y divide-amber-100/80">
+                  {filteredArticles.map(({ article, href, icon, topic }) => (
+                    <Link
+                      key={article.slug}
+                      to={href}
+                      className="group flex items-start gap-4 px-4 py-4 transition hover:bg-[#fff8e7] sm:px-5"
+                    >
+                      <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+                        <IconMark type={icon} />
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block font-display text-2xl font-semibold leading-tight text-leather-950">
+                          {article.title}
+                        </span>
+                        <span className="mt-1 block text-base leading-7 text-leather-900/66">
+                          {article.description}
+                        </span>
+                        <span className="mt-2 block text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+                          {topic}
+                        </span>
+                      </span>
+                      <Arrow />
+                    </Link>
+                  ))}
                 </div>
-              </div>
-
-              <div className="relative mx-auto h-[31rem] w-full max-w-[34rem]">
-                <div className="absolute inset-x-6 bottom-2 h-24 rounded-full bg-leather-950/18 blur-3xl" />
-                <PhoneMockup
-                  src="/images/landing/app-today-real-screen.jpeg"
-                  alt="Catholic Journey 365 Today screen"
-                  className="absolute left-[8%] top-6 z-20 w-[13.5rem] -rotate-6 sm:w-[15.5rem]"
-                />
-                <PhoneMockup
-                  src="/images/landing/app-today-real-screen.jpeg"
-                  alt="Catholic Journey 365 app journey screen"
-                  className="absolute right-[8%] top-16 z-10 w-[12.5rem] rotate-6 opacity-95 sm:w-[14.5rem]"
-                />
-              </div>
+              ) : (
+                <div className="px-5 py-10 text-center">
+                  <p className="font-display text-2xl font-semibold text-leather-950">
+                    No published answer matches this filter yet.
+                  </p>
+                  <p className="mx-auto mt-2 max-w-xl text-base leading-7 text-leather-900/64">
+                    Try another topic or search term. New Catholic Questions
+                    articles are being added regularly.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveTopic('All Questions');
+                      setSearchTerm('');
+                    }}
+                    className="mt-5 rounded-full border border-amber-200 bg-white px-5 py-2.5 text-sm font-bold text-leather-900 transition hover:border-amber-400"
+                  >
+                    View all questions
+                  </button>
+                </div>
+              )}
             </div>
+          </section>
+
+          <aside className="hidden lg:block">
+            <div className="sticky top-28 space-y-4">
+              <section className="rounded-[1.5rem] border border-amber-100/80 bg-white/72 p-5 shadow-[0_16px_44px_rgba(92,64,39,0.08)] backdrop-blur">
+                <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
+                  Popular Topics
+                </p>
+                <div className="mt-4 space-y-1">
+                  {TOPIC_FILTERS.filter((topic) => topic !== 'All Questions').map(
+                    (topic) => (
+                      <button
+                        key={topic}
+                        type="button"
+                        onClick={() => setActiveTopic(topic)}
+                        className="group flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left transition hover:bg-[#fff8e7]"
+                      >
+                        <span className="flex min-w-0 items-center gap-3">
+                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-800">
+                            <IconMark type={TOPIC_STATS[topic].icon} className="h-4 w-4" />
+                          </span>
+                          <span className="truncate text-sm font-bold text-leather-900">
+                            {topic}
+                          </span>
+                        </span>
+                        <span className="text-xs font-bold text-leather-900/45">
+                          {TOPIC_STATS[topic].count}
+                        </span>
+                      </button>
+                    )
+                  )}
+                </div>
+              </section>
+
+              <section className="rounded-[1.5rem] border border-amber-100/80 bg-[linear-gradient(145deg,#fff8e7,#ecd39f)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.1)]">
+                <p className="font-display text-2xl font-semibold leading-tight text-leather-950">
+                  Can't find your question?
+                </p>
+                <p className="mt-2 text-sm leading-6 text-leather-900/66">
+                  Search broadly, then choose the closest topic. The library is
+                  built to make faithful answers easier to find.
+                </p>
+              </section>
+            </div>
+          </aside>
+        </div>
+
+        <section className="mx-auto mt-10 max-w-[1440px] pb-8">
+          <div className="rounded-[1.6rem] border border-amber-100/70 bg-white/68 p-5 shadow-[0_14px_40px_rgba(92,64,39,0.08)] backdrop-blur md:flex md:items-center md:justify-between md:gap-6">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
+                Catholic Journey 365
+              </p>
+              <h2 className="mt-2 font-display text-3xl font-semibold text-leather-950">
+                Keep learning after the answer.
+              </h2>
+              <p className="mt-2 max-w-3xl text-base leading-7 text-leather-900/66">
+                Grow through daily Scripture, prayer, guided formation, and
+                simple explanations of the Catholic faith.
+              </p>
+            </div>
+            <a
+              href="/app/login"
+              className="mt-5 inline-flex rounded-full bg-gradient-to-b from-amber-300 to-amber-600 px-7 py-3 text-sm font-bold text-leather-900 shadow-[0_14px_34px_rgba(161,106,28,0.2)] transition active:scale-[0.99] md:mt-0"
+            >
+              Begin Your Journey
+            </a>
           </div>
         </section>
       </main>

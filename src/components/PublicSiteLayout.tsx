@@ -1,10 +1,9 @@
 import { ReactNode } from 'react';
 
 const PUBLIC_NAV_LINKS = [
-  { label: 'The path', href: '/#path' },
+  { label: 'The Path', href: '/#path' },
   { label: 'Features', href: '/#features' },
   { label: 'Questions', href: '/questions' },
-  { label: 'Different', href: '/#different' },
   { label: 'Pricing', href: '/#pricing' },
 ];
 

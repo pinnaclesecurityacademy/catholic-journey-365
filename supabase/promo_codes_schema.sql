@@ -530,19 +530,6 @@ values
     now()
   ),
   (
-    'RCIA15',
-    'discount',
-    null,
-    null,
-    false,
-    null,
-    15.00,
-    'yearly',
-    500,
-    true,
-    now()
-  ),
-  (
     '30DAYSFREE',
     'access',
     'premium',
@@ -567,3 +554,8 @@ do update set
   max_redemptions = excluded.max_redemptions,
   active = excluded.active,
   updated_at = now();
+
+delete from public.promo_codes
+where code = 'RCIA15'
+  and benefit_type = 'discount'
+  and times_redeemed = 0;

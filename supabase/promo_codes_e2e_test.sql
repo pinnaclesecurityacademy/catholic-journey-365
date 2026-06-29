@@ -19,7 +19,7 @@ where id in (
 );
 
 delete from public.promo_codes
-where code = 'LIMIT1E2E';
+where code in ('LIMIT1E2E', 'DISCOUNT15E2E');
 
 create temp table promo_e2e_original_counts as
 select code, times_redeemed
@@ -29,8 +29,7 @@ where code in (
   'REVIEW30',
   '30DAYSFREE',
   'BETA2026',
-  'CLERGYFREE',
-  'RCIA15'
+  'CLERGYFREE'
 );
 
 insert into auth.users (
@@ -158,6 +157,29 @@ insert into public.promo_codes (
   active
 )
 values ('LIMIT1E2E', 'access', 'premium', 1, false, 1, true);
+
+insert into public.promo_codes (
+  code,
+  benefit_type,
+  access_type,
+  duration_days,
+  lifetime_access,
+  discount_percent,
+  discount_plan,
+  max_redemptions,
+  active
+)
+values (
+  'DISCOUNT15E2E',
+  'discount',
+  null,
+  null,
+  false,
+  15.00,
+  'yearly',
+  1,
+  true
+);
 
 insert into promo_e2e_results
 select
@@ -322,23 +344,23 @@ select
 
 insert into promo_e2e_results
 select
-  'Confirm RCIA15 discount placeholder does not grant access',
+  'Confirm discount placeholder support does not grant access',
   coalesce((
     select valid = false and message ilike '%future billing discount%'
-    from public.validate_promo_code('RCIA15')
+    from public.validate_promo_code('DISCOUNT15E2E')
     limit 1
   ), false)
   and exists (
     select 1
     from public.promo_codes
-    where code = 'RCIA15'
+    where code = 'DISCOUNT15E2E'
       and benefit_type = 'discount'
       and discount_percent = 15.00
       and discount_plan = 'yearly'
   ),
   coalesce((
     select message
-    from public.validate_promo_code('RCIA15')
+    from public.validate_promo_code('DISCOUNT15E2E')
     limit 1
   ), 'no validation result');
 
@@ -346,14 +368,13 @@ insert into promo_e2e_results
 select
   'Confirm seeded codes exist',
   (
-    select count(*) = 6
+    select count(*) = 5
     from public.promo_codes
     where code in (
       'FOUNDER365',
       'CLERGYFREE',
       'REVIEW30',
       'BETA2026',
-      'RCIA15',
       '30DAYSFREE'
     )
   ),
@@ -369,7 +390,6 @@ select
       'CLERGYFREE',
       'REVIEW30',
       'BETA2026',
-      'RCIA15',
       '30DAYSFREE'
     )
   );
@@ -388,7 +408,7 @@ where id in (
 );
 
 delete from public.promo_codes
-where code = 'LIMIT1E2E';
+where code in ('LIMIT1E2E', 'DISCOUNT15E2E');
 
 update public.promo_codes p
 set times_redeemed = c.times_redeemed,

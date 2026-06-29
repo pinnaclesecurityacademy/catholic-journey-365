@@ -8,6 +8,7 @@ import {
   getBook,
   getCategories,
   getCategoryBooks,
+  getNextChapterReference,
   loadChapter,
   BibleChapter,
   Testament,
@@ -155,7 +156,7 @@ export default function Bible() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [view]);
+  }, [chapterNumber, view]);
 
   const book = getBook(bookId);
 
@@ -189,6 +190,17 @@ export default function Bible() {
 
   function openChapter(n: number) {
     setChapterNumber(n);
+    setView('reader');
+  }
+
+  const nextChapter = book
+    ? getNextChapterReference(book.id, chapterNumber)
+    : null;
+
+  function openNextChapter() {
+    if (!nextChapter) return;
+    setBookId(nextChapter.bookId);
+    setChapterNumber(nextChapter.chapter);
     setView('reader');
   }
 
@@ -322,7 +334,20 @@ export default function Bible() {
             <p className="text-leather-900 leading-relaxed italic">Loading...</p>
           </SacredCard>
         ) : (
-          <BibleReader book={book} chapter={chapter} />
+          <>
+            <BibleReader book={book} chapter={chapter} />
+            {nextChapter && (
+              <div className="mt-4">
+                <button
+                  type="button"
+                  onClick={openNextChapter}
+                  className="w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99]"
+                >
+                  Next &rarr;
+                </button>
+              </div>
+            )}
+          </>
         ))}
 
       {infoIntro && (

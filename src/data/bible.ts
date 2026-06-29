@@ -35,6 +35,11 @@ export interface BibleBook {
   chapterCount: number;
 }
 
+export interface BibleChapterReference {
+  bookId: string;
+  chapter: number;
+}
+
 // Full Catholic canon (73 books). Chapter counts follow the WEBC numbering
 // (e.g. Baruch 6 includes the Letter of Jeremiah; Daniel 14 includes the
 // deuterocanonical additions; Esther is the Greek Esther, 10 chapters).
@@ -400,6 +405,32 @@ export function getBooks(testament?: 'old' | 'new'): BibleBook[] {
 /** Returns a single book by id, or undefined if not found. */
 export function getBook(bookId: string): BibleBook | undefined {
   return BIBLE_BOOKS.find((b) => b.id === bookId);
+}
+
+/** Returns the next chapter in canonical order, or null at the end. */
+export function getNextChapterReference(
+  bookId: string,
+  chapter: number,
+): BibleChapterReference | null {
+  const bookIndex = BIBLE_BOOKS.findIndex((b) => b.id === bookId);
+  if (bookIndex === -1) return null;
+
+  const book = BIBLE_BOOKS[bookIndex];
+  const currentChapter = Math.floor(chapter);
+  if (
+    !Number.isFinite(currentChapter) ||
+    currentChapter < 1 ||
+    currentChapter > book.chapterCount
+  ) {
+    return null;
+  }
+
+  if (currentChapter < book.chapterCount) {
+    return { bookId: book.id, chapter: currentChapter + 1 };
+  }
+
+  const nextBook = BIBLE_BOOKS[bookIndex + 1];
+  return nextBook ? { bookId: nextBook.id, chapter: 1 } : null;
 }
 
 // In-memory cache of chapters already fetched, keyed by `${bookId}:${chapter}`.

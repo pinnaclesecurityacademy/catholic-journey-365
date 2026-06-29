@@ -1,7 +1,12 @@
 import { supabase } from './supabase';
 
 export type SubscriptionPlan = 'monthly' | 'yearly';
-export type PremiumAccessSource = 'trial' | 'subscription' | 'included';
+export type PromoAccessType = 'founder' | 'clergy' | 'review' | 'premium';
+export type PremiumAccessSource =
+  | 'trial'
+  | 'subscription'
+  | 'included'
+  | 'promo';
 
 export const PREMIUM_TRIAL_DAYS = 14;
 
@@ -23,6 +28,31 @@ export interface SubscriptionStatus {
   stripe_subscription_id: string | null;
   created_at: string | null;
   updated_at: string | null;
+}
+
+export interface PromoAccessRecord {
+  access_type: PromoAccessType;
+  redeemed_code: string;
+  lifetime_access: boolean;
+  access_expires_at: string | null;
+  redeemed_at: string;
+}
+
+interface PromoCodeValidationResponse {
+  valid: boolean;
+  message: string;
+  access_type: PromoAccessType | null;
+  duration_days: number | null;
+  lifetime_access: boolean;
+  expires_at: string | null;
+}
+
+interface PromoCodeRedemptionResponse {
+  success: boolean;
+  message: string;
+  access_type: PromoAccessType | null;
+  access_expires_at: string | null;
+  lifetime_access: boolean;
 }
 
 export type AccountStatus = 'active' | 'deactivated';
@@ -49,6 +79,22 @@ export function statusLabel(status: string | null | undefined) {
   if (status === 'incomplete') return 'Checkout not completed';
   if (status === 'unpaid') return 'Unpaid';
   return status.replace(/_/g, ' ');
+}
+
+export function normalizePromoCode(code: string) {
+  return code.trim().replace(/\s+/g, '').toUpperCase();
+}
+
+export function promoAccessTypeLabel(type: PromoAccessType | null | undefined) {
+  if (type === 'founder') return 'Founder';
+  if (type === 'clergy') return 'Clergy';
+  if (type === 'review') return 'Review';
+  if (type === 'premium') return 'Premium';
+  return 'Promotional';
+}
+
+function firstRpcRow<T>(data: T | T[] | null): T | null {
+  return Array.isArray(data) ? data[0] ?? null : data;
 }
 
 export function getPremiumTrialStatus(
@@ -96,7 +142,7 @@ export function getPremiumTrialStatus(
 export function getSubscriptionAccessSource(
   subscription: SubscriptionStatus | null,
   currentUserId: string | null | undefined
-): Exclude<PremiumAccessSource, 'trial'> | null {
+): Exclude<PremiumAccessSource, 'trial' | 'promo'> | null {
   if (!subscription) return null;
   if (!currentUserId || subscription.user_id !== currentUserId) return null;
   if (subscription.status === 'free') return 'included';
@@ -104,6 +150,26 @@ export function getSubscriptionAccessSource(
     return 'subscription';
   }
   return null;
+}
+
+export function isPromoAccessActive(
+  promoAccess: PromoAccessRecord | null | undefined,
+  now = new Date()
+) {
+  if (!promoAccess) return false;
+  if (promoAccess.lifetime_access) return true;
+  if (!promoAccess.access_expires_at) return false;
+  return new Date(promoAccess.access_expires_at).getTime() > now.getTime();
+}
+
+export function getActivePromoAccess(
+  redemptions: PromoAccessRecord[] | null | undefined,
+  now = new Date()
+) {
+  return (
+    redemptions?.find((redemption) => isPromoAccessActive(redemption, now)) ??
+    null
+  );
 }
 
 export function hasSubscriptionAccess(
@@ -139,6 +205,71 @@ export function hasPremiumAccess(
     getPremiumAccessSource(subscription, currentUserId, userCreatedAt, now) !==
     null
   );
+}
+
+export async function validatePromoCode(code: string) {
+  const normalized = normalizePromoCode(code);
+  if (!normalized) return {};
+
+  const { data, error } = await supabase.rpc('validate_promo_code', {
+    p_code: normalized,
+  });
+
+  if (error) {
+    return {
+      error:
+        error.message ||
+        'Promo code could not be checked. Please try again.',
+    };
+  }
+
+  const result = firstRpcRow(
+    data as PromoCodeValidationResponse[] | PromoCodeValidationResponse | null
+  );
+
+  if (!result?.valid) {
+    return { error: result?.message || 'That promo code is not valid.' };
+  }
+
+  return { code: normalized, promo: result };
+}
+
+export async function redeemPromoCode(code: string) {
+  const normalized = normalizePromoCode(code);
+  if (!normalized) return { error: 'Enter a promo code.' };
+
+  const { data, error } = await supabase.rpc('redeem_promo_code', {
+    p_code: normalized,
+  });
+
+  if (error) {
+    return {
+      error:
+        error.message ||
+        'Promo code could not be redeemed. Please try again.',
+    };
+  }
+
+  const result = firstRpcRow(
+    data as PromoCodeRedemptionResponse[] | PromoCodeRedemptionResponse | null
+  );
+
+  if (!result?.success) {
+    return { error: result?.message || 'That promo code is not valid.' };
+  }
+
+  return {
+    message: result.message,
+    promoAccess: result.access_type
+      ? {
+          access_type: result.access_type,
+          redeemed_code: normalized,
+          lifetime_access: result.lifetime_access,
+          access_expires_at: result.access_expires_at,
+          redeemed_at: new Date().toISOString(),
+        }
+      : null,
+  };
 }
 
 export async function startCheckout(plan: SubscriptionPlan) {

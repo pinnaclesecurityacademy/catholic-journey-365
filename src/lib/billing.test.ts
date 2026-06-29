@@ -1,8 +1,11 @@
 import {
+  getActivePromoAccess,
   getPremiumAccessSource,
   getPremiumTrialStatus,
+  isPromoAccessActive,
+  normalizePromoCode,
 } from './billing';
-import type { SubscriptionStatus } from './billing';
+import type { PromoAccessRecord, SubscriptionStatus } from './billing';
 
 function subscription(status: string, userId = 'user-1'): SubscriptionStatus {
   return {
@@ -15,6 +18,19 @@ function subscription(status: string, userId = 'user-1'): SubscriptionStatus {
     stripe_subscription_id: null,
     created_at: null,
     updated_at: null,
+  };
+}
+
+function promoAccess(
+  accessExpiresAt: string | null,
+  lifetimeAccess = false
+): PromoAccessRecord {
+  return {
+    access_type: 'premium',
+    redeemed_code: 'TEST-CODE',
+    lifetime_access: lifetimeAccess,
+    access_expires_at: accessExpiresAt,
+    redeemed_at: '2026-06-01T00:00:00.000Z',
   };
 }
 
@@ -77,5 +93,30 @@ describe('premium access', () => {
         new Date('2026-06-30T00:00:00.000Z')
       )
     ).toBeNull();
+  });
+
+  it('normalizes promo codes before validation or redemption', () => {
+    expect(normalizePromoCode('  cj365 founder  ')).toBe('CJ365FOUNDER');
+  });
+
+  it('treats lifetime promo access as active', () => {
+    expect(
+      isPromoAccessActive(
+        promoAccess(null, true),
+        new Date('2026-06-30T00:00:00.000Z')
+      )
+    ).toBe(true);
+  });
+
+  it('ignores expired promo redemptions', () => {
+    expect(
+      getActivePromoAccess(
+        [
+          promoAccess('2026-06-10T00:00:00.000Z'),
+          promoAccess('2026-07-10T00:00:00.000Z'),
+        ],
+        new Date('2026-06-30T00:00:00.000Z')
+      )?.access_expires_at
+    ).toBe('2026-07-10T00:00:00.000Z');
   });
 });

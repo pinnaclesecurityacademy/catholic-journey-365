@@ -9,6 +9,7 @@ export default function AuthScreen({ initialMode = 'signup' }: { initialMode?: M
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [promoCode, setPromoCode] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -38,7 +39,7 @@ export default function AuthScreen({ initialMode = 'signup' }: { initialMode?: M
     setBusy(true);
     try {
       if (mode === 'signup') {
-        const res = await signUp(name, email, password);
+        const res = await signUp(name, email, password, promoCode);
         if (res.error) setError(res.error);
         else setConfirmSent(true);
       } else if (mode === 'forgot') {
@@ -152,6 +153,21 @@ export default function AuthScreen({ initialMode = 'signup' }: { initialMode?: M
                   {showPassword ? 'Hide' : 'Show'}
                 </button>
               </span>
+            </label>
+          )}
+
+          {mode === 'signup' && (
+            <label className="mt-3 block text-sm font-semibold text-leather-900">
+              Promo Code <span className="font-normal text-stone-500">(optional)</span>
+              <input
+                type="text"
+                value={promoCode}
+                onChange={(e) => setPromoCode(e.target.value)}
+                onKeyDown={(e) => e.key === 'Enter' && submit()}
+                placeholder="Enter code"
+                autoCapitalize="characters"
+                className={inputClass}
+              />
             </label>
           )}
 

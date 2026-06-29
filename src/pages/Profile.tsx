@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAccount } from '../lib/account';
-import { planLabel, statusLabel } from '../lib/billing';
+import { planLabel, promoAccessTypeLabel, statusLabel } from '../lib/billing';
 import { usePWAUpdate } from '../lib/pwaUpdates';
 import { InstallApp } from '../components/InstallApp';
 
@@ -13,6 +13,7 @@ export default function Profile() {
     inviteCode,
     members,
     subscription,
+    promoAccess,
     premiumAccessSource,
     trialAccess,
     updateDisplayName,
@@ -20,6 +21,7 @@ export default function Profile() {
     joinJourney,
     removeMember,
     manageSubscription,
+    redeemPromoCode,
     signOut,
   } = useAccount();
   const { status, updateReady, checkForUpdates, updateNow } = usePWAUpdate();
@@ -38,6 +40,10 @@ export default function Profile() {
   const [joinCode, setJoinCode] = useState('');
   const [joining, setJoining] = useState(false);
   const [joinError, setJoinError] = useState<string | null>(null);
+  const [promoCode, setPromoCode] = useState('');
+  const [promoLoading, setPromoLoading] = useState(false);
+  const [promoMessage, setPromoMessage] = useState<string | null>(null);
+  const [promoError, setPromoError] = useState<string | null>(null);
 
   const [aboutOpen, setAboutOpen] = useState(false);
   const [billingMessage, setBillingMessage] = useState<string | null>(null);
@@ -62,15 +68,23 @@ export default function Profile() {
   const trialEndDate = trialAccess.trialEnd
     ? new Date(trialAccess.trialEnd).toLocaleDateString()
     : null;
+  const promoLabel = promoAccessTypeLabel(promoAccess?.access_type);
+  const promoEndDate = promoAccess?.access_expires_at
+    ? new Date(promoAccess.access_expires_at).toLocaleDateString()
+    : null;
   const accessPlanLabel = subscription?.plan
     ? planLabel(subscription.plan)
+    : premiumAccessSource === 'promo'
+    ? `${promoLabel} access`
     : premiumAccessSource === 'trial'
     ? 'Premium trial'
     : premiumAccessSource === 'included'
     ? 'Premium access'
     : 'Bible in a Year';
   const accessStatusLabel =
-    premiumAccessSource === 'trial'
+    premiumAccessSource === 'promo'
+      ? `${promoLabel} promo active`
+      : premiumAccessSource === 'trial'
       ? `Premium trial active (${trialAccess.daysRemaining} ${
           trialAccess.daysRemaining === 1 ? 'day' : 'days'
         } left)`
@@ -161,6 +175,24 @@ export default function Profile() {
       if (result.error) setBillingMessage(result.error);
     } finally {
       setBillingLoading(false);
+    }
+  };
+
+  const redeemProfilePromoCode = async () => {
+    if (!promoCode.trim()) return;
+    setPromoError(null);
+    setPromoMessage(null);
+    setPromoLoading(true);
+    try {
+      const result = await redeemPromoCode(promoCode);
+      if (result.error) {
+        setPromoError(result.error);
+      } else {
+        setPromoCode('');
+        setPromoMessage(result.message || 'Promo code redeemed.');
+      }
+    } finally {
+      setPromoLoading(false);
     }
   };
 
@@ -260,6 +292,15 @@ export default function Profile() {
             {new Date(subscription.trial_ends_at).toLocaleDateString()}.
           </p>
         )}
+        {premiumAccessSource === 'promo' && promoAccess && (
+          <p className="mt-3 text-sm text-stone-500">
+            {promoAccess.lifetime_access
+              ? `${promoLabel} promo grants lifetime access.`
+              : promoEndDate
+              ? `${promoLabel} promo access ends ${promoEndDate}.`
+              : `${promoLabel} promo access is active.`}
+          </p>
+        )}
         {subscription?.current_period_end && subscription.status !== 'trialing' && (
           <p className="mt-3 text-sm text-stone-500">
             Current period ends{' '}
@@ -270,6 +311,43 @@ export default function Profile() {
         {billingMessage && (
           <p className="mt-3 rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-sm text-stone-600">
             {billingMessage}
+          </p>
+        )}
+      </section>
+
+      <p className={sectionTitle}>Redeem Promo Code</p>
+      <section className={`${cardClass} mb-6`}>
+        <label className="block text-sm font-semibold text-leather-900">
+          Promo Code
+          <input
+            type="text"
+            value={promoCode}
+            onChange={(e) => {
+              setPromoCode(e.target.value);
+              setPromoError(null);
+              setPromoMessage(null);
+            }}
+            onKeyDown={(e) => e.key === 'Enter' && redeemProfilePromoCode()}
+            placeholder="Enter code"
+            autoCapitalize="characters"
+            className={`${inputClass} mt-2`}
+          />
+        </label>
+        <button
+          onClick={redeemProfilePromoCode}
+          disabled={promoLoading || !promoCode.trim()}
+          className={`${primaryButtonClass} mt-3`}
+        >
+          {promoLoading ? 'Redeeming...' : 'Redeem code'}
+        </button>
+        {promoMessage && (
+          <p className="mt-3 rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-sm text-sage-500">
+            {promoMessage}
+          </p>
+        )}
+        {promoError && (
+          <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            {promoError}
           </p>
         )}
       </section>

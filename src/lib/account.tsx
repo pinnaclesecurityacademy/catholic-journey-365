@@ -11,14 +11,20 @@ import type { User } from '@supabase/supabase-js';
 import { supabase } from './supabase';
 import {
   AccountStatus,
+  PromoAccessRecord,
   PremiumAccessSource,
   PremiumTrialStatus,
   SubscriptionPlan,
   SubscriptionStatus,
+  getActivePromoAccess,
   getPremiumAccessSource,
   getPremiumTrialStatus,
+  getSubscriptionAccessSource,
+  normalizePromoCode,
   openCustomerPortal,
+  redeemPromoCode as redeemPromoCodeRequest,
   startCheckout,
+  validatePromoCode,
 } from './billing';
 
 /** A journey member as shown in the UI. completion_id is their progress namespace. */
@@ -44,6 +50,7 @@ interface AccountValue {
   profile: Profile | null;
   accountStatus: AccountStatus;
   subscription: SubscriptionStatus | null;
+  promoAccess: PromoAccessRecord | null;
   hasBillingAccess: boolean;
   hasPremiumAccess: boolean;
   premiumAccessSource: PremiumAccessSource | null;
@@ -57,7 +64,8 @@ interface AccountValue {
   signUp: (
     name: string,
     email: string,
-    password: string
+    password: string,
+    promoCode?: string
   ) => Promise<{ error?: string }>;
   signIn: (email: string, password: string) => Promise<{ error?: string }>;
   resetPassword: (email: string) => Promise<{ error?: string }>;
@@ -65,6 +73,9 @@ interface AccountValue {
   signOut: () => Promise<void>;
   startSubscription: (plan: SubscriptionPlan) => Promise<{ error?: string }>;
   manageSubscription: () => Promise<{ error?: string }>;
+  redeemPromoCode: (
+    code: string
+  ) => Promise<{ error?: string; message?: string }>;
   deactivateAccount: () => Promise<{ error?: string }>;
   claim: (namespace: string) => Promise<void>;
   updateDisplayName: (name: string) => Promise<void>;
@@ -116,6 +127,9 @@ export function AccountProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [accountStatus, setAccountStatus] = useState<AccountStatus>('active');
   const [subscription, setSubscription] = useState<SubscriptionStatus | null>(
+    null
+  );
+  const [promoAccess, setPromoAccess] = useState<PromoAccessRecord | null>(
     null
   );
   const [journeyId, setJourneyId] = useState<string | null>(null);
@@ -191,6 +205,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         setProfile(null);
         setAccountStatus('active');
         setSubscription(null);
+        setPromoAccess(null);
         clearJourney();
         setAccountLoading(false);
         setBillingLoading(false);
@@ -202,6 +217,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
       setProfile(null);
       setAccountStatus('active');
       setSubscription(null);
+      setPromoAccess(null);
       clearJourney();
 
       try {
@@ -250,6 +266,26 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         if (!shouldApply()) return;
         setSubscription((access as SubscriptionStatus) ?? null);
 
+        const { data: promoRedemptions, error: promoError } = await supabase
+          .from('promo_redemptions')
+          .select(
+            'access_type, redeemed_code, lifetime_access, access_expires_at, redeemed_at'
+          )
+          .eq('user_id', u.id)
+          .order('redeemed_at', { ascending: false });
+        if (!shouldApply()) return;
+        if (promoError) {
+          console.warn('Promo access could not be loaded', {
+            user_id: u.id,
+            error: promoError.message,
+          });
+          setPromoAccess(null);
+        } else {
+          setPromoAccess(
+            getActivePromoAccess(promoRedemptions as PromoAccessRecord[])
+          );
+        }
+
         if (nextProfile?.completion_id) {
           await loadJourney(u.id, shouldApply);
         }
@@ -257,6 +293,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         if (shouldApply()) {
           setProfile(null);
           setSubscription(null);
+          setPromoAccess(null);
           clearJourney();
         }
       } finally {
@@ -324,12 +361,31 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     };
   }, [loadAll]);
 
-  const signUp = async (name: string, email: string, password: string) => {
+  const signUp = async (
+    name: string,
+    email: string,
+    password: string,
+    promoCode?: string
+  ) => {
     const emailRedirectTo = `${PRODUCTION_URL}/app/login`;
+    const normalizedPromoCode = normalizePromoCode(promoCode ?? '');
+    if (normalizedPromoCode) {
+      const validation = await validatePromoCode(normalizedPromoCode);
+      if (validation.error) return { error: validation.error };
+    }
+
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
-      options: { emailRedirectTo },
+      options: {
+        emailRedirectTo,
+        data: {
+          name: name.trim(),
+          ...(normalizedPromoCode
+            ? { signup_promo_code: normalizedPromoCode }
+            : {}),
+        },
+      },
     });
     if (error) return { error: error.message };
     const uid = data.user?.id;
@@ -367,6 +423,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     setProfile(null);
     setAccountStatus('active');
     setSubscription(null);
+    setPromoAccess(null);
     setJourneyId(null);
     setMembers([]);
   };
@@ -377,6 +434,14 @@ export function AccountProvider({ children }: { children: ReactNode }) {
 
   const manageSubscription = async () => {
     return openCustomerPortal();
+  };
+
+  const redeemPromoCode = async (code: string) => {
+    if (!user) return { error: 'Not signed in' };
+    const result = await redeemPromoCodeRequest(code);
+    if (result.error) return { error: result.error };
+    await loadAll(user);
+    return { message: result.message || 'Promo code redeemed.' };
   };
 
   const deactivateAccount = async () => {
@@ -508,12 +573,20 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     await loadJourney(user.id);
   };
 
+  const subscriptionAccessSource = getSubscriptionAccessSource(
+    subscription,
+    user?.id
+  );
   const trialAccess = getPremiumTrialStatus(user?.created_at);
-  const premiumAccessSource = getPremiumAccessSource(
+  const trialAccessSource = getPremiumAccessSource(
     subscription,
     user?.id,
     user?.created_at
   );
+  const premiumAccessSource =
+    subscriptionAccessSource ??
+    (promoAccess ? 'promo' : null) ??
+    trialAccessSource;
   const hasPremiumAccess = premiumAccessSource !== null;
   const hasBillingAccess = hasPremiumAccess;
 
@@ -527,6 +600,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         profile,
         accountStatus,
         subscription,
+        promoAccess,
         hasBillingAccess,
         hasPremiumAccess,
         premiumAccessSource,
@@ -544,6 +618,7 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         signOut,
         startSubscription,
         manageSubscription,
+        redeemPromoCode,
         deactivateAccount,
         claim,
         updateDisplayName,

@@ -245,8 +245,6 @@ function PrivateRoutes() {
         <Route path="/rosary" element={premium(<Rosary />)} />
         <Route path="/rosary/:mystery" element={premium(<Rosary />)} />
         <Route path="/mass" element={premium(<OrderOfMass />)} />
-        <Route path="/questions" element={<Questions />} />
-        <Route path="/questions/:slug" element={<QuestionArticle />} />
         <Route path="/bible" element={<Bible />} />
         <Route path="/bible/reading/:day" element={<ScriptureReading />} />
         <Route path="/profile" element={<Profile />} />

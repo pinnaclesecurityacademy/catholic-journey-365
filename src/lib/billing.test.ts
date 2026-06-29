@@ -96,7 +96,7 @@ describe('premium access', () => {
   });
 
   it('normalizes promo codes before validation or redemption', () => {
-    expect(normalizePromoCode('  cj365 founder  ')).toBe('CJ365FOUNDER');
+    expect(normalizePromoCode('  founder 365  ')).toBe('FOUNDER365');
   });
 
   it('treats lifetime promo access as active', () => {

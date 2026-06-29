@@ -3,6 +3,16 @@ import { Link } from 'react-router-dom';
 import { useAccount } from '../lib/account';
 import { SubscriptionPlan } from '../lib/billing';
 
+const PREMIUM_FEATURES = [
+  'Daily Formation',
+  'Dive Deeper reflections',
+  'Saints',
+  'Rosary',
+  'Mass Guide',
+  'Prayer Library',
+  'Regular formation content updates',
+];
+
 export default function Paywall() {
   const { startSubscription, signOut } = useAccount();
   const [loadingPlan, setLoadingPlan] = useState<SubscriptionPlan | null>(null);
@@ -23,20 +33,26 @@ export default function Paywall() {
     <main className="min-h-screen bg-parchment-100 px-5 py-8">
       <div className="mx-auto max-w-md">
         <div className="rounded-[1.75rem] border border-parchment-200 bg-white/90 p-6 shadow-[0_24px_56px_rgba(74,55,40,0.12)]">
-          <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-gold/50 bg-parchment-50 text-2xl font-semibold text-gold">
-            +
-          </div>
-
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
-            Premium access
-          </p>
           <h1 className="font-display text-3xl font-bold leading-tight text-leather-900">
-            Continue the full journey
+            Dive Deeper is a Premium feature.
           </h1>
           <p className="mt-4 text-sm leading-relaxed text-stone-600">
-            Bible in a Year remains free forever. Premium includes Daily
-            Formation, Saints, Dive Deeper, prayer features, the Rosary, and
-            the Mass guide after your 14-day account trial.
+            Continue your journey with full access to:
+          </p>
+          <ul className="mt-4 space-y-2 text-sm font-medium text-leather-800">
+            {PREMIUM_FEATURES.map((feature) => (
+              <li key={feature} className="flex gap-3">
+                <span
+                  className="mt-[0.45rem] h-1.5 w-1.5 flex-none rounded-full bg-gold"
+                  aria-hidden="true"
+                />
+                <span>{feature}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 text-sm leading-relaxed text-stone-600">
+            For just 20 cents a day, continue your journey closer to Jesus
+            Christ.
           </p>
 
           <div className="mt-6 space-y-3">
@@ -47,18 +63,16 @@ export default function Paywall() {
                 </h2>
                 <p className="font-semibold text-leather-700">$5.99/month</p>
               </div>
-              <p className="mt-1 text-sm text-stone-500">
-                Monthly access to Premium features. Cancel anytime.
-              </p>
               <button
                 type="button"
                 onClick={() => startPlan('monthly')}
                 disabled={loadingPlan !== null}
+                aria-label="Continue with Premium monthly"
                 className="mt-4 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99] disabled:opacity-50"
               >
                 {loadingPlan === 'monthly'
                   ? 'Opening checkout...'
-                  : 'Subscribe monthly'}
+                  : 'Continue with Premium'}
               </button>
             </div>
 
@@ -69,18 +83,16 @@ export default function Paywall() {
                 </h2>
                 <p className="font-semibold text-leather-700">$49.99/year</p>
               </div>
-              <p className="mt-1 text-sm text-stone-500">
-                Best value for a full year of Premium features.
-              </p>
               <button
                 type="button"
                 onClick={() => startPlan('yearly')}
                 disabled={loadingPlan !== null}
+                aria-label="Continue with Premium yearly"
                 className="mt-4 w-full rounded-xl bg-leather-600 py-3 font-semibold text-white transition active:scale-[0.99] disabled:opacity-50"
               >
                 {loadingPlan === 'yearly'
                   ? 'Opening checkout...'
-                  : 'Subscribe yearly'}
+                  : 'Continue with Premium'}
               </button>
             </div>
           </div>

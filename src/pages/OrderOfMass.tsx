@@ -387,13 +387,6 @@ export default function OrderOfMass() {
         })}
       </div>
 
-      <button
-        className={secondaryBtn + ' mb-3'}
-        onClick={() => setView({ kind: 'menu' })}
-      >
-        ← Back to Mass Parts
-      </button>
-
       <div className="flex gap-3 mb-6">
         <button
           className={secondaryBtn}

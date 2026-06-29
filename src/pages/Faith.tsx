@@ -92,9 +92,7 @@ function FaithHeroCard({ card }: { card: FaithCard }) {
       <div className="absolute inset-0 shadow-[inset_0_0_110px_rgba(17,12,8,0.95)]" />
       <div className="relative flex min-h-[286px] flex-col justify-between p-5 sm:min-h-[300px]">
         <div className="flex items-start justify-between gap-4">
-          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-gold/45 bg-parchment-50/10 text-lg font-semibold text-gold shadow-[0_8px_18px_rgba(0,0,0,0.18)] backdrop-blur-sm">
-            +
-          </div>
+          <span className="h-9 w-9" aria-hidden="true" />
           {card.comingSoon && (
             <span className="rounded-full border border-parchment-100/20 bg-parchment-50/10 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-parchment-100/80 backdrop-blur-sm">
               Coming Soon

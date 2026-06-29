@@ -13,6 +13,7 @@ import AuthScreen from './components/AuthScreen';
 import JourneySetup from './components/JourneySetup';
 import { AccountProvider, useAccount } from './lib/account';
 import { PWAUpdateProvider, usePWAUpdate } from './lib/pwaUpdates';
+import { useStandalonePWA } from './lib/pwaDisplayMode';
 import { supabase } from './lib/supabase';
 import { readResumePath, writeResumePath } from './lib/resume';
 
@@ -410,8 +411,9 @@ function PrivateApp() {
 
 function PWAUpdateBanner() {
   const { updateReady, updateNow } = usePWAUpdate();
+  const standalone = useStandalonePWA();
 
-  if (!updateReady) {
+  if (!updateReady || !standalone) {
     return null;
   }
 

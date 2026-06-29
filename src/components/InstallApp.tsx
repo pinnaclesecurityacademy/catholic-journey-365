@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { isStandalonePWA } from '../lib/pwaDisplayMode';
 
 // Self-contained "Install app" prompt for the Profile page.
 // - Android/Chrome: uses the beforeinstallprompt event for native install.
@@ -10,15 +11,6 @@ type BeforeInstallPromptEvent = Event & {
   userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
 };
 
-function isStandalone() {
-  if (typeof window === 'undefined') return false;
-  return (
-    window.matchMedia?.('(display-mode: standalone)').matches ||
-    // iOS Safari
-    (window.navigator as unknown as { standalone?: boolean }).standalone === true
-  );
-}
-
 function isIos() {
   if (typeof navigator === 'undefined') return false;
   return /iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -27,7 +19,7 @@ function isIos() {
 export function InstallApp() {
   const [deferredPrompt, setDeferredPrompt] =
     useState<BeforeInstallPromptEvent | null>(null);
-  const [installed, setInstalled] = useState(isStandalone());
+  const [installed, setInstalled] = useState(isStandalonePWA());
   const [showIosHint, setShowIosHint] = useState(false);
 
   useEffect(() => {

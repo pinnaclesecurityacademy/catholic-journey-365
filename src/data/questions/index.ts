@@ -1,4 +1,5 @@
 import { howDoIBecomeCatholic } from './howDoIBecomeCatholic';
+import { whatIsTheTrinity } from './whatIsTheTrinity';
 import { whatIsTheChurch } from './whatIsTheChurch';
 import { whoIsGod } from './whoIsGod';
 import { whoIsJesusChrist } from './whoIsJesusChrist';
@@ -17,6 +18,7 @@ export const questionArticles: QuestionArticle[] = [
   whoIsGod,
   whoIsJesusChrist,
   whoIsTheHolySpirit,
+  whatIsTheTrinity,
   whyBecomeCatholic,
   whatIsTheChurch,
   howDoIBecomeCatholic,

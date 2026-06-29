@@ -45,10 +45,10 @@ const FEATURED_QUESTIONS: FeaturedQuestion[] = [
   },
   {
     icon: 'book',
-    title: 'What is the Catholic Church?',
+    title: 'What Is the Church?',
     description:
       'Explore the Church as the family Christ founded to teach, sanctify, and guide.',
-    href: '/questions',
+    href: '/questions/what-is-the-church',
   },
 ];
 

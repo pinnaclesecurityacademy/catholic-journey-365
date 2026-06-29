@@ -1,4 +1,5 @@
 import { howDoIBecomeCatholic } from './howDoIBecomeCatholic';
+import { whatIsTheChurch } from './whatIsTheChurch';
 import { whyBecomeCatholic } from './whyBecomeCatholic';
 import type { QuestionArticle } from './types';
 
@@ -6,6 +7,7 @@ export type { QuestionArticle, QuestionArticleSection, RelatedQuestion } from '.
 
 export const questionArticles: QuestionArticle[] = [
   whyBecomeCatholic,
+  whatIsTheChurch,
   howDoIBecomeCatholic,
 ].filter((article) => article.published);
 

@@ -89,6 +89,27 @@ function getLaunchResumePath(path: string) {
   return savedPath && savedPath !== '/' ? savedPath : null;
 }
 
+function ResumeLoadingScreen() {
+  return (
+    <main
+      className="flex min-h-screen items-center justify-center bg-white px-6"
+      role="status"
+      aria-label="Loading"
+    >
+      <div className="flex flex-col items-center">
+        <img
+          src="/logo192.png"
+          alt=""
+          width="72"
+          height="72"
+          className="h-16 w-16 drop-shadow-[0_10px_24px_rgba(28,25,23,0.08)]"
+        />
+        <div className="mt-5 h-5 w-5 animate-spin rounded-full border-2 border-parchment-200 border-t-leather-500" />
+      </div>
+    </main>
+  );
+}
+
 function AppRouteLoading() {
   return <div className="min-h-screen bg-parchment-100" aria-hidden="true" />;
 }
@@ -171,10 +192,10 @@ function ResumeRedirectFrame({
   onNavigated: () => void;
 }) {
   return (
-    <AppFrame>
+    <BrowserRouter basename="/app">
       <ResumeLaunchRedirect to={to} onNavigated={onNavigated} />
-      <AppRouteLoading />
-    </AppFrame>
+      <ResumeLoadingScreen />
+    </BrowserRouter>
   );
 }
 
@@ -188,13 +209,7 @@ function LoadingAppFrame() {
 
   if (timedOut) return <AuthRecoveryScreen />;
 
-  // Once Supabase has restored a user, keep secondary account loading quiet so
-  // the launch flow can stay on the restored private route.
-  return (
-    <AppFrame>
-      <AppRouteLoading />
-    </AppFrame>
-  );
+  return <ResumeLoadingScreen />;
 }
 
 function PremiumRoute({ children }: { children: ReactNode }) {
@@ -415,11 +430,9 @@ function PWAUpdateBanner() {
   );
 }
 
-// Every startup loading state renders the one premium splash so the launch
-// experience never flickers between different screens. Kept as a named wrapper
-// because several auth/redirect gates reference it.
+// Kept as a named wrapper because several auth and redirect gates reference it.
 function AuthGateLoading() {
-  return <Splash />;
+  return <ResumeLoadingScreen />;
 }
 
 function AuthRecoveryScreen() {

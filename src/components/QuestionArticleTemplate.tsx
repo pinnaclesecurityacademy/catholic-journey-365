@@ -5,7 +5,7 @@ import {
   PublicGoldRule,
   PublicSiteLayout,
 } from './PublicSiteLayout';
-import type { QuestionArticle } from '../data/questions';
+import { getQuestionArticle, type QuestionArticle, type RelatedQuestion } from '../data/questions';
 
 function AppPhoneMockup() {
   return (
@@ -55,8 +55,13 @@ function AppPromotion() {
 }
 
 function ContinueLearning({ article }: { article: QuestionArticle }) {
+  const relatedQuestions = article.relatedQuestions.map((question) => ({
+    question,
+    publishedArticle: question.slug ? getQuestionArticle(question.slug) : undefined,
+  }));
+
   return (
-    <section className="mt-12 rounded-[2rem] border border-amber-100/70 bg-white/62 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur sm:p-8">
+    <section className="mt-12 rounded-[2rem] border border-amber-100/70 bg-white/62 p-6 shadow-[0_18px_48px_rgba(92,64,39,0.09)] backdrop-blur sm:p-8 lg:relative lg:left-1/2 lg:w-[min(72rem,calc(100vw-4rem))] lg:-translate-x-1/2">
       <PublicGoldRule />
       <p className="mt-5 text-xs font-bold uppercase tracking-[0.24em] text-amber-700">
         Continue Learning
@@ -64,23 +69,55 @@ function ContinueLearning({ article }: { article: QuestionArticle }) {
       <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-leather-900 md:text-4xl">
         Related questions
       </h2>
-      <div className="mt-6 grid gap-3 md:grid-cols-3">
-        {article.relatedQuestions.map((question) => (
-          <Link
-            key={question.title}
-            to={question.slug ? `/questions/${question.slug}` : '/questions'}
-            className="flex min-h-32 flex-col justify-between rounded-[1.4rem] border border-amber-100/70 bg-[linear-gradient(160deg,#fffaf0,#f6e9cf)] p-5 text-leather-900 shadow-[0_14px_40px_rgba(92,64,39,0.08)] transition hover:-translate-y-0.5 hover:border-amber-300/80"
-          >
-            <span className="font-display text-xl font-semibold leading-snug">
-              {question.title}
-            </span>
-            <span className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
-              Coming soon
-            </span>
-          </Link>
+      <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {relatedQuestions.map(({ question, publishedArticle }) => (
+          <RelatedQuestionCard
+            key={`${question.title}-${question.slug ?? 'missing'}`}
+            question={question}
+            isPublished={Boolean(publishedArticle)}
+          />
         ))}
       </div>
     </section>
+  );
+}
+
+function RelatedQuestionCard({
+  question,
+  isPublished,
+}: {
+  question: RelatedQuestion;
+  isPublished: boolean;
+}) {
+  const cardClassName =
+    'flex min-h-32 flex-col justify-between rounded-[1.4rem] border border-amber-100/70 bg-[linear-gradient(160deg,#fffaf0,#f6e9cf)] p-5 text-leather-900 shadow-[0_14px_40px_rgba(92,64,39,0.08)] transition';
+
+  const content = (
+    <>
+      <span className="font-display text-xl font-semibold leading-snug">
+        {question.title}
+      </span>
+      <span className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+        {isPublished ? 'Read answer' : 'Coming soon'}
+      </span>
+    </>
+  );
+
+  if (isPublished && question.slug) {
+    return (
+      <Link
+        to={`/questions/${question.slug}`}
+        className={`${cardClassName} hover:-translate-y-0.5 hover:border-amber-300/80`}
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div className={`${cardClassName} cursor-default opacity-72`} aria-disabled="true">
+      {content}
+    </div>
   );
 }
 

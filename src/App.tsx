@@ -413,7 +413,7 @@ function PWAUpdateBanner() {
   const { updateReady, updateNow } = usePWAUpdate();
   const standalone = useStandalonePWA();
 
-  if (!updateReady || !standalone) {
+  if (!updateReady || !standalone || !isAppPath()) {
     return null;
   }
 
@@ -677,19 +677,29 @@ function PublicPage() {
   }
 }
 
+function RoutedApp({ isAuthenticatedAppPath }: { isAuthenticatedAppPath: boolean }) {
+  return (
+    <AppErrorBoundary>
+      <Suspense fallback={isAuthenticatedAppPath ? <Splash /> : null}>
+        {isAuthenticatedAppPath ? <AppShell /> : <PublicPage />}
+      </Suspense>
+    </AppErrorBoundary>
+  );
+}
+
 export default function App() {
   const isAuthenticatedAppPath = isAppPath();
 
   return (
     <AccountProvider>
-      <PWAUpdateProvider>
-        <AppErrorBoundary>
-          <Suspense fallback={isAuthenticatedAppPath ? <Splash /> : null}>
-            {isAuthenticatedAppPath ? <AppShell /> : <PublicPage />}
-          </Suspense>
-        </AppErrorBoundary>
-        <PWAUpdateBanner />
-      </PWAUpdateProvider>
+      {isAuthenticatedAppPath ? (
+        <PWAUpdateProvider>
+          <RoutedApp isAuthenticatedAppPath={isAuthenticatedAppPath} />
+          <PWAUpdateBanner />
+        </PWAUpdateProvider>
+      ) : (
+        <RoutedApp isAuthenticatedAppPath={isAuthenticatedAppPath} />
+      )}
     </AccountProvider>
   );
 }

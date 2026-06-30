@@ -7,9 +7,13 @@ import { howDoIKnowGodsWill } from './howDoIKnowGodsWill';
 import { howDoIPray } from './howDoIPray';
 import { howDoIPutGodFirst } from './howDoIPutGodFirst';
 import { howDoITrustGod } from './howDoITrustGod';
+import { whatAreTheSevenSacraments } from './whatAreTheSevenSacraments';
 import { whatHappensAtMass } from './whatHappensAtMass';
 import { whatDoCatholicsBelieve } from './whatDoCatholicsBelieve';
+import { whatIsBaptism } from './whatIsBaptism';
+import { whatIsConfirmation } from './whatIsConfirmation';
 import { whatIsTheEucharist } from './whatIsTheEucharist';
+import { whatIsHolyCommunion } from './whatIsHolyCommunion';
 import { whatIsTheMass } from './whatIsTheMass';
 import { whatIsTheTrinity } from './whatIsTheTrinity';
 import { whatIsTheChurch } from './whatIsTheChurch';
@@ -19,6 +23,7 @@ import { whoIsTheHolySpirit } from './whoIsTheHolySpirit';
 import { whyBecomeCatholic } from './whyBecomeCatholic';
 import { whyDoesntGodAnswerMyPrayers } from './whyDoesntGodAnswerMyPrayers';
 import { whyDoCatholicsBelieveInTheRealPresence } from './whyDoCatholicsBelieveInTheRealPresence';
+import { whyDoCatholicsBaptizeBabies } from './whyDoCatholicsBaptizeBabies';
 import { whyDoCatholicsGoToMass } from './whyDoCatholicsGoToMass';
 import type { QuestionArticle } from './types';
 
@@ -30,6 +35,11 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whatIsHolyCommunion,
+  whatIsConfirmation,
+  whyDoCatholicsBaptizeBabies,
+  whatIsBaptism,
+  whatAreTheSevenSacraments,
   whatHappensAtMass,
   whyDoCatholicsBelieveInTheRealPresence,
   whatIsTheEucharist,

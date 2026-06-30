@@ -118,20 +118,21 @@ const TOPIC_FILTERS: TopicFilter[] = [
 ];
 
 const TOPIC_STATS: Record<TopicFilter, { count: number; icon: IconName }> = {
-  'All Questions': { count: 246, icon: 'spark' },
+  'All Questions': { count: 247, icon: 'spark' },
   'Becoming Catholic': { count: 38, icon: 'compass' },
   'The Mass': { count: 31, icon: 'church' },
   Prayer: { count: 31, icon: 'prayer' },
   Sacraments: { count: 34, icon: 'water' },
   Scripture: { count: 27, icon: 'scroll' },
   'Church Teaching': { count: 46, icon: 'book' },
-  'Life & Faith': { count: 24, icon: 'sun' },
+  'Life & Faith': { count: 25, icon: 'sun' },
   'Returning Catholics': { count: 15, icon: 'spark' },
 };
 
 const ARTICLE_TOPIC_BY_SLUG: Record<string, TopicFilter> = {
   'how-do-i-become-catholic': 'Becoming Catholic',
   'how-do-i-hear-god': 'Prayer',
+  'how-do-i-have-a-relationship-with-god': 'Life & Faith',
   'how-do-i-pray': 'Prayer',
   'why-become-catholic': 'Becoming Catholic',
   'what-do-catholics-believe': 'Church Teaching',

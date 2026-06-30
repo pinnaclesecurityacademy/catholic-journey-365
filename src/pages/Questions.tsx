@@ -94,68 +94,97 @@ function Arrow() {
   );
 }
 
+const QUESTION_CATEGORY_ORDER = [
+  'Becoming Catholic',
+  'God',
+  'Jesus Christ',
+  'Prayer',
+  'Sin & Mercy',
+  'The Mass',
+  'Sacraments',
+  'Mary & Saints',
+  'Scripture',
+  'Church History',
+  'Church Teaching',
+  'Christian Living',
+  'Returning Catholics',
+] as const;
+
 type TopicFilter =
   | 'All Questions'
-  | 'Becoming Catholic'
-  | 'The Mass'
-  | 'Prayer'
-  | 'Sacraments'
-  | 'Scripture'
-  | 'Church Teaching'
-  | 'Life & Faith'
-  | 'Returning Catholics';
+  | (typeof QUESTION_CATEGORY_ORDER)[number]
+  | (string & {});
 
-const TOPIC_FILTERS: TopicFilter[] = [
-  'All Questions',
-  'Becoming Catholic',
-  'The Mass',
-  'Prayer',
-  'Sacraments',
-  'Scripture',
-  'Church Teaching',
-  'Life & Faith',
-  'Returning Catholics',
-];
-
-const TOPIC_STATS: Record<TopicFilter, { count: number; icon: IconName }> = {
-  'All Questions': { count: 253, icon: 'spark' },
-  'Becoming Catholic': { count: 38, icon: 'compass' },
-  'The Mass': { count: 31, icon: 'church' },
-  Prayer: { count: 32, icon: 'prayer' },
-  Sacraments: { count: 34, icon: 'water' },
-  Scripture: { count: 27, icon: 'scroll' },
-  'Church Teaching': { count: 46, icon: 'book' },
-  'Life & Faith': { count: 30, icon: 'sun' },
-  'Returning Catholics': { count: 15, icon: 'spark' },
+const CATEGORY_ICONS: Record<string, IconName> = {
+  'Becoming Catholic': 'compass',
+  God: 'spark',
+  'Jesus Christ': 'church',
+  Prayer: 'prayer',
+  'Sin & Mercy': 'water',
+  'The Mass': 'church',
+  Sacraments: 'water',
+  'Mary & Saints': 'spark',
+  Scripture: 'scroll',
+  'Church History': 'book',
+  'Church Teaching': 'book',
+  'Christian Living': 'sun',
+  'Returning Catholics': 'spark',
 };
 
 const ARTICLE_TOPIC_BY_SLUG: Record<string, TopicFilter> = {
   'how-do-i-become-catholic': 'Becoming Catholic',
-  'how-do-i-fall-in-love-with-jesus': 'Life & Faith',
-  'how-do-i-grow-closer-to-god': 'Life & Faith',
+  'how-do-i-fall-in-love-with-jesus': 'Jesus Christ',
+  'how-do-i-grow-closer-to-god': 'Christian Living',
   'how-do-i-hear-god': 'Prayer',
-  'how-do-i-have-a-relationship-with-god': 'Life & Faith',
-  'how-do-i-know-gods-will': 'Life & Faith',
+  'how-do-i-have-a-relationship-with-god': 'Christian Living',
+  'how-do-i-know-gods-will': 'Christian Living',
   'how-do-i-pray': 'Prayer',
-  'how-do-i-put-god-first': 'Life & Faith',
-  'how-do-i-trust-god': 'Life & Faith',
+  'how-do-i-put-god-first': 'Christian Living',
+  'how-do-i-trust-god': 'Christian Living',
   'why-doesnt-god-answer-my-prayers': 'Prayer',
   'why-become-catholic': 'Becoming Catholic',
   'what-do-catholics-believe': 'Church Teaching',
-  'what-is-the-church': 'Church Teaching',
-  'what-is-the-trinity': 'Church Teaching',
-  'who-is-god': 'Church Teaching',
-  'who-is-jesus-christ': 'Church Teaching',
-  'who-is-the-holy-spirit': 'Church Teaching',
+  'what-is-the-church': 'Church History',
+  'what-is-the-trinity': 'God',
+  'who-is-god': 'God',
+  'who-is-jesus-christ': 'Jesus Christ',
+  'who-is-the-holy-spirit': 'God',
 };
 
 function getArticleTopic(article: QuestionArticle): TopicFilter {
-  return ARTICLE_TOPIC_BY_SLUG[article.slug] ?? 'Church Teaching';
+  return ARTICLE_TOPIC_BY_SLUG[article.slug] ?? article.category;
+}
+
+function getTopicIcon(topic: TopicFilter): IconName {
+  if (topic === 'All Questions') return 'spark';
+  return CATEGORY_ICONS[topic] ?? 'book';
+}
+
+function formatQuestionCount(count: number) {
+  return `${count} ${count === 1 ? 'question' : 'questions'}`;
+}
+
+function sortTopics(topics: string[]) {
+  const knownOrder = new Map<string, number>(
+    QUESTION_CATEGORY_ORDER.map((topic, index) => [topic, index])
+  );
+
+  return [...topics].sort((first, second) => {
+    const firstOrder = knownOrder.get(first) ?? Number.MAX_SAFE_INTEGER;
+    const secondOrder = knownOrder.get(second) ?? Number.MAX_SAFE_INTEGER;
+
+    if (firstOrder !== secondOrder) {
+      return firstOrder - secondOrder;
+    }
+
+    return first.localeCompare(second);
+  });
 }
 
 export default function Questions() {
   const [activeTopic, setActiveTopic] = useState<TopicFilter>('All Questions');
   const [searchTerm, setSearchTerm] = useState('');
+  const publishedQuestionCount = questionArticles.length;
 
   const articleRows = useMemo(
     () =>
@@ -164,12 +193,24 @@ export default function Questions() {
         return {
           article,
           href: `/questions/${article.slug}`,
-          icon: TOPIC_STATS[topic].icon,
+          icon: getTopicIcon(topic),
           topic,
         };
       }),
     []
   );
+
+  const topicCounts = useMemo(() => {
+    return articleRows.reduce<Record<string, number>>((counts, { topic }) => {
+      counts[topic] = (counts[topic] ?? 0) + 1;
+      return counts;
+    }, {});
+  }, [articleRows]);
+
+  const visibleTopicFilters = useMemo<TopicFilter[]>(() => {
+    const liveTopics = sortTopics(Object.keys(topicCounts));
+    return ['All Questions', ...liveTopics];
+  }, [topicCounts]);
 
   const filteredArticles = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
@@ -187,7 +228,26 @@ export default function Questions() {
     });
   }, [activeTopic, articleRows, searchTerm]);
 
-  const activeQuestionCount = TOPIC_STATS[activeTopic].count;
+  const filteredArticleSections = useMemo(() => {
+    const sections = filteredArticles.reduce<Record<string, typeof filteredArticles>>(
+      (groups, row) => {
+        groups[row.topic] = groups[row.topic] ?? [];
+        groups[row.topic].push(row);
+        return groups;
+      },
+      {}
+    );
+
+    return sortTopics(Object.keys(sections)).map((topic) => ({
+      topic,
+      id: `question-category-${topic.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      articles: sections[topic] ?? [],
+      icon: getTopicIcon(topic),
+    }));
+  }, [filteredArticles]);
+
+  const activeQuestionCount =
+    activeTopic === 'All Questions' ? publishedQuestionCount : topicCounts[activeTopic] ?? 0;
 
   return (
     <PublicSiteLayout>
@@ -237,7 +297,7 @@ export default function Questions() {
 
             <div className="-mx-5 mt-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0">
               <div className="flex min-w-max gap-2">
-                {TOPIC_FILTERS.map((topic) => {
+                {visibleTopicFilters.map((topic) => {
                   const selected = activeTopic === topic;
                   return (
                     <button
@@ -271,7 +331,7 @@ export default function Questions() {
                   Knowledge Library
                 </p>
                 <p className="mt-2 font-display text-3xl font-semibold leading-none text-leather-950">
-                  240+ questions
+                  {formatQuestionCount(publishedQuestionCount)}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-leather-900/64">
                   Organized by topic for quick, faithful answers.
@@ -295,7 +355,7 @@ export default function Questions() {
                 </h2>
               </div>
               <p className="text-sm font-semibold text-leather-900/58">
-                {activeQuestionCount}+ questions organized{' '}
+                {formatQuestionCount(activeQuestionCount)} organized{' '}
                 {activeTopic === 'All Questions' ? 'across the library' : 'in this topic'}
               </p>
             </div>
@@ -303,28 +363,50 @@ export default function Questions() {
             <div className="overflow-hidden rounded-[1.7rem] border border-amber-100/80 bg-white/82 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur">
               {filteredArticles.length > 0 ? (
                 <div className="divide-y divide-amber-100/80">
-                  {filteredArticles.map(({ article, href, icon, topic }) => (
-                    <Link
-                      key={article.slug}
-                      to={href}
-                      className="group flex items-start gap-4 px-4 py-4 transition hover:bg-[#fff8e7] sm:px-5"
-                    >
-                      <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
-                        <IconMark type={icon} />
-                      </span>
-                      <span className="min-w-0 flex-1">
-                        <span className="block font-display text-2xl font-semibold leading-tight text-leather-950">
-                          {article.title}
+                  {filteredArticleSections.map(({ topic, id, articles, icon }) => (
+                    <section key={topic} aria-labelledby={id}>
+                      <div className="flex items-center justify-between gap-4 bg-[#fffaf0] px-4 py-3 sm:px-5">
+                        <div className="flex min-w-0 items-center gap-3">
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+                            <IconMark type={icon} className="h-4 w-4" />
+                          </span>
+                          <h3
+                            id={id}
+                            className="truncate text-sm font-bold uppercase tracking-[0.16em] text-leather-900/70"
+                          >
+                            {topic}
+                          </h3>
+                        </div>
+                        <span className="shrink-0 text-xs font-bold text-leather-900/45">
+                          {formatQuestionCount(articles.length)}
                         </span>
-                        <span className="mt-1 block text-base leading-7 text-leather-900/66">
-                          {article.description}
-                        </span>
-                        <span className="mt-2 block text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
-                          {topic}
-                        </span>
-                      </span>
-                      <Arrow />
-                    </Link>
+                      </div>
+                      <div className="divide-y divide-amber-100/80">
+                        {articles.map(({ article, href, icon: articleIcon, topic: articleTopic }) => (
+                          <Link
+                            key={article.slug}
+                            to={href}
+                            className="group flex items-start gap-4 px-4 py-4 transition hover:bg-[#fff8e7] sm:px-5"
+                          >
+                            <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+                              <IconMark type={articleIcon} />
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block font-display text-2xl font-semibold leading-tight text-leather-950">
+                                {article.title}
+                              </span>
+                              <span className="mt-1 block text-base leading-7 text-leather-900/66">
+                                {article.description}
+                              </span>
+                              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+                                {articleTopic}
+                              </span>
+                            </span>
+                            <Arrow />
+                          </Link>
+                        ))}
+                      </div>
+                    </section>
                   ))}
                 </div>
               ) : (
@@ -358,7 +440,7 @@ export default function Questions() {
                   Popular Topics
                 </p>
                 <div className="mt-4 space-y-1">
-                  {TOPIC_FILTERS.filter((topic) => topic !== 'All Questions').map(
+                  {visibleTopicFilters.filter((topic) => topic !== 'All Questions').map(
                     (topic) => (
                       <button
                         key={topic}
@@ -368,14 +450,14 @@ export default function Questions() {
                       >
                         <span className="flex min-w-0 items-center gap-3">
                           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-800">
-                            <IconMark type={TOPIC_STATS[topic].icon} className="h-4 w-4" />
+                            <IconMark type={getTopicIcon(topic)} className="h-4 w-4" />
                           </span>
                           <span className="truncate text-sm font-bold text-leather-900">
                             {topic}
                           </span>
                         </span>
                         <span className="text-xs font-bold text-leather-900/45">
-                          {TOPIC_STATS[topic].count}
+                          {topicCounts[topic] ?? 0}
                         </span>
                       </button>
                     )

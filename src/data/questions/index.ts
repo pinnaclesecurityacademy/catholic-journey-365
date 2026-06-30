@@ -2,6 +2,7 @@ import { howDoIBecomeCatholic } from './howDoIBecomeCatholic';
 import { howDoIHearGod } from './howDoIHearGod';
 import { howDoIHaveARelationshipWithGod } from './howDoIHaveARelationshipWithGod';
 import { howDoIPray } from './howDoIPray';
+import { howDoIPutGodFirst } from './howDoIPutGodFirst';
 import { whatDoCatholicsBelieve } from './whatDoCatholicsBelieve';
 import { whatIsTheTrinity } from './whatIsTheTrinity';
 import { whatIsTheChurch } from './whatIsTheChurch';
@@ -19,6 +20,7 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  howDoIPutGodFirst,
   howDoIHaveARelationshipWithGod,
   howDoIHearGod,
   howDoIPray,

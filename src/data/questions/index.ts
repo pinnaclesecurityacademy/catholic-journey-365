@@ -1,4 +1,5 @@
 import { howDoIBecomeCatholic } from './howDoIBecomeCatholic';
+import { howDoIHearGod } from './howDoIHearGod';
 import { howDoIPray } from './howDoIPray';
 import { whatDoCatholicsBelieve } from './whatDoCatholicsBelieve';
 import { whatIsTheTrinity } from './whatIsTheTrinity';
@@ -17,6 +18,7 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  howDoIHearGod,
   howDoIPray,
   whatDoCatholicsBelieve,
   whoIsGod,

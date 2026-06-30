@@ -5,6 +5,7 @@ import { howDoIGrowCloserToGod } from './howDoIGrowCloserToGod';
 import { howDoIHearGod } from './howDoIHearGod';
 import { howDoIHaveARelationshipWithGod } from './howDoIHaveARelationshipWithGod';
 import { howDoIKnowGodsWill } from './howDoIKnowGodsWill';
+import { howDoCatholicsReadTheBible } from './howDoCatholicsReadTheBible';
 import { howDoIPray } from './howDoIPray';
 import { howDoIPutGodFirst } from './howDoIPutGodFirst';
 import { howDoITrustGod } from './howDoITrustGod';
@@ -15,6 +16,7 @@ import { whatIsBaptism } from './whatIsBaptism';
 import { whatIsConfirmation } from './whatIsConfirmation';
 import { whatIsTheEucharist } from './whatIsTheEucharist';
 import { whatIsHolyCommunion } from './whatIsHolyCommunion';
+import { whatIsLectioDivina } from './whatIsLectioDivina';
 import { whatIsTheMass } from './whatIsTheMass';
 import { whatIsTheTrinity } from './whatIsTheTrinity';
 import { whatIsTheChurch } from './whatIsTheChurch';
@@ -23,6 +25,7 @@ import { whoIsGod } from './whoIsGod';
 import { whoIsJesusChrist } from './whoIsJesusChrist';
 import { whoIsTheHolySpirit } from './whoIsTheHolySpirit';
 import { whoWasMary } from './whoWasMary';
+import { whereShouldIStartReadingTheBible } from './whereShouldIStartReadingTheBible';
 import { whyBecomeCatholic } from './whyBecomeCatholic';
 import { whyDoesntGodAnswerMyPrayers } from './whyDoesntGodAnswerMyPrayers';
 import { whyDoCatholicsBelieveInTheRealPresence } from './whyDoCatholicsBelieveInTheRealPresence';
@@ -30,6 +33,8 @@ import { whyDoCatholicsBaptizeBabies } from './whyDoCatholicsBaptizeBabies';
 import { whyDoCatholicsGoToMass } from './whyDoCatholicsGoToMass';
 import { whyDoCatholicsPrayToMary } from './whyDoCatholicsPrayToMary';
 import { whyDoCatholicsPrayToTheSaints } from './whyDoCatholicsPrayToTheSaints';
+import { whyIsTheCatholicBibleDifferent } from './whyIsTheCatholicBibleDifferent';
+import { whichBibleDoCatholicsUse } from './whichBibleDoCatholicsUse';
 import type { QuestionArticle } from './types';
 
 export type {
@@ -40,6 +45,11 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whatIsLectioDivina,
+  whereShouldIStartReadingTheBible,
+  howDoCatholicsReadTheBible,
+  whyIsTheCatholicBibleDifferent,
+  whichBibleDoCatholicsUse,
   whoAreTheSaints,
   whyDoCatholicsPrayToTheSaints,
   whoWasMary,

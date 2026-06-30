@@ -6,9 +6,11 @@ import { howDoIHearGod } from './howDoIHearGod';
 import { howDoIHaveARelationshipWithGod } from './howDoIHaveARelationshipWithGod';
 import { howDoIKnowGodsWill } from './howDoIKnowGodsWill';
 import { howDoCatholicsReadTheBible } from './howDoCatholicsReadTheBible';
+import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
 import { howDoIPray } from './howDoIPray';
 import { howDoIPutGodFirst } from './howDoIPutGodFirst';
 import { howDoITrustGod } from './howDoITrustGod';
+import { whatIsApostolicSuccession } from './whatIsApostolicSuccession';
 import { whatAreTheSevenSacraments } from './whatAreTheSevenSacraments';
 import { whatHappensAtMass } from './whatHappensAtMass';
 import { whatDoCatholicsBelieve } from './whatDoCatholicsBelieve';
@@ -25,6 +27,8 @@ import { whoIsGod } from './whoIsGod';
 import { whoIsJesusChrist } from './whoIsJesusChrist';
 import { whoIsTheHolySpirit } from './whoIsTheHolySpirit';
 import { whoWasMary } from './whoWasMary';
+import { whoWasStPeter } from './whoWasStPeter';
+import { whoWereTheEarlyChurchFathers } from './whoWereTheEarlyChurchFathers';
 import { whereShouldIStartReadingTheBible } from './whereShouldIStartReadingTheBible';
 import { whyBecomeCatholic } from './whyBecomeCatholic';
 import { whyDoesntGodAnswerMyPrayers } from './whyDoesntGodAnswerMyPrayers';
@@ -33,6 +37,7 @@ import { whyDoCatholicsBaptizeBabies } from './whyDoCatholicsBaptizeBabies';
 import { whyDoCatholicsGoToMass } from './whyDoCatholicsGoToMass';
 import { whyDoCatholicsPrayToMary } from './whyDoCatholicsPrayToMary';
 import { whyDoCatholicsPrayToTheSaints } from './whyDoCatholicsPrayToTheSaints';
+import { whyDoesTheCatholicChurchHaveAPope } from './whyDoesTheCatholicChurchHaveAPope';
 import { whyIsTheCatholicBibleDifferent } from './whyIsTheCatholicBibleDifferent';
 import { whichBibleDoCatholicsUse } from './whichBibleDoCatholicsUse';
 import type { QuestionArticle } from './types';
@@ -45,6 +50,11 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  howOldIsTheCatholicChurch,
+  whoWereTheEarlyChurchFathers,
+  whatIsApostolicSuccession,
+  whyDoesTheCatholicChurchHaveAPope,
+  whoWasStPeter,
   whatIsLectioDivina,
   whereShouldIStartReadingTheBible,
   howDoCatholicsReadTheBible,

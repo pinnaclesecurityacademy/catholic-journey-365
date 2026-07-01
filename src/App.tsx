@@ -2,6 +2,7 @@ import {
   useCallback,
   useEffect,
   lazy,
+  useRef,
   Suspense,
   useState,
   type ReactNode,
@@ -45,7 +46,75 @@ const Paywall = lazy(() => import('./pages/Paywall'));
 const LegalPage = lazy(() => import('./pages/LegalPage'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
+const GA_MEASUREMENT_ID = 'G-H94ER0EYSV';
+const GA_ROUTE_CHANGE_EVENT = 'cj365:routechange';
 const INTRO_STORAGE_KEY = 'cj365_intro_complete_v1';
+
+type GoogleAnalyticsWindow = Window &
+  typeof globalThis & {
+    gtag?: (...args: unknown[]) => void;
+  };
+
+function getCurrentPagePath() {
+  return `${window.location.pathname}${window.location.search}${window.location.hash}`;
+}
+
+function trackGoogleAnalyticsPageView(path: string) {
+  const analyticsWindow = window as GoogleAnalyticsWindow;
+  if (typeof analyticsWindow.gtag !== 'function') return;
+
+  analyticsWindow.gtag('config', GA_MEASUREMENT_ID, {
+    page_path: path,
+    page_location: window.location.href,
+    page_title: document.title,
+  });
+}
+
+function GoogleAnalyticsRouteTracker() {
+  const lastTrackedPath = useRef<string | null>(null);
+
+  useEffect(() => {
+    const trackCurrentPage = () => {
+      const path = getCurrentPagePath();
+      if (lastTrackedPath.current === path) return;
+
+      lastTrackedPath.current = path;
+      trackGoogleAnalyticsPageView(path);
+    };
+
+    const notifyRouteChange = () => {
+      window.dispatchEvent(new Event(GA_ROUTE_CHANGE_EVENT));
+    };
+
+    const originalPushState = window.history.pushState.bind(window.history);
+    const originalReplaceState = window.history.replaceState.bind(window.history);
+
+    window.history.pushState = ((...args: Parameters<History['pushState']>) => {
+      originalPushState(...args);
+      notifyRouteChange();
+    }) as History['pushState'];
+
+    window.history.replaceState = ((...args: Parameters<History['replaceState']>) => {
+      originalReplaceState(...args);
+      notifyRouteChange();
+    }) as History['replaceState'];
+
+    trackCurrentPage();
+    window.addEventListener(GA_ROUTE_CHANGE_EVENT, trackCurrentPage);
+    window.addEventListener('popstate', trackCurrentPage);
+    window.addEventListener('hashchange', trackCurrentPage);
+
+    return () => {
+      window.history.pushState = originalPushState as History['pushState'];
+      window.history.replaceState = originalReplaceState as History['replaceState'];
+      window.removeEventListener(GA_ROUTE_CHANGE_EVENT, trackCurrentPage);
+      window.removeEventListener('popstate', trackCurrentPage);
+      window.removeEventListener('hashchange', trackCurrentPage);
+    };
+  }, []);
+
+  return null;
+}
 
 function Splash() {
   const hour = new Date().getHours();
@@ -692,6 +761,7 @@ export default function App() {
 
   return (
     <AccountProvider>
+      <GoogleAnalyticsRouteTracker />
       {isAuthenticatedAppPath ? (
         <PWAUpdateProvider>
           <RoutedApp isAuthenticatedAppPath={isAuthenticatedAppPath} />

@@ -10,6 +10,7 @@ import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
 import { howDoIPray } from './howDoIPray';
 import { howDoIPutGodFirst } from './howDoIPutGodFirst';
 import { howDoITrustGod } from './howDoITrustGod';
+import { whatIsPrayer } from './whatIsPrayer';
 import { whatIsApostolicSuccession } from './whatIsApostolicSuccession';
 import { whatAreTheSevenSacraments } from './whatAreTheSevenSacraments';
 import { whatHappensAtMass } from './whatHappensAtMass';
@@ -23,8 +24,13 @@ import { whatIsTheMass } from './whatIsTheMass';
 import { whatIsTheTrinity } from './whatIsTheTrinity';
 import { whatIsTheChurch } from './whatIsTheChurch';
 import { whoAreTheSaints } from './whoAreTheSaints';
+import { doesGodExist } from './doesGodExist';
 import { whoIsGod } from './whoIsGod';
 import { whoIsJesusChrist } from './whoIsJesusChrist';
+import { whyDidJesusDieOnTheCross } from './whyDidJesusDieOnTheCross';
+import { didJesusReallyRiseFromTheDead } from './didJesusReallyRiseFromTheDead';
+import { whyIsJesusCalledTheSonOfGod } from './whyIsJesusCalledTheSonOfGod';
+import { sonOfGodVsSonOfMan } from './sonOfGodVsSonOfMan';
 import { whoIsTheHolySpirit } from './whoIsTheHolySpirit';
 import { whoWasMary } from './whoWasMary';
 import { whoWasStPeter } from './whoWasStPeter';
@@ -84,9 +90,15 @@ export const questionArticles: QuestionArticle[] = [
   howDoIHaveARelationshipWithGod,
   howDoIHearGod,
   howDoIPray,
+  whatIsPrayer,
   whatDoCatholicsBelieve,
+  doesGodExist,
   whoIsGod,
   whoIsJesusChrist,
+  whyDidJesusDieOnTheCross,
+  didJesusReallyRiseFromTheDead,
+  whyIsJesusCalledTheSonOfGod,
+  sonOfGodVsSonOfMan,
   whoIsTheHolySpirit,
   whatIsTheTrinity,
   whyBecomeCatholic,

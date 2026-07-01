@@ -145,8 +145,13 @@ const ARTICLE_TOPIC_BY_SLUG: Record<string, TopicFilter> = {
   'why-become-catholic': 'Becoming Catholic',
   'what-do-catholics-believe': 'Church Teaching',
   'what-is-the-church': 'Church History',
+  'does-god-exist': 'God',
   'what-is-the-trinity': 'God',
   'who-is-god': 'God',
+  'why-did-jesus-die-on-the-cross': 'Jesus Christ',
+  'did-jesus-really-rise-from-the-dead': 'Jesus Christ',
+  'why-is-jesus-called-the-son-of-god': 'Jesus Christ',
+  'son-of-god-vs-son-of-man': 'Jesus Christ',
   'who-is-jesus-christ': 'Jesus Christ',
   'who-is-the-holy-spirit': 'God',
 };

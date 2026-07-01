@@ -89,7 +89,7 @@ export const iveBeenAwayFromTheChurchWillGodWelcomeMeBack: QuestionArticle = {
       heading: 'Take one step toward home',
       paragraphs: [
         'A practical next step is to attend Mass this Sunday and contact a parish about Confession or a conversation with a priest. You can write: "I have been away from the Church and want to come back. Could someone help me?"',
-        'You can also continue with Catholic Journey 365 articles such as How Do I Return to the Catholic Church?, What Is the Mass?, What Is Prayer?, How Do I Pray?, and What Is Holy Communion?',
+        'You can also continue with Catholic Journey 365 articles such as How Do I Return to the Catholic Church?, How Do I Go to Confession?, What If I\'m Embarrassed to Go to Confession?, What Is Prayer?, and What Is Holy Communion?',
         'God is not finished with your story. Take one step toward home, and let Catholic Journey 365 help you keep learning as Christ leads you back into His mercy.',
       ],
     },
@@ -103,7 +103,11 @@ export const iveBeenAwayFromTheChurchWillGodWelcomeMeBack: QuestionArticle = {
     { title: 'How Do I Pray?', slug: 'how-do-i-pray' },
     { title: 'What Is the Mass?', slug: 'what-is-the-mass' },
     { title: 'What Is Holy Communion?', slug: 'what-is-holy-communion' },
-    { title: 'How Do I Trust God?', slug: 'how-do-i-trust-god' },
+    { title: 'How Do I Go to Confession?', slug: 'how-do-i-go-to-confession' },
+    {
+      title: "What If I'm Embarrassed to Go to Confession?",
+      slug: 'what-if-im-embarrassed-to-go-to-confession',
+    },
     {
       title: "Why Doesn't God Answer My Prayers?",
       slug: 'why-doesnt-god-answer-my-prayers',

@@ -77,7 +77,7 @@ export const howDoIReturnToTheCatholicChurch: QuestionArticle = {
       heading: 'A practical plan for this week',
       paragraphs: [
         'This week, choose one Mass to attend. Then look up the parish Confession schedule or contact the parish office. If you are nervous, write a short message: "I have been away from the Church and want to return. Could someone help me?"',
-        'You can keep learning through Catholic Journey 365 articles such as I\'ve Been Away from the Church. Will God Welcome Me Back?, What Is the Mass?, What Is Holy Communion?, Why Doesn\'t God Answer My Prayers?, and What Do Catholics Believe?',
+        'You can keep learning through Catholic Journey 365 articles such as I\'ve Been Away from the Church. Will God Welcome Me Back?, How Do I Go to Confession?, What Do I Say in Confession?, What Is Holy Communion?, and What Do Catholics Believe?',
         'Coming home may feel emotional, awkward, or slow. That is okay. Take the next faithful step, and let Christ lead you from there.',
       ],
     },
@@ -89,10 +89,8 @@ export const howDoIReturnToTheCatholicChurch: QuestionArticle = {
     },
     { title: 'What Is the Mass?', slug: 'what-is-the-mass' },
     { title: 'What Is Holy Communion?', slug: 'what-is-holy-communion' },
-    {
-      title: "Why Doesn't God Answer My Prayers?",
-      slug: 'why-doesnt-god-answer-my-prayers',
-    },
+    { title: 'How Do I Go to Confession?', slug: 'how-do-i-go-to-confession' },
+    { title: 'What Do I Say in Confession?', slug: 'what-do-i-say-in-confession' },
     { title: 'What Do Catholics Believe?', slug: 'what-do-catholics-believe' },
     { title: 'How Do I Pray?', slug: 'how-do-i-pray' },
     { title: 'How Do I Become Catholic?', slug: 'how-do-i-become-catholic' },

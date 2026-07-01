@@ -6,6 +6,8 @@ import { howDoIHearGod } from './howDoIHearGod';
 import { howDoIHaveARelationshipWithGod } from './howDoIHaveARelationshipWithGod';
 import { howDoIKnowGodsWill } from './howDoIKnowGodsWill';
 import { howDoIReturnToTheCatholicChurch } from './howDoIReturnToTheCatholicChurch';
+import { howDoIGoToConfession } from './howDoIGoToConfession';
+import { howOftenShouldIGoToConfession } from './howOftenShouldIGoToConfession';
 import { howDoCatholicsReadTheBible } from './howDoCatholicsReadTheBible';
 import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
 import { howDoIPray } from './howDoIPray';
@@ -42,6 +44,9 @@ import { whatIsOcia } from './whatIsOcia';
 import { canIGoToMassIfIAmNotCatholic } from './canIGoToMassIfIAmNotCatholic';
 import { whatIfIWasAlreadyBaptized } from './whatIfIWasAlreadyBaptized';
 import { iveBeenAwayFromTheChurchWillGodWelcomeMeBack } from './iveBeenAwayFromTheChurchWillGodWelcomeMeBack';
+import { whatDoISayInConfession } from './whatDoISayInConfession';
+import { whatIfImEmbarrassedToGoToConfession } from './whatIfImEmbarrassedToGoToConfession';
+import { whyDoCatholicsConfessToAPriest } from './whyDoCatholicsConfessToAPriest';
 import { whyDoesntGodAnswerMyPrayers } from './whyDoesntGodAnswerMyPrayers';
 import { whyDoCatholicsBelieveInTheRealPresence } from './whyDoCatholicsBelieveInTheRealPresence';
 import { whyDoCatholicsBaptizeBabies } from './whyDoCatholicsBaptizeBabies';
@@ -89,6 +94,11 @@ export const questionArticles: QuestionArticle[] = [
   howDoIGrowCloserToGod,
   howDoIFallInLoveWithJesus,
   howDoITrustGod,
+  howDoIGoToConfession,
+  whatDoISayInConfession,
+  whyDoCatholicsConfessToAPriest,
+  howOftenShouldIGoToConfession,
+  whatIfImEmbarrassedToGoToConfession,
   whyDoesntGodAnswerMyPrayers,
   howDoIKnowGodsWill,
   howDoIPutGodFirst,

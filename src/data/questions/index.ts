@@ -1,12 +1,14 @@
 import { howDoIBecomeCatholic } from './howDoIBecomeCatholic';
 import { doCatholicsWorshipMary } from './doCatholicsWorshipMary';
 import { howDoIFallInLoveWithJesus } from './howDoIFallInLoveWithJesus';
+import { howDoIForgiveSomeone } from './howDoIForgiveSomeone';
 import { howDoIGrowCloserToGod } from './howDoIGrowCloserToGod';
 import { howDoIHearGod } from './howDoIHearGod';
 import { howDoIHaveARelationshipWithGod } from './howDoIHaveARelationshipWithGod';
 import { howDoIKnowGodsWill } from './howDoIKnowGodsWill';
 import { howDoIReturnToTheCatholicChurch } from './howDoIReturnToTheCatholicChurch';
 import { howDoIGoToConfession } from './howDoIGoToConfession';
+import { howDoIStopSinning } from './howDoIStopSinning';
 import { howOftenShouldIGoToConfession } from './howOftenShouldIGoToConfession';
 import { howDoCatholicsReadTheBible } from './howDoCatholicsReadTheBible';
 import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
@@ -47,8 +49,11 @@ import { whatIfIWasAlreadyBaptized } from './whatIfIWasAlreadyBaptized';
 import { iveBeenAwayFromTheChurchWillGodWelcomeMeBack } from './iveBeenAwayFromTheChurchWillGodWelcomeMeBack';
 import { whatDoISayInConfession } from './whatDoISayInConfession';
 import { whatIfImEmbarrassedToGoToConfession } from './whatIfImEmbarrassedToGoToConfession';
+import { whatIsTemptation } from './whatIsTemptation';
 import { whyDoCatholicsConfessToAPriest } from './whyDoCatholicsConfessToAPriest';
 import { whyDoesntGodAnswerMyPrayers } from './whyDoesntGodAnswerMyPrayers';
+import { whyDoIKeepCommittingTheSameSin } from './whyDoIKeepCommittingTheSameSin';
+import { doesGodStillLoveMeWhenISin } from './doesGodStillLoveMeWhenISin';
 import { whyDoCatholicsBelieveInTheRealPresence } from './whyDoCatholicsBelieveInTheRealPresence';
 import { whyDoCatholicsBaptizeBabies } from './whyDoCatholicsBaptizeBabies';
 import { whyDoCatholicsGoToMass } from './whyDoCatholicsGoToMass';
@@ -104,8 +109,13 @@ export const questionArticles: QuestionArticle[] = [
   whyDoCatholicsGoToMass,
   whatIsTheMass,
   howDoIGrowCloserToGod,
+  howDoIForgiveSomeone,
   howDoIFallInLoveWithJesus,
   howDoITrustGod,
+  howDoIStopSinning,
+  whatIsTemptation,
+  whyDoIKeepCommittingTheSameSin,
+  doesGodStillLoveMeWhenISin,
   howDoIGoToConfession,
   whatDoISayInConfession,
   whyDoCatholicsConfessToAPriest,

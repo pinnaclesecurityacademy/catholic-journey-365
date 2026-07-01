@@ -5,6 +5,7 @@ import { howDoIGrowCloserToGod } from './howDoIGrowCloserToGod';
 import { howDoIHearGod } from './howDoIHearGod';
 import { howDoIHaveARelationshipWithGod } from './howDoIHaveARelationshipWithGod';
 import { howDoIKnowGodsWill } from './howDoIKnowGodsWill';
+import { howDoIReturnToTheCatholicChurch } from './howDoIReturnToTheCatholicChurch';
 import { howDoCatholicsReadTheBible } from './howDoCatholicsReadTheBible';
 import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
 import { howDoIPray } from './howDoIPray';
@@ -37,6 +38,10 @@ import { whoWasStPeter } from './whoWasStPeter';
 import { whoWereTheEarlyChurchFathers } from './whoWereTheEarlyChurchFathers';
 import { whereShouldIStartReadingTheBible } from './whereShouldIStartReadingTheBible';
 import { whyBecomeCatholic } from './whyBecomeCatholic';
+import { whatIsOcia } from './whatIsOcia';
+import { canIGoToMassIfIAmNotCatholic } from './canIGoToMassIfIAmNotCatholic';
+import { whatIfIWasAlreadyBaptized } from './whatIfIWasAlreadyBaptized';
+import { iveBeenAwayFromTheChurchWillGodWelcomeMeBack } from './iveBeenAwayFromTheChurchWillGodWelcomeMeBack';
 import { whyDoesntGodAnswerMyPrayers } from './whyDoesntGodAnswerMyPrayers';
 import { whyDoCatholicsBelieveInTheRealPresence } from './whyDoCatholicsBelieveInTheRealPresence';
 import { whyDoCatholicsBaptizeBabies } from './whyDoCatholicsBaptizeBabies';
@@ -104,6 +109,11 @@ export const questionArticles: QuestionArticle[] = [
   whyBecomeCatholic,
   whatIsTheChurch,
   howDoIBecomeCatholic,
+  whatIsOcia,
+  canIGoToMassIfIAmNotCatholic,
+  whatIfIWasAlreadyBaptized,
+  iveBeenAwayFromTheChurchWillGodWelcomeMeBack,
+  howDoIReturnToTheCatholicChurch,
 ].filter((article) => article.published);
 
 export function getQuestionArticle(slug: string) {

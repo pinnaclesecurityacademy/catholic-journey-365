@@ -13,6 +13,7 @@ import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
 import { howDoIPray } from './howDoIPray';
 import { howDoIPutGodFirst } from './howDoIPutGodFirst';
 import { howDoITrustGod } from './howDoITrustGod';
+import { isChristianityTrue } from './isChristianityTrue';
 import { whatIsPrayer } from './whatIsPrayer';
 import { whatIsApostolicSuccession } from './whatIsApostolicSuccession';
 import { whatAreTheSevenSacraments } from './whatAreTheSevenSacraments';
@@ -61,6 +62,10 @@ import { whyDoesGodAllowSuffering } from './whyDoesGodAllowSuffering';
 import { whatHappensWhenWeDie } from './whatHappensWhenWeDie';
 import { whatIsHeavenLike } from './whatIsHeavenLike';
 import { whatIsHell } from './whatIsHell';
+import { whyShouldIBelieveTheGodOfTheBible } from './whyShouldIBelieveTheGodOfTheBible';
+import { canScienceAndFaithCoexist } from './canScienceAndFaithCoexist';
+import { whyShouldITrustTheBible } from './whyShouldITrustTheBible';
+import { whyAreThereSoManyChristianChurches } from './whyAreThereSoManyChristianChurches';
 import type { QuestionArticle } from './types';
 
 export type {
@@ -73,11 +78,13 @@ export type {
 export const questionArticles: QuestionArticle[] = [
   howOldIsTheCatholicChurch,
   whoWereTheEarlyChurchFathers,
+  whyAreThereSoManyChristianChurches,
   whatIsApostolicSuccession,
   whyDoesTheCatholicChurchHaveAPope,
   whoWasStPeter,
   whatIsLectioDivina,
   whereShouldIStartReadingTheBible,
+  whyShouldITrustTheBible,
   howDoCatholicsReadTheBible,
   whyIsTheCatholicBibleDifferent,
   whichBibleDoCatholicsUse,
@@ -118,8 +125,11 @@ export const questionArticles: QuestionArticle[] = [
   whatIsHell,
   whatDoCatholicsBelieve,
   doesGodExist,
+  whyShouldIBelieveTheGodOfTheBible,
+  canScienceAndFaithCoexist,
   whoIsGod,
   whoIsJesusChrist,
+  isChristianityTrue,
   whyDidJesusDieOnTheCross,
   didJesusReallyRiseFromTheDead,
   whyIsJesusCalledTheSonOfGod,

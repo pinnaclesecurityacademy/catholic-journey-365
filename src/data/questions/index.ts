@@ -56,6 +56,11 @@ import { whyDoCatholicsPrayToTheSaints } from './whyDoCatholicsPrayToTheSaints';
 import { whyDoesTheCatholicChurchHaveAPope } from './whyDoesTheCatholicChurchHaveAPope';
 import { whyIsTheCatholicBibleDifferent } from './whyIsTheCatholicBibleDifferent';
 import { whichBibleDoCatholicsUse } from './whichBibleDoCatholicsUse';
+import { whatIsThePurposeOfLife } from './whatIsThePurposeOfLife';
+import { whyDoesGodAllowSuffering } from './whyDoesGodAllowSuffering';
+import { whatHappensWhenWeDie } from './whatHappensWhenWeDie';
+import { whatIsHeavenLike } from './whatIsHeavenLike';
+import { whatIsHell } from './whatIsHell';
 import type { QuestionArticle } from './types';
 
 export type {
@@ -106,6 +111,11 @@ export const questionArticles: QuestionArticle[] = [
   howDoIHearGod,
   howDoIPray,
   whatIsPrayer,
+  whatIsThePurposeOfLife,
+  whyDoesGodAllowSuffering,
+  whatHappensWhenWeDie,
+  whatIsHeavenLike,
+  whatIsHell,
   whatDoCatholicsBelieve,
   doesGodExist,
   whoIsGod,

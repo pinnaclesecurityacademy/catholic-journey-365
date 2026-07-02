@@ -96,18 +96,18 @@ function Arrow() {
 }
 
 const QUESTION_CATEGORY_ORDER = [
-  'Becoming Catholic',
   'God',
   'Jesus Christ',
+  'Church Teaching',
+  'Scripture',
   'Prayer',
   'Sin & Mercy',
   'The Mass',
   'Sacraments',
   'Mary & Saints',
-  'Scripture',
   'Church History',
-  'Church Teaching',
   'Christian Living',
+  'Becoming Catholic',
   'Returning Catholics',
 ] as const;
 
@@ -156,6 +156,49 @@ const ARTICLE_TOPIC_BY_SLUG: Record<string, TopicFilter> = {
   'who-is-jesus-christ': 'Jesus Christ',
   'who-is-the-holy-spirit': 'God',
 };
+
+const FEATURED_FORMATION_PATHS = [
+  {
+    title: 'Start with the big questions',
+    description: 'Begin with God, Jesus Christ, purpose, and the reason faith matters.',
+    icon: 'spark' as const,
+    slugs: [
+      'what-is-the-purpose-of-life',
+      'who-is-god',
+      'who-is-jesus-christ',
+    ],
+  },
+  {
+    title: 'Explore the Catholic Church',
+    description: 'Learn what Catholics believe and why the Church matters.',
+    icon: 'church' as const,
+    slugs: [
+      'what-is-the-church',
+      'what-do-catholics-believe',
+      'why-become-catholic',
+    ],
+  },
+  {
+    title: 'Learn prayer and mercy',
+    description: 'Find practical help for prayer, sin, confession, and returning to God.',
+    icon: 'prayer' as const,
+    slugs: [
+      'how-do-i-pray',
+      'how-do-i-go-to-confession',
+      'does-god-still-love-me-when-i-sin',
+    ],
+  },
+  {
+    title: 'Understand Scripture and worship',
+    description: 'See how Catholics read the Bible, worship at Mass, and receive Christ.',
+    icon: 'scroll' as const,
+    slugs: [
+      'why-should-i-trust-the-bible',
+      'what-is-the-mass',
+      'what-is-the-eucharist',
+    ],
+  },
+];
 
 function getArticleTopic(article: QuestionArticle): TopicFilter {
   return ARTICLE_TOPIC_BY_SLUG[article.slug] ?? article.category;
@@ -214,6 +257,19 @@ export default function Questions() {
       }),
     []
   );
+
+  const articleBySlug = useMemo(() => {
+    return new Map(questionArticles.map((article) => [article.slug, article]));
+  }, []);
+
+  const featuredFormationPaths = useMemo(() => {
+    return FEATURED_FORMATION_PATHS.map((path) => ({
+      ...path,
+      articles: path.slugs
+        .map((slug) => articleBySlug.get(slug))
+        .filter((article): article is QuestionArticle => Boolean(article)),
+    })).filter((path) => path.articles.length > 0);
+  }, [articleBySlug]);
 
   const topicCounts = useMemo(() => {
     return articleRows.reduce<Record<string, number>>((counts, { topic }) => {
@@ -370,6 +426,64 @@ export default function Questions() {
       </header>
 
       <main className="px-5 py-8 sm:px-8 md:py-10">
+        <section className="mx-auto mb-8 max-w-[1440px]">
+          <div className="rounded-[1.7rem] border border-amber-100/80 bg-white/72 p-5 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-6">
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                  Formation Paths
+                </p>
+                <h2 className="mt-1 font-display text-3xl font-semibold text-leather-950">
+                  Start where you are
+                </h2>
+              </div>
+              <p className="max-w-2xl text-sm font-semibold leading-6 text-leather-900/58 sm:text-right">
+                Follow a short path, then use search or topics to go deeper.
+              </p>
+            </div>
+
+            <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+              {featuredFormationPaths.map((path) => (
+                <section
+                  key={path.title}
+                  className="rounded-[1.4rem] border border-amber-100/80 bg-[#fffaf0] p-4"
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+                      <IconMark type={path.icon} />
+                    </span>
+                    <div>
+                      <h3 className="font-display text-2xl font-semibold leading-tight text-leather-950">
+                        {path.title}
+                      </h3>
+                      <p className="mt-1 text-sm leading-6 text-leather-900/62">
+                        {path.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 space-y-1">
+                    {path.articles.map((article) => (
+                      <Link
+                        key={article.slug}
+                        to={`/questions/${article.slug}`}
+                        className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 transition hover:bg-white"
+                      >
+                        <span className="min-w-0 truncate text-sm font-bold text-leather-900">
+                          {article.title}
+                        </span>
+                        <span className="text-xs font-bold uppercase tracking-[0.12em] text-amber-700 transition group-hover:text-leather-900">
+                          Read
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[minmax(0,1fr)_19rem]">
           <section>
             <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">

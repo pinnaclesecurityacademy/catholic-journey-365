@@ -14,16 +14,51 @@ import {
 } from '../lib/seo';
 
 const INLINE_LINK_ALIASES: Record<string, string> = {
+  'apostolic-succession': 'what-is-apostolic-succession',
   baptism: 'what-is-baptism',
+  bible: 'how-do-catholics-read-the-bible',
   church: 'what-is-the-church',
   confession: 'how-do-i-go-to-confession',
   confirmation: 'what-is-confirmation',
   eucharist: 'what-is-the-eucharist',
   'holy-communion': 'what-is-holy-communion',
+  'holy-spirit': 'who-is-the-holy-spirit',
   mass: 'what-is-the-mass',
   ocia: 'what-is-ocia',
+  pope: 'why-does-the-catholic-church-have-a-pope',
   prayer: 'what-is-prayer',
+  sacraments: 'what-are-the-seven-sacraments',
+  scripture: 'how-do-catholics-read-the-bible',
 };
+
+const INLINE_LINK_CLASS_NAME =
+  'font-semibold text-amber-800 underline decoration-amber-400/55 decoration-2 underline-offset-4 transition hover:text-leather-900 hover:decoration-amber-700';
+
+const AUTO_INLINE_LINKS: Array<{ pattern: RegExp; slug: string }> = [
+  { pattern: /\bapostolic succession\b/i, slug: 'what-is-apostolic-succession' },
+  { pattern: /\bCatholic Church\b/i, slug: 'what-is-the-church' },
+  { pattern: /\bJesus Christ\b/i, slug: 'who-is-jesus-christ' },
+  { pattern: /\bHoly Communion\b/i, slug: 'what-is-holy-communion' },
+  { pattern: /\bHoly Spirit\b/i, slug: 'who-is-the-holy-spirit' },
+  { pattern: /\bthe Eucharist\b/i, slug: 'what-is-the-eucharist' },
+  { pattern: /\bConfession\b/i, slug: 'how-do-i-go-to-confession' },
+  { pattern: /\bConfirmation\b/i, slug: 'what-is-confirmation' },
+  { pattern: /\bSacraments\b/i, slug: 'what-are-the-seven-sacraments' },
+  { pattern: /\bScripture\b/i, slug: 'how-do-catholics-read-the-bible' },
+  { pattern: /\bBaptism\b/i, slug: 'what-is-baptism' },
+  { pattern: /\bEucharist\b/i, slug: 'what-is-the-eucharist' },
+  { pattern: /\bthe Mass\b/i, slug: 'what-is-the-mass' },
+  { pattern: /\bPrayer\b/i, slug: 'what-is-prayer' },
+  { pattern: /\bprayer\b/i, slug: 'what-is-prayer' },
+  { pattern: /\bthe Church\b/i, slug: 'what-is-the-church' },
+  { pattern: /\bChurch\b/i, slug: 'what-is-the-church' },
+  { pattern: /\bMary\b/i, slug: 'who-was-mary' },
+  { pattern: /\bsaints\b/i, slug: 'who-are-the-saints' },
+  { pattern: /\bOCIA\b/i, slug: 'what-is-ocia' },
+  { pattern: /\bPope\b/i, slug: 'why-does-the-catholic-church-have-a-pope' },
+];
+
+const MAX_AUTO_INLINE_LINKS_PER_PARAGRAPH = 2;
 
 function normalizeInlineLinkLabel(label: string) {
   return label
@@ -52,9 +87,88 @@ function getInlineLinkSlug(label: string, explicitSlug?: string) {
   return article?.slug;
 }
 
-function renderInlineArticleLinks(paragraph: string): ReactNode[] {
+function renderArticleLink(slug: string, label: string, key: string) {
+  return (
+    <Link
+      key={key}
+      to={`/questions/${slug}`}
+      className={INLINE_LINK_CLASS_NAME}
+    >
+      {label}
+    </Link>
+  );
+}
+
+function renderAutoLinkedText(
+  text: string,
+  currentSlug: string,
+  linkedSlugs: Set<string>,
+  keyPrefix: string
+): ReactNode[] {
+  const parts: ReactNode[] = [];
+  let cursor = 0;
+  let automaticLinkCount = 0;
+
+  while (cursor < text.length && automaticLinkCount < MAX_AUTO_INLINE_LINKS_PER_PARAGRAPH) {
+    let bestMatch:
+      | { index: number; label: string; slug: string; length: number }
+      | undefined;
+
+    for (const { pattern, slug } of AUTO_INLINE_LINKS) {
+      if (slug === currentSlug || linkedSlugs.has(slug) || !getQuestionArticle(slug)) {
+        continue;
+      }
+
+      const match = pattern.exec(text.slice(cursor));
+
+      if (!match || match.index === undefined) {
+        continue;
+      }
+
+      const index = cursor + match.index;
+      const label = match[0];
+      const candidate = { index, label, slug, length: label.length };
+
+      if (
+        !bestMatch ||
+        candidate.index < bestMatch.index ||
+        (candidate.index === bestMatch.index && candidate.length > bestMatch.length)
+      ) {
+        bestMatch = candidate;
+      }
+    }
+
+    if (!bestMatch) {
+      break;
+    }
+
+    if (bestMatch.index > cursor) {
+      parts.push(text.slice(cursor, bestMatch.index));
+    }
+
+    parts.push(
+      renderArticleLink(
+        bestMatch.slug,
+        bestMatch.label,
+        `${keyPrefix}-auto-${bestMatch.slug}-${bestMatch.index}`
+      )
+    );
+    linkedSlugs.add(bestMatch.slug);
+    automaticLinkCount += 1;
+    cursor = bestMatch.index + bestMatch.length;
+  }
+
+  if (cursor < text.length) {
+    parts.push(text.slice(cursor));
+  }
+
+  return parts.length > 0 ? parts : [text];
+}
+
+function renderInlineArticleLinks(paragraph: string, currentSlug: string): ReactNode[] {
   const parts: ReactNode[] = [];
   const inlineLinkPattern = /\[([^\]]+)\](?:\(([^)]+)\))?/g;
+  const linkedSlugs = new Set<string>();
   let lastIndex = 0;
   let match: RegExpExecArray | null;
 
@@ -62,28 +176,36 @@ function renderInlineArticleLinks(paragraph: string): ReactNode[] {
     const [fullMatch, label, explicitSlug] = match;
     const slug = getInlineLinkSlug(label, explicitSlug);
 
-    if (!slug) {
-      continue;
-    }
-
     if (match.index > lastIndex) {
-      parts.push(paragraph.slice(lastIndex, match.index));
+      parts.push(
+        ...renderAutoLinkedText(
+          paragraph.slice(lastIndex, match.index),
+          currentSlug,
+          linkedSlugs,
+          `${match.index}-before`
+        )
+      );
     }
 
-    parts.push(
-      <Link
-        key={`${slug}-${match.index}`}
-        to={`/questions/${slug}`}
-        className="font-semibold text-amber-800 underline decoration-amber-400/55 decoration-2 underline-offset-4 transition hover:text-leather-900 hover:decoration-amber-700"
-      >
-        {label}
-      </Link>
-    );
+    if (slug && slug !== currentSlug) {
+      parts.push(renderArticleLink(slug, label, `${slug}-${match.index}`));
+      linkedSlugs.add(slug);
+    } else {
+      parts.push(label);
+    }
+
     lastIndex = match.index + fullMatch.length;
   }
 
   if (lastIndex < paragraph.length) {
-    parts.push(paragraph.slice(lastIndex));
+    parts.push(
+      ...renderAutoLinkedText(
+        paragraph.slice(lastIndex),
+        currentSlug,
+        linkedSlugs,
+        `${lastIndex}-after`
+      )
+    );
   }
 
   return parts.length > 0 ? parts : [paragraph];
@@ -151,6 +273,9 @@ function ContinueLearning({ article }: { article: QuestionArticle }) {
       <h2 className="mt-3 font-display text-3xl font-semibold leading-tight text-leather-900 md:text-4xl">
         Related questions
       </h2>
+      <p className="mt-3 max-w-2xl text-base leading-7 text-leather-900/64">
+        If this was helpful, continue with one of these connected formation pages.
+      </p>
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {relatedQuestions.map(({ question, publishedArticle }) => (
           <RelatedQuestionCard
@@ -275,7 +400,7 @@ export function QuestionArticleTemplate({ article }: { article: QuestionArticle 
                         key={paragraph}
                         className="text-lg leading-8 text-leather-900/74"
                       >
-                        {renderInlineArticleLinks(paragraph)}
+                        {renderInlineArticleLinks(paragraph, article.slug)}
                       </p>
                     ))}
                     {section.quotes?.map((quote) => (

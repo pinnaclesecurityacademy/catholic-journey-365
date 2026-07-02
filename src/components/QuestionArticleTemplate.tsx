@@ -1,4 +1,4 @@
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   PublicBeginButton,
@@ -6,6 +6,82 @@ import {
   PublicSiteLayout,
 } from './PublicSiteLayout';
 import { getQuestionArticle, type QuestionArticle, type RelatedQuestion } from '../data/questions';
+
+const INLINE_LINK_ALIASES: Record<string, string> = {
+  baptism: 'what-is-baptism',
+  church: 'what-is-the-church',
+  confession: 'how-do-i-go-to-confession',
+  confirmation: 'what-is-confirmation',
+  eucharist: 'what-is-the-eucharist',
+  'holy-communion': 'what-is-holy-communion',
+  mass: 'what-is-the-mass',
+  ocia: 'what-is-ocia',
+  prayer: 'what-is-prayer',
+};
+
+function normalizeInlineLinkLabel(label: string) {
+  return label
+    .trim()
+    .toLowerCase()
+    .replace(/^the\s+/, '')
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-');
+}
+
+function getInlineLinkSlug(label: string, explicitSlug?: string) {
+  const requestedSlug = explicitSlug?.trim().replace(/^\/questions\//, '');
+
+  if (requestedSlug && getQuestionArticle(requestedSlug)) {
+    return requestedSlug;
+  }
+
+  const normalizedLabel = normalizeInlineLinkLabel(label);
+  const aliasSlug = INLINE_LINK_ALIASES[normalizedLabel];
+
+  if (aliasSlug && getQuestionArticle(aliasSlug)) {
+    return aliasSlug;
+  }
+
+  const article = getQuestionArticle(normalizedLabel);
+  return article?.slug;
+}
+
+function renderInlineArticleLinks(paragraph: string): ReactNode[] {
+  const parts: ReactNode[] = [];
+  const inlineLinkPattern = /\[([^\]]+)\](?:\(([^)]+)\))?/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = inlineLinkPattern.exec(paragraph)) !== null) {
+    const [fullMatch, label, explicitSlug] = match;
+    const slug = getInlineLinkSlug(label, explicitSlug);
+
+    if (!slug) {
+      continue;
+    }
+
+    if (match.index > lastIndex) {
+      parts.push(paragraph.slice(lastIndex, match.index));
+    }
+
+    parts.push(
+      <Link
+        key={`${slug}-${match.index}`}
+        to={`/questions/${slug}`}
+        className="font-semibold text-amber-800 underline decoration-amber-400/55 decoration-2 underline-offset-4 transition hover:text-leather-900 hover:decoration-amber-700"
+      >
+        {label}
+      </Link>
+    );
+    lastIndex = match.index + fullMatch.length;
+  }
+
+  if (lastIndex < paragraph.length) {
+    parts.push(paragraph.slice(lastIndex));
+  }
+
+  return parts.length > 0 ? parts : [paragraph];
+}
 
 function AppPhoneMockup() {
   return (
@@ -197,7 +273,7 @@ export function QuestionArticleTemplate({ article }: { article: QuestionArticle 
                         key={paragraph}
                         className="text-lg leading-8 text-leather-900/74"
                       >
-                        {paragraph}
+                        {renderInlineArticleLinks(paragraph)}
                       </p>
                     ))}
                     {section.quotes?.map((quote) => (

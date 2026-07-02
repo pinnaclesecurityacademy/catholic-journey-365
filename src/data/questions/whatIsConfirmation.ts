@@ -93,7 +93,7 @@ export const whatIsConfirmation: QuestionArticle = {
     { title: 'What Are the Seven Sacraments?', slug: 'what-are-the-seven-sacraments' },
     { title: 'What Is Baptism?', slug: 'what-is-baptism' },
     { title: 'What Is Holy Communion?', slug: 'what-is-holy-communion' },
-    { title: 'What Are the Gifts of the Holy Spirit?', slug: 'what-are-the-gifts-of-the-holy-spirit' },
+    { title: 'What Is OCIA?', slug: 'what-is-ocia' },
     { title: 'What Do Catholics Believe?', slug: 'what-do-catholics-believe' },
     { title: 'How Do I Become Catholic?', slug: 'how-do-i-become-catholic' },
   ],

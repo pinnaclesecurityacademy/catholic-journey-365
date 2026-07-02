@@ -104,7 +104,7 @@ export const howDoIPray: QuestionArticle = {
   relatedQuestions: [
     { title: 'What Is Prayer?', slug: 'what-is-prayer' },
     { title: 'How Do I Hear God?', slug: 'how-do-i-hear-god' },
-    { title: 'What Is the Our Father?', slug: 'what-is-the-our-father' },
+    { title: 'What Is Lectio Divina?', slug: 'what-is-lectio-divina' },
     {
       title: 'How Do I Have a Relationship with God?',
       slug: 'how-do-i-have-a-relationship-with-god',

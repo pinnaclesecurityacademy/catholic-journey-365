@@ -123,6 +123,6 @@ export const howDoIHaveARelationshipWithGod: QuestionArticle = {
       title: "Why Doesn't God Answer My Prayers?",
       slug: 'why-doesnt-god-answer-my-prayers',
     },
-    { title: 'What Is Confession?', slug: 'what-is-confession' },
+    { title: 'How Do I Go to Confession?', slug: 'how-do-i-go-to-confession' },
   ],
 };

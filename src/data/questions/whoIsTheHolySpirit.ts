@@ -117,10 +117,10 @@ export const whoIsTheHolySpirit: QuestionArticle = {
     { title: 'What Is the Trinity?', slug: 'what-is-the-trinity' },
     { title: 'What Is Prayer?', slug: 'what-is-prayer' },
     { title: 'How Do I Pray?', slug: 'how-do-i-pray' },
-    { title: 'What Happened at Pentecost?', slug: 'what-happened-at-pentecost' },
+    { title: 'What Is Confirmation?', slug: 'what-is-confirmation' },
     {
-      title: 'What Are the Gifts of the Holy Spirit?',
-      slug: 'what-are-the-gifts-of-the-holy-spirit',
+      title: 'How Do I Hear God?',
+      slug: 'how-do-i-hear-god',
     },
   ],
 };

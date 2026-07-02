@@ -72,6 +72,9 @@ export const whatIsTheChurch: QuestionArticle = {
       slug: 'what-is-apostolic-succession',
     },
     { title: 'Who Was St. Peter?', slug: 'who-was-st-peter' },
-    { title: 'Why Is the Pope Important?', slug: 'why-is-the-pope-important' },
+    {
+      title: 'Why Does the Catholic Church Have a Pope?',
+      slug: 'why-does-the-catholic-church-have-a-pope',
+    },
   ],
 };

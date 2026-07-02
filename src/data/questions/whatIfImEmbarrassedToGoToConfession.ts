@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const whatIfImEmbarrassedToGoToConfession: QuestionArticle = {
   slug: 'what-if-im-embarrassed-to-go-to-confession',
   title: "What If I'm Embarrassed to Go to Confession?",
-  metaTitle: "What If I'm Embarrassed to Go to Confession? | Catholic Journey 365",
+  metaTitle: 'Embarrassed to Go to Confession? | Catholic Journey 365',
   metaDescription:
     'A gentle Catholic answer for anyone nervous, ashamed or embarrassed about going to Confession.',
   description:

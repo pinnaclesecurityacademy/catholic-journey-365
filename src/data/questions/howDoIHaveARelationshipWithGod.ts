@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const howDoIHaveARelationshipWithGod: QuestionArticle = {
   slug: 'how-do-i-have-a-relationship-with-god',
   title: 'How Do I Have a Relationship with God?',
-  metaTitle: 'How Do I Have a Relationship with God? | Catholic Journey 365',
+  metaTitle: 'How Do I Know God Personally? | Catholic Journey 365',
   metaDescription:
     'A simple Catholic answer explaining how to grow in a real relationship with God through prayer, Scripture, the sacraments, trust and daily faith.',
   description:

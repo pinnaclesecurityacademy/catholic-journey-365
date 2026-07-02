@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const iveBeenAwayFromTheChurchWillGodWelcomeMeBack: QuestionArticle = {
   slug: 'ive-been-away-from-the-church-will-god-welcome-me-back',
   title: "I've Been Away from the Church. Will God Welcome Me Back?",
-  metaTitle: "I've Been Away from the Church. Will God Welcome Me Back? | Catholic Journey 365",
+  metaTitle: 'Will God Welcome Me Back? | Catholic Journey 365',
   metaDescription:
     "Discover the Catholic teaching on God's mercy and why no one is beyond His invitation to come home.",
   description:

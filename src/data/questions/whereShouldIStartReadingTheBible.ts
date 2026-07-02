@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const whereShouldIStartReadingTheBible: QuestionArticle = {
   slug: 'where-should-i-start-reading-the-bible',
   title: 'Where Should I Start Reading the Bible?',
-  metaTitle: 'Where Should I Start Reading the Bible? | Catholic Journey 365',
+  metaTitle: 'Start Reading the Bible | Catholic Journey 365',
   metaDescription:
     'A beginner-friendly Catholic guide to where to start reading the Bible and how to build a simple Scripture habit.',
   description:

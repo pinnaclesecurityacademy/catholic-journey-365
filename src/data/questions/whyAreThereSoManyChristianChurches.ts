@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const whyAreThereSoManyChristianChurches: QuestionArticle = {
   slug: 'why-are-there-so-many-christian-churches',
   title: 'Why Are There So Many Christian Churches?',
-  metaTitle: 'Why Are There So Many Christian Churches? | Catholic Journey 365',
+  metaTitle: 'Why So Many Christian Churches? | Catholic Journey 365',
   metaDescription:
     'A respectful Catholic explanation of how Christianity became divided and why the Catholic Church believes it preserves the fullness of the faith.',
   description:

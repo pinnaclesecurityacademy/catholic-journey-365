@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const whyShouldIBelieveTheGodOfTheBible: QuestionArticle = {
   slug: 'why-should-i-believe-the-god-of-the-bible',
   title: 'Why Should I Believe the God of the Bible?',
-  metaTitle: 'Why Should I Believe the God of the Bible? | Catholic Journey 365',
+  metaTitle: 'Believe the God of the Bible? | Catholic Journey 365',
   metaDescription:
     'Explore why Christians believe the God revealed in the Bible is the one true God and how faith and reason work together.',
   description:

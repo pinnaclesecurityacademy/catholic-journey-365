@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const whyDoesTheCatholicChurchHaveAPope: QuestionArticle = {
   slug: 'why-does-the-catholic-church-have-a-pope',
   title: 'Why Does the Catholic Church Have a Pope?',
-  metaTitle: 'Why Does the Catholic Church Have a Pope? | Catholic Journey 365',
+  metaTitle: 'Why Does the Church Have a Pope? | Catholic Journey 365',
   metaDescription:
     "A simple Catholic explanation of the Pope, the papacy, apostolic succession and Peter's role in the Church.",
   description:

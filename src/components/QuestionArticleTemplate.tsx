@@ -1,4 +1,4 @@
-import { Fragment, useEffect, type ReactNode } from 'react';
+import { Fragment, useMemo, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   PublicBeginButton,
@@ -6,6 +6,12 @@ import {
   PublicSiteLayout,
 } from './PublicSiteLayout';
 import { getQuestionArticle, type QuestionArticle, type RelatedQuestion } from '../data/questions';
+import {
+  buildQuestionArticleSchema,
+  getArticleSeoDescription,
+  getArticleSeoTitle,
+  useSeo,
+} from '../lib/seo';
 
 const INLINE_LINK_ALIASES: Record<string, string> = {
   baptism: 'what-is-baptism',
@@ -202,37 +208,15 @@ export function QuestionArticleTemplate({ article }: { article: QuestionArticle 
     Math.max(article.appPromotionAfterSection ?? Math.ceil(article.sections.length / 2), 1),
     article.sections.length
   );
+  const structuredData = useMemo(() => buildQuestionArticleSchema(article), [article]);
 
-  useEffect(() => {
-    const previousTitle = document.title;
-    const metaDescription =
-      document.querySelector<HTMLMetaElement>('meta[name="description"]');
-    const previousDescription = metaDescription?.getAttribute('content') ?? null;
-    const descriptionTag = metaDescription ?? document.createElement('meta');
-    const createdDescriptionTag = !metaDescription;
-
-    if (createdDescriptionTag) {
-      descriptionTag.setAttribute('name', 'description');
-      document.head.appendChild(descriptionTag);
-    }
-
-    document.title = article.metaTitle ?? `${article.title} | Catholic Journey 365`;
-    descriptionTag.setAttribute(
-      'content',
-      article.metaDescription ?? article.description
-    );
-
-    return () => {
-      document.title = previousTitle;
-      if (createdDescriptionTag) {
-        descriptionTag.remove();
-      } else if (previousDescription === null) {
-        descriptionTag.removeAttribute('content');
-      } else {
-        descriptionTag.setAttribute('content', previousDescription);
-      }
-    };
-  }, [article]);
+  useSeo({
+    title: getArticleSeoTitle(article),
+    description: getArticleSeoDescription(article),
+    canonicalPath: `/questions/${article.slug}`,
+    type: 'article',
+    structuredData,
+  });
 
   return (
     <PublicSiteLayout>
@@ -240,6 +224,24 @@ export function QuestionArticleTemplate({ article }: { article: QuestionArticle 
         <div className="absolute right-0 top-0 h-full w-2/3 bg-[radial-gradient(circle_at_72%_38%,rgba(214,157,72,0.28),transparent_55%)]" />
         <div className="relative mx-auto max-w-[1440px] px-5 pb-14 pt-28 sm:px-8 md:pb-20 md:pt-32">
           <div className="mx-auto max-w-5xl text-center">
+            <nav
+              aria-label="Breadcrumb"
+              className="mb-6 flex flex-wrap items-center justify-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-leather-900/48"
+            >
+              <a href="/" className="transition hover:text-amber-800">
+                Home
+              </a>
+              <span aria-hidden="true" className="text-amber-700/55">
+                &gt;
+              </span>
+              <Link to="/questions" className="transition hover:text-amber-800">
+                Catholic Questions
+              </Link>
+              <span aria-hidden="true" className="text-amber-700/55">
+                &gt;
+              </span>
+              <span className="text-leather-900/68">{article.title}</span>
+            </nav>
             <PublicGoldRule className="mx-auto" />
             <p className="mt-5 text-xs font-bold uppercase tracking-[0.34em] text-amber-700">
               {article.category}

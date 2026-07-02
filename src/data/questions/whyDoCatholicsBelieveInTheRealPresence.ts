@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const whyDoCatholicsBelieveInTheRealPresence: QuestionArticle = {
   slug: 'why-do-catholics-believe-in-the-real-presence',
   title: 'Why Do Catholics Believe in the Real Presence?',
-  metaTitle: 'Why Do Catholics Believe in the Real Presence? | Catholic Journey 365',
+  metaTitle: 'Catholics and the Real Presence | Catholic Journey 365',
   metaDescription:
     'Explore the biblical and historical reasons Catholics believe Jesus is truly present in the Eucharist.',
   description:

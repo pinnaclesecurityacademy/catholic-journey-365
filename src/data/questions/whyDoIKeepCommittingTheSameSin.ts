@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const whyDoIKeepCommittingTheSameSin: QuestionArticle = {
   slug: 'why-do-i-keep-committing-the-same-sin',
   title: 'Why Do I Keep Committing the Same Sin?',
-  metaTitle: 'Why Do I Keep Committing the Same Sin? | Catholic Journey 365',
+  metaTitle: 'Why Do I Repeat the Same Sin? | Catholic Journey 365',
   metaDescription:
     "A Catholic explanation of habitual sin, spiritual growth, God's mercy and never giving up.",
   description:

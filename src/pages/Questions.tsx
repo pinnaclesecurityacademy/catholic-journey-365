@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PublicGoldRule, PublicSiteLayout } from '../components/PublicSiteLayout';
 import { questionArticles, type QuestionArticle } from '../data/questions';
+import { buildQuestionsLandingSchema, useSeo } from '../lib/seo';
 
 type IconName =
   | 'book'
@@ -190,6 +191,15 @@ export default function Questions() {
   const [activeTopic, setActiveTopic] = useState<TopicFilter>('All Questions');
   const [searchTerm, setSearchTerm] = useState('');
   const publishedQuestionCount = questionArticles.length;
+  const structuredData = useMemo(() => buildQuestionsLandingSchema(), []);
+
+  useSeo({
+    title: 'Catholic Questions | Catholic Journey 365',
+    description:
+      'Search a faithful Catholic formation library with clear answers for beginners, seekers, and returning Catholics.',
+    canonicalPath: '/questions',
+    structuredData,
+  });
 
   const articleRows = useMemo(
     () =>
@@ -260,6 +270,18 @@ export default function Questions() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_14%,rgba(255,255,255,0.96),transparent_30%),radial-gradient(circle_at_88%_12%,rgba(212,165,93,0.18),transparent_28%),linear-gradient(180deg,#fffaf0_0%,#f5ead1_100%)]" />
         <div className="relative mx-auto grid max-w-[1440px] gap-8 px-5 py-10 sm:px-8 md:py-14 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-end">
           <div className="max-w-4xl">
+            <nav
+              aria-label="Breadcrumb"
+              className="mb-5 flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-leather-900/48"
+            >
+              <a href="/" className="transition hover:text-amber-800">
+                Home
+              </a>
+              <span aria-hidden="true" className="text-amber-700/55">
+                &gt;
+              </span>
+              <span className="text-leather-900/68">Catholic Questions</span>
+            </nav>
             <PublicGoldRule />
             <h1 className="mt-5 font-display text-5xl font-semibold leading-none text-leather-950 sm:text-6xl">
               Catholic Questions

@@ -3,7 +3,7 @@ import type { QuestionArticle } from './types';
 export const howDoIReturnToTheCatholicChurch: QuestionArticle = {
   slug: 'how-do-i-return-to-the-catholic-church',
   title: 'How Do I Return to the Catholic Church?',
-  metaTitle: 'How Do I Return to the Catholic Church? | Catholic Journey 365',
+  metaTitle: 'Return to the Catholic Church | Catholic Journey 365',
   metaDescription:
     'Learn how to return to the Catholic Church after time away and what steps to take to come home.',
   description:

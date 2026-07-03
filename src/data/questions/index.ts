@@ -11,6 +11,8 @@ import { howDoIGoToConfession } from './howDoIGoToConfession';
 import { howDoIStopSinning } from './howDoIStopSinning';
 import { howOftenShouldIGoToConfession } from './howOftenShouldIGoToConfession';
 import { howDoCatholicsReadTheBible } from './howDoCatholicsReadTheBible';
+import { howIsTheBibleConnected } from './howIsTheBibleConnected';
+import { howShouldIReadTheBible } from './howShouldIReadTheBible';
 import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
 import { howDoIPray } from './howDoIPray';
 import { howDoIPutGodFirst } from './howDoIPutGodFirst';
@@ -60,6 +62,7 @@ import { whyDoCatholicsGoToMass } from './whyDoCatholicsGoToMass';
 import { whyDoCatholicsPrayToMary } from './whyDoCatholicsPrayToMary';
 import { whyDoCatholicsPrayToTheSaints } from './whyDoCatholicsPrayToTheSaints';
 import { whyDoesTheCatholicChurchHaveAPope } from './whyDoesTheCatholicChurchHaveAPope';
+import { whyDoesTheBibleHaveTwoTestaments } from './whyDoesTheBibleHaveTwoTestaments';
 import { whyIsTheCatholicBibleDifferent } from './whyIsTheCatholicBibleDifferent';
 import { whichBibleDoCatholicsUse } from './whichBibleDoCatholicsUse';
 import { whatIsThePurposeOfLife } from './whatIsThePurposeOfLife';
@@ -70,6 +73,7 @@ import { whatIsHell } from './whatIsHell';
 import { whyShouldIBelieveTheGodOfTheBible } from './whyShouldIBelieveTheGodOfTheBible';
 import { canScienceAndFaithCoexist } from './canScienceAndFaithCoexist';
 import { whyShouldITrustTheBible } from './whyShouldITrustTheBible';
+import { whyAreThereFourGospels } from './whyAreThereFourGospels';
 import { whyAreThereSoManyChristianChurches } from './whyAreThereSoManyChristianChurches';
 import type { QuestionArticle } from './types';
 
@@ -81,6 +85,11 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  howIsTheBibleConnected,
+  howShouldIReadTheBible,
+  whereShouldIStartReadingTheBible,
+  whyDoesTheBibleHaveTwoTestaments,
+  whyAreThereFourGospels,
   howOldIsTheCatholicChurch,
   whoWereTheEarlyChurchFathers,
   whyAreThereSoManyChristianChurches,
@@ -88,7 +97,6 @@ export const questionArticles: QuestionArticle[] = [
   whyDoesTheCatholicChurchHaveAPope,
   whoWasStPeter,
   whatIsLectioDivina,
-  whereShouldIStartReadingTheBible,
   whyShouldITrustTheBible,
   howDoCatholicsReadTheBible,
   whyIsTheCatholicBibleDifferent,

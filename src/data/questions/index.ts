@@ -11,6 +11,7 @@ import { howDoIGoToConfession } from './howDoIGoToConfession';
 import { howDoIStopSinning } from './howDoIStopSinning';
 import { howOftenShouldIGoToConfession } from './howOftenShouldIGoToConfession';
 import { howDoCatholicsReadTheBible } from './howDoCatholicsReadTheBible';
+import { howDoesTheOldTestamentPointToJesus } from './howDoesTheOldTestamentPointToJesus';
 import { howIsTheBibleConnected } from './howIsTheBibleConnected';
 import { howShouldIReadTheBible } from './howShouldIReadTheBible';
 import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
@@ -44,6 +45,10 @@ import { whoWasMary } from './whoWasMary';
 import { whoWasStPeter } from './whoWasStPeter';
 import { whoWereTheEarlyChurchFathers } from './whoWereTheEarlyChurchFathers';
 import { whereShouldIStartReadingTheBible } from './whereShouldIStartReadingTheBible';
+import { whereIsLentInTheBible } from './whereIsLentInTheBible';
+import { whereIsMaryForeshadowedInTheOldTestament } from './whereIsMaryForeshadowedInTheOldTestament';
+import { whereIsTheEucharistInTheOldTestament } from './whereIsTheEucharistInTheOldTestament';
+import { whereIsTheMassInTheBible } from './whereIsTheMassInTheBible';
 import { whyBecomeCatholic } from './whyBecomeCatholic';
 import { whatIsOcia } from './whatIsOcia';
 import { canIGoToMassIfIAmNotCatholic } from './canIGoToMassIfIAmNotCatholic';
@@ -85,6 +90,11 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  howDoesTheOldTestamentPointToJesus,
+  whereIsMaryForeshadowedInTheOldTestament,
+  whereIsTheEucharistInTheOldTestament,
+  whereIsTheMassInTheBible,
+  whereIsLentInTheBible,
   howIsTheBibleConnected,
   howShouldIReadTheBible,
   whereShouldIStartReadingTheBible,

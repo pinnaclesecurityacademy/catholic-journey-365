@@ -1,4 +1,4 @@
-import { Fragment, useMemo, type ReactNode } from 'react';
+import { Fragment, useEffect, useMemo, type ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import {
   PublicBeginButton,
@@ -6,6 +6,7 @@ import {
   PublicSiteLayout,
 } from './PublicSiteLayout';
 import { getQuestionArticle, type QuestionArticle, type RelatedQuestion } from '../data/questions';
+import { getQuestionPillar } from '../data/questions/pillars';
 import {
   buildQuestionArticleSchema,
   getArticleSeoDescription,
@@ -333,7 +334,12 @@ export function QuestionArticleTemplate({ article }: { article: QuestionArticle 
     Math.max(article.appPromotionAfterSection ?? Math.ceil(article.sections.length / 2), 1),
     article.sections.length
   );
+  const pillar = useMemo(() => getQuestionPillar(article), [article]);
   const structuredData = useMemo(() => buildQuestionArticleSchema(article), [article]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [article.slug]);
 
   useSeo({
     title: getArticleSeoTitle(article),
@@ -369,7 +375,7 @@ export function QuestionArticleTemplate({ article }: { article: QuestionArticle 
             </nav>
             <PublicGoldRule className="mx-auto" />
             <p className="mt-5 text-xs font-bold uppercase tracking-[0.34em] text-amber-700">
-              {article.category}
+              {pillar.title}
             </p>
             <h1 className="mx-auto mt-4 max-w-5xl font-display text-5xl font-semibold leading-[0.98] text-leather-900 sm:text-6xl md:mt-5 lg:text-7xl">
               {article.title}

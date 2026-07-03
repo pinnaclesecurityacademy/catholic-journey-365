@@ -2,12 +2,21 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PublicGoldRule, PublicSiteLayout } from '../components/PublicSiteLayout';
 import { questionArticles, type QuestionArticle } from '../data/questions';
+import {
+  formationPillars,
+  getQuestionPillar,
+  type FormationPillar,
+  type FormationPillarIcon,
+  type FormationPillarId,
+} from '../data/questions/pillars';
 import { buildQuestionsLandingSchema, useSeo } from '../lib/seo';
 
 type IconName =
   | 'book'
   | 'church'
   | 'compass'
+  | 'cross'
+  | 'heart'
   | 'prayer'
   | 'scroll'
   | 'spark'
@@ -39,6 +48,18 @@ function IconMark({ type, className = '' }: { type: IconName; className?: string
           <path {...shared} d="M4 20h16" />
           <path {...shared} d="M6 20V9.8L12 6l6 3.8V20" />
           <path {...shared} d="M10 20v-5a2 2 0 0 1 4 0v5" />
+        </>
+      )}
+      {type === 'cross' && (
+        <>
+          <path {...shared} d="M12 3v18" />
+          <path {...shared} d="M6.5 8.2h11" />
+          <path {...shared} d="M8.5 21h7" />
+        </>
+      )}
+      {type === 'heart' && (
+        <>
+          <path {...shared} d="M12 20.5s-7.5-4.4-8.7-9.2c-.7-2.9 1-5.5 3.8-5.8 1.8-.2 3.4.7 4.4 2.1 1-1.4 2.6-2.3 4.4-2.1 2.8.3 4.5 2.9 3.8 5.8C19.5 16.1 12 20.5 12 20.5z" />
         </>
       )}
       {type === 'compass' && (
@@ -95,143 +116,26 @@ function Arrow() {
   );
 }
 
-const QUESTION_CATEGORY_ORDER = [
-  'God',
-  'Jesus Christ',
-  'Church Teaching',
-  'Scripture',
-  'Prayer',
-  'Sin & Mercy',
-  'The Mass',
-  'Sacraments',
-  'Mary & Saints',
-  'Church History',
-  'Christian Living',
-  'Becoming Catholic',
-  'Returning Catholics',
-] as const;
-
-type TopicFilter =
-  | 'All Questions'
-  | (typeof QUESTION_CATEGORY_ORDER)[number]
-  | (string & {});
-
-const CATEGORY_ICONS: Record<string, IconName> = {
-  'Becoming Catholic': 'compass',
-  God: 'spark',
-  'Jesus Christ': 'church',
-  Prayer: 'prayer',
-  'Sin & Mercy': 'water',
-  'The Mass': 'church',
-  Sacraments: 'water',
-  'Mary & Saints': 'spark',
-  Scripture: 'scroll',
-  'Church History': 'book',
-  'Church Teaching': 'book',
-  'Christian Living': 'sun',
-  'Returning Catholics': 'spark',
+type ArticleRow = {
+  article: QuestionArticle;
+  href: string;
+  pillar: FormationPillar;
 };
 
-const ARTICLE_TOPIC_BY_SLUG: Record<string, TopicFilter> = {
-  'how-do-i-become-catholic': 'Becoming Catholic',
-  'how-do-i-fall-in-love-with-jesus': 'Jesus Christ',
-  'how-do-i-grow-closer-to-god': 'Christian Living',
-  'how-do-i-hear-god': 'Prayer',
-  'how-do-i-have-a-relationship-with-god': 'Christian Living',
-  'how-do-i-know-gods-will': 'Christian Living',
-  'how-do-i-pray': 'Prayer',
-  'how-do-i-put-god-first': 'Christian Living',
-  'how-do-i-trust-god': 'Christian Living',
-  'why-doesnt-god-answer-my-prayers': 'Prayer',
-  'why-become-catholic': 'Becoming Catholic',
-  'what-do-catholics-believe': 'Church Teaching',
-  'what-is-the-church': 'Church History',
-  'does-god-exist': 'God',
-  'what-is-the-trinity': 'God',
-  'who-is-god': 'God',
-  'why-did-jesus-die-on-the-cross': 'Jesus Christ',
-  'did-jesus-really-rise-from-the-dead': 'Jesus Christ',
-  'why-is-jesus-called-the-son-of-god': 'Jesus Christ',
-  'son-of-god-vs-son-of-man': 'Jesus Christ',
-  'who-is-jesus-christ': 'Jesus Christ',
-  'who-is-the-holy-spirit': 'God',
-};
-
-const FEATURED_FORMATION_PATHS = [
-  {
-    title: 'Start with the big questions',
-    description: 'Begin with God, Jesus Christ, purpose, and the reason faith matters.',
-    icon: 'spark' as const,
-    slugs: [
-      'what-is-the-purpose-of-life',
-      'who-is-god',
-      'who-is-jesus-christ',
-    ],
-  },
-  {
-    title: 'Explore the Catholic Church',
-    description: 'Learn what Catholics believe and why the Church matters.',
-    icon: 'church' as const,
-    slugs: [
-      'what-is-the-church',
-      'what-do-catholics-believe',
-      'why-become-catholic',
-    ],
-  },
-  {
-    title: 'Learn prayer and mercy',
-    description: 'Find practical help for prayer, sin, confession, and returning to God.',
-    icon: 'prayer' as const,
-    slugs: [
-      'how-do-i-pray',
-      'how-do-i-go-to-confession',
-      'does-god-still-love-me-when-i-sin',
-    ],
-  },
-  {
-    title: 'Understand Scripture and worship',
-    description: 'See how Catholics read the Bible, worship at Mass, and receive Christ.',
-    icon: 'scroll' as const,
-    slugs: [
-      'why-should-i-trust-the-bible',
-      'what-is-the-mass',
-      'what-is-the-eucharist',
-    ],
-  },
-];
-
-function getArticleTopic(article: QuestionArticle): TopicFilter {
-  return ARTICLE_TOPIC_BY_SLUG[article.slug] ?? article.category;
-}
-
-function getTopicIcon(topic: TopicFilter): IconName {
-  if (topic === 'All Questions') return 'spark';
-  return CATEGORY_ICONS[topic] ?? 'book';
+function getPillarIcon(icon: FormationPillarIcon): IconName {
+  return icon;
 }
 
 function formatQuestionCount(count: number) {
-  return `${count} ${count === 1 ? 'question' : 'questions'}`;
+  return `${count} ${count === 1 ? 'article' : 'articles'}`;
 }
 
-function sortTopics(topics: string[]) {
-  const knownOrder = new Map<string, number>(
-    QUESTION_CATEGORY_ORDER.map((topic, index) => [topic, index])
-  );
-
-  return [...topics].sort((first, second) => {
-    const firstOrder = knownOrder.get(first) ?? Number.MAX_SAFE_INTEGER;
-    const secondOrder = knownOrder.get(second) ?? Number.MAX_SAFE_INTEGER;
-
-    if (firstOrder !== secondOrder) {
-      return firstOrder - secondOrder;
-    }
-
-    return first.localeCompare(second);
-  });
+function getArticleExcerpt(article: QuestionArticle) {
+  return article.description;
 }
 
 export default function Questions() {
-  const [activeTopic, setActiveTopic] = useState<TopicFilter>('All Questions');
+  const [activePillarId, setActivePillarId] = useState<FormationPillarId | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const publishedQuestionCount = questionArticles.length;
   const structuredData = useMemo(() => buildQuestionsLandingSchema(), []);
@@ -246,79 +150,54 @@ export default function Questions() {
 
   const articleRows = useMemo(
     () =>
-      questionArticles.map((article) => {
-        const topic = getArticleTopic(article);
-        return {
-          article,
-          href: `/questions/${article.slug}`,
-          icon: getTopicIcon(topic),
-          topic,
-        };
-      }),
+      questionArticles.map((article): ArticleRow => ({
+        article,
+        href: `/questions/${article.slug}`,
+        pillar: getQuestionPillar(article),
+      })),
     []
   );
 
-  const articleBySlug = useMemo(() => {
-    return new Map(questionArticles.map((article) => [article.slug, article]));
-  }, []);
-
-  const featuredFormationPaths = useMemo(() => {
-    return FEATURED_FORMATION_PATHS.map((path) => ({
-      ...path,
-      articles: path.slugs
-        .map((slug) => articleBySlug.get(slug))
-        .filter((article): article is QuestionArticle => Boolean(article)),
-    })).filter((path) => path.articles.length > 0);
-  }, [articleBySlug]);
-
-  const topicCounts = useMemo(() => {
-    return articleRows.reduce<Record<string, number>>((counts, { topic }) => {
-      counts[topic] = (counts[topic] ?? 0) + 1;
+  const pillarCounts = useMemo(() => {
+    return articleRows.reduce<Record<FormationPillarId, number>>((counts, { pillar }) => {
+      counts[pillar.id] = (counts[pillar.id] ?? 0) + 1;
       return counts;
-    }, {});
+    }, {} as Record<FormationPillarId, number>);
   }, [articleRows]);
 
-  const visibleTopicFilters = useMemo<TopicFilter[]>(() => {
-    const liveTopics = sortTopics(Object.keys(topicCounts));
-    return ['All Questions', ...liveTopics];
-  }, [topicCounts]);
+  const activePillar = useMemo(
+    () => formationPillars.find((pillar) => pillar.id === activePillarId) ?? null,
+    [activePillarId]
+  );
 
-  const filteredArticles = useMemo(() => {
+  const visibleArticles = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
 
-    return articleRows.filter(({ article, topic }) => {
-      const matchesTopic =
-        activeTopic === 'All Questions' || topic === activeTopic;
-      const matchesSearch =
-        !query ||
-        article.title.toLowerCase().includes(query) ||
-        article.description.toLowerCase().includes(query) ||
-        topic.toLowerCase().includes(query);
+    if (query) {
+      return articleRows.filter(({ article, pillar }) => {
+        return (
+          article.title.toLowerCase().includes(query) ||
+          article.description.toLowerCase().includes(query) ||
+          pillar.title.toLowerCase().includes(query)
+        );
+      });
+    }
 
-      return matchesTopic && matchesSearch;
-    });
-  }, [activeTopic, articleRows, searchTerm]);
+    if (activePillar) {
+      return articleRows.filter(({ pillar }) => pillar.id === activePillar.id);
+    }
 
-  const filteredArticleSections = useMemo(() => {
-    const sections = filteredArticles.reduce<Record<string, typeof filteredArticles>>(
-      (groups, row) => {
-        groups[row.topic] = groups[row.topic] ?? [];
-        groups[row.topic].push(row);
-        return groups;
-      },
-      {}
-    );
+    return articleRows.slice(0, 10);
+  }, [activePillar, articleRows, searchTerm]);
 
-    return sortTopics(Object.keys(sections)).map((topic) => ({
-      topic,
-      id: `question-category-${topic.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
-      articles: sections[topic] ?? [],
-      icon: getTopicIcon(topic),
-    }));
-  }, [filteredArticles]);
+  const sectionTitle = searchTerm.trim()
+    ? 'Search Results'
+    : activePillar?.title ?? 'Latest Formation Articles';
 
-  const activeQuestionCount =
-    activeTopic === 'All Questions' ? publishedQuestionCount : topicCounts[activeTopic] ?? 0;
+  const sectionDescription = searchTerm.trim()
+    ? `${formatQuestionCount(visibleArticles.length)} match your search.`
+    : activePillar?.description ??
+      'The newest formation articles from the Catholic Questions library.';
 
   return (
     <PublicSiteLayout>
@@ -343,8 +222,7 @@ export default function Questions() {
               Catholic Questions
             </h1>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-leather-900/72">
-              Search a calm, faithful library of Catholic answers organized for
-              beginners, seekers, and returning Catholics.
+              Simple Catholic answers to help you grow closer to Jesus Christ.
             </p>
 
             <div className="mt-7 max-w-3xl rounded-[1.6rem] border border-amber-100 bg-white/92 p-2 shadow-[0_20px_60px_rgba(92,64,39,0.12)] backdrop-blur">
@@ -378,28 +256,9 @@ export default function Questions() {
               </div>
             </div>
 
-            <div className="-mx-5 mt-5 overflow-x-auto px-5 pb-1 sm:mx-0 sm:px-0">
-              <div className="flex min-w-max gap-2">
-                {visibleTopicFilters.map((topic) => {
-                  const selected = activeTopic === topic;
-                  return (
-                    <button
-                      key={topic}
-                      type="button"
-                      onClick={() => setActiveTopic(topic)}
-                      aria-pressed={selected}
-                      className={`rounded-full border px-4 py-2 text-sm font-bold transition ${
-                        selected
-                          ? 'border-leather-900 bg-leather-950 text-white shadow-[0_12px_30px_rgba(20,12,8,0.16)]'
-                          : 'border-amber-100 bg-white/72 text-leather-900/72 hover:border-amber-300 hover:bg-white'
-                      }`}
-                    >
-                      {topic}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+            <p className="mt-5 text-sm font-semibold text-leather-900/58">
+              {formatQuestionCount(publishedQuestionCount)} organized into four formation pillars.
+            </p>
           </div>
 
           <div className="hidden lg:block">
@@ -411,13 +270,13 @@ export default function Questions() {
               />
               <div className="px-2 pb-2 pt-4">
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-amber-700">
-                  Knowledge Library
+                  Formation Library
                 </p>
                 <p className="mt-2 font-display text-3xl font-semibold leading-none text-leather-950">
                   {formatQuestionCount(publishedQuestionCount)}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-leather-900/64">
-                  Organized by topic for quick, faithful answers.
+                  Built for quick answers and deeper formation.
                 </p>
               </div>
             </div>
@@ -426,198 +285,127 @@ export default function Questions() {
       </header>
 
       <main className="px-5 py-8 sm:px-8 md:py-10">
-        <section className="mx-auto mb-8 max-w-[1440px]">
-          <div className="rounded-[1.7rem] border border-amber-100/80 bg-white/72 p-5 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-6">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
-                  Formation Paths
-                </p>
-                <h2 className="mt-1 font-display text-3xl font-semibold text-leather-950">
-                  Start where you are
-                </h2>
-              </div>
-              <p className="max-w-2xl text-sm font-semibold leading-6 text-leather-900/58 sm:text-right">
-                Follow a short path, then use search or topics to go deeper.
-              </p>
-            </div>
-
-            <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
-              {featuredFormationPaths.map((path) => (
-                <section
-                  key={path.title}
-                  className="rounded-[1.4rem] border border-amber-100/80 bg-[#fffaf0] p-4"
+        <section className="mx-auto max-w-[1440px]">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {formationPillars.map((pillar) => {
+              const selected = activePillarId === pillar.id && !searchTerm.trim();
+              return (
+                <button
+                  key={pillar.id}
+                  type="button"
+                  aria-pressed={selected}
+                  onClick={() => {
+                    setSearchTerm('');
+                    setActivePillarId(pillar.id);
+                    window.setTimeout(() => {
+                      document
+                        .getElementById('formation-results')
+                        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 0);
+                  }}
+                  className={`group flex min-h-[17rem] w-full flex-col justify-between rounded-[1.7rem] border p-5 text-left shadow-[0_18px_58px_rgba(92,64,39,0.1)] transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(92,64,39,0.14)] sm:p-6 ${
+                    selected
+                      ? 'border-amber-300 bg-[linear-gradient(145deg,#fff8e7,#efd7a6)]'
+                      : 'border-amber-100/80 bg-white/76 hover:border-amber-200'
+                  }`}
                 >
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
-                      <IconMark type={path.icon} />
+                  <span>
+                    <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-100 text-amber-800 transition group-hover:bg-amber-200/80">
+                      <IconMark type={getPillarIcon(pillar.icon)} className="h-6 w-6" />
                     </span>
-                    <div>
-                      <h3 className="font-display text-2xl font-semibold leading-tight text-leather-950">
-                        {path.title}
-                      </h3>
-                      <p className="mt-1 text-sm leading-6 text-leather-900/62">
-                        {path.description}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 space-y-1">
-                    {path.articles.map((article) => (
-                      <Link
-                        key={article.slug}
-                        to={`/questions/${article.slug}`}
-                        className="group flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 transition hover:bg-white"
-                      >
-                        <span className="min-w-0 truncate text-sm font-bold text-leather-900">
-                          {article.title}
-                        </span>
-                        <span className="text-xs font-bold uppercase tracking-[0.12em] text-amber-700 transition group-hover:text-leather-900">
-                          Read
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </section>
-              ))}
-            </div>
+                    <span className="mt-5 block font-display text-3xl font-semibold leading-tight text-leather-950">
+                      {pillar.title}
+                    </span>
+                    <span className="mt-3 block text-base leading-7 text-leather-900/66">
+                      {pillar.description}
+                    </span>
+                  </span>
+                  <span className="mt-5 flex items-center justify-between gap-3 text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+                    <span>{formatQuestionCount(pillarCounts[pillar.id] ?? 0)}</span>
+                    <Arrow />
+                  </span>
+                </button>
+              );
+            })}
           </div>
         </section>
 
-        <div className="mx-auto grid max-w-[1440px] gap-8 lg:grid-cols-[minmax(0,1fr)_19rem]">
-          <section>
-            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
-                  {activeTopic}
-                </p>
-                <h2 className="mt-1 font-display text-3xl font-semibold text-leather-950">
-                  Published answers
-                </h2>
-              </div>
-              <p className="text-sm font-semibold text-leather-900/58">
-                {formatQuestionCount(activeQuestionCount)} organized{' '}
-                {activeTopic === 'All Questions' ? 'across the library' : 'in this topic'}
+        <section id="formation-results" className="mx-auto mt-10 max-w-[1440px] scroll-mt-28">
+          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                Formation Library
+              </p>
+              <h2 className="mt-1 font-display text-3xl font-semibold text-leather-950">
+                {sectionTitle}
+              </h2>
+              <p className="mt-2 max-w-3xl text-base leading-7 text-leather-900/66">
+                {sectionDescription}
               </p>
             </div>
+            {(activePillar || searchTerm.trim()) && (
+              <button
+                type="button"
+                onClick={() => {
+                  setActivePillarId(null);
+                  setSearchTerm('');
+                }}
+                className="self-start rounded-full border border-amber-200 bg-white/76 px-4 py-2 text-sm font-bold text-leather-900 transition hover:border-amber-400 hover:bg-white sm:self-auto"
+              >
+                View latest
+              </button>
+            )}
+          </div>
 
-            <div className="overflow-hidden rounded-[1.7rem] border border-amber-100/80 bg-white/82 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur">
-              {filteredArticles.length > 0 ? (
-                <div className="divide-y divide-amber-100/80">
-                  {filteredArticleSections.map(({ topic, id, articles, icon }) => (
-                    <section key={topic} aria-labelledby={id}>
-                      <div className="flex items-center justify-between gap-4 bg-[#fffaf0] px-4 py-3 sm:px-5">
-                        <div className="flex min-w-0 items-center gap-3">
-                          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
-                            <IconMark type={icon} className="h-4 w-4" />
-                          </span>
-                          <h3
-                            id={id}
-                            className="truncate text-sm font-bold uppercase tracking-[0.16em] text-leather-900/70"
-                          >
-                            {topic}
-                          </h3>
-                        </div>
-                        <span className="shrink-0 text-xs font-bold text-leather-900/45">
-                          {formatQuestionCount(articles.length)}
-                        </span>
-                      </div>
-                      <div className="divide-y divide-amber-100/80">
-                        {articles.map(({ article, href, icon: articleIcon, topic: articleTopic }) => (
-                          <Link
-                            key={article.slug}
-                            to={href}
-                            className="group flex items-start gap-4 px-4 py-4 transition hover:bg-[#fff8e7] sm:px-5"
-                          >
-                            <span className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
-                              <IconMark type={articleIcon} />
-                            </span>
-                            <span className="min-w-0 flex-1">
-                              <span className="block font-display text-2xl font-semibold leading-tight text-leather-950">
-                                {article.title}
-                              </span>
-                              <span className="mt-1 block text-base leading-7 text-leather-900/66">
-                                {article.description}
-                              </span>
-                              <span className="mt-2 block text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
-                                {articleTopic}
-                              </span>
-                            </span>
-                            <Arrow />
-                          </Link>
-                        ))}
-                      </div>
-                    </section>
-                  ))}
-                </div>
-              ) : (
-                <div className="px-5 py-10 text-center">
-                  <p className="font-display text-2xl font-semibold text-leather-950">
-                    No published answer matches this filter yet.
-                  </p>
-                  <p className="mx-auto mt-2 max-w-xl text-base leading-7 text-leather-900/64">
-                    Try another topic or search term. New Catholic Questions
-                    articles are being added regularly.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setActiveTopic('All Questions');
-                      setSearchTerm('');
-                    }}
-                    className="mt-5 rounded-full border border-amber-200 bg-white px-5 py-2.5 text-sm font-bold text-leather-900 transition hover:border-amber-400"
+          <div className="overflow-hidden rounded-[1.7rem] border border-amber-100/80 bg-white/82 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+            {visibleArticles.length > 0 ? (
+              <div className="divide-y divide-amber-100/80">
+                {visibleArticles.map(({ article, href, pillar }) => (
+                  <Link
+                    key={article.slug}
+                    to={href}
+                    className="group flex items-start gap-4 px-4 py-5 transition hover:bg-[#fff8e7] sm:px-5"
                   >
-                    View all questions
-                  </button>
-                </div>
-              )}
-            </div>
-          </section>
-
-          <aside className="hidden lg:block">
-            <div className="sticky top-28 space-y-4">
-              <section className="rounded-[1.5rem] border border-amber-100/80 bg-white/72 p-5 shadow-[0_16px_44px_rgba(92,64,39,0.08)] backdrop-blur">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-amber-700">
-                  Popular Topics
+                    <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+                      <IconMark type={getPillarIcon(pillar.icon)} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-display text-2xl font-semibold leading-tight text-leather-950">
+                        {article.title}
+                      </span>
+                      <span className="mt-1 block text-base leading-7 text-leather-900/66">
+                        {getArticleExcerpt(article)}
+                      </span>
+                      <span className="mt-2 block text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+                        {pillar.title}
+                      </span>
+                    </span>
+                    <Arrow />
+                  </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="px-5 py-10 text-center">
+                <p className="font-display text-2xl font-semibold text-leather-950">
+                  No formation article matches this search yet.
                 </p>
-                <div className="mt-4 space-y-1">
-                  {visibleTopicFilters.filter((topic) => topic !== 'All Questions').map(
-                    (topic) => (
-                      <button
-                        key={topic}
-                        type="button"
-                        onClick={() => setActiveTopic(topic)}
-                        className="group flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-left transition hover:bg-[#fff8e7]"
-                      >
-                        <span className="flex min-w-0 items-center gap-3">
-                          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-800">
-                            <IconMark type={getTopicIcon(topic)} className="h-4 w-4" />
-                          </span>
-                          <span className="truncate text-sm font-bold text-leather-900">
-                            {topic}
-                          </span>
-                        </span>
-                        <span className="text-xs font-bold text-leather-900/45">
-                          {topicCounts[topic] ?? 0}
-                        </span>
-                      </button>
-                    )
-                  )}
-                </div>
-              </section>
-
-              <section className="rounded-[1.5rem] border border-amber-100/80 bg-[linear-gradient(145deg,#fff8e7,#ecd39f)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.1)]">
-                <p className="font-display text-2xl font-semibold leading-tight text-leather-950">
-                  Can't find your question?
+                <p className="mx-auto mt-2 max-w-xl text-base leading-7 text-leather-900/64">
+                  Try another word or choose one of the four formation pillars.
                 </p>
-                <p className="mt-2 text-sm leading-6 text-leather-900/66">
-                  Search broadly, then choose the closest topic. The library is
-                  built to make faithful answers easier to find.
-                </p>
-              </section>
-            </div>
-          </aside>
-        </div>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActivePillarId(null);
+                    setSearchTerm('');
+                  }}
+                  className="mt-5 rounded-full border border-amber-200 bg-white px-5 py-2.5 text-sm font-bold text-leather-900 transition hover:border-amber-400"
+                >
+                  View latest articles
+                </button>
+              </div>
+            )}
+          </div>
+        </section>
 
         <section className="mx-auto mt-10 max-w-[1440px] pb-8">
           <div className="rounded-[1.6rem] border border-amber-100/70 bg-white/68 p-5 shadow-[0_14px_40px_rgba(92,64,39,0.08)] backdrop-blur md:flex md:items-center md:justify-between md:gap-6">

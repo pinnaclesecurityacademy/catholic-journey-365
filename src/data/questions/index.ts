@@ -36,6 +36,11 @@ import { whoAreTheSaints } from './whoAreTheSaints';
 import { doesGodExist } from './doesGodExist';
 import { whoIsGod } from './whoIsGod';
 import { whoIsJesusChrist } from './whoIsJesusChrist';
+import { whyDidJesusHaveToDie } from './whyDidJesusHaveToDie';
+import { whyDoesntGodDestroySatan } from './whyDoesntGodDestroySatan';
+import { whyDoesGodAllowEvil } from './whyDoesGodAllowEvil';
+import { whatIsTheKingdomOfGod } from './whatIsTheKingdomOfGod';
+import { whyDidJesusSpeakInParables } from './whyDidJesusSpeakInParables';
 import { whyDidJesusDieOnTheCross } from './whyDidJesusDieOnTheCross';
 import { didJesusReallyRiseFromTheDead } from './didJesusReallyRiseFromTheDead';
 import { whyIsJesusCalledTheSonOfGod } from './whyIsJesusCalledTheSonOfGod';
@@ -95,6 +100,11 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whyDidJesusHaveToDie,
+  whyDoesntGodDestroySatan,
+  whyDoesGodAllowEvil,
+  whatIsTheKingdomOfGod,
+  whyDidJesusSpeakInParables,
   whatIsOriginalSin,
   whyDidGodAllowTheFall,
   whyDidGodTestAdamAndEve,

@@ -66,11 +66,16 @@ import { whyDoCatholicsBaptizeBabies } from './whyDoCatholicsBaptizeBabies';
 import { whyDoCatholicsGoToMass } from './whyDoCatholicsGoToMass';
 import { whyDoCatholicsPrayToMary } from './whyDoCatholicsPrayToMary';
 import { whyDoCatholicsPrayToTheSaints } from './whyDoCatholicsPrayToTheSaints';
+import { whyDidGodAllowTheFall } from './whyDidGodAllowTheFall';
+import { whyDidGodConfuseTheLanguagesAtBabel } from './whyDidGodConfuseTheLanguagesAtBabel';
+import { whyDidGodFloodTheEarth } from './whyDidGodFloodTheEarth';
+import { whyDidGodTestAdamAndEve } from './whyDidGodTestAdamAndEve';
 import { whyDoesTheCatholicChurchHaveAPope } from './whyDoesTheCatholicChurchHaveAPope';
 import { whyDoesTheBibleHaveTwoTestaments } from './whyDoesTheBibleHaveTwoTestaments';
 import { whyIsTheCatholicBibleDifferent } from './whyIsTheCatholicBibleDifferent';
 import { whichBibleDoCatholicsUse } from './whichBibleDoCatholicsUse';
 import { whatIsThePurposeOfLife } from './whatIsThePurposeOfLife';
+import { whatIsOriginalSin } from './whatIsOriginalSin';
 import { whyDoesGodAllowSuffering } from './whyDoesGodAllowSuffering';
 import { whatHappensWhenWeDie } from './whatHappensWhenWeDie';
 import { whatIsHeavenLike } from './whatIsHeavenLike';
@@ -90,6 +95,11 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whatIsOriginalSin,
+  whyDidGodAllowTheFall,
+  whyDidGodTestAdamAndEve,
+  whyDidGodFloodTheEarth,
+  whyDidGodConfuseTheLanguagesAtBabel,
   howDoesTheOldTestamentPointToJesus,
   whereIsMaryForeshadowedInTheOldTestament,
   whereIsTheEucharistInTheOldTestament,

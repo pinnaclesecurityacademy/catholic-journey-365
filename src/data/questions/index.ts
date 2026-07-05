@@ -41,6 +41,13 @@ import { whyDoesntGodDestroySatan } from './whyDoesntGodDestroySatan';
 import { whyDoesGodAllowEvil } from './whyDoesGodAllowEvil';
 import { whatIsTheKingdomOfGod } from './whatIsTheKingdomOfGod';
 import { whyDidJesusSpeakInParables } from './whyDidJesusSpeakInParables';
+import { whatIsTheNewCovenant } from './whatIsTheNewCovenant';
+import { whyIsTheMassACelebration } from './whyIsTheMassACelebration';
+import { whatHappensDuringTheLiturgyOfTheEucharist } from './whatHappensDuringTheLiturgyOfTheEucharist';
+import { whyDoCatholicsFastBeforeCommunion } from './whyDoCatholicsFastBeforeCommunion';
+import { howCanACatholicHusbandStayFaithful } from './howCanACatholicHusbandStayFaithful';
+import { whatDoesTheBibleSayAboutLust } from './whatDoesTheBibleSayAboutLust';
+import { howToRaiseACatholicFamily } from './howToRaiseACatholicFamily';
 import { whyDidJesusDieOnTheCross } from './whyDidJesusDieOnTheCross';
 import { didJesusReallyRiseFromTheDead } from './didJesusReallyRiseFromTheDead';
 import { whyIsJesusCalledTheSonOfGod } from './whyIsJesusCalledTheSonOfGod';
@@ -100,6 +107,13 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whatIsTheNewCovenant,
+  whyIsTheMassACelebration,
+  whatHappensDuringTheLiturgyOfTheEucharist,
+  whyDoCatholicsFastBeforeCommunion,
+  howCanACatholicHusbandStayFaithful,
+  whatDoesTheBibleSayAboutLust,
+  howToRaiseACatholicFamily,
   whyDidJesusHaveToDie,
   whyDoesntGodDestroySatan,
   whyDoesGodAllowEvil,

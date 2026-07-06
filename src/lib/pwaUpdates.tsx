@@ -8,6 +8,8 @@ import {
   type ReactNode,
 } from 'react';
 import * as serviceWorkerRegistration from '../serviceWorkerRegistration';
+import { APP_SHELL_VERSION } from '../generated/appShellVersion';
+import { isStandalonePWA } from './pwaDisplayMode';
 
 type UpdateStatus = 'idle' | 'checking' | 'latest' | 'ready' | 'unsupported';
 
@@ -23,6 +25,7 @@ type PWAUpdateValue = {
 // assets are used. The guard prevents stacked listeners and reload loops.
 let controllerChangeBound = false;
 let reloading = false;
+const APP_SHELL_VERSION_URL = `${process.env.PUBLIC_URL || ''}/app-shell-version.json`;
 
 function bindControllerChangeReload() {
   if (controllerChangeBound || !('serviceWorker' in navigator)) {
@@ -58,6 +61,39 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
     setStatus('ready');
   }, []);
 
+  const activateSilently = useCallback((worker: ServiceWorker | null) => {
+    worker?.postMessage({ type: 'SKIP_WAITING' });
+  }, []);
+
+  const handleWaitingUpdate = useCallback(
+    async (nextRegistration: ServiceWorkerRegistration) => {
+      setRegistration(nextRegistration);
+
+      const worker =
+        nextRegistration.waiting ?? (await waitForWaitingWorker(nextRegistration));
+      if (!worker) {
+        return;
+      }
+
+      if (!isStandalonePWA()) {
+        setStatus('unsupported');
+        activateSilently(worker);
+        return;
+      }
+
+      const appShellChanged = await hasAppShellChanged();
+      if (appShellChanged) {
+        setWaitingWorker(worker);
+        setStatus('ready');
+        return;
+      }
+
+      setStatus('latest');
+      activateSilently(worker);
+    },
+    [activateSilently]
+  );
+
   useEffect(() => {
     if (!('serviceWorker' in navigator)) {
       setStatus('unsupported');
@@ -81,7 +117,7 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
           worker.state === 'installed' &&
           navigator.serviceWorker.controller
         ) {
-          markReady(reg);
+          handleWaitingUpdate(reg).catch(() => markReady(reg));
         }
       });
     };
@@ -94,7 +130,7 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
       },
       onUpdate: (reg) => {
         if (!cancelled) {
-          markReady(reg);
+          handleWaitingUpdate(reg).catch(() => markReady(reg));
         }
       },
     });
@@ -108,7 +144,9 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
 
       // An update may already be waiting from a previous visit.
       if (currentRegistration.waiting && navigator.serviceWorker.controller) {
-        markReady(currentRegistration);
+        handleWaitingUpdate(currentRegistration).catch(() =>
+          markReady(currentRegistration)
+        );
         return;
       }
 
@@ -134,7 +172,9 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
           }
 
           if (currentRegistration.waiting && navigator.serviceWorker.controller) {
-            markReady(currentRegistration);
+            handleWaitingUpdate(currentRegistration).catch(() =>
+              markReady(currentRegistration)
+            );
             return;
           }
 
@@ -151,11 +191,16 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
       document.removeEventListener('visibilitychange', checkCurrentRegistration);
       window.removeEventListener('focus', checkCurrentRegistration);
     };
-  }, [markReady]);
+  }, [handleWaitingUpdate, markReady]);
 
   const checkForUpdates = useCallback(async () => {
     if (!('serviceWorker' in navigator)) {
       setStatus('latest');
+      return;
+    }
+
+    if (!isStandalonePWA()) {
+      setStatus('unsupported');
       return;
     }
 
@@ -180,13 +225,12 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
 
     const nextWorker = await waitForWaitingWorker(currentRegistration);
     if (nextWorker) {
-      setWaitingWorker(nextWorker);
-      markReady(currentRegistration);
+      await handleWaitingUpdate(currentRegistration);
       return;
     }
 
     setStatus('latest');
-  }, [markReady, registration]);
+  }, [handleWaitingUpdate, registration]);
 
   const updateNow = useCallback(() => {
     if (!waitingWorker || !('serviceWorker' in navigator)) {
@@ -212,6 +256,23 @@ export function PWAUpdateProvider({ children }: { children: ReactNode }) {
       {children}
     </PWAUpdateContext.Provider>
   );
+}
+
+async function hasAppShellChanged() {
+  try {
+    const response = await fetch(APP_SHELL_VERSION_URL, {
+      cache: 'no-store',
+      headers: { Accept: 'application/json' },
+    });
+    if (!response.ok) {
+      return true;
+    }
+
+    const latest = (await response.json()) as { version?: string };
+    return latest.version ? latest.version !== APP_SHELL_VERSION : true;
+  } catch {
+    return true;
+  }
 }
 
 export function usePWAUpdate() {

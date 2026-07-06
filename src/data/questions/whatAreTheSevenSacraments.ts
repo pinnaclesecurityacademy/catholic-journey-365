@@ -5,26 +5,19 @@ export const whatAreTheSevenSacraments: QuestionArticle = {
   title: 'What Are the Seven Sacraments?',
   metaTitle: 'What Are the Seven Sacraments? | Catholic Journey 365',
   metaDescription:
-    "Learn what the seven sacraments are, why Jesus gave them to the Church, and how they help us grow in God's grace.",
+    'Learn the seven Catholic sacraments, why Jesus gave them to the Church, and how they give grace through visible signs.',
   description:
-    "Learn what the seven sacraments are, why Jesus gave them to the Church, and how they help us grow in God's grace.",
+    'Learn the seven Catholic sacraments, why Jesus gave them to the Church, and how they give grace through visible signs.',
   category: 'Sacraments',
-  readTime: '9 min read',
+  readTime: '11 min read',
   published: true,
-  appPromotionAfterSection: 4,
+  appPromotionAfterSection: 5,
   sections: [
     {
-      heading: 'The sacraments are gifts of grace',
+      heading: 'The seven sacraments are visible signs of grace',
       paragraphs: [
-        'The seven sacraments are sacred signs given by Jesus Christ to His Church that actually give the grace they signify. They are Baptism, Confirmation, the Eucharist, Confession, Anointing of the Sick, Holy Orders, and Matrimony.',
-        'A sacrament is not an empty symbol. It is a visible sign through which God gives invisible grace. Grace means God\'s free gift of His own life, help, mercy, and strength.',
-      ],
-    },
-    {
-      heading: 'Why Jesus gave the sacraments',
-      paragraphs: [
-        'Jesus came to save us not only by teaching from a distance, but by touching real human lives. In the Gospels He uses water, touch, words, oil, meals, forgiveness, and blessing. The sacraments continue this pattern in the life of the Church.',
-        'CCC 1113-1131 teaches that the sacraments were instituted by Christ and entrusted to the Church. They are actions of Christ, not merely religious ceremonies invented by Christians.',
+        'The seven sacraments are Baptism, Confirmation, the Eucharist, Confession, Anointing of the Sick, Holy Orders, and Matrimony. Catholics believe Jesus gave the sacraments to His Church so He could continue giving His grace in visible, concrete ways.',
+        'The Catechism defines the sacraments as "efficacious signs of grace" instituted by Christ and entrusted to the Church (CCC 1131). Efficacious means they actually do what Christ promises. They are not empty symbols.',
       ],
       quotes: [
         {
@@ -34,61 +27,65 @@ export const whatAreTheSevenSacraments: QuestionArticle = {
       ],
     },
     {
-      heading: 'The three sacraments of initiation',
+      heading: 'Why Catholics believe sacraments matter',
       paragraphs: [
-        'Baptism, Confirmation, and the Eucharist are called sacraments of initiation because they bring a person into the life of Christ and His Church. Baptism gives new birth. Confirmation strengthens the baptized with the Holy Spirit. The Eucharist nourishes the Christian with the Body and Blood of Christ.',
-        'Acts 2:38 shows the early Christian pattern: repent, be baptized, receive forgiveness, and receive the Holy Spirit. The Eucharist then becomes the regular food of Christian life, as Acts 2:42 describes the first Christians devoted to the breaking of bread.',
+        'Christianity is not only a message about God. It is communion with God through Jesus Christ. Because the Son of God truly became flesh, Catholics believe God can use visible things like water, oil, bread, wine, words, touch, and covenant promises to give invisible grace.',
+        'In the Gospels, Jesus heals through touch, forgives sins with spoken words, feeds people with bread, blesses marriage, commands Baptism, and gives His Body and Blood at the Last Supper. The sacraments continue this pattern in the life of the Church.',
       ],
     },
     {
-      heading: 'The two sacraments of healing',
+      heading: 'The sacraments of initiation',
       paragraphs: [
-        'Confession and Anointing of the Sick are sacraments of healing. Confession, also called Reconciliation or Penance, restores us when sin has wounded our relationship with God and the Church. Jesus gave the apostles authority to forgive sins in John 20:22-23.',
-        'Anointing of the Sick brings Christ\'s healing, strength, forgiveness, and peace to those who are seriously ill, weakened by age, or facing grave sickness. James 5:14-15 speaks of the elders praying over the sick and anointing them with oil in the name of the Lord.',
+        'Baptism, Confirmation, and the Eucharist are called the sacraments of initiation because they bring a person into the life of Christ and His Church. Baptism gives new birth. Confirmation strengthens the baptized with the Holy Spirit. The Eucharist nourishes us with the Body and Blood of Christ.',
+        'Acts 2:38 shows the early Christian pattern of repentance, Baptism, forgiveness, and the gift of the Holy Spirit. Acts 2:42 shows the first Christians devoted to the apostles\' teaching, fellowship, the breaking of bread, and prayers.',
       ],
     },
     {
-      heading: 'The two sacraments of service',
+      heading: 'The sacraments of healing',
       paragraphs: [
-        'Holy Orders and Matrimony are sacraments at the service of communion and mission. Holy Orders configures bishops, priests, and deacons for ordained service in the Church. Matrimony joins a baptized man and woman in a covenant of faithful love ordered toward the good of the spouses and the welcoming of life.',
-        'Ephesians 5 points to the mystery of Christ and the Church when speaking about marriage. Catholic teaching sees marriage not only as a private contract, but as a sacramental sign of faithful, fruitful love.',
+        'Confession and Anointing of the Sick are sacraments of healing. Confession restores communion with God and the Church when sin has wounded us. Jesus gave the apostles authority to forgive sins in John 20:21-23.',
+        'Anointing of the Sick brings Christ\'s healing, strength, forgiveness, and peace to those who are seriously ill, weakened by age, or facing grave sickness. James 5:14-15 tells the sick to call the elders of the Church, who pray and anoint with oil in the name of the Lord.',
+      ],
+    },
+    {
+      heading: 'The sacraments at the service of communion',
+      paragraphs: [
+        'Holy Orders and Matrimony are sacraments at the service of communion and mission (CCC 1534). Holy Orders configures bishops, priests, and deacons for ordained service in the Church. Matrimony joins a baptized man and woman in a lifelong covenant of faithful love.',
+        'Ephesians 5:25 says, "Husbands, love your wives, even as Christ also loved the assembly." Catholic marriage points to Christ\'s faithful love for the Church, while ordained ministry serves Christ\'s people through preaching, sacraments, and pastoral care.',
       ],
     },
     {
       heading: 'The early Church lived sacramentally',
       paragraphs: [
-        'The early Church baptized, laid hands on believers, celebrated the Eucharist, forgave sins, anointed the sick, ordained ministers, and blessed Christian marriage. The language developed over time, but the sacramental life is rooted in Scripture and apostolic practice.',
-        'St. Augustine described the power of a sacrament by saying that when the word is added to the element, the sacrament comes to be. His point was simple: God uses visible things, joined to His promise, to give real grace.',
-      ],
-      quotes: [
-        {
-          text: 'The word is added to the element, and there results the sacrament.',
-          citation: 'St. Augustine, Tractates on John',
-        },
+        'The early Church baptized, laid hands on believers, celebrated the Eucharist, forgave sins, anointed the sick, ordained ministers, and honored Christian marriage. The Church\'s language became more precise over time, but the sacramental life is rooted in Scripture and apostolic practice.',
+        'St. Augustine described a sacrament as a visible sign of invisible grace. His insight helps beginners understand the Catholic view: God does not despise material things. He uses creation to draw us into redemption.',
       ],
     },
     {
       heading: 'The sacraments shape the whole Christian life',
       paragraphs: [
-        'The sacraments are not isolated events. They form the whole Christian journey. Baptism begins new life. Confirmation strengthens mission. The Eucharist feeds us again and again. Confession restores us. Anointing comforts and heals. Holy Orders serves the Church. Matrimony sanctifies family life.',
-        'Through the sacraments, Jesus meets His people in concrete ways. Catholic faith is not only ideas about God. It is communion with God through grace.',
+        'The sacraments are not disconnected religious events. They form the whole Christian journey. Baptism begins new life. Confirmation strengthens mission. The Eucharist feeds us again and again. Confession restores us. Anointing comforts and heals. Holy Orders serves the Church. Matrimony sanctifies family life.',
+        'Through the sacraments, Jesus meets His people in concrete ways. Catholic faith is not only thinking about God. It is receiving God\'s life and learning to live in communion with Him.',
       ],
     },
     {
-      heading: 'A simple next step',
+      heading: 'Journey Reflection',
       paragraphs: [
-        'If you are beginning to learn the Catholic faith, start by learning Baptism, Confirmation, and the Eucharist first. These sacraments explain how a person enters and lives the Christian life.',
-        'Catholic Journey 365 can help you keep learning each sacrament step by step, so the Catholic life of grace becomes clearer, more personal, and more deeply connected to Jesus Christ.',
+        'Consider which sacrament has most shaped your life, or which one you least understand. The sacraments are invitations to encounter Christ, not boxes to check.',
+        'Prayer: Jesus, thank You for giving Your Church the sacraments. Open my heart to receive Your grace with faith, reverence, and love.',
+        'Practical next step: Choose one sacrament from this list and read a full Catholic Journey 365 article about it this week.',
+        'Catholic Journey 365 can help you continue learning each sacrament step by step, so the Catholic life of grace becomes clearer and more deeply centered on Jesus Christ.',
       ],
     },
   ],
   relatedQuestions: [
+    { title: 'Why Did Jesus Give Us the Sacraments?', slug: 'why-did-jesus-give-us-the-sacraments' },
     { title: 'What Is Baptism?', slug: 'what-is-baptism' },
     { title: 'What Is Confirmation?', slug: 'what-is-confirmation' },
-    { title: 'What Is Holy Communion?', slug: 'what-is-holy-communion' },
     { title: 'What Is the Eucharist?', slug: 'what-is-the-eucharist' },
-    { title: 'What Happens at Mass?', slug: 'what-happens-at-mass' },
-    { title: 'What Do Catholics Believe?', slug: 'what-do-catholics-believe' },
-    { title: 'How Do I Become Catholic?', slug: 'how-do-i-become-catholic' },
+    { title: 'Why Do Catholics Go to Confession?', slug: 'why-do-catholics-go-to-confession' },
+    { title: 'What Is Anointing of the Sick?', slug: 'what-is-anointing-of-the-sick' },
+    { title: 'What Is Holy Orders?', slug: 'what-is-holy-orders' },
+    { title: 'What Is Matrimony?', slug: 'what-is-matrimony' },
   ],
 };

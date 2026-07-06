@@ -5,96 +5,87 @@ export const whatIsBaptism: QuestionArticle = {
   title: 'What Is Baptism?',
   metaTitle: 'What Is Baptism? | Catholic Journey 365',
   metaDescription:
-    'Discover what Baptism is, why it is the first sacrament, and what it means to become a child of God.',
+    'Learn what Baptism is, why Catholics call it new birth in Christ, and how it forgives sin and begins Christian life.',
   description:
-    'Discover what Baptism is, why it is the first sacrament, and what it means to become a child of God.',
+    'Learn what Baptism is, why Catholics call it new birth in Christ, and how it forgives sin and begins Christian life.',
   category: 'Sacraments',
-  readTime: '8 min read',
+  readTime: '10 min read',
   published: true,
-  appPromotionAfterSection: 4,
+  appPromotionAfterSection: 5,
   sections: [
     {
       heading: 'Baptism is new birth in Christ',
       paragraphs: [
-        'Baptism is the first sacrament, the doorway into Christian life, where a person is freed from sin, becomes a child of God, receives new life in Christ, and is joined to the Church. It is not only a naming ceremony or family tradition. It is a real gift of grace.',
-        'Catholics believe Baptism was commanded by Jesus and entrusted to the Church. In Matthew 28:19, Jesus sends the apostles to make disciples and baptize in the name of the Father, and of the Son, and of the Holy Spirit.',
+        'Baptism is the first sacrament, the doorway into Christian life, where a person is freed from sin, receives new life in Christ, becomes a child of God, and is joined to the Church. It is not only a family celebration or a naming ceremony. It is a real gift of grace.',
+        'Jesus commanded Baptism when He sent the apostles to make disciples of all nations, "baptizing them in the name of the Father and of the Son and of the Holy Spirit" (Matthew 28:19). The Catechism calls Baptism "the basis of the whole Christian life" and "the gateway to life in the Spirit" (CCC 1213).',
       ],
       quotes: [
         {
-          text: 'Go therefore and make disciples of all nations.',
-          citation: 'Matthew 28:19',
+          text: 'Unless one is born of water and spirit, he cannot enter into the Kingdom of God.',
+          citation: 'John 3:5',
         },
       ],
     },
     {
-      heading: 'Why Baptism comes first',
+      heading: 'Baptism forgives sin and gives new life',
       paragraphs: [
-        'Baptism comes first because it gives new birth. Jesus tells Nicodemus in John 3:5 that no one can enter the kingdom of God without being born of water and Spirit. Catholics understand Baptism as this new birth by water and the Holy Spirit.',
-        'CCC 1213 calls Baptism the basis of the whole Christian life, the gateway to life in the Spirit, and the door that gives access to the other sacraments.',
+        'Catholics believe Baptism forgives all sin, including original sin, and gives sanctifying grace. Sanctifying grace means God shares His own life with us and makes us holy. In Acts 2:38, Peter tells the crowd, "Repent and be baptized, every one of you, in the name of Jesus Christ for the forgiveness of sins, and you will receive the gift of the Holy Spirit."',
+        'Baptism also unites us to the death and Resurrection of Jesus. St. Paul writes that "we were buried therefore with him through baptism into death" so that we might "walk in newness of life" (Romans 6:4). This is why Baptism is not only washing. It is a passing from old life to new life in Christ.',
       ],
     },
     {
-      heading: 'What Baptism does',
+      heading: 'Baptism joins us to Christ and His Church',
       paragraphs: [
-        'Baptism forgives sins, including original sin, gives sanctifying grace, makes the person a member of Christ and His Church, and marks the soul with an indelible spiritual seal. Indelible means permanent. Baptism can never be repeated because God\'s mark remains.',
-        'Acts 2:38 connects Baptism with repentance, forgiveness of sins, and the gift of the Holy Spirit. Romans 6:3-4 says that in Baptism we are united with Christ in His death and Resurrection, so we may walk in newness of life.',
-      ],
-      quotes: [
-        {
-          text: 'We have been buried with him by baptism into death.',
-          citation: 'Romans 6:4',
-        },
+        'Baptism is personal, but it is never isolated. Through Baptism we become members of the Body of Christ. St. Paul says, "For in one Spirit we were all baptized into one body" (1 Corinthians 12:13).',
+        'This is why Baptism belongs with the Church. The baptized person is welcomed into a family of faith, called to worship at Mass, receive the Eucharist, pray, learn, and grow in holiness. Baptism begins the journey. It does not replace the lifelong call to follow Jesus.',
       ],
     },
     {
-      heading: 'Water, words, and the Trinity',
+      heading: 'The Bible prepares us for Baptism',
       paragraphs: [
-        'The ordinary way Baptism is celebrated is with water and the words, "I baptize you in the name of the Father, and of the Son, and of the Holy Spirit." Water can be poured over the person or the person can be immersed.',
-        'The water is not magic. The power comes from Christ, who works through the sacrament. The words matter because Baptism brings a person into the life of the Holy Trinity: Father, Son, and Holy Spirit.',
+        'The Old Testament helps us understand Baptism. Noah and his family pass safely through the flood, and St. Peter says this prefigured Baptism (1 Peter 3:20-21). Israel passes through the Red Sea from slavery toward freedom, a sign of being delivered by God. The prophets also speak of God cleansing His people and giving them a new heart (Ezekiel 36:25-27).',
+        'All of these signs point forward to Jesus. At His own Baptism, the heavens open, the Spirit descends, and the Father declares His beloved Son (Matthew 3:16-17). Christian Baptism draws us into the life of the Son, by the power of the Holy Spirit, before the Father.',
+      ],
+    },
+    {
+      heading: 'Water, the Trinity, and the permanent seal',
+      paragraphs: [
+        'Baptism is normally celebrated with water and the Trinitarian words: "I baptize you in the name of the Father, and of the Son, and of the Holy Spirit." The water can be poured or the person can be immersed. The grace comes from Christ, who acts through the sacrament.',
+        'Baptism also marks the soul with an indelible spiritual seal. Indelible means permanent. Because Baptism gives a lasting mark of belonging to Christ, it can never be repeated (CCC 1272).',
       ],
     },
     {
       heading: 'The early Church baptized from the beginning',
       paragraphs: [
-        'Baptism is present from the earliest days of Christianity. In Acts, people are baptized after receiving the Gospel, and whole households are brought into the life of faith. The Didache, an early Christian writing, gives practical instructions for baptizing in the name of the Trinity.',
-        'This shows that Baptism was not a later Catholic addition. It belongs to the apostolic life of the Church.',
-      ],
-      quotes: [
-        {
-          text: 'Baptize in the name of the Father and of the Son and of the Holy Spirit.',
-          citation: 'Didache 7',
-        },
+        'Baptism appears from the earliest days of Christian life. In Acts, people are baptized after receiving the Gospel, and whole households are brought into the faith. The Didache, an early Christian writing, gives instructions for baptizing in the name of the Father, Son, and Holy Spirit.',
+        'St. Justin Martyr described Christians being washed with water in the name of God, Jesus Christ, and the Holy Spirit. This witness shows that Baptism was not a later Catholic invention. It belongs to the apostolic life of the Church.',
       ],
     },
     {
-      heading: 'Baptism and the Church',
+      heading: 'Common questions about Baptism',
       paragraphs: [
-        'Baptism joins a person to Christ and to His Church. Christian life is personal, but it is not isolated. A baptized person becomes part of the Body of Christ and is called to live the faith with the Church.',
-        'This is why Baptism includes promises, sponsors or godparents, and the responsibility to grow in faith. For adults, Baptism follows conversion and preparation. For infants, parents and godparents promise to raise the child in the Catholic faith.',
+        'Some people wonder whether Baptism is only a symbol. Catholics agree that Baptism is a sign, but not an empty sign. CCC 1263 teaches that by Baptism all sins are forgiven. CCC 1265 says Baptism makes the person "a new creature" and an adopted child of God.',
+        'Others ask whether a Christian baptized outside the Catholic Church must be baptized again. Usually, no. The Church recognizes Baptism with water in the name of the Father, Son, and Holy Spirit, because there is "one Lord, one faith, one baptism" (Ephesians 4:5).',
       ],
     },
     {
-      heading: 'What if someone was baptized outside the Catholic Church?',
+      heading: 'Journey Reflection',
       paragraphs: [
-        'The Catholic Church recognizes many baptisms outside the visible Catholic Church when they are done with water and the Trinitarian formula. That is because Baptism belongs to Christ, and there is one Baptism.',
-        'Ephesians 4:5 speaks of one Lord, one faith, one Baptism. If someone becomes Catholic after a valid Christian Baptism, they are not baptized again. They are received into full communion with the Catholic Church.',
-      ],
-    },
-    {
-      heading: 'A simple next step',
-      paragraphs: [
-        'If you have not been baptized and are exploring Catholic faith, ask a local parish about OCIA, the usual process for adults preparing for Baptism and entry into the Church. If you were already baptized, a parish can help determine the next step.',
-        'Catholic Journey 365 can help you keep learning what Baptism means, how it begins the Christian life, and how every sacrament draws us deeper into Jesus Christ.',
+        'Take a quiet moment and imagine Jesus saying over you, "You are mine." Baptism is not only something done in the past. It is the beginning of a whole life of belonging to Christ.',
+        'Prayer: Lord Jesus, thank You for the gift of Baptism. Help me live as a child of the Father, filled with the Holy Spirit, and faithful to Your Church.',
+        'Practical next step: If you are baptized, find the date of your Baptism and thank God for it. If you are not baptized, contact a Catholic parish and ask about Baptism or OCIA.',
+        'Catholic Journey 365 can help you continue learning how Baptism connects to Confirmation, the Eucharist, Confession, and the whole life of grace.',
       ],
     },
   ],
   relatedQuestions: [
-    { title: 'Why Do Catholics Baptize Babies?', slug: 'why-do-catholics-baptize-babies' },
+    { title: 'Why Do Catholics Baptise Infants?', slug: 'why-do-catholics-baptize-babies' },
     { title: 'What Are the Seven Sacraments?', slug: 'what-are-the-seven-sacraments' },
     { title: 'What Is Confirmation?', slug: 'what-is-confirmation' },
-    { title: 'What Is Holy Communion?', slug: 'what-is-holy-communion' },
-    { title: 'How Do I Become Catholic?', slug: 'how-do-i-become-catholic' },
-    { title: 'What Is OCIA?', slug: 'what-is-ocia' },
-    { title: 'What Do Catholics Believe?', slug: 'what-do-catholics-believe' },
+    { title: 'What Is the Eucharist?', slug: 'what-is-the-eucharist' },
+    { title: 'What Is the Church?', slug: 'what-is-the-church' },
+    { title: 'What Is Original Sin?', slug: 'what-is-original-sin' },
+    { title: 'What Is the New Covenant?', slug: 'what-is-the-new-covenant' },
+    { title: 'Who Is Jesus Christ?', slug: 'who-is-jesus-christ' },
   ],
 };

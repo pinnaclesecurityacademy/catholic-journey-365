@@ -32,10 +32,14 @@ import { isChristianityTrue } from './isChristianityTrue';
 import { whatIsPrayer } from './whatIsPrayer';
 import { whatIsApostolicSuccession } from './whatIsApostolicSuccession';
 import { whatAreTheSevenSacraments } from './whatAreTheSevenSacraments';
+import { whatHappensInConfession } from './whatHappensInConfession';
 import { whatHappensAtMass } from './whatHappensAtMass';
 import { whatDoCatholicsBelieve } from './whatDoCatholicsBelieve';
 import { whatIsBaptism } from './whatIsBaptism';
 import { whatIsConfirmation } from './whatIsConfirmation';
+import { whatIsHolyOrders } from './whatIsHolyOrders';
+import { whatIsAnointingOfTheSick } from './whatIsAnointingOfTheSick';
+import { whatIsMatrimony } from './whatIsMatrimony';
 import { whatIsTheEucharist } from './whatIsTheEucharist';
 import { whatIsHolyCommunion } from './whatIsHolyCommunion';
 import { whatIsLectioDivina } from './whatIsLectioDivina';
@@ -89,6 +93,7 @@ import { iveBeenAwayFromTheChurchWillGodWelcomeMeBack } from './iveBeenAwayFromT
 import { whatDoISayInConfession } from './whatDoISayInConfession';
 import { whatIfImEmbarrassedToGoToConfession } from './whatIfImEmbarrassedToGoToConfession';
 import { whatIsTemptation } from './whatIsTemptation';
+import { whyDoCatholicsGoToConfession } from './whyDoCatholicsGoToConfession';
 import { whyDoCatholicsConfessToAPriest } from './whyDoCatholicsConfessToAPriest';
 import { whyDoesntGodAnswerMyPrayers } from './whyDoesntGodAnswerMyPrayers';
 import { whyDoIKeepCommittingTheSameSin } from './whyDoIKeepCommittingTheSameSin';
@@ -136,6 +141,7 @@ import { whatIsTheExodus } from './whatIsTheExodus';
 import { whoWasJoshua } from './whoWasJoshua';
 import { whoWasKingDavid } from './whoWasKingDavid';
 import { whoWasKingSolomon } from './whoWasKingSolomon';
+import { whyDidJesusGiveUsTheSacraments } from './whyDidJesusGiveUsTheSacraments';
 import type { QuestionArticle } from './types';
 
 export type {
@@ -146,6 +152,16 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whatIsBaptism,
+  whyDoCatholicsBaptizeBabies,
+  whatIsConfirmation,
+  whyDoCatholicsGoToConfession,
+  whatHappensInConfession,
+  whatIsHolyOrders,
+  whatIsAnointingOfTheSick,
+  whatIsMatrimony,
+  whatAreTheSevenSacraments,
+  whyDidJesusGiveUsTheSacraments,
   howDoIStartPraying,
   howShouldIPray,
   whatIsContemplativePrayer,
@@ -230,10 +246,6 @@ export const questionArticles: QuestionArticle[] = [
   doCatholicsWorshipMary,
   whyDoCatholicsPrayToMary,
   whatIsHolyCommunion,
-  whatIsConfirmation,
-  whyDoCatholicsBaptizeBabies,
-  whatIsBaptism,
-  whatAreTheSevenSacraments,
   whatHappensAtMass,
   whyDoCatholicsBelieveInTheRealPresence,
   whatIsTheEucharist,

@@ -2,93 +2,83 @@ import type { QuestionArticle } from './types';
 
 export const whyDoCatholicsBaptizeBabies: QuestionArticle = {
   slug: 'why-do-catholics-baptize-babies',
-  title: 'Why Do Catholics Baptize Babies?',
-  metaTitle: 'Why Do Catholics Baptize Babies? | Catholic Journey 365',
+  title: 'Why Do Catholics Baptise Infants?',
+  metaTitle: 'Why Do Catholics Baptise Infants? | Catholic Journey 365',
   metaDescription:
-    'A simple Catholic explanation of infant Baptism, its biblical foundations, and why the Church has practised it since the earliest centuries.',
+    'Learn why Catholics baptise infants, how Baptism gives grace, and why parents promise to raise children in the faith.',
   description:
-    'A simple Catholic explanation of infant Baptism, its biblical foundations, and why the Church has practised it since the earliest centuries.',
+    'Learn why Catholics baptise infants, how Baptism gives grace, and why parents promise to raise children in the faith.',
   category: 'Sacraments',
-  readTime: '8 min read',
+  readTime: '10 min read',
   published: true,
-  appPromotionAfterSection: 4,
+  appPromotionAfterSection: 5,
   sections: [
     {
-      heading: 'Catholics baptize babies because Baptism is a gift',
+      heading: 'Catholics baptise infants because Baptism is a gift of grace',
       paragraphs: [
-        'Catholics baptize babies because Baptism is first a gift of grace, not an award for personal understanding. In Baptism, God frees a person from original sin, gives new life in Christ, makes the person His child, and welcomes them into the Church.',
-        'A baby cannot earn grace, but no one can. Grace is always God\'s gift. Infant Baptism shows that God loved us before we could choose Him, understand Him, or do anything for Him.',
-      ],
-    },
-    {
-      heading: 'The promise is for children',
-      paragraphs: [
-        'In Acts 2:38-39, St. Peter tells the crowd to repent and be baptized, then says the promise is for them and for their children. Catholics see this as part of the biblical foundation for bringing children into the covenant life of God.',
-        'This does not mean a baptized child never needs personal faith. It means the child is first received into grace and later must be taught to know, love, and follow Jesus personally.',
+        'Catholics baptise infants because Baptism is God\'s gift before it is our achievement. In Baptism, a child is freed from original sin, receives new life in Christ, becomes a child of God, and is welcomed into the Church.',
+        'This does not mean faith is unimportant. It means the child is received into the faith of the Church, and parents and godparents promise to help that child grow into a personal, mature faith. Peter says the promise of Baptism is "to you, and to your children" (Acts 2:39).',
       ],
       quotes: [
         {
-          text: 'The promise is for you, for your children.',
-          citation: 'Acts 2:39',
+          text: 'Allow the little children to come to me! Do not forbid them.',
+          citation: 'Mark 10:14',
         },
       ],
     },
     {
-      heading: 'Households were baptized in the New Testament',
+      heading: 'Baptism is not something we earn',
       paragraphs: [
-        'The New Testament mentions household baptisms, including Lydia\'s household in Acts 16:15 and the jailer\'s household in Acts 16:33. The text does not list every age in those households, but it shows that Baptism was not treated as a purely individualistic event.',
-        'In the biblical world, God often worked through families and covenants. Catholic faith sees infant Baptism in continuity with this pattern: parents bring their children into the life of God and then raise them in that faith.',
+        'A baby cannot understand grace, but no Christian fully earns grace. Grace is God\'s free gift. Parents feed, protect, teach, and love children before children can understand those gifts. Catholics see Baptism in a similar way: God gives His life first, and the child grows into that gift.',
+        'CCC 1250 says children are born with a fallen human nature and need the new birth of Baptism. CCC 1251 explains that Christian parents would deprive a child of a priceless grace if they delayed Baptism without serious reason.',
       ],
     },
     {
-      heading: 'Baptism replaces circumcision as covenant entry',
+      heading: 'The Bible shows households entering the covenant',
       paragraphs: [
-        'In the Old Covenant, infant boys entered the covenant through circumcision. Colossians 2:11-12 connects circumcision and Baptism, showing that Baptism is the new covenant sign of belonging to Christ.',
-        'The New Covenant is wider, not narrower. It is for men and women, Jews and Gentiles, adults and children. Catholics therefore do not wait until children can fully explain the faith before giving them the grace of Baptism.',
+        'In the Old Testament, God made His covenant not only with isolated adults but with families. Infants were circumcised as members of God\'s covenant people (Genesis 17:12). In the New Covenant, Baptism is the sacramental sign of new birth in Christ.',
+        'The New Testament also mentions whole households being baptized, including Lydia\'s household (Acts 16:15) and the jailer\'s household (Acts 16:33). These passages do not list every age in the home, but they show the biblical pattern of families being brought into the life of faith together.',
       ],
     },
     {
-      heading: 'The early Church practiced infant Baptism',
+      heading: 'Infant Baptism still calls for personal faith',
       paragraphs: [
-        'Infant Baptism is found very early in Christian history. Origen wrote that the Church received from the apostles the tradition of giving Baptism even to infants. St. Augustine also defended the practice as something handed down in the Church.',
-        'This historical witness matters because it shows that infant Baptism was not a late medieval invention. It grew from the Church\'s ancient understanding that Baptism gives grace and belongs to the whole household of faith.',
-      ],
-      quotes: [
-        {
-          text: 'The Church received from the apostles the tradition of giving baptism even to infants.',
-          citation: 'Origen, Commentary on Romans',
-        },
+        'Infant Baptism is not a substitute for later conversion. A baptized child still needs to learn the faith, pray, go to Mass, receive the Eucharist, go to Confession, and choose to follow Jesus. Confirmation later strengthens the baptized person for mature Christian witness.',
+        'This is why the Church asks parents and godparents serious questions at Baptism. They promise to reject sin, profess the faith, and raise the child as a Catholic Christian. The sacrament gives grace, and the family has a real responsibility to nurture that grace.',
       ],
     },
     {
-      heading: 'Parents and godparents make promises',
+      heading: 'The early Church witnessed to baptizing children',
       paragraphs: [
-        'At an infant Baptism, parents and godparents promise to raise the child in the Catholic faith. This is why the Church asks that there be a real hope the child will be formed as a Christian.',
-        'CCC 1250-1252 explains that children are born with a fallen human nature and need the new birth of Baptism. It also teaches that the practice of infant Baptism is an immemorial tradition of the Church.',
+        'Early Christians understood Baptism as new birth, forgiveness, and entrance into the Church. Origen, writing in the third century, says the Church received from the apostles the tradition of giving Baptism even to infants. St. Augustine also strongly defended infant Baptism because of original sin and grace.',
+        'This does not mean every detail of practice looked identical in every place. It does mean infant Baptism is ancient, deeply rooted in Christian belief, and not a medieval invention.',
       ],
     },
     {
-      heading: 'The child still needs to grow in faith',
+      heading: 'Common concerns about infant Baptism',
       paragraphs: [
-        'Baptizing a baby is not the end of the story. It is the beginning. The child must be taught to pray, hear Scripture, attend Mass, receive the sacraments, and choose Jesus freely as they mature.',
-        'This is why Confirmation, First Holy Communion, Confession, family prayer, Catholic formation, and Sunday Mass matter. The seed planted in Baptism needs to be nourished.',
+        'Some people ask, "Shouldn\'t a person choose Baptism for themselves?" Catholics answer that a baptized child must eventually personally embrace the faith, but grace can be given before full understanding. In Scripture, God often acts first, then invites His people to respond.',
+        'Others worry that Baptism automatically guarantees Heaven no matter how a person lives. Catholics do not believe that. Baptism begins the Christian life. We must keep responding to grace, repenting when we sin, and remaining close to Christ.',
       ],
     },
     {
-      heading: 'A simple next step',
+      heading: 'Journey Reflection',
       paragraphs: [
-        'If you are a parent considering Baptism for your child, contact your local parish. They will explain preparation, godparent requirements, and how to begin raising your child in the Catholic faith.',
-        'Catholic Journey 365 can help parents and seekers keep learning why Baptism matters and how Catholic life grows from grace into daily faith, prayer, and love for Jesus Christ.',
+        'Think about the people who first handed faith to you, or the people you hope will hand faith to a child. God often reaches us through others before we can name what He is doing.',
+        'Prayer: Father, thank You for loving children before they can understand Your love. Help parents, godparents, and families lead the baptized to Jesus.',
+        'Practical next step: If you are preparing for an infant Baptism, read Acts 2:38-39 and Mark 10:13-16, then pray for the child by name.',
+        'Catholic Journey 365 can help you keep learning how Baptism, Confirmation, the Eucharist, and the Church form a whole life of discipleship.',
       ],
     },
   ],
   relatedQuestions: [
     { title: 'What Is Baptism?', slug: 'what-is-baptism' },
+    { title: 'What Is Original Sin?', slug: 'what-is-original-sin' },
     { title: 'What Are the Seven Sacraments?', slug: 'what-are-the-seven-sacraments' },
     { title: 'What Is Confirmation?', slug: 'what-is-confirmation' },
-    { title: 'What Is Holy Communion?', slug: 'what-is-holy-communion' },
+    { title: 'What Is the Church?', slug: 'what-is-the-church' },
+    { title: 'What If I Was Already Baptized?', slug: 'what-if-i-was-already-baptized' },
     { title: 'How Do I Become Catholic?', slug: 'how-do-i-become-catholic' },
-    { title: 'What Do Catholics Believe?', slug: 'what-do-catholics-believe' },
-    { title: 'Who Is God?', slug: 'who-is-god' },
+    { title: 'What Is OCIA?', slug: 'what-is-ocia' },
   ],
 };

@@ -57,6 +57,14 @@ import { whatIsARosary } from './whatIsARosary';
 import { whatIsEucharisticAdoration } from './whatIsEucharisticAdoration';
 import { whatIsATabernacle } from './whatIsATabernacle';
 import { whoAreTheSaints } from './whoAreTheSaints';
+import { whyDoCatholicsHonourMary } from './whyDoCatholicsHonourMary';
+import { whyDoCatholicsCallMaryTheMotherOfGod } from './whyDoCatholicsCallMaryTheMotherOfGod';
+import { whatIsTheImmaculateConception } from './whatIsTheImmaculateConception';
+import { whatIsTheAssumptionOfMary } from './whatIsTheAssumptionOfMary';
+import { didMaryHaveOtherChildren } from './didMaryHaveOtherChildren';
+import { whyDoCatholicsPrayTheRosary } from './whyDoCatholicsPrayTheRosary';
+import { whatIsTheCommunionOfSaints } from './whatIsTheCommunionOfSaints';
+import { whatMakesSomeoneASaint } from './whatMakesSomeoneASaint';
 import { doesGodExist } from './doesGodExist';
 import { whoIsGod } from './whoIsGod';
 import { whoIsJesusChrist } from './whoIsJesusChrist';
@@ -152,6 +160,16 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whyDoCatholicsHonourMary,
+  whyDoCatholicsCallMaryTheMotherOfGod,
+  whatIsTheImmaculateConception,
+  whatIsTheAssumptionOfMary,
+  didMaryHaveOtherChildren,
+  whyDoCatholicsPrayTheRosary,
+  whatIsTheCommunionOfSaints,
+  whyDoCatholicsPrayToTheSaints,
+  whatMakesSomeoneASaint,
+  whoWereTheEarlyChurchFathers,
   whatIsBaptism,
   whyDoCatholicsBaptizeBabies,
   whatIsConfirmation,
@@ -230,7 +248,6 @@ export const questionArticles: QuestionArticle[] = [
   whyDoesTheBibleHaveTwoTestaments,
   whyAreThereFourGospels,
   howOldIsTheCatholicChurch,
-  whoWereTheEarlyChurchFathers,
   whyAreThereSoManyChristianChurches,
   whatIsApostolicSuccession,
   whyDoesTheCatholicChurchHaveAPope,
@@ -241,7 +258,6 @@ export const questionArticles: QuestionArticle[] = [
   whyIsTheCatholicBibleDifferent,
   whichBibleDoCatholicsUse,
   whoAreTheSaints,
-  whyDoCatholicsPrayToTheSaints,
   whoWasMary,
   doCatholicsWorshipMary,
   whyDoCatholicsPrayToMary,

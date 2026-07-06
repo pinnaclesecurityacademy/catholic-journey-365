@@ -11,6 +11,7 @@ export const howCanIHearGodsVoice: QuestionArticle = {
   category: 'Prayer',
   readTime: '9 min read',
   published: true,
+  displayOrder: 70,
   appPromotionAfterSection: 5,
   sections: [
     {

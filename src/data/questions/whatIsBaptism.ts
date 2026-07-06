@@ -11,6 +11,7 @@ export const whatIsBaptism: QuestionArticle = {
   category: 'Sacraments',
   readTime: '10 min read',
   published: true,
+  displayOrder: 150,
   appPromotionAfterSection: 5,
   sections: [
     {

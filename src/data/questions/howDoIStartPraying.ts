@@ -11,6 +11,7 @@ export const howDoIStartPraying: QuestionArticle = {
   category: 'Prayer',
   readTime: '8 min read',
   published: true,
+  displayOrder: 40,
   appPromotionAfterSection: 4,
   sections: [
     {

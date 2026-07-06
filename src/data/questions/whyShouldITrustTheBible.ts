@@ -11,6 +11,7 @@ export const whyShouldITrustTheBible: QuestionArticle = {
   category: 'Scripture',
   readTime: '10 min read',
   published: true,
+  displayOrder: 20,
   appPromotionAfterSection: 4,
   sections: [
     {

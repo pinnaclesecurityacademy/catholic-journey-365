@@ -134,6 +134,25 @@ function getArticleExcerpt(article: QuestionArticle) {
   return article.description;
 }
 
+const articleFallbackOrder = new Map(questionArticles.map((article, index) => [article.slug, index]));
+
+function sortArticlesByDisplayOrder(rows: ArticleRow[]) {
+  return [...rows].sort((a, b) => {
+    const displayOrderDelta =
+      (a.article.displayOrder ?? Number.POSITIVE_INFINITY) -
+      (b.article.displayOrder ?? Number.POSITIVE_INFINITY);
+
+    if (displayOrderDelta !== 0) {
+      return displayOrderDelta;
+    }
+
+    return (
+      (articleFallbackOrder.get(a.article.slug) ?? Number.POSITIVE_INFINITY) -
+      (articleFallbackOrder.get(b.article.slug) ?? Number.POSITIVE_INFINITY)
+    );
+  });
+}
+
 export default function Questions() {
   const [activePillarId, setActivePillarId] = useState<FormationPillarId | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
@@ -184,7 +203,9 @@ export default function Questions() {
     }
 
     if (activePillar) {
-      return articleRows.filter(({ pillar }) => pillar.id === activePillar.id);
+      return sortArticlesByDisplayOrder(
+        articleRows.filter(({ pillar }) => pillar.id === activePillar.id)
+      );
     }
 
     return articleRows.slice(0, 10);

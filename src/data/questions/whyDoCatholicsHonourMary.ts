@@ -11,6 +11,7 @@ export const whyDoCatholicsHonourMary: QuestionArticle = {
   category: 'Mary & Saints',
   readTime: '10 min read',
   published: true,
+  displayOrder: 110,
   appPromotionAfterSection: 5,
   sections: [
     {

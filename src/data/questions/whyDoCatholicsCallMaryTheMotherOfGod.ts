@@ -11,6 +11,7 @@ export const whyDoCatholicsCallMaryTheMotherOfGod: QuestionArticle = {
   category: 'Mary & Saints',
   readTime: '10 min read',
   published: true,
+  displayOrder: 140,
   appPromotionAfterSection: 5,
   sections: [
     {

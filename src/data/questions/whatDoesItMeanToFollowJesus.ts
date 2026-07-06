@@ -11,6 +11,7 @@ export const whatDoesItMeanToFollowJesus: QuestionArticle = {
   category: 'Christian Living',
   readTime: '10 min read',
   published: true,
+  displayOrder: 10,
   appPromotionAfterSection: 5,
   sections: [
     {

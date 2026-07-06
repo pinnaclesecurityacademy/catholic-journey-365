@@ -11,6 +11,7 @@ export const whatIsTheEucharist: QuestionArticle = {
   category: 'Sacraments',
   readTime: '9 min read',
   published: true,
+  displayOrder: 130,
   appPromotionAfterSection: 4,
   sections: [
     {

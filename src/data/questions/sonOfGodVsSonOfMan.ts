@@ -11,6 +11,7 @@ export const sonOfGodVsSonOfMan: QuestionArticle = {
   category: 'Jesus Christ',
   readTime: '8 min read',
   published: true,
+  displayOrder: 60,
   appPromotionAfterSection: 4,
   sections: [
     {

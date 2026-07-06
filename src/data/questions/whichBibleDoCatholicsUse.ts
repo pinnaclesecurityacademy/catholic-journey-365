@@ -11,6 +11,7 @@ export const whichBibleDoCatholicsUse: QuestionArticle = {
   category: 'Scripture',
   readTime: '8 min read',
   published: true,
+  displayOrder: 90,
   appPromotionAfterSection: 4,
   sections: [
     {

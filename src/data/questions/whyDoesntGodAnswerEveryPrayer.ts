@@ -11,6 +11,7 @@ export const whyDoesntGodAnswerEveryPrayer: QuestionArticle = {
   category: 'Prayer',
   readTime: '9 min read',
   published: true,
+  displayOrder: 60,
   appPromotionAfterSection: 5,
   sections: [
     {

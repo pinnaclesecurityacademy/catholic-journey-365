@@ -11,6 +11,7 @@ export const whatIsTheChurch: QuestionArticle = {
   category: 'Church Teaching',
   readTime: '6 min read',
   published: true,
+  displayOrder: 10,
   appPromotionAfterSection: 3,
   sections: [
     {

@@ -11,6 +11,7 @@ export const whatIsTheCommunionOfSaints: QuestionArticle = {
   category: 'Mary & Saints',
   readTime: '10 min read',
   published: true,
+  displayOrder: 180,
   appPromotionAfterSection: 5,
   sections: [
     {

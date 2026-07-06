@@ -11,6 +11,7 @@ export const whoIsJesusChrist: QuestionArticle = {
   category: 'Jesus Christ',
   readTime: '8 min read',
   published: true,
+  displayOrder: 10,
   appPromotionAfterSection: 4,
   sections: [
     {

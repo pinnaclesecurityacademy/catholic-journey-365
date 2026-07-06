@@ -11,6 +11,7 @@ export const whatIsTheKingdomOfGod: QuestionArticle = {
   category: 'Jesus Christ',
   readTime: '11 min read',
   published: true,
+  displayOrder: 50,
   appPromotionAfterSection: 5,
   sections: [
     {

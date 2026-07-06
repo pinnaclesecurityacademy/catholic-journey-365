@@ -11,6 +11,7 @@ export const howIsTheBibleConnected: QuestionArticle = {
   category: 'Scripture',
   readTime: '10 min read',
   published: true,
+  displayOrder: 10,
   appPromotionAfterSection: 4,
   sections: [
     {

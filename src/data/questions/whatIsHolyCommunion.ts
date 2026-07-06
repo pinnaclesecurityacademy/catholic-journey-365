@@ -11,6 +11,7 @@ export const whatIsHolyCommunion: QuestionArticle = {
   category: 'Sacraments',
   readTime: '8 min read',
   published: true,
+  displayOrder: 190,
   appPromotionAfterSection: 4,
   sections: [
     {

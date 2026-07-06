@@ -11,6 +11,7 @@ export const whyDoCatholicsConfessToAPriest: QuestionArticle = {
   category: 'Sin & Mercy',
   readTime: '8 min read',
   published: true,
+  displayOrder: 120,
   appPromotionAfterSection: 4,
   sections: [
     {

@@ -11,6 +11,7 @@ export const whoWasMary: QuestionArticle = {
   category: 'Mary & Saints',
   readTime: '8 min read',
   published: true,
+  displayOrder: 100,
   appPromotionAfterSection: 4,
   sections: [
     {

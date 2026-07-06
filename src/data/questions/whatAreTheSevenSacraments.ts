@@ -11,6 +11,7 @@ export const whatAreTheSevenSacraments: QuestionArticle = {
   category: 'Sacraments',
   readTime: '11 min read',
   published: true,
+  displayOrder: 110,
   appPromotionAfterSection: 5,
   sections: [
     {

@@ -11,6 +11,7 @@ export const didJesusReallyRiseFromTheDead: QuestionArticle = {
   category: 'Jesus Christ',
   readTime: '9 min read',
   published: true,
+  displayOrder: 40,
   appPromotionAfterSection: 4,
   sections: [
     {

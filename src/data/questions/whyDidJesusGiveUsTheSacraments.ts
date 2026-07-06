@@ -11,6 +11,7 @@ export const whyDidJesusGiveUsTheSacraments: QuestionArticle = {
   category: 'Sacraments',
   readTime: '11 min read',
   published: true,
+  displayOrder: 100,
   appPromotionAfterSection: 5,
   sections: [
     {

@@ -11,6 +11,7 @@ export const whatIsConfirmation: QuestionArticle = {
   category: 'Sacraments',
   readTime: '10 min read',
   published: true,
+  displayOrder: 160,
   appPromotionAfterSection: 5,
   sections: [
     {

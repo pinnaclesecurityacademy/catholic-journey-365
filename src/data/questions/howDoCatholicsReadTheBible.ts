@@ -11,6 +11,7 @@ export const howDoCatholicsReadTheBible: QuestionArticle = {
   category: 'Scripture',
   readTime: '8 min read',
   published: true,
+  displayOrder: 50,
   appPromotionAfterSection: 4,
   sections: [
     {

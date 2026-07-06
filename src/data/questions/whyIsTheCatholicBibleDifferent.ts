@@ -11,6 +11,7 @@ export const whyIsTheCatholicBibleDifferent: QuestionArticle = {
   category: 'Scripture',
   readTime: '9 min read',
   published: true,
+  displayOrder: 80,
   appPromotionAfterSection: 4,
   sections: [
     {

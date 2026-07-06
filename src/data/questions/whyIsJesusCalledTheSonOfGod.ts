@@ -11,6 +11,7 @@ export const whyIsJesusCalledTheSonOfGod: QuestionArticle = {
   category: 'Jesus Christ',
   readTime: '8 min read',
   published: true,
+  displayOrder: 20,
   appPromotionAfterSection: 4,
   sections: [
     {

@@ -11,6 +11,7 @@ export const howDoIKnowIfGodIsAnsweringMyPrayer: QuestionArticle = {
   category: 'Prayer',
   readTime: '9 min read',
   published: true,
+  displayOrder: 50,
   appPromotionAfterSection: 5,
   sections: [
     {

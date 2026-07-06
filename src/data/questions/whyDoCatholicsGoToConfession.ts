@@ -11,6 +11,7 @@ export const whyDoCatholicsGoToConfession: QuestionArticle = {
   category: 'Sacraments',
   readTime: '10 min read',
   published: true,
+  displayOrder: 170,
   appPromotionAfterSection: 5,
   sections: [
     {

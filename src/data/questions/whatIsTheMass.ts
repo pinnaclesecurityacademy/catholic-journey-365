@@ -11,6 +11,7 @@ export const whatIsTheMass: QuestionArticle = {
   category: 'The Mass',
   readTime: '8 min read',
   published: true,
+  displayOrder: 50,
   appPromotionAfterSection: 4,
   sections: [
     {

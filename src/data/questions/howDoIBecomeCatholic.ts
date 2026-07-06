@@ -11,6 +11,7 @@ export const howDoIBecomeCatholic: QuestionArticle = {
   category: 'Becoming Catholic',
   readTime: '8 min read',
   published: true,
+  displayOrder: 20,
   appPromotionAfterSection: 4,
   sections: [
     {

@@ -11,6 +11,7 @@ export const whyDidJesusHaveToDie: QuestionArticle = {
   category: 'Jesus Christ',
   readTime: '11 min read',
   published: true,
+  displayOrder: 30,
   appPromotionAfterSection: 5,
   sections: [
     {

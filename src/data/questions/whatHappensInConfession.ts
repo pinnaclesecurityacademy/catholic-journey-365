@@ -11,6 +11,7 @@ export const whatHappensInConfession: QuestionArticle = {
   category: 'Sacraments',
   readTime: '10 min read',
   published: true,
+  displayOrder: 180,
   appPromotionAfterSection: 5,
   sections: [
     {

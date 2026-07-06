@@ -11,6 +11,7 @@ export const howCanIGrowCloserToGod: QuestionArticle = {
   category: 'Life & Faith',
   readTime: '9 min read',
   published: true,
+  displayOrder: 80,
   appPromotionAfterSection: 5,
   sections: [
     {

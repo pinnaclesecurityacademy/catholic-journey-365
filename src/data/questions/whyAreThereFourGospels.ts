@@ -11,6 +11,7 @@ export const whyAreThereFourGospels: QuestionArticle = {
   category: 'Scripture',
   readTime: '8 min read',
   published: true,
+  displayOrder: 70,
   appPromotionAfterSection: 4,
   sections: [
     {

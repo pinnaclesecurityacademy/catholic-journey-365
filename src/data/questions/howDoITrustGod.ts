@@ -11,6 +11,7 @@ export const howDoITrustGod: QuestionArticle = {
   category: 'Life & Faith',
   readTime: '10 min read',
   published: true,
+  displayOrder: 90,
   appPromotionAfterSection: 5,
   sections: [
     {

@@ -23,6 +23,7 @@ export type QuestionArticle = {
   category: string;
   readTime: string;
   published: boolean;
+  displayOrder?: number;
   appPromotionAfterSection?: number;
   sections: QuestionArticleSection[];
   relatedQuestions: RelatedQuestion[];

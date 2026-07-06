@@ -11,6 +11,7 @@ export const didMaryHaveOtherChildren: QuestionArticle = {
   category: 'Mary & Saints',
   readTime: '11 min read',
   published: true,
+  displayOrder: 130,
   appPromotionAfterSection: 5,
   sections: [
     {

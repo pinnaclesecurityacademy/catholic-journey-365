@@ -11,6 +11,7 @@ export const howDoIReturnToTheCatholicChurch: QuestionArticle = {
   category: 'Returning Catholics',
   readTime: '8 min read',
   published: true,
+  displayOrder: 30,
   appPromotionAfterSection: 4,
   sections: [
     {

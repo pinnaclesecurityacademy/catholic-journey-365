@@ -1,7 +1,16 @@
 import { howDoIBecomeCatholic } from './howDoIBecomeCatholic';
 import { doCatholicsWorshipMary } from './doCatholicsWorshipMary';
+import { whatDoesItMeanToFollowJesus } from './whatDoesItMeanToFollowJesus';
+import { howCanIGrowInFaith } from './howCanIGrowInFaith';
+import { whatIsTheWillOfGodForMyLife } from './whatIsTheWillOfGodForMyLife';
 import { howDoIFallInLoveWithJesus } from './howDoIFallInLoveWithJesus';
 import { howDoIForgiveSomeone } from './howDoIForgiveSomeone';
+import { whatIsHumility } from './whatIsHumility';
+import { whatIsCharity } from './whatIsCharity';
+import { whatIsHope } from './whatIsHope';
+import { whatIsFaith } from './whatIsFaith';
+import { whatIsLoveAccordingToTheBible } from './whatIsLoveAccordingToTheBible';
+import { howCanIBecomeMoreLikeChrist } from './howCanIBecomeMoreLikeChrist';
 import { howDoIGrowCloserToGod } from './howDoIGrowCloserToGod';
 import { howDoIHearGod } from './howDoIHearGod';
 import { howDoIHaveARelationshipWithGod } from './howDoIHaveARelationshipWithGod';
@@ -160,6 +169,16 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whatDoesItMeanToFollowJesus,
+  howCanIGrowInFaith,
+  whatIsTheWillOfGodForMyLife,
+  howDoIForgiveSomeone,
+  whatIsHumility,
+  whatIsCharity,
+  whatIsHope,
+  whatIsFaith,
+  whatIsLoveAccordingToTheBible,
+  howCanIBecomeMoreLikeChrist,
   whyDoCatholicsHonourMary,
   whyDoCatholicsCallMaryTheMotherOfGod,
   whatIsTheImmaculateConception,
@@ -268,7 +287,6 @@ export const questionArticles: QuestionArticle[] = [
   whyDoCatholicsGoToMass,
   whatIsTheMass,
   howDoIGrowCloserToGod,
-  howDoIForgiveSomeone,
   howDoIFallInLoveWithJesus,
   howDoIStopSinning,
   whatIsTemptation,

@@ -5,107 +5,80 @@ export const howDoIForgiveSomeone: QuestionArticle = {
   title: 'How Do I Forgive Someone?',
   metaTitle: 'How Do I Forgive Someone? | Catholic Journey 365',
   metaDescription:
-    'Learn the Catholic understanding of forgiveness, healing, reconciliation and letting go of resentment.',
+    "Learn how to forgive someone as a Catholic, with mercy, truth, boundaries, prayer and healing through God's grace.",
   description:
-    'Learn the Catholic understanding of forgiveness, healing, reconciliation and letting go of resentment.',
+    "Learn how to forgive someone as a Catholic, with mercy, truth, boundaries, prayer and healing through God's grace.",
   category: 'Christian Living',
-  readTime: '9 min read',
+  readTime: '10 min read',
   published: true,
-  appPromotionAfterSection: 4,
+  appPromotionAfterSection: 5,
   sections: [
     {
-      heading: 'Forgiveness begins with choosing mercy',
+      heading: 'Forgiveness begins by choosing mercy with God\'s grace',
       paragraphs: [
-        'You forgive someone by choosing, with God\'s grace, to release the desire for revenge and entrust justice to God, even while healing may take time and reconciliation may require repentance, safety, and truth. Forgiveness is not pretending the hurt did not matter. It is refusing to let resentment rule your heart.',
-        'Catholic forgiveness is rooted in the mercy God has shown us in Jesus Christ. We forgive because we have been forgiven, and because Jesus commands us to love even when love is costly.',
-        'CCC 2840 teaches that mercy cannot penetrate our hearts if we refuse to forgive our brothers and sisters. This is challenging, but God gives grace for what He commands.',
+        'You forgive someone by choosing, with God\'s grace, to release revenge, entrust justice to God, and refuse to let resentment rule your heart. Forgiveness does not mean pretending the hurt did not matter. It means bringing the wound under the mercy of Jesus.',
+        'Jesus teaches us to pray, "Forgive us our debts, as we also forgive our debtors" (Matthew 6:12). Catholic forgiveness begins with the mercy God has first shown us.',
       ],
       quotes: [
         {
-          text: 'Forgive us our debts, as we also have forgiven our debtors.',
-          citation: 'Matthew 6:12',
+          text: 'Be kind to one another, tenderhearted, forgiving each other, just as God also in Christ forgave you.',
+          citation: 'Ephesians 4:32',
         },
       ],
     },
     {
-      heading: 'Forgiveness is not the same as saying it was okay',
+      heading: 'Forgiveness is not saying the wrong was okay',
       paragraphs: [
-        'Forgiveness does not mean the wrong was acceptable. It does not erase justice, excuse abuse, remove consequences, or require instant trust. Naming the wrong honestly can be part of forgiveness.',
-        'If someone has harmed you, especially through abuse or serious betrayal, forgiveness does not mean placing yourself back in danger. Safety, boundaries, and help from wise people may be necessary.',
-        'Jesus forgives sinners, but He also tells the truth about sin. Mercy and truth belong together.',
+        'Forgiveness does not excuse sin, erase justice, deny consequences, or require instant trust. Jesus forgives sinners, but He does not call evil good. Mercy and truth belong together.',
+        'If someone has harmed you through abuse, coercion, violence, or serious betrayal, forgiveness does not mean putting yourself back in danger. Safety, boundaries, reporting crimes, and wise help may be necessary.',
       ],
     },
     {
-      heading: 'Forgiveness and reconciliation are related but different',
+      heading: 'Forgiveness and reconciliation are different',
       paragraphs: [
-        'Forgiveness can begin in your heart before the other person changes. Reconciliation means the relationship is restored. Reconciliation usually requires repentance, truth, changed behavior, and rebuilding trust.',
-        'You can forgive someone and still keep boundaries. You can forgive someone and still report a crime, seek justice, or avoid unsafe contact. Forgiveness releases hatred. It does not require denial.',
-        'This distinction helps many people. God does not ask you to call evil good. He asks you to refuse hatred and remain open to grace.',
+        'Forgiveness can begin in your heart before the other person changes. Reconciliation means the relationship is restored. Reconciliation usually requires repentance, truth, changed behavior, and rebuilt trust.',
+        'You can forgive someone and still keep boundaries. You can forgive and still seek justice. Forgiveness releases hatred. It does not require denial.',
       ],
     },
     {
       heading: 'Look at Jesus on the Cross',
       paragraphs: [
-        'Jesus shows forgiveness from the Cross. He prays, "Father, forgive them." He does this while the injustice is real, the pain is real, and the sin is real.',
-        'Christian forgiveness does not come from pretending hurt is small. It comes from union with Christ, who carries the deepest wounds with perfect love.',
-        'St. Stephen, the first martyr, echoes Jesus by praying for those killing him. The saints show that forgiveness is possible by grace, even when it is very hard.',
-      ],
-      quotes: [
-        {
-          text: 'Father, forgive them.',
-          citation: 'Luke 23:34',
-        },
+        'Jesus shows forgiveness from the Cross. In Luke 23:34, He prays, "Father, forgive them, for they don\'t know what they are doing." The injustice is real, the pain is real, and His mercy is real.',
+        'St. Stephen echoes Jesus when he prays for those killing him (Acts 7:60). The saints show that forgiveness is possible by grace, even when it is very hard.',
       ],
     },
     {
-      heading: 'Bring the wound to prayer',
+      heading: 'Bring the wound to prayer and the sacraments',
       paragraphs: [
-        'Start by telling God the truth. Say what happened. Name the anger, grief, fear, betrayal, or confusion. The Psalms show us that honest prayer is welcome before God.',
-        'Then ask for the grace to forgive. You may need to pray this many times: "Jesus, I am not ready, but I want to want to forgive. Heal my heart and lead me."',
-        'Forgiveness is often a process. The first prayer may be small, but small openings to grace matter.',
+        'Start by telling God the truth. Name the anger, grief, fear, betrayal, or confusion. The Psalms show that honest prayer is welcome before God.',
+        'The Eucharist unites us to the self-giving love of Jesus. Confession heals our own sins and teaches us to receive mercy. Prayer gradually opens the heart where resentment has closed it.',
       ],
     },
     {
-      heading: 'Let go of revenge',
+      heading: 'Forgiveness can take time',
       paragraphs: [
-        'At the heart of forgiveness is surrendering revenge. This does not mean surrendering justice. It means you stop appointing yourself as the one who must make the other person suffer.',
-        'St. Paul says not to repay evil for evil, but to overcome evil with good. That may mean refusing gossip, praying for the person, speaking truth calmly, or choosing not to replay the wound endlessly.',
-        'Letting go of revenge may need to happen again and again. Resentment can return. When it does, return it to God again.',
-      ],
-      quotes: [
-        {
-          text: 'Do not be overcome by evil, but overcome evil with good.',
-          citation: 'Romans 12:21',
-        },
+        'Forgiveness is often a process. You may need to pray many times, "Jesus, I am not ready, but I want to want to forgive." That small prayer can be a real beginning.',
+        'CCC 2840 teaches that mercy cannot enter our hearts if we refuse to forgive, but God is patient in healing wounded hearts. He does not ask you to pretend the process is easy.',
       ],
     },
     {
-      heading: 'Ask for healing and wise support',
+      heading: 'Journey Reflection',
       paragraphs: [
-        'Deep wounds may need time, counsel, spiritual direction, therapy, or pastoral help. Seeking help is not a lack of faith. God often heals through the Body of Christ and through wise professional care.',
-        'St. Rita, known for forgiveness amid painful family suffering, is often invoked by people carrying impossible situations. The saints remind us that grace can work even in complex and wounded relationships.',
-        'If the wound is connected to abuse, coercion, or ongoing harm, prioritize safety and speak with trustworthy help. Forgiveness never requires staying in danger.',
-      ],
-    },
-    {
-      heading: 'Take one step toward freedom',
-      paragraphs: [
-        'A practical next step is to pray by name for the person who hurt you, even briefly: "Lord, I entrust this person to Your justice and mercy. Free me from hatred and heal what is wounded in me."',
-        'You can continue learning through Catholic Journey 365 articles such as Does God Still Love Me When I Sin?, How Do I Trust God?, Why Does God Allow Suffering?, How Do I Pray?, and What Is Prayer?',
-        'Forgiveness may take time, and God is patient with the process. Catholic Journey 365 can help you keep learning how mercy, truth, healing, and holiness grow together.',
+        'Bring one name or wound before Jesus. Do not force emotion. Simply ask Him to stand with you in the truth.',
+        'Prayer: Lord Jesus, free me from revenge. Heal what is wounded, protect what needs boundaries, and teach me mercy without denial.',
+        'Practical next step: Pray once by name for the person who hurt you: "Lord, I entrust this person to Your justice and mercy."',
+        'Catholic Journey 365 can help you continue learning how mercy, Confession, prayer, healing, virtue, and holiness grow together in Christ.',
       ],
     },
   ],
   relatedQuestions: [
-    {
-      title: 'Does God Still Love Me When I Sin?',
-      slug: 'does-god-still-love-me-when-i-sin',
-    },
-    { title: 'How Do I Trust God?', slug: 'how-do-i-trust-god' },
-    { title: 'Why Does God Allow Suffering?', slug: 'why-does-god-allow-suffering' },
-    { title: 'How Do I Pray?', slug: 'how-do-i-pray' },
+    { title: 'Does God Still Love Me When I Sin?', slug: 'does-god-still-love-me-when-i-sin' },
+    { title: 'Why Do Catholics Go to Confession?', slug: 'why-do-catholics-go-to-confession' },
+    { title: 'What Happens in Confession?', slug: 'what-happens-in-confession' },
+    { title: 'What Is Charity?', slug: 'what-is-charity' },
+    { title: 'What Is Love According to the Bible?', slug: 'what-is-love-according-to-the-bible' },
     { title: 'What Is Prayer?', slug: 'what-is-prayer' },
-    { title: 'How Do I Grow Closer to God?', slug: 'how-do-i-grow-closer-to-god' },
+    { title: 'How Can I Become More Like Christ?', slug: 'how-can-i-become-more-like-christ' },
     { title: 'Who Is Jesus Christ?', slug: 'who-is-jesus-christ' },
   ],
 };

@@ -17,6 +17,15 @@ import { howIsTheBibleConnected } from './howIsTheBibleConnected';
 import { howShouldIReadTheBible } from './howShouldIReadTheBible';
 import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
 import { howDoIPray } from './howDoIPray';
+import { howDoIStartPraying } from './howDoIStartPraying';
+import { howShouldIPray } from './howShouldIPray';
+import { whatIsContemplativePrayer } from './whatIsContemplativePrayer';
+import { whatIsMeditationInCatholicism } from './whatIsMeditationInCatholicism';
+import { whatIsIntercessoryPrayer } from './whatIsIntercessoryPrayer';
+import { howDoIKnowIfGodIsAnsweringMyPrayer } from './howDoIKnowIfGodIsAnsweringMyPrayer';
+import { whyDoesntGodAnswerEveryPrayer } from './whyDoesntGodAnswerEveryPrayer';
+import { howCanIHearGodsVoice } from './howCanIHearGodsVoice';
+import { howCanIGrowCloserToGod } from './howCanIGrowCloserToGod';
 import { howDoIPutGodFirst } from './howDoIPutGodFirst';
 import { howDoITrustGod } from './howDoITrustGod';
 import { isChristianityTrue } from './isChristianityTrue';
@@ -137,6 +146,16 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  howDoIStartPraying,
+  howShouldIPray,
+  whatIsContemplativePrayer,
+  whatIsMeditationInCatholicism,
+  whatIsIntercessoryPrayer,
+  howDoIKnowIfGodIsAnsweringMyPrayer,
+  whyDoesntGodAnswerEveryPrayer,
+  howCanIHearGodsVoice,
+  howCanIGrowCloserToGod,
+  howDoITrustGod,
   whyDoCatholicsMakeTheSignOfTheCross,
   whyDoCatholicsKneel,
   whyDoCatholicsGenuflect,
@@ -223,7 +242,6 @@ export const questionArticles: QuestionArticle[] = [
   howDoIGrowCloserToGod,
   howDoIForgiveSomeone,
   howDoIFallInLoveWithJesus,
-  howDoITrustGod,
   howDoIStopSinning,
   whatIsTemptation,
   whyDoIKeepCommittingTheSameSin,

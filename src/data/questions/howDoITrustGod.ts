@@ -5,100 +5,104 @@ export const howDoITrustGod: QuestionArticle = {
   title: 'How Do I Trust God?',
   metaTitle: 'How Do I Trust God? | Catholic Journey 365',
   metaDescription:
-    'Learn how Catholics trust God during uncertainty, suffering and everyday life through faith, prayer and hope.',
+    'Learn how to trust God through uncertainty, suffering, prayer, Scripture, the sacraments and daily acts of faith.',
   description:
-    'Learn how Catholics trust God during uncertainty, suffering and everyday life through faith, prayer and hope.',
+    'Learn how to trust God through uncertainty, suffering, prayer, Scripture, the sacraments and daily acts of faith.',
   category: 'Life & Faith',
-  readTime: '7 min read',
+  readTime: '10 min read',
   published: true,
-  appPromotionAfterSection: 4,
+  appPromotionAfterSection: 5,
   sections: [
     {
-      heading: 'Trust begins with who God is',
+      heading: 'Trusting God means placing your life in His hands',
       paragraphs: [
-        'You trust God by remembering who He is, speaking honestly to Him, choosing faith in small daily decisions, and returning to His promises when life feels uncertain. Trust is not pretending everything is easy. It is placing your life in the hands of the Father who loves you.',
-        'Catholics trust God because He is Creator, Father, love itself, and the One who has revealed His heart in Jesus Christ. Trust is not blind optimism. It is faith in the character of God.',
+        'You trust God by remembering who He is, bringing Him your fears honestly, obeying Him one step at a time and relying on His grace when you cannot see the whole path. Trust is not pretending life is easy. It is choosing to believe the Father is good because Jesus has revealed His heart.',
+        'Catholic trust is not vague optimism. It is faith in the God who creates, saves, forgives, guides and raises the dead.',
+        'Proverbs 3:5 says, "Trust in Yahweh with all your heart, and don\'t lean on your own understanding."',
+      ],
+      quotes: [
+        {
+          text: "Trust in Yahweh with all your heart, and don't lean on your own understanding.",
+          citation: 'Proverbs 3:5, WEB',
+        },
       ],
     },
     {
       heading: 'Trust is not the absence of fear',
       paragraphs: [
-        'Many people think trust means never feeling afraid. Scripture shows something more human. People who trust God still cry, ask questions, grieve, and struggle. The difference is that they bring all of it to God instead of walking away from Him.',
-        'In Mark 9:24, a father says to Jesus, "I believe; help my unbelief." That is a beautiful prayer for anyone learning to trust. Faith can be real even when it is weak and asking for help.',
+        'Many faithful people feel afraid. Trust does not mean you never tremble, grieve or ask questions. It means you bring fear to God instead of running from Him.',
+        'In Mark 9:24, a desperate father prays, "I believe. Help my unbelief!" That is a real prayer of trust.',
+        'God can work with small, trembling faith. You do not need perfect confidence before you begin trusting Him.',
       ],
       quotes: [
         {
-          text: 'I believe; help my unbelief.',
-          citation: 'Mark 9:24',
+          text: 'I believe. Help my unbelief!',
+          citation: 'Mark 9:24, WEB',
         },
       ],
     },
     {
-      heading: 'Lean on God more than your own control',
+      heading: 'Look at Jesus when trust is hard',
       paragraphs: [
-        'Proverbs 3:5 tells us to trust in the Lord with all our heart and not lean on our own understanding. This does not mean reason is bad. Catholic faith values reason. But our understanding is limited, and control can become an idol.',
-        'Trust means you do what is responsible, pray honestly, seek wisdom, and then surrender what you cannot control. You can make the next faithful choice without needing to see the whole future.',
-      ],
-    },
-    {
-      heading: 'Look at Jesus',
-      paragraphs: [
-        'The clearest reason to trust God is Jesus. In Him, God does not remain far away from human suffering. He enters it. He weeps, loves, forgives, suffers, dies, and rises. The Cross shows that God can bring life even through what looks like defeat.',
-        'Romans 8:28 says that God works all things for good for those who love Him. This does not mean everything that happens is good. Sin, loss, betrayal, and suffering are real evils. It means God is powerful enough to bring grace even there.',
+        'The clearest reason to trust God is Jesus. In Him, God enters suffering, carries the Cross and rises from the dead.',
+        'Romans 8:32 says, "He who didn\'t spare his own Son, but delivered him up for us all, how would he not also with him freely give us all things?"',
+        'The Cross does not answer every question in a simple way, but it shows that God is not indifferent to pain. He has entered it to save us.',
       ],
       quotes: [
         {
-          text: 'All things work together for good.',
-          citation: 'Romans 8:28',
+          text: "He who didn't spare his own Son... how would he not also with him freely give us all things?",
+          citation: 'Romans 8:32, WEB',
         },
       ],
     },
     {
-      heading: 'Trust grows through prayer',
+      heading: 'Trust grows through prayer and surrender',
       paragraphs: [
-        'Trust grows when you keep speaking with God. Tell Him what you are afraid of. Ask for what you need. Thank Him for what is good. Sit quietly and let Him be God.',
-        'Philippians 4:6-7 says to bring everything to God in prayer, and the peace of God will guard our hearts. That peace is not always a feeling of instant calm. Sometimes it is the grace to keep going without being ruled by fear.',
-        'The Catechism describes faith as a personal adherence to God and assent to the truth He has revealed. CCC 1814-1816 explains that faith is a theological virtue, meaning it is a gift from God that also calls for our response.',
-      ],
-    },
-    {
-      heading: 'Trust includes hope',
-      paragraphs: [
-        'Catholic trust is closely connected to hope. Hope means we rely on God for eternal life, grace, forgiveness, and the strength to follow Him. CCC 2090-2092 warns against both despair and presumption. Despair gives up on God. Presumption expects God without conversion.',
-        'Real hope says, "God is faithful, and I will keep turning toward Him." It does not deny suffering. It refuses to make suffering the final word.',
-      ],
-    },
-    {
-      heading: 'Practice trust in small things',
-      paragraphs: [
-        'Trust becomes stronger through small acts. Pray before a difficult conversation. Tell the truth when hiding would be easier. Give God your plans in the morning. Receive Confession after a fall. Go to Mass even when you feel distracted. Ask for help instead of carrying everything alone.',
-        '1 Peter 5:7 says to cast your anxieties on God because He cares for you. That can become a daily practice: name the worry, place it before God, and ask for grace to do the next right thing.',
+        'Prayer trains trust because it teaches us to depend on God daily. Tell Him what you fear. Ask for help. Then surrender what you cannot control.',
+        'Philippians 4:6-7 tells us to bring requests to God with thanksgiving, and the peace of God will guard our hearts and thoughts in Christ Jesus.',
+        'St. Teresa of Avila teaches confidence in God through friendship with Christ. Trust grows when prayer becomes real relationship.',
       ],
       quotes: [
         {
-          text: 'Cast all your anxiety on him.',
-          citation: '1 Peter 5:7',
+          text: 'In everything, by prayer and petition with thanksgiving, let your requests be made known to God.',
+          citation: 'Philippians 4:6, WEB',
         },
       ],
     },
     {
-      heading: 'A simple prayer of trust',
+      heading: 'Trust does not mean passivity',
       paragraphs: [
-        'If you want to trust God, begin with a simple prayer: "Father, I trust You with what I understand and with what I do not understand. Jesus, help me follow You today. Holy Spirit, give me courage, patience, and hope."',
-        'Then take one faithful step. Catholic Journey 365 can help you continue learning how faith, prayer, Scripture, and the sacraments form a heart that trusts God more deeply over time.',
+        'Trusting God does not mean doing nothing. It means doing the next faithful thing while surrendering the outcome to Him.',
+        'You can seek counsel, receive medical help, make a plan, repent, apologize, work hard and still trust God. Grace works through ordinary means.',
+        'Catholic trust avoids two mistakes: despair, which gives up on God, and presumption, which expects God without conversion. CCC 2090-2092 warns against both.',
+      ],
+    },
+    {
+      heading: 'The sacraments strengthen trust',
+      paragraphs: [
+        'At Mass, Catholics receive Jesus in the Eucharist. In Confession, they receive mercy after sin. These sacraments teach the soul that God is faithful and near.',
+        'If trust feels weak, do not isolate yourself. Pray, go to Mass, receive the sacraments worthily and ask faithful people to pray for you.',
+        'Trust grows in the Church, not only in private effort.',
+      ],
+    },
+    {
+      heading: 'Journey Reflection',
+      paragraphs: [
+        'Name one thing you are trying to control. Place it before Jesus and ask what the next faithful step is.',
+        'Prayer: Father, I trust You with what I understand and with what I do not understand. Jesus, help my unbelief. Holy Spirit, give me courage and hope. Amen.',
+        'Practical next step: Pray Proverbs 3:5 each morning this week. Then choose one concrete act of trust, such as telling the truth, going to Mass, asking forgiveness or surrendering a worry.',
+        'Continue learning through Catholic Journey 365 with [How Can I Grow Closer to God?](how-can-i-grow-closer-to-god), [Why Doesn\'t God Answer Every Prayer?](why-doesnt-god-answer-every-prayer), [Why Does God Allow Suffering?](why-does-god-allow-suffering), and [What Is Prayer?](what-is-prayer).',
       ],
     },
   ],
   relatedQuestions: [
-    { title: 'How Do I Pray?', slug: 'how-do-i-pray' },
-    { title: 'How Do I Hear God?', slug: 'how-do-i-hear-god' },
-    {
-      title: "Why Doesn't God Answer My Prayers?",
-      slug: 'why-doesnt-god-answer-my-prayers',
-    },
-    { title: "How Do I Know God's Will?", slug: 'how-do-i-know-gods-will' },
-    { title: 'Who Is God?', slug: 'who-is-god' },
+    { title: 'How Can I Grow Closer to God?', slug: 'how-can-i-grow-closer-to-god' },
+    { title: "Why Doesn't God Answer Every Prayer?", slug: 'why-doesnt-god-answer-every-prayer' },
+    { title: 'How Do I Know If God Is Answering My Prayer?', slug: 'how-do-i-know-if-god-is-answering-my-prayer' },
+    { title: 'Why Does God Allow Suffering?', slug: 'why-does-god-allow-suffering' },
+    { title: 'What Is Prayer?', slug: 'what-is-prayer' },
+    { title: 'What Is the Mass?', slug: 'what-is-the-mass' },
+    { title: 'What Is the Eucharist?', slug: 'what-is-the-eucharist' },
     { title: 'Who Is Jesus Christ?', slug: 'who-is-jesus-christ' },
-    { title: 'How Do I Put God First?', slug: 'how-do-i-put-god-first' },
   ],
 };

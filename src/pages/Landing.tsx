@@ -172,31 +172,73 @@ const NAV_LINKS = [
   { label: 'Pricing', href: '#pricing' },
 ];
 
-const QUESTION_CARDS = [
+const QUESTION_TOPICS = [
   {
-    q: 'Why do Catholics honour Mary?',
-    a: 'Catholics do not worship Mary. Catholics honour her as the mother of Jesus and see her as someone who always points us closer to Him.',
-    footer: 'Continue the journey inside Catholic Journey 365.',
+    title: 'Becoming Catholic',
+    text: 'Begin OCIA, conversion, returning to Church, and first steps.',
+    href: '/questions/how-do-i-become-catholic',
   },
   {
-    q: 'Why do Catholics ask saints to pray?',
-    a: "Catholics believe the family of God includes those in Heaven. Asking saints for prayer is asking members of Christ's family to pray with us.",
-    footer: 'Discover the deeper meaning step by step.',
+    title: 'The Mass',
+    text: 'Understand Catholic worship, the Eucharist, and why Mass matters.',
+    href: '/questions/what-is-the-mass',
   },
   {
-    q: 'Why confess sins to a priest?',
-    a: 'Catholics believe Jesus gave the Church the ministry of reconciliation, where God offers forgiveness and healing through Confession.',
-    footer: 'Learn the biblical roots inside the journey.',
+    title: 'Prayer',
+    text: 'Learn how to pray, listen to God, and grow closer to Christ.',
+    href: '/questions/what-is-prayer',
   },
   {
-    q: 'Why is the Mass different?',
-    a: 'Catholics believe the Mass is more than a service. It is worship centred on Christ, Scripture, and the Eucharist.',
-    footer: 'Understand each part of the Mass in Catholic Journey 365.',
+    title: 'Bible',
+    text: 'Read Scripture with the Church and see how it points to Jesus.',
+    href: '/questions/how-should-i-read-the-bible',
   },
   {
-    q: 'Where did the Bible come from?',
-    a: 'The Bible did not appear as one complete book. The early Church preserved, prayed with, and recognised the books of Sacred Scripture.',
-    footer: 'Explore Scripture and salvation history through the journey.',
+    title: 'Jesus',
+    text: 'Discover who Jesus is, why He died, and why Christians follow Him.',
+    href: '/questions/who-is-jesus-christ',
+  },
+  {
+    title: 'Mary',
+    text: 'Understand Marian devotion, honour, intercession, and Scripture.',
+    href: '/questions/why-do-catholics-honour-mary',
+  },
+  {
+    title: 'Sacraments',
+    text: 'Learn the visible signs of grace Jesus gave to His Church.',
+    href: '/questions/what-are-the-seven-sacraments',
+  },
+  {
+    title: 'The Church',
+    text: 'Explore the Catholic Church, apostolic roots, and parish life.',
+    href: '/questions/what-is-the-church',
+  },
+];
+
+const BEGINNER_QUESTIONS = [
+  {
+    title: 'What is the Catholic Church?',
+    href: '/questions/what-is-the-church',
+  },
+  {
+    title: 'How do I become Catholic?',
+    href: '/questions/how-do-i-become-catholic',
+  },
+  {
+    title: 'How do I return to the Catholic Church?',
+    href: '/questions/how-do-i-return-to-the-catholic-church',
+  },
+  {
+    title: 'What is OCIA?',
+    href: '/questions/what-is-ocia',
+  },
+  {
+    title: 'What is the Mass?',
+    href: '/questions/what-is-the-mass',
+  },
+  {
+    title: 'Why do Catholics go to Mass?',
+    href: '/questions/why-do-catholics-go-to-mass',
   },
 ];
 
@@ -422,67 +464,96 @@ export default function Landing() {
       </header>
 
       <main>
-        {/* 2. Question hook */}
+        {/* 2. Catholic Questions formation library */}
         <section className="relative px-5 pt-10 sm:px-8 md:pt-14">
           <div className="mx-auto max-w-[1440px]">
-            <div className="mx-auto max-w-3xl text-center">
-              <GoldRule className="mx-auto" />
-              <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-leather-900 md:mt-6 md:text-5xl">
-                Have you ever wondered why?
-              </h2>
-              <p className="mt-4 text-base font-semibold text-leather-900/65">
-                Tap any question to reveal the answer.
-              </p>
-            </div>
-
-            <div className="mt-8 flex flex-wrap items-start gap-4 md:mt-10">
-              {QUESTION_CARDS.map((card, i) => (
-                <details
-                  key={card.q}
-                  className="group w-full self-start rounded-[1.6rem] border border-amber-100/70 bg-[linear-gradient(160deg,#fffaf0,#f6e9cf)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.1)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/80 hover:shadow-[0_28px_64px_rgba(92,64,39,0.18)] open:border-amber-300/80 sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]"
-                >
-                  <summary className="flex cursor-pointer list-none items-center gap-3 [&::-webkit-details-marker]:hidden">
-                    <span className="flex h-9 w-9 flex-none items-center justify-center rounded-full border border-amber-300/70 bg-leather-900 font-display text-base font-semibold text-amber-200">
-                      {i + 1}
-                    </span>
-                    <span className="font-display text-xl font-semibold leading-snug text-leather-900">
-                      {card.q}
-                    </span>
-                    <svg
-                      viewBox="0 0 20 20"
-                      className="ml-auto h-5 w-5 flex-none text-amber-600 transition-transform duration-300 group-open:rotate-180"
-                      fill="none"
-                      aria-hidden="true"
+            <div className="overflow-hidden rounded-[2.4rem] border border-amber-100/70 bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.88),transparent_34%),linear-gradient(135deg,#fffaf0,#efd4a4)] p-5 shadow-[0_30px_78px_rgba(92,64,39,0.16)] sm:p-7 md:p-9">
+              <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-10">
+                <div>
+                  <GoldRule />
+                  <p className="mt-5 text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
+                    Formation Library
+                  </p>
+                  <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-5xl">
+                    Catholic Questions, Simple Answers
+                  </h2>
+                  <p className="mt-5 text-lg leading-8 text-leather-900/82 md:text-xl md:leading-9">
+                    Explore clear, faithful answers to common questions about
+                    the Catholic faith, the Mass, prayer, Scripture, Mary, the
+                    Church, and becoming Catholic.
+                  </p>
+                  <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+                    <a
+                      href="/questions"
+                      className="rounded-full bg-leather-900 px-8 py-4 text-center text-base font-bold text-parchment-50 shadow-[0_18px_42px_rgba(36,22,15,0.22)] transition hover:bg-leather-800 active:scale-[0.99]"
                     >
-                      <path d="M5 8l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </summary>
-                  <div className="mt-3 border-t border-amber-300/40 pt-3">
-                    <p className="text-base leading-7 text-leather-900/75">
-                      {card.a}
-                    </p>
-                    <p className="mt-3 text-sm font-semibold text-amber-700">
-                      {card.footer}
-                    </p>
+                      Browse Catholic Questions
+                    </a>
+                    <BeginButton
+                      label="Continue in the App"
+                      className="w-full sm:w-auto"
+                    />
                   </div>
-                </details>
-              ))}
-              <div className="flex w-full flex-col justify-center self-start rounded-[1.6rem] border border-amber-200/50 bg-[radial-gradient(circle_at_30%_0%,rgba(255,255,255,0.7),transparent_40%),linear-gradient(135deg,#fff8e7,#e4c797)] p-5 shadow-[0_18px_48px_rgba(92,64,39,0.12)] sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]">
-                <p className="text-lg font-semibold leading-7 text-leather-900/86">
-                  Catholic Journey 365 helps you discover the answers step by
-                  step.
-                </p>
-              </div>
-            </div>
+                  <p className="mt-4 text-sm font-semibold leading-6 text-leather-900/62">
+                    Learn first. Build trust. Then take the next step through a
+                    guided daily journey.
+                  </p>
+                </div>
 
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row md:mt-10">
-              <a
-                href="/questions"
-                className="rounded-full border border-amber-500/50 bg-white/60 px-9 py-4 text-center text-base font-bold text-leather-900 shadow-[0_14px_34px_rgba(92,64,39,0.1)] transition hover:bg-white/80 active:scale-[0.99]"
-              >
-                Read Catholic Questions
-              </a>
-              <BeginButton label="Start Understanding Your Faith" className="w-full sm:w-auto" />
+                <div className="grid gap-3 sm:grid-cols-2">
+                  {QUESTION_TOPICS.map((topic) => (
+                    <a
+                      key={topic.title}
+                      href={topic.href}
+                      className="group rounded-[1.4rem] border border-white/60 bg-white/62 p-4 shadow-[0_14px_38px_rgba(92,64,39,0.08)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/80 hover:bg-white/82 hover:shadow-[0_22px_54px_rgba(92,64,39,0.16)]"
+                    >
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-300/70 bg-leather-900 text-amber-200">
+                        <CrossMark className="h-4 w-4" />
+                      </span>
+                      <h3 className="mt-3 font-display text-xl font-semibold text-leather-900">
+                        {topic.title}
+                      </h3>
+                      <p className="mt-1.5 text-sm leading-6 text-leather-900/68">
+                        {topic.text}
+                      </p>
+                      <span className="mt-3 inline-flex text-sm font-bold text-amber-700 transition group-hover:text-amber-800">
+                        Explore
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-8 rounded-[1.8rem] border border-amber-200/60 bg-leather-900 p-5 shadow-[0_22px_54px_rgba(36,22,15,0.22)] sm:p-6">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.26em] text-amber-200">
+                      Start here
+                    </p>
+                    <h3 className="mt-2 font-display text-2xl font-semibold text-parchment-50 md:text-3xl">
+                      Beginner questions
+                    </h3>
+                  </div>
+                  <a
+                    href="/questions"
+                    className="text-sm font-bold text-amber-200 transition hover:text-amber-100"
+                  >
+                    View all questions
+                  </a>
+                </div>
+
+                <div className="mt-5 grid gap-3 md:grid-cols-2">
+                  {BEGINNER_QUESTIONS.map((question) => (
+                    <a
+                      key={question.href}
+                      href={question.href}
+                      className="rounded-2xl border border-amber-200/18 bg-parchment-50/8 px-4 py-3 text-base font-semibold leading-6 text-parchment-50 transition hover:border-amber-200/42 hover:bg-parchment-50/14"
+                    >
+                      {question.title}
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>

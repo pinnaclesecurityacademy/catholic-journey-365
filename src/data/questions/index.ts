@@ -12,6 +12,7 @@ import { howDoIStopSinning } from './howDoIStopSinning';
 import { howOftenShouldIGoToConfession } from './howOftenShouldIGoToConfession';
 import { howDoCatholicsReadTheBible } from './howDoCatholicsReadTheBible';
 import { howDoesTheOldTestamentPointToJesus } from './howDoesTheOldTestamentPointToJesus';
+import { howIsJesusForeshadowedInTheOldTestament } from './howIsJesusForeshadowedInTheOldTestament';
 import { howIsTheBibleConnected } from './howIsTheBibleConnected';
 import { howShouldIReadTheBible } from './howShouldIReadTheBible';
 import { howOldIsTheCatholicChurch } from './howOldIsTheCatholicChurch';
@@ -97,6 +98,15 @@ import { canScienceAndFaithCoexist } from './canScienceAndFaithCoexist';
 import { whyShouldITrustTheBible } from './whyShouldITrustTheBible';
 import { whyAreThereFourGospels } from './whyAreThereFourGospels';
 import { whyAreThereSoManyChristianChurches } from './whyAreThereSoManyChristianChurches';
+import { jesusInGenesis } from './jesusInGenesis';
+import { jesusInExodus } from './jesusInExodus';
+import { jesusInIsaiah } from './jesusInIsaiah';
+import { jesusInThePsalms } from './jesusInThePsalms';
+import { whatIsThePassover } from './whatIsThePassover';
+import { whatIsTheArkOfTheCovenant } from './whatIsTheArkOfTheCovenant';
+import { whatIsTheTempleInTheBible } from './whatIsTheTempleInTheBible';
+import { whoWasAbraham } from './whoWasAbraham';
+import { whoWasMoses } from './whoWasMoses';
 import type { QuestionArticle } from './types';
 
 export type {
@@ -107,6 +117,16 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  howIsJesusForeshadowedInTheOldTestament,
+  jesusInGenesis,
+  jesusInExodus,
+  jesusInIsaiah,
+  jesusInThePsalms,
+  whatIsThePassover,
+  whatIsTheArkOfTheCovenant,
+  whatIsTheTempleInTheBible,
+  whoWasAbraham,
+  whoWasMoses,
   whatIsTheNewCovenant,
   whyIsTheMassACelebration,
   whatHappensDuringTheLiturgyOfTheEucharist,

@@ -33,6 +33,16 @@ import { whatIsLectioDivina } from './whatIsLectioDivina';
 import { whatIsTheMass } from './whatIsTheMass';
 import { whatIsTheTrinity } from './whatIsTheTrinity';
 import { whatIsTheChurch } from './whatIsTheChurch';
+import { whyDoCatholicsMakeTheSignOfTheCross } from './whyDoCatholicsMakeTheSignOfTheCross';
+import { whyDoCatholicsKneel } from './whyDoCatholicsKneel';
+import { whyDoCatholicsGenuflect } from './whyDoCatholicsGenuflect';
+import { whyDoCatholicsUseHolyWater } from './whyDoCatholicsUseHolyWater';
+import { whyDoCatholicsLightCandles } from './whyDoCatholicsLightCandles';
+import { whyDoCatholicsHaveStatues } from './whyDoCatholicsHaveStatues';
+import { whyDoCatholicsWearCrucifixes } from './whyDoCatholicsWearCrucifixes';
+import { whatIsARosary } from './whatIsARosary';
+import { whatIsEucharisticAdoration } from './whatIsEucharisticAdoration';
+import { whatIsATabernacle } from './whatIsATabernacle';
 import { whoAreTheSaints } from './whoAreTheSaints';
 import { doesGodExist } from './doesGodExist';
 import { whoIsGod } from './whoIsGod';
@@ -127,6 +137,16 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whyDoCatholicsMakeTheSignOfTheCross,
+  whyDoCatholicsKneel,
+  whyDoCatholicsGenuflect,
+  whyDoCatholicsUseHolyWater,
+  whyDoCatholicsLightCandles,
+  whyDoCatholicsHaveStatues,
+  whyDoCatholicsWearCrucifixes,
+  whatIsARosary,
+  whatIsEucharisticAdoration,
+  whatIsATabernacle,
   whoWasNoah,
   whatWasNoahsArk,
   whatIsTheTowerOfBabel,

@@ -48,6 +48,7 @@ export const formationPillars: FormationPillar[] = [
     icon: 'church',
     articleCategories: [
       'Becoming Catholic',
+      'Catholic Practices',
       'Church History',
       'Returning Catholics',
       'Sacraments',

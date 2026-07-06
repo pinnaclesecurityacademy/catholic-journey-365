@@ -107,6 +107,16 @@ import { whatIsTheArkOfTheCovenant } from './whatIsTheArkOfTheCovenant';
 import { whatIsTheTempleInTheBible } from './whatIsTheTempleInTheBible';
 import { whoWasAbraham } from './whoWasAbraham';
 import { whoWasMoses } from './whoWasMoses';
+import { whoWasNoah } from './whoWasNoah';
+import { whatWasNoahsArk } from './whatWasNoahsArk';
+import { whatIsTheTowerOfBabel } from './whatIsTheTowerOfBabel';
+import { whoWasIsaac } from './whoWasIsaac';
+import { whoWasJacob } from './whoWasJacob';
+import { whoWasJosephInTheBible } from './whoWasJosephInTheBible';
+import { whatIsTheExodus } from './whatIsTheExodus';
+import { whoWasJoshua } from './whoWasJoshua';
+import { whoWasKingDavid } from './whoWasKingDavid';
+import { whoWasKingSolomon } from './whoWasKingSolomon';
 import type { QuestionArticle } from './types';
 
 export type {
@@ -117,6 +127,16 @@ export type {
 } from './types';
 
 export const questionArticles: QuestionArticle[] = [
+  whoWasNoah,
+  whatWasNoahsArk,
+  whatIsTheTowerOfBabel,
+  whoWasIsaac,
+  whoWasJacob,
+  whoWasJosephInTheBible,
+  whatIsTheExodus,
+  whoWasJoshua,
+  whoWasKingDavid,
+  whoWasKingSolomon,
   howIsJesusForeshadowedInTheOldTestament,
   jesusInGenesis,
   jesusInExodus,

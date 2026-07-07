@@ -122,12 +122,52 @@ type ArticleRow = {
   pillar: FormationPillar;
 };
 
+type PillarHubContent = {
+  intro: string[];
+  relatedPillarIds: FormationPillarId[];
+};
+
+const pillarHubContent: Record<FormationPillarId, PillarHubContent> = {
+  bible: {
+    intro: [
+      'The Bible is the inspired Word of God and the story of salvation fulfilled in Jesus Christ. These Catholic Bible questions help beginners understand Scripture, read it with the Church, and see how the Old and New Testaments belong together.',
+      'Start with the foundations, then explore how Scripture shapes Catholic faith, worship, prayer, and daily life.',
+    ],
+    relatedPillarIds: ['beliefs', 'living', 'church'],
+  },
+  beliefs: {
+    intro: [
+      'Catholic belief begins with Jesus Christ, the Son of God who reveals the Father and sends the Holy Spirit. These questions explain core Catholic teaching in clear language for seekers, returning Catholics, and anyone learning the faith for the first time.',
+      'Begin with Jesus, then continue into salvation, Mary, the saints, the Trinity, and the hope God offers every person.',
+    ],
+    relatedPillarIds: ['bible', 'church', 'living'],
+  },
+  church: {
+    intro: [
+      'The Catholic Church is the people of God gathered by Christ, nourished by the sacraments, and sent to worship and serve. These questions help you understand the Mass, becoming Catholic, Catholic practices, and the visible life of the Church.',
+      'Start with the basics of the Church and the Mass, then explore the sacraments and Catholic traditions with confidence.',
+    ],
+    relatedPillarIds: ['beliefs', 'bible', 'living'],
+  },
+  living: {
+    intro: [
+      'Christian living is the daily practice of following Jesus through prayer, virtue, mercy, family life, and trust in God. These questions are written for beginners who want simple, faithful help taking the next step.',
+      'Start with prayer and discipleship, then continue into forgiveness, holiness, temptation, and practical Catholic formation.',
+    ],
+    relatedPillarIds: ['beliefs', 'bible', 'church'],
+  },
+};
+
 function getPillarIcon(icon: FormationPillarIcon): IconName {
   return icon;
 }
 
 function formatQuestionCount(count: number) {
   return `${count} ${count === 1 ? 'article' : 'articles'}`;
+}
+
+function formatCatholicQuestionCount(count: number) {
+  return `${count} Catholic ${count === 1 ? 'Question' : 'Questions'}`;
 }
 
 function getArticleExcerpt(article: QuestionArticle) {
@@ -151,6 +191,33 @@ function sortArticlesByDisplayOrder(rows: ArticleRow[]) {
       (articleFallbackOrder.get(b.article.slug) ?? Number.POSITIVE_INFINITY)
     );
   });
+}
+
+function QuestionArticleCard({ row }: { row: ArticleRow }) {
+  const { article, href, pillar } = row;
+
+  return (
+    <Link
+      to={href}
+      className="group flex items-start gap-4 px-4 py-5 transition hover:bg-[#fff8e7] sm:px-5"
+    >
+      <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+        <IconMark type={getPillarIcon(pillar.icon)} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block font-display text-2xl font-semibold leading-tight text-leather-950">
+          {article.title}
+        </span>
+        <span className="mt-1 block text-base leading-7 text-leather-900/66">
+          {getArticleExcerpt(article)}
+        </span>
+        <span className="mt-2 block text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+          {pillar.title}
+        </span>
+      </span>
+      <Arrow />
+    </Link>
+  );
 }
 
 export default function Questions() {
@@ -189,6 +256,42 @@ export default function Questions() {
     [activePillarId]
   );
 
+  const activePillarRows = useMemo(() => {
+    if (!activePillar) {
+      return [];
+    }
+
+    return sortArticlesByDisplayOrder(
+      articleRows.filter(({ pillar }) => pillar.id === activePillar.id)
+    );
+  }, [activePillar, articleRows]);
+
+  const startHereRows = useMemo(
+    () =>
+      activePillarRows.filter(
+        ({ article }) => typeof article.displayOrder === 'number'
+      ),
+    [activePillarRows]
+  );
+
+  const exploreMoreRows = useMemo(
+    () =>
+      activePillarRows.filter(
+        ({ article }) => typeof article.displayOrder !== 'number'
+      ),
+    [activePillarRows]
+  );
+
+  const relatedPillars = useMemo(() => {
+    if (!activePillar) {
+      return [];
+    }
+
+    return pillarHubContent[activePillar.id].relatedPillarIds
+      .map((pillarId) => formationPillars.find((pillar) => pillar.id === pillarId))
+      .filter((pillar): pillar is FormationPillar => Boolean(pillar));
+  }, [activePillar]);
+
   const visibleArticles = useMemo(() => {
     const query = searchTerm.trim().toLowerCase();
 
@@ -203,13 +306,11 @@ export default function Questions() {
     }
 
     if (activePillar) {
-      return sortArticlesByDisplayOrder(
-        articleRows.filter(({ pillar }) => pillar.id === activePillar.id)
-      );
+      return activePillarRows;
     }
 
     return articleRows.slice(0, 10);
-  }, [activePillar, articleRows, searchTerm]);
+  }, [activePillar, activePillarRows, articleRows, searchTerm]);
 
   const sectionTitle = searchTerm.trim()
     ? 'Search Results'
@@ -219,6 +320,16 @@ export default function Questions() {
     ? `${formatQuestionCount(visibleArticles.length)} match your search.`
     : activePillar?.description ??
       'The newest formation articles from the Catholic Questions library.';
+
+  const selectPillar = (pillarId: FormationPillarId) => {
+    setSearchTerm('');
+    setActivePillarId(pillarId);
+    window.setTimeout(() => {
+      document
+        .getElementById('formation-results')
+        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
+  };
 
   return (
     <PublicSiteLayout>
@@ -315,15 +426,7 @@ export default function Questions() {
                   key={pillar.id}
                   type="button"
                   aria-pressed={selected}
-                  onClick={() => {
-                    setSearchTerm('');
-                    setActivePillarId(pillar.id);
-                    window.setTimeout(() => {
-                      document
-                        .getElementById('formation-results')
-                        ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 0);
-                  }}
+                  onClick={() => selectPillar(pillar.id)}
                   className={`group flex min-h-[17rem] w-full flex-col justify-between rounded-[1.7rem] border p-5 text-left shadow-[0_18px_58px_rgba(92,64,39,0.1)] transition hover:-translate-y-1 hover:shadow-[0_24px_70px_rgba(92,64,39,0.14)] sm:p-6 ${
                     selected
                       ? 'border-amber-300 bg-[linear-gradient(145deg,#fff8e7,#efd7a6)]'
@@ -352,80 +455,181 @@ export default function Questions() {
         </section>
 
         <section id="formation-results" className="mx-auto mt-10 max-w-[1440px] scroll-mt-28">
-          <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
-                Formation Library
-              </p>
-              <h2 className="mt-1 font-display text-3xl font-semibold text-leather-950">
-                {sectionTitle}
-              </h2>
-              <p className="mt-2 max-w-3xl text-base leading-7 text-leather-900/66">
-                {sectionDescription}
-              </p>
-            </div>
-            {(activePillar || searchTerm.trim()) && (
-              <button
-                type="button"
-                onClick={() => {
-                  setActivePillarId(null);
-                  setSearchTerm('');
-                }}
-                className="self-start rounded-full border border-amber-200 bg-white/76 px-4 py-2 text-sm font-bold text-leather-900 transition hover:border-amber-400 hover:bg-white sm:self-auto"
-              >
-                View latest
-              </button>
-            )}
-          </div>
+          {activePillar && !searchTerm.trim() ? (
+            <div className="space-y-8">
+              <div className="rounded-[1.7rem] border border-amber-100/80 bg-white/82 p-5 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur sm:p-7">
+                <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                  <div className="max-w-4xl">
+                    <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                      Formation Library
+                    </p>
+                    <h2 className="mt-2 font-display text-4xl font-semibold leading-tight text-leather-950 md:text-5xl">
+                      {activePillar.title}
+                    </h2>
+                    <div className="mt-4 space-y-3 text-base leading-7 text-leather-900/70">
+                      {pillarHubContent[activePillar.id].intro.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="shrink-0 rounded-2xl border border-amber-200 bg-[#fff8e7] px-4 py-3 text-sm font-bold uppercase tracking-[0.14em] text-amber-800">
+                    {formatCatholicQuestionCount(activePillarRows.length)}
+                  </div>
+                </div>
+              </div>
 
-          <div className="overflow-hidden rounded-[1.7rem] border border-amber-100/80 bg-white/82 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur">
-            {visibleArticles.length > 0 ? (
-              <div className="divide-y divide-amber-100/80">
-                {visibleArticles.map(({ article, href, pillar }) => (
-                  <Link
-                    key={article.slug}
-                    to={href}
-                    className="group flex items-start gap-4 px-4 py-5 transition hover:bg-[#fff8e7] sm:px-5"
+              <div>
+                <div className="mb-4">
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                    Start Here
+                  </p>
+                  <h3 className="mt-1 font-display text-3xl font-semibold text-leather-950">
+                    Begin with these core questions
+                  </h3>
+                  <p className="mt-2 max-w-3xl text-base leading-7 text-leather-900/66">
+                    These are the best first steps for this topic, ordered for
+                    beginners who want a clear path into Catholic formation.
+                  </p>
+                </div>
+
+                <div className="overflow-hidden rounded-[1.7rem] border border-amber-100/80 bg-white/82 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+                  <div className="divide-y divide-amber-100/80">
+                    {(startHereRows.length > 0 ? startHereRows : activePillarRows.slice(0, 6)).map(
+                      (row) => (
+                        <QuestionArticleCard key={row.article.slug} row={row} />
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div className="mb-4">
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                    Explore More Questions
+                  </p>
+                  <h3 className="mt-1 font-display text-3xl font-semibold text-leather-950">
+                    Keep learning within {activePillar.title}
+                  </h3>
+                  <p className="mt-2 max-w-3xl text-base leading-7 text-leather-900/66">
+                    These additional questions help you go deeper without
+                    losing the simple, beginner-friendly path.
+                  </p>
+                </div>
+
+                <div className="overflow-hidden rounded-[1.7rem] border border-amber-100/80 bg-white/82 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+                  {exploreMoreRows.length > 0 ? (
+                    <div className="divide-y divide-amber-100/80">
+                      {exploreMoreRows.map((row) => (
+                        <QuestionArticleCard key={row.article.slug} row={row} />
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="px-5 py-8 text-center">
+                      <p className="font-display text-2xl font-semibold text-leather-950">
+                        More questions are being prepared for this topic.
+                      </p>
+                      <p className="mx-auto mt-2 max-w-xl text-base leading-7 text-leather-900/64">
+                        Start with the core questions above, then continue into
+                        a related formation topic.
+                      </p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="rounded-[1.7rem] border border-amber-100/80 bg-white/72 p-5 shadow-[0_18px_58px_rgba(92,64,39,0.08)] backdrop-blur sm:p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                  Continue Your Journey
+                </p>
+                <h3 className="mt-1 font-display text-3xl font-semibold text-leather-950">
+                  Related formation topics
+                </h3>
+                <div className="mt-5 grid gap-4 md:grid-cols-3">
+                  {relatedPillars.map((pillar) => (
+                    <button
+                      key={pillar.id}
+                      type="button"
+                      onClick={() => selectPillar(pillar.id)}
+                      className="group flex min-h-[12rem] flex-col justify-between rounded-[1.4rem] border border-amber-100 bg-white/76 p-4 text-left shadow-[0_12px_34px_rgba(92,64,39,0.08)] transition hover:-translate-y-1 hover:border-amber-300 hover:bg-white"
+                    >
+                      <span>
+                        <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
+                          <IconMark type={getPillarIcon(pillar.icon)} />
+                        </span>
+                        <span className="mt-3 block font-display text-2xl font-semibold leading-tight text-leather-950">
+                          {pillar.title}
+                        </span>
+                        <span className="mt-2 block text-sm leading-6 text-leather-900/66">
+                          {pillar.description}
+                        </span>
+                      </span>
+                      <span className="mt-4 text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
+                        {formatCatholicQuestionCount(pillarCounts[pillar.id] ?? 0)}
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                    Formation Library
+                  </p>
+                  <h2 className="mt-1 font-display text-3xl font-semibold text-leather-950">
+                    {sectionTitle}
+                  </h2>
+                  <p className="mt-2 max-w-3xl text-base leading-7 text-leather-900/66">
+                    {sectionDescription}
+                  </p>
+                </div>
+                {searchTerm.trim() && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActivePillarId(null);
+                      setSearchTerm('');
+                    }}
+                    className="self-start rounded-full border border-amber-200 bg-white/76 px-4 py-2 text-sm font-bold text-leather-900 transition hover:border-amber-400 hover:bg-white sm:self-auto"
                   >
-                    <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-800">
-                      <IconMark type={getPillarIcon(pillar.icon)} />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-display text-2xl font-semibold leading-tight text-leather-950">
-                        {article.title}
-                      </span>
-                      <span className="mt-1 block text-base leading-7 text-leather-900/66">
-                        {getArticleExcerpt(article)}
-                      </span>
-                      <span className="mt-2 block text-xs font-bold uppercase tracking-[0.16em] text-amber-700">
-                        {pillar.title}
-                      </span>
-                    </span>
-                    <Arrow />
-                  </Link>
-                ))}
+                    View latest
+                  </button>
+                )}
               </div>
-            ) : (
-              <div className="px-5 py-10 text-center">
-                <p className="font-display text-2xl font-semibold text-leather-950">
-                  No formation article matches this search yet.
-                </p>
-                <p className="mx-auto mt-2 max-w-xl text-base leading-7 text-leather-900/64">
-                  Try another word or choose one of the four formation pillars.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setActivePillarId(null);
-                    setSearchTerm('');
-                  }}
-                  className="mt-5 rounded-full border border-amber-200 bg-white px-5 py-2.5 text-sm font-bold text-leather-900 transition hover:border-amber-400"
-                >
-                  View latest articles
-                </button>
+
+              <div className="overflow-hidden rounded-[1.7rem] border border-amber-100/80 bg-white/82 shadow-[0_18px_58px_rgba(92,64,39,0.1)] backdrop-blur">
+                {visibleArticles.length > 0 ? (
+                  <div className="divide-y divide-amber-100/80">
+                    {visibleArticles.map((row) => (
+                      <QuestionArticleCard key={row.article.slug} row={row} />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="px-5 py-10 text-center">
+                    <p className="font-display text-2xl font-semibold text-leather-950">
+                      No formation article matches this search yet.
+                    </p>
+                    <p className="mx-auto mt-2 max-w-xl text-base leading-7 text-leather-900/64">
+                      Try another word or choose one of the four formation pillars.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActivePillarId(null);
+                        setSearchTerm('');
+                      }}
+                      className="mt-5 rounded-full border border-amber-200 bg-white px-5 py-2.5 text-sm font-bold text-leather-900 transition hover:border-amber-400"
+                    >
+                      View latest articles
+                    </button>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
+            </>
+          )}
         </section>
 
         <section className="mx-auto mt-10 max-w-[1440px] pb-8">

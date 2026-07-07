@@ -465,66 +465,32 @@ export default function Landing() {
 
       <main>
         {/* 2. Catholic Questions formation library */}
-        <section className="relative px-5 pt-10 sm:px-8 md:pt-14">
-          <div className="mx-auto max-w-[1440px]">
-            <div className="overflow-hidden rounded-[2.4rem] border border-amber-100/70 bg-[radial-gradient(circle_at_20%_0%,rgba(255,255,255,0.88),transparent_34%),linear-gradient(135deg,#fffaf0,#efd4a4)] p-5 shadow-[0_30px_78px_rgba(92,64,39,0.16)] sm:p-7 md:p-9">
-              <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start lg:gap-10">
-                <div>
-                  <GoldRule />
-                  <p className="mt-5 text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
-                    Formation Library
-                  </p>
-                  <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-5xl">
-                    Catholic Questions, Simple Answers
-                  </h2>
-                  <p className="mt-5 text-lg leading-8 text-leather-900/82 md:text-xl md:leading-9">
-                    Explore clear, faithful answers to common questions about
-                    the Catholic faith, the Mass, prayer, Scripture, Mary, the
-                    Church, and becoming Catholic.
-                  </p>
-                  <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                    <a
-                      href="/questions"
-                      className="rounded-full bg-leather-900 px-8 py-4 text-center text-base font-bold text-parchment-50 shadow-[0_18px_42px_rgba(36,22,15,0.22)] transition hover:bg-leather-800 active:scale-[0.99]"
-                    >
-                      Browse Catholic Questions
-                    </a>
-                    <BeginButton
-                      label="Continue in the App"
-                      className="w-full sm:w-auto"
-                    />
-                  </div>
-                  <p className="mt-4 text-sm font-semibold leading-6 text-leather-900/62">
-                    Learn first. Build trust. Then take the next step through a
-                    guided daily journey.
-                  </p>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-2">
-                  {QUESTION_TOPICS.map((topic) => (
-                    <a
-                      key={topic.title}
-                      href={topic.href}
-                      className="group rounded-[1.4rem] border border-white/60 bg-white/62 p-4 shadow-[0_14px_38px_rgba(92,64,39,0.08)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/80 hover:bg-white/82 hover:shadow-[0_22px_54px_rgba(92,64,39,0.16)]"
-                    >
-                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-300/70 bg-leather-900 text-amber-200">
-                        <CrossMark className="h-4 w-4" />
-                      </span>
-                      <h3 className="mt-3 font-display text-xl font-semibold text-leather-900">
-                        {topic.title}
-                      </h3>
-                      <p className="mt-1.5 text-sm leading-6 text-leather-900/68">
-                        {topic.text}
-                      </p>
-                      <span className="mt-3 inline-flex text-sm font-bold text-amber-700 transition group-hover:text-amber-800">
-                        Explore
-                      </span>
-                    </a>
-                  ))}
-                </div>
+        <section className="relative overflow-hidden border-y border-amber-100/70 bg-[linear-gradient(180deg,#fff8e7_0%,#f3e4c4_100%)] px-5 py-12 sm:px-8 md:py-16">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_10%,rgba(255,255,255,0.86),transparent_34%),radial-gradient(circle_at_88%_16%,rgba(214,157,72,0.2),transparent_30%)]" />
+          <div className="relative mx-auto max-w-[1440px]">
+            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end lg:gap-12">
+              <div className="max-w-3xl">
+                <GoldRule />
+                <p className="mt-5 text-xs font-bold uppercase tracking-[0.28em] text-amber-700">
+                  Formation Library
+                </p>
+                <h2 className="mt-3 font-display text-4xl font-semibold leading-tight text-leather-900 md:text-6xl">
+                  Catholic Questions, Simple Answers
+                </h2>
+                <p className="mt-5 text-lg leading-8 text-leather-900/82 md:text-xl md:leading-9">
+                  Explore clear, faithful answers to common questions about
+                  the Catholic faith, the Mass, prayer, Scripture, Mary, the
+                  Church, and becoming Catholic.
+                </p>
+                <a
+                  href="/questions"
+                  className="mt-7 inline-flex w-full justify-center rounded-full bg-leather-900 px-8 py-4 text-center text-base font-bold text-parchment-50 shadow-[0_18px_42px_rgba(36,22,15,0.22)] transition hover:bg-leather-800 active:scale-[0.99] sm:w-auto"
+                >
+                  Browse Catholic Questions
+                </a>
               </div>
 
-              <div className="mt-8 rounded-[1.8rem] border border-amber-200/60 bg-leather-900 p-5 shadow-[0_22px_54px_rgba(36,22,15,0.22)] sm:p-6">
+              <div className="rounded-[1.8rem] border border-amber-200/60 bg-leather-900 p-5 shadow-[0_22px_54px_rgba(36,22,15,0.22)] sm:p-6">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
                   <div>
                     <p className="text-xs font-bold uppercase tracking-[0.26em] text-amber-200">
@@ -554,6 +520,48 @@ export default function Landing() {
                   ))}
                 </div>
               </div>
+            </div>
+
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              {QUESTION_TOPICS.map((topic) => (
+                <a
+                  key={topic.title}
+                  href={topic.href}
+                  className="group flex min-h-[10rem] flex-col rounded-[1.4rem] border border-white/70 bg-white/68 p-4 shadow-[0_14px_38px_rgba(92,64,39,0.08)] transition duration-300 hover:-translate-y-1 hover:border-amber-300/80 hover:bg-white/86 hover:shadow-[0_22px_54px_rgba(92,64,39,0.16)]"
+                >
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-300/70 bg-leather-900 text-amber-200">
+                    <CrossMark className="h-4 w-4" />
+                  </span>
+                  <h3 className="mt-3 font-display text-xl font-semibold text-leather-900">
+                    {topic.title}
+                  </h3>
+                  <p className="mt-1.5 flex-1 text-sm leading-6 text-leather-900/68">
+                    {topic.text}
+                  </p>
+                  <span className="mt-3 inline-flex text-sm font-bold text-amber-700 transition group-hover:text-amber-800">
+                    Explore
+                  </span>
+                </a>
+              ))}
+            </div>
+
+            <div className="mt-8 border-t border-amber-200/70 pt-6 md:flex md:items-center md:justify-between md:gap-6">
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.22em] text-amber-700">
+                  Keep going
+                </p>
+                <h3 className="mt-2 font-display text-3xl font-semibold text-leather-900">
+                  Ready for a daily path after the answer?
+                </h3>
+                <p className="mt-2 max-w-3xl text-base leading-7 text-leather-900/70">
+                  Catholic Journey 365 helps you continue through Scripture,
+                  prayer, the Mass, and guided formation one step at a time.
+                </p>
+              </div>
+              <BeginButton
+                label="Continue in the App"
+                className="mt-5 w-full sm:w-auto md:mt-0"
+              />
             </div>
           </div>
         </section>

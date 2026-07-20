@@ -159,6 +159,16 @@ import { whoWasJoshua } from './whoWasJoshua';
 import { whoWasKingDavid } from './whoWasKingDavid';
 import { whoWasKingSolomon } from './whoWasKingSolomon';
 import { whyDidJesusGiveUsTheSacraments } from './whyDidJesusGiveUsTheSacraments';
+import { didJesusSayIAmGod } from './didJesusSayIAmGod';
+import { whyDidTheHighPriestAccuseJesusOfBlasphemy } from './whyDidTheHighPriestAccuseJesusOfBlasphemy';
+import { whatDoesSonOfManMean } from './whatDoesSonOfManMean';
+import { whatDoesChristMean } from './whatDoesChristMean';
+import { whyDidJesusAcceptWorship } from './whyDidJesusAcceptWorship';
+import { whyCouldJesusForgiveSins } from './whyCouldJesusForgiveSins';
+import { whatDoesIAmMeanInJohnsGospel } from './whatDoesIAmMeanInJohnsGospel';
+import { whyDidJesusCallGodFather } from './whyDidJesusCallGodFather';
+import { whatDidJesusMeanByKingdomOfGod } from './whatDidJesusMeanByKingdomOfGod';
+import { whyDidJesusCallHimselfTheGoodShepherd } from './whyDidJesusCallHimselfTheGoodShepherd';
 import type { QuestionArticle } from './types';
 
 export type {
@@ -320,6 +330,16 @@ export const questionArticles: QuestionArticle[] = [
   didJesusReallyRiseFromTheDead,
   whyIsJesusCalledTheSonOfGod,
   sonOfGodVsSonOfMan,
+  didJesusSayIAmGod,
+  whatDoesIAmMeanInJohnsGospel,
+  whatDoesSonOfManMean,
+  whatDoesChristMean,
+  whyDidJesusCallGodFather,
+  whyCouldJesusForgiveSins,
+  whyDidJesusAcceptWorship,
+  whyDidTheHighPriestAccuseJesusOfBlasphemy,
+  whatDidJesusMeanByKingdomOfGod,
+  whyDidJesusCallHimselfTheGoodShepherd,
   whoIsTheHolySpirit,
   whatIsTheTrinity,
   whyBecomeCatholic,

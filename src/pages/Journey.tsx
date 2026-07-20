@@ -5,7 +5,7 @@ import { readingPlan } from '../data/readingPlan';
 import { getDailyFormation } from '../data/dailyFormation';
 import { TOTAL_DAYS } from '../config/journey';
 import { getAllCompletions } from '../lib/completions';
-import { useAccount, Member } from '../lib/account';
+import { useAccount } from '../lib/account';
 import { CompletionRecord, ReadingDay } from '../lib/supabase';
 import {
   DIVE_DEEPER_ITEM,
@@ -57,18 +57,6 @@ function wasCompletedToday(record: CompletionRecord, userId: string): boolean {
     completedAt.getFullYear() === today.getFullYear() &&
     completedAt.getMonth() === today.getMonth() &&
     completedAt.getDate() === today.getDate()
-  );
-}
-
-// A day is group-complete when every journey member has completed it.
-function groupComplete(
-  records: CompletionRecord[],
-  dayNumber: number,
-  members: Member[]
-): boolean {
-  if (members.length === 0) return false;
-  return members.every((m) =>
-    isComplete(records, dayNumber, m.completion_id)
   );
 }
 
@@ -1046,6 +1034,28 @@ export default function Journey() {
       .catch(() => setCompletions([]));
   }, []);
 
+  // Personal Bible progress is independent of the group. A day counts as
+  // complete for progression when the signed-in user has completed it, so a
+  // user can keep advancing their own Bible Journey and Daily Formation even if
+  // other journey members are behind. Group progress is accountability/display
+  // only and never blocks personal progression.
+  const personalComplete = (dayNumber: number) =>
+    completionId ? isComplete(completions, dayNumber, completionId) : false;
+
+  // Group progress is a separate, non-blocking accountability display only. It
+  // never feeds into currentDay, day dots, progress bars, or formation access.
+  // "Reached together" = the highest day every active member has completed.
+  const isGroup = members.length > 1;
+  const groupDay = isGroup
+    ? readingPlan.reduce(
+        (highest, d) =>
+          members.every((m) => isComplete(completions, d.day_number, m.completion_id))
+            ? d.day_number
+            : highest,
+        0
+      )
+    : 0;
+
   useLayoutEffect(() => {
     if (selected) return;
 
@@ -1077,23 +1087,23 @@ export default function Journey() {
     };
   }, [location.pathname, selected]);
 
-  // Current day = first day the group has not all completed (actual progress).
+  // Current day = first day the signed-in user has not personally completed.
   const currentDay =
     readingPlan.find(
-      (d) => !groupComplete(completions, d.day_number, members)
+      (d) => !personalComplete(d.day_number)
     )?.day_number ?? TOTAL_DAYS;
   const currentPeriod =
     periods.find((p) => currentDay >= p.start && currentDay <= p.end) ??
     periods[0];
   const currentPeriodDone = currentPeriod.days.filter((d) =>
-    groupComplete(completions, d.day_number, members)
+    personalComplete(d.day_number)
   ).length;
   const currentPeriodPct = Math.round(
     (currentPeriodDone / currentPeriod.days.length) * 100
   );
 
   const completedCount = readingPlan.filter((d) =>
-    groupComplete(completions, d.day_number, members)
+    personalComplete(d.day_number)
   ).length;
   const progressPct = Math.round((completedCount / TOTAL_DAYS) * 100);
   const scriptureDoneToday = completionId
@@ -1218,7 +1228,7 @@ export default function Journey() {
                   </ul>
                 </div>
                 <div className="flex gap-1.5 shrink-0">
-                  <Dot done={groupComplete(completions, day.day_number, members)} />
+                  <Dot done={personalComplete(day.day_number)} />
                 </div>
               </div>
             </button>
@@ -1286,6 +1296,11 @@ export default function Journey() {
           Journey
         </h2>
         <p className="text-sm text-stone-500">The Bible Timeline</p>
+        {isGroup && groupDay > 0 && (
+          <p className="mt-1 text-sm text-leather-600">
+            Your group has reached Day {groupDay} together.
+          </p>
+        )}
       </header>
 
       <div className="relative space-y-4 pb-2">
@@ -1296,7 +1311,7 @@ export default function Journey() {
         {periods.map((p) => {
           const total = p.days.length;
           const done = p.days.filter((d) =>
-            groupComplete(completions, d.day_number, members)
+            personalComplete(d.day_number)
           ).length;
           const pct = Math.round((done / total) * 100);
           const isComplete = done === total;

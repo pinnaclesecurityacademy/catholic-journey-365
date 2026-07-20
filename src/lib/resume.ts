@@ -14,10 +14,17 @@ type ResumeScroll = {
   updatedAt: number;
 };
 
+// Resume data (last route, in-progress screen state, scroll positions) is a
+// convenience for a single app session only. It lives in sessionStorage, which
+// the browser/PWA clears when the app is fully closed. That guarantees a fresh
+// launch always starts on Home with all temporary session state (Rosary,
+// prayers, open screens, navigation) reset. Permanent user data (Bible and
+// formation progress, streaks, bookmarks) is stored separately in Supabase and
+// its own persistent keys, so it is never affected by this.
 function storage() {
   if (typeof window === 'undefined') return null;
   try {
-    return window.localStorage;
+    return window.sessionStorage;
   } catch {
     return null;
   }

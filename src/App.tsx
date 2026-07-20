@@ -42,7 +42,6 @@ const QuestionArticle = lazy(() => import('./pages/QuestionArticle'));
 const Bible = lazy(() => import('./pages/Bible'));
 const ScriptureReading = lazy(() => import('./pages/ScriptureReading'));
 const Landing = lazy(() => import('./pages/Landing'));
-const Paywall = lazy(() => import('./pages/Paywall'));
 const LegalPage = lazy(() => import('./pages/LegalPage'));
 const ResetPassword = lazy(() => import('./pages/ResetPassword'));
 
@@ -284,14 +283,8 @@ function LoadingAppFrame() {
   return <ResumeLoadingScreen />;
 }
 
-function PremiumRoute({ children }: { children: ReactNode }) {
-  const { hasPremiumAccess } = useAccount();
-  return hasPremiumAccess ? <>{children}</> : <Paywall />;
-}
-
 function PrivateRoutes() {
-  const premium = (page: ReactNode) => <PremiumRoute>{page}</PremiumRoute>;
-
+  // Catholic Journey 365 is free: every route is open to every signed-in user.
   return (
     <Suspense fallback={<AppRouteLoading />}>
       <ResumeRouteManager />
@@ -299,22 +292,22 @@ function PrivateRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="/journey" element={<Journey />} />
         <Route path="/journey/scripture" element={<Journey />} />
-        <Route path="/journey/faith" element={premium(<Journey />)} />
+        <Route path="/journey/faith" element={<Journey />} />
         <Route path="/day/:dayNumber" element={<DayDetail />} />
-        <Route path="/day/:dayNumber/deeper" element={premium(<DiveDeeper />)} />
-        <Route path="/saint" element={premium(<SaintOfDay />)} />
-        <Route path="/saint/:key" element={premium(<SaintOfDay />)} />
-        <Route path="/saints" element={premium(<SaintLibrary />)} />
-        <Route path="/faith" element={premium(<Faith />)} />
-        <Route path="/faith/begin" element={premium(<BeginHere />)} />
-        <Route path="/faith/fasting" element={premium(<Fasting />)} />
-        <Route path="/sacraments" element={premium(<Sacraments />)} />
-        <Route path="/sacraments/:id" element={premium(<SacramentDetail />)} />
-        <Route path="/prayer" element={premium(<Prayer />)} />
-        <Route path="/prayer/:categoryId/:prayerId" element={premium(<PrayerDetail />)} />
-        <Route path="/rosary" element={premium(<Rosary />)} />
-        <Route path="/rosary/:mystery" element={premium(<Rosary />)} />
-        <Route path="/mass" element={premium(<OrderOfMass />)} />
+        <Route path="/day/:dayNumber/deeper" element={<DiveDeeper />} />
+        <Route path="/saint" element={<SaintOfDay />} />
+        <Route path="/saint/:key" element={<SaintOfDay />} />
+        <Route path="/saints" element={<SaintLibrary />} />
+        <Route path="/faith" element={<Faith />} />
+        <Route path="/faith/begin" element={<BeginHere />} />
+        <Route path="/faith/fasting" element={<Fasting />} />
+        <Route path="/sacraments" element={<Sacraments />} />
+        <Route path="/sacraments/:id" element={<SacramentDetail />} />
+        <Route path="/prayer" element={<Prayer />} />
+        <Route path="/prayer/:categoryId/:prayerId" element={<PrayerDetail />} />
+        <Route path="/rosary" element={<Rosary />} />
+        <Route path="/rosary/:mystery" element={<Rosary />} />
+        <Route path="/mass" element={<OrderOfMass />} />
         <Route path="/bible" element={<Bible />} />
         <Route path="/bible/reading/:day" element={<ScriptureReading />} />
         <Route path="/profile" element={<Profile />} />

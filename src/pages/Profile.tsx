@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useAccount } from '../lib/account';
-import { promoAccessTypeLabel } from '../lib/billing';
 import { usePWAUpdate } from '../lib/pwaUpdates';
 import { InstallApp } from '../components/InstallApp';
+import { DonationSupport } from '../components/DonationSupport';
 
 export default function Profile() {
   const {
@@ -12,16 +12,10 @@ export default function Profile() {
     journeyName,
     inviteCode,
     members,
-    subscription,
-    promoAccess,
-    premiumAccessSource,
-    trialAccess,
     updateDisplayName,
     updateJourneyName,
     joinJourney,
     removeMember,
-    manageSubscription,
-    redeemPromoCode,
     signOut,
   } = useAccount();
   const { status, updateReady, checkForUpdates, updateNow } = usePWAUpdate();
@@ -40,14 +34,8 @@ export default function Profile() {
   const [joinCode, setJoinCode] = useState('');
   const [joining, setJoining] = useState(false);
   const [joinError, setJoinError] = useState<string | null>(null);
-  const [promoCode, setPromoCode] = useState('');
-  const [promoLoading, setPromoLoading] = useState(false);
-  const [promoMessage, setPromoMessage] = useState<string | null>(null);
-  const [promoError, setPromoError] = useState<string | null>(null);
 
   const [aboutOpen, setAboutOpen] = useState(false);
-  const [billingMessage, setBillingMessage] = useState<string | null>(null);
-  const [billingLoading, setBillingLoading] = useState(false);
   const [accountModalOpen, setAccountModalOpen] = useState(false);
   const [deactivateStep, setDeactivateStep] = useState<1 | 2>(1);
   const [deactivateReason, setDeactivateReason] = useState('');
@@ -65,49 +53,6 @@ export default function Profile() {
     'w-full rounded-xl border border-parchment-200 bg-white py-2.5 font-semibold text-stone-500 active:scale-[0.99] transition';
   const dangerButtonClass =
     'w-full rounded-xl border border-red-200 bg-red-50 py-2.5 font-semibold text-red-700 active:scale-[0.99] transition disabled:opacity-50';
-  const promoLabel =
-    promoAccess?.redeemed_code === 'BETA2026'
-      ? 'Beta'
-      : promoAccessTypeLabel(promoAccess?.access_type);
-  const promoDaysRemaining =
-    promoAccess?.access_expires_at
-      ? Math.max(
-          0,
-          Math.ceil(
-            (new Date(promoAccess.access_expires_at).getTime() - Date.now()) /
-              (24 * 60 * 60 * 1000)
-          )
-        )
-      : 0;
-  const currentPlanLabel = premiumAccessSource === 'subscription'
-    ? 'Premium'
-    : premiumAccessSource === 'promo'
-    ? `${promoLabel} Access`
-    : premiumAccessSource === 'trial'
-    ? 'Premium Trial'
-    : premiumAccessSource === 'included'
-    ? 'Premium Access'
-    : 'Bible in a Year';
-  const accessDetailLabel = subscription?.current_period_end
-    ? 'Renews'
-    : 'Access';
-  const accessDetailValue = subscription?.current_period_end
-    ? new Date(subscription.current_period_end).toLocaleDateString()
-    : premiumAccessSource === 'promo' && promoAccess?.lifetime_access
-    ? 'Lifetime Included'
-    : premiumAccessSource === 'promo' && promoAccess?.access_expires_at
-    ? `${promoDaysRemaining} ${
-        promoDaysRemaining === 1 ? 'day' : 'days'
-      } remaining`
-    : premiumAccessSource === 'trial'
-    ? `${trialAccess.daysRemaining} ${
-        trialAccess.daysRemaining === 1 ? 'day' : 'days'
-      } remaining`
-    : premiumAccessSource === 'included'
-    ? 'Lifetime Included'
-    : trialAccess.trialExpired
-    ? 'Premium trial ended'
-    : 'Free Bible access';
   const saveName = async () => {
     if (!name.trim() || name.trim() === profile?.display_name) return;
     setSavingName(true);
@@ -174,35 +119,6 @@ export default function Profile() {
     }
   };
 
-  const openBillingPortal = async () => {
-    setBillingMessage(null);
-    setBillingLoading(true);
-    try {
-      const result = await manageSubscription();
-      if (result.error) setBillingMessage(result.error);
-    } finally {
-      setBillingLoading(false);
-    }
-  };
-
-  const redeemProfilePromoCode = async () => {
-    if (!promoCode.trim()) return;
-    setPromoError(null);
-    setPromoMessage(null);
-    setPromoLoading(true);
-    try {
-      const result = await redeemPromoCode(promoCode);
-      if (result.error) {
-        setPromoError(result.error);
-      } else {
-        setPromoCode('');
-        setPromoMessage(result.message || 'Promo code redeemed.');
-      }
-    } finally {
-      setPromoLoading(false);
-    }
-  };
-
   const beginDeactivateFlow = () => {
     setDeactivateError(null);
     setDeactivateReason('');
@@ -262,70 +178,8 @@ export default function Profile() {
         </button>
       </section>
 
-      <p className={sectionTitle}>Access</p>
-      <section className={`${cardClass} mb-6`}>
-        <div className="grid grid-cols-1 gap-3">
-          <div className="rounded-xl bg-parchment-50 px-4 py-3">
-            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
-              Current Plan
-            </p>
-            <p className="mt-1 font-display text-xl font-semibold text-leather-900">
-              {currentPlanLabel}
-            </p>
-          </div>
-          <div className="rounded-xl bg-parchment-50 px-4 py-3">
-            <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
-              {accessDetailLabel}
-            </p>
-            <p className="mt-1 font-semibold text-leather-700">
-              {accessDetailValue}
-            </p>
-          </div>
-        </div>
-
-        {billingMessage && (
-          <p className="mt-3 rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-sm text-stone-600">
-            {billingMessage}
-          </p>
-        )}
-      </section>
-
-      <p className={sectionTitle}>Redeem Promo Code</p>
-      <section className={`${cardClass} mb-6`}>
-        <label className="block text-sm font-semibold text-leather-900">
-          Promo Code
-          <input
-            type="text"
-            value={promoCode}
-            onChange={(e) => {
-              setPromoCode(e.target.value);
-              setPromoError(null);
-              setPromoMessage(null);
-            }}
-            onKeyDown={(e) => e.key === 'Enter' && redeemProfilePromoCode()}
-            placeholder="Enter code"
-            autoCapitalize="characters"
-            className={`${inputClass} mt-2`}
-          />
-        </label>
-        <button
-          onClick={redeemProfilePromoCode}
-          disabled={promoLoading || !promoCode.trim()}
-          className={`${primaryButtonClass} mt-3`}
-        >
-          {promoLoading ? 'Redeeming...' : 'Redeem code'}
-        </button>
-        {promoMessage && (
-          <p className="mt-3 rounded-xl border border-parchment-200 bg-parchment-50 px-4 py-3 text-sm text-sage-500">
-            {promoMessage}
-          </p>
-        )}
-        {promoError && (
-          <p className="mt-3 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-            {promoError}
-          </p>
-        )}
-      </section>
+      <p className={sectionTitle}>Support</p>
+      <DonationSupport className="mb-6" />
 
       <p className={sectionTitle}>Shared Journey</p>
       <p className="mb-3 px-1 text-sm leading-relaxed text-stone-500">
@@ -585,26 +439,6 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
               </button>
             </div>
 
-            <section className="mt-5 rounded-2xl border border-parchment-200 bg-parchment-50 p-4">
-              <h3 className="font-display text-xl font-semibold text-leather-900">
-                Subscription
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-stone-600">
-                Update your payment method, manage billing, or cancel your
-                subscription in the secure Stripe Customer Portal.
-              </p>
-              <button
-                onClick={openBillingPortal}
-                disabled={billingLoading}
-                className={`${primaryButtonClass} mt-4`}
-              >
-                {billingLoading ? 'Opening...' : 'Manage Subscription'}
-              </button>
-              <p className="mt-2 text-xs leading-relaxed text-stone-500">
-                Update, cancel, or manage your plan securely through Stripe.
-              </p>
-            </section>
-
             <section className="mt-5 rounded-2xl border border-parchment-200 bg-white p-4">
               <h3 className="font-display text-xl font-semibold text-leather-900">
                 Account
@@ -647,10 +481,6 @@ Catholic Journey 365 is here to help you pray, read Scripture, learn the faith, 
                     Are you sure you want to deactivate your account?
                   </h4>
                   <div className="mt-3 space-y-2 text-sm leading-relaxed text-stone-600">
-                    <p>
-                      Please cancel your subscription first through Manage
-                      Subscription if you no longer want to be billed.
-                    </p>
                     <p>
                       Account deletion is permanent and may remove your journey
                       data.

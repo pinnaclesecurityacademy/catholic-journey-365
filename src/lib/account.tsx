@@ -17,9 +17,7 @@ import {
   SubscriptionPlan,
   SubscriptionStatus,
   getActivePromoAccess,
-  getPremiumAccessSource,
   getPremiumTrialStatus,
-  getSubscriptionAccessSource,
   normalizePromoCode,
   openCustomerPortal,
   redeemPromoCode as redeemPromoCodeRequest,
@@ -573,22 +571,14 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     await loadJourney(user.id);
   };
 
-  const subscriptionAccessSource = getSubscriptionAccessSource(
-    subscription,
-    user?.id
-  );
+  // Catholic Journey 365 is free for everyone. Every signed-in user has full
+  // access, regardless of any past trial, subscription, or promo status. The
+  // subscription/promo data is still loaded above (so existing records are
+  // preserved and nothing breaks), but it no longer gates access.
   const trialAccess = getPremiumTrialStatus(user?.created_at);
-  const trialAccessSource = getPremiumAccessSource(
-    subscription,
-    user?.id,
-    user?.created_at
-  );
-  const premiumAccessSource =
-    subscriptionAccessSource ??
-    (promoAccess ? 'promo' : null) ??
-    trialAccessSource;
-  const hasPremiumAccess = premiumAccessSource !== null;
-  const hasBillingAccess = hasPremiumAccess;
+  const premiumAccessSource: PremiumAccessSource | null = 'included';
+  const hasPremiumAccess = true;
+  const hasBillingAccess = true;
 
   return (
     <AccountContext.Provider
